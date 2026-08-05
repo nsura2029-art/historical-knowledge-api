@@ -1,0 +1,21 @@
+{
+  "name": "@hka/contracts",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "openapi:generate": "echo 'placeholder — full impl in TASK-002'",
+    "openapi:lint": "echo 'placeholder — full impl in TASK-002'",
+    "openapi:breaking": "echo 'placeholder — full impl in TASK-002'",
+    "examples:test": "echo 'placeholder — full impl in TASK-002'"
+  },
+  "dependencies": {
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

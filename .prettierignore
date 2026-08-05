@@ -1,0 +1,11 @@
+# Don't reformat the playbook (it's a spec, exact formatting matters)
+AGENT-INSTRUCTIONS.md
+# Don't reformat pnpm-lock.yaml
+pnpm-lock.yaml
+# Don't reformat our own planning docs (they're append-only and might be imported elsewhere)
+PRD-IMPLEMENTATION-NOTES.md
+# Build outputs
+dist
+node_modules
+coverage
+.wrangler

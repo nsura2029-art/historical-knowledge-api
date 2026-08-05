@@ -1,0 +1,19 @@
+{
+  "name": "@hka/ingestion",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "quality:sources": "echo 'placeholder — full impl in TASK-003+'",
+    "quality:claims": "echo 'placeholder — full impl in TASK-010+'",
+    "quality:duplicates": "echo 'placeholder — full impl in TASK-009+'",
+    "quality:rights": "echo 'placeholder — full impl in TASK-011+'",
+    "quality:index": "echo 'placeholder — full impl in TASK-014'"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

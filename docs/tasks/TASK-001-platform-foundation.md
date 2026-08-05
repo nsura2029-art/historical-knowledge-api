@@ -46,6 +46,7 @@ None. TASK-001 ships **no historical data**. Bindings are stubbed; no D1 migrati
 ## Current behavior
 
 The repo was just initialized (2026-08-05). The GitHub repo `nsura2029-art/historical-knowledge-api` exists (public, default branch `main`) but is empty. The local working tree at `/workspace/historical-knowledge-api/` has:
+
 - `README.md`
 - `AGENTS.md`
 - `AGENT-INSTRUCTIONS.md` (the playbook)
@@ -113,21 +114,22 @@ None — this is a scaffold task.
 
 ## Edge and failure cases (per playbook §10)
 
-| Case | Test | Expected |
-|---|---|---|
-| Fresh install | `rm -rf node_modules && pnpm install` | 0 errors, 0 warnings |
-| Missing binding | Run with `DB` removed from `wrangler.jsonc` | `/v1/health` returns 503 `BINDING_MISSING` |
-| Invalid env | Set `ENVIRONMENT=garbage` | `/v1/version` returns 503 `INVALID_ENV` |
-| Worker exception | Throw in a route | 500 `application/problem+json` with `code: INTERNAL_ERROR`, log has stack |
-| CORS preflight | `OPTIONS /v1/health` with `Origin` + `Access-Control-Request-Method` | 200 with CORS headers |
-| HEAD request | `HEAD /v1/health` | 200, no body |
-| Malformed request | `GET /v1/health?garbage=1` | Ignored; 200 |
-| Unicode in URL | `/v1/health/🚀` | 404 problem+json (route not found) |
-| Long URL | 8KB path | 414 problem+json |
+| Case              | Test                                                                 | Expected                                                                  |
+| ----------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Fresh install     | `rm -rf node_modules && pnpm install`                                | 0 errors, 0 warnings                                                      |
+| Missing binding   | Run with `DB` removed from `wrangler.jsonc`                          | `/v1/health` returns 503 `BINDING_MISSING`                                |
+| Invalid env       | Set `ENVIRONMENT=garbage`                                            | `/v1/version` returns 503 `INVALID_ENV`                                   |
+| Worker exception  | Throw in a route                                                     | 500 `application/problem+json` with `code: INTERNAL_ERROR`, log has stack |
+| CORS preflight    | `OPTIONS /v1/health` with `Origin` + `Access-Control-Request-Method` | 200 with CORS headers                                                     |
+| HEAD request      | `HEAD /v1/health`                                                    | 200, no body                                                              |
+| Malformed request | `GET /v1/health?garbage=1`                                           | Ignored; 200                                                              |
+| Unicode in URL    | `/v1/health/🚀`                                                      | 404 problem+json (route not found)                                        |
+| Long URL          | 8KB path                                                             | 414 problem+json                                                          |
 
 ## Tests
 
 ### Unit
+
 - `tests/unit/bindings.test.ts` — typed Bindings compile + no `any` leaks
 - `tests/unit/request-id.test.ts` — middleware adds/preserves `X-Request-Id`
 - `tests/unit/errors.test.ts` — problem+json shape matches playbook §7
@@ -135,20 +137,24 @@ None — this is a scaffold task.
 - `tests/unit/version-route.test.ts` — version payload structure
 
 ### Integration
+
 - `tests/integration/health.test.ts` — hits miniflare, returns 200 with DB stats (stubbed)
 - `tests/integration/cors.test.ts` — preflight works
 
 ### Edge
+
 - `tests/edge/fresh-install.sh` — runs in CI, asserts `pnpm install` exits 0
 - `tests/edge/missing-binding.test.ts` — see table above
 - `tests/edge/head-request.test.ts`
 - `tests/edge/malformed-env.test.ts`
 
 ### Security
+
 - `tests/security/secrets-scan.sh` — `gitleaks` or `trufflehog` over the tree; no secrets
 - `tests/security/cors-preflight.test.ts` — preflight is restrictive enough for meta routes
 
 ### Migrations
+
 - `tests/integration/migrations/000-noop.test.ts` — there are no migrations yet, but the test file documents the future location
 
 ## Documentation updates

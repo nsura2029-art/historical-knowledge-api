@@ -12,6 +12,10 @@ build/
 .dev.vars
 .dev.vars.*
 
+# Wrangler-generated types (regenerate with `pnpm wrangler:types`)
+apps/api/worker-configuration.d.ts
+apps/api/wrangler-types.d.ts
+
 # Environment
 .env
 .env.*

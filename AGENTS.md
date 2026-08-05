@@ -20,6 +20,7 @@ Per `AGENT-INSTRUCTIONS.md` §2:
 > READ → INTENT → SOURCES → SCHEMA → DESIGN → IMPLEMENT → DOCUMENT → TEST → QUALITY GATE → REVIEW → COMMIT → NEXT
 
 Every task produces two artifacts:
+
 - `docs/tasks/TASK-###-short-name.md` (the spec, per §3 template)
 - `docs/quality-reports/TASK-###.md` (the evidence with PASS/BLOCKED decision)
 
@@ -57,6 +58,7 @@ These are extensions to the playbook, not overrides:
 - D1 / R2 / KV connection strings (Workers bindings, not secrets — but still in wrangler.jsonc gitignored)
 
 `.gitignore` includes:
+
 - `.dev.vars`
 - `.env*`
 - `node_modules/`

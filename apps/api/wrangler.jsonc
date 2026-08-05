@@ -1,0 +1,172 @@
+// Cloudflare Workers configuration for the Historical Knowledge Platform
+// See: https://developers.cloudflare.com/workers/wrangler/configuration/
+// Generated: 2026-08-05 | TASK-001 in progress
+// All resources prefixed `historical-knowledge-api-*` per project scoping rules.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "historical-knowledge-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Observability — Workers Logs + Traces
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1.0,
+  },
+
+  // Default env (local dev)
+  "vars": {
+    "ENVIRONMENT": "local",
+    "VERSION": "0.0.1",
+  },
+
+  // Bindings (TASK-001)
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "historical-knowledge-api-d1",
+      "database_id": "0dacf1b5-2987-4cb7-bf9d-989428a84382",
+      "migrations_dir": "../../packages/db/migrations",
+    },
+  ],
+
+  "r2_buckets": [
+    {
+      "binding": "RAW_BUCKET",
+      "bucket_name": "historical-knowledge-api-raw",
+    },
+  ],
+
+  "kv_namespaces": [
+    {
+      "binding": "CACHE",
+      "id": "65a2be1236334c6a8955bcf3a2e2e384",
+    },
+  ],
+
+  "queues": {
+    "producers": [
+      {
+        "binding": "INGEST_QUEUE",
+        "queue": "historical-knowledge-api-ingest",
+      },
+    ],
+  },
+
+  // Vectorize: deferred (Cloudflare API auth issue, will be re-attempted before TASK-014)
+  // "vectorize": [
+  //   {
+  //     "binding": "VECTORIZE",
+  //     "index_name": "historical-knowledge-api-vectors"
+  //   }
+  // ],
+
+  "env": {
+    "dev": {
+      "name": "historical-knowledge-api-dev",
+      "vars": {
+        "ENVIRONMENT": "dev",
+        "VERSION": "0.0.1",
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "historical-knowledge-api-d1",
+          "database_id": "0dacf1b5-2987-4cb7-bf9d-989428a84382",
+          "migrations_dir": "../../packages/db/migrations",
+        },
+      ],
+      "r2_buckets": [
+        {
+          "binding": "RAW_BUCKET",
+          "bucket_name": "historical-knowledge-api-raw",
+        },
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "65a2be1236334c6a8955bcf3a2e2e384",
+        },
+      ],
+      "queues": {
+        "producers": [
+          {
+            "binding": "INGEST_QUEUE",
+            "queue": "historical-knowledge-api-ingest",
+          },
+        ],
+      },
+    },
+    "preview": {
+      "name": "historical-knowledge-api-preview",
+      "vars": {
+        "ENVIRONMENT": "preview",
+        "VERSION": "0.0.1",
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "historical-knowledge-api-d1",
+          "database_id": "0dacf1b5-2987-4cb7-bf9d-989428a84382",
+          "migrations_dir": "../../packages/db/migrations",
+        },
+      ],
+      "r2_buckets": [
+        {
+          "binding": "RAW_BUCKET",
+          "bucket_name": "historical-knowledge-api-raw",
+        },
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "65a2be1236334c6a8955bcf3a2e2e384",
+        },
+      ],
+      "queues": {
+        "producers": [
+          {
+            "binding": "INGEST_QUEUE",
+            "queue": "historical-knowledge-api-ingest",
+          },
+        ],
+      },
+    },
+    "production": {
+      "name": "historical-knowledge-api-prod",
+      "vars": {
+        "ENVIRONMENT": "production",
+        "VERSION": "0.0.1",
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "historical-knowledge-api-d1",
+          "database_id": "0dacf1b5-2987-4cb7-bf9d-989428a84382",
+          "migrations_dir": "../../packages/db/migrations",
+        },
+      ],
+      "r2_buckets": [
+        {
+          "binding": "RAW_BUCKET",
+          "bucket_name": "historical-knowledge-api-raw",
+        },
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "c089ac9d07e3447babaaa97ae22a969d",
+        },
+      ],
+      "queues": {
+        "producers": [
+          {
+            "binding": "INGEST_QUEUE",
+            "queue": "historical-knowledge-api-ingest",
+          },
+        ],
+      },
+    },
+  },
+}

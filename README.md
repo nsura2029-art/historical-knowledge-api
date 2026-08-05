@@ -15,21 +15,39 @@ A **public, free, source-backed** platform for historical discovery. Every fact 
 ## Status
 
 - **Repo**: created 2026-08-05, public, default branch `main`
-- **TASK-001 in progress** (platform foundation)
-- **M0 (Foundation) target**: end of week 1 from TASK-001 start
+- **TASK-001 PASS** (platform foundation) — 7/7 smoke + 7/7 unit, deployed to preview
+- **Preview URL**: https://historical-knowledge-api-preview.nsura2029.workers.dev
+- **M0 (Foundation) target**: end of week 1 from TASK-001 start — **DONE 2026-08-05**
 - **M1 (Core model + first sources) target**: weeks 2-6
 - **MVP bar (PRD §16)**: ≥50K events / 50K people / 10K places by week 8
 
+## Quickstart (local)
+
+```bash
+pnpm install
+CLOUDFLARE_API_TOKEN=... CLOUDFLARE_ACCOUNT_ID=... pnpm --filter @hka/api dev
+# in another terminal:
+node apps/api/scripts/smoke.mjs http://127.0.0.1:8787
+```
+
+## Quickstart (preview)
+
+```bash
+CLOUDFLARE_API_TOKEN=... CLOUDFLARE_ACCOUNT_ID=... pnpm --filter @hka/api deploy:preview
+SMOKE_URL=https://historical-knowledge-api-preview.nsura2029.workers.dev \
+  node apps/api/scripts/smoke.mjs
+```
+
 ## How to read this repo
 
-| If you want to... | Read |
-|---|---|
-| Understand the product | `PRD-IMPLEMENTATION-NOTES.md` |
-| Understand how to work on it | `AGENT-INSTRUCTIONS.md` |
-| See what task is in flight | `docs/tasks/` (active spec) and `docs/quality-reports/` (most recent PASS/BLOCKED) |
-| See API contracts | `apps/api/src/routes/v1/` + `/openapi.json` once deployed |
-| See the data model | `packages/db/migrations/` (after TASK-004 lands) |
-| See how data is ingested | `packages/ingestion/` (after TASK-005 lands) |
+| If you want to...            | Read                                                                               |
+| ---------------------------- | ---------------------------------------------------------------------------------- |
+| Understand the product       | `PRD-IMPLEMENTATION-NOTES.md`                                                      |
+| Understand how to work on it | `AGENT-INSTRUCTIONS.md`                                                            |
+| See what task is in flight   | `docs/tasks/` (active spec) and `docs/quality-reports/` (most recent PASS/BLOCKED) |
+| See API contracts            | `apps/api/src/routes/v1/` + `/openapi.json` once deployed                          |
+| See the data model           | `packages/db/migrations/` (after TASK-004 lands)                                   |
+| See how data is ingested     | `packages/ingestion/` (after TASK-005 lands)                                       |
 
 ## Architecture
 
