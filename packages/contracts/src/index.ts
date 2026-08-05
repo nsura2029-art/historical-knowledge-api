@@ -8,6 +8,9 @@
 
 import { z } from 'zod';
 
+// Re-export people schemas (famous-people dimension)
+export * from './people.js';
+
 // ---------------------------------------------------------------------------
 // Envelope
 // ---------------------------------------------------------------------------
