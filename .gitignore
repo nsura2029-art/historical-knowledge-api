@@ -1,0 +1,55 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Cloudflare Wrangler
+.wrangler/
+.dev.vars
+.dev.vars.*
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+
+# Test
+coverage/
+.nyc_output/
+*.lcov
+
+# Editor
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+.DS_Store
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Local data
+*.sqlite
+*.sqlite-journal
+*.db
+
+# Generated
+**/dist/
+**/.turbo/
+
+# Tasks and quality reports that are NOT yet reviewed
+# (We commit them as drafts; the PASS/BLOCKED decision is what matters)
+# docs/quality-reports/TASK-*.md

@@ -1,0 +1,52 @@
+{
+  "name": "historical-knowledge-api",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Source-backed historical knowledge platform — Hono + Cloudflare Workers + D1",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @hka/api dev",
+    "build": "pnpm -r build",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit -p apps/api && pnpm -r typecheck",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
+    "test:unit": "vitest run --dir tests/unit",
+    "test:integration": "vitest run --dir tests/integration",
+    "test:contract": "vitest run --dir tests/contract",
+    "test:edge": "vitest run --dir tests/edge",
+    "test:migrations": "vitest run --dir tests/integration/migrations",
+    "test:security": "vitest run --dir tests/security",
+    "test": "pnpm test:unit && pnpm test:integration && pnpm test:contract && pnpm test:edge && pnpm test:migrations && pnpm test:security",
+    "openapi:generate": "pnpm --filter @hka/contracts openapi:generate",
+    "openapi:lint": "pnpm --filter @hka/contracts openapi:lint",
+    "openapi:breaking": "pnpm --filter @hka/contracts openapi:breaking --base origin/main",
+    "examples:test": "pnpm --filter @hka/contracts examples:test",
+    "wrangler:types": "wrangler types --env-file .dev.vars",
+    "dev:smoke": "pnpm --filter @hka/api dev:smoke",
+    "deploy:preview": "pnpm --filter @hka/api deploy:preview",
+    "preview:smoke": "pnpm --filter @hka/api preview:smoke",
+    "deploy:dev": "pnpm --filter @hka/api deploy:dev",
+    "deploy:prod": "pnpm --filter @hka/api deploy:prod",
+    "quality:sources": "pnpm --filter @hka/ingestion quality:sources",
+    "quality:claims": "pnpm --filter @hka/ingestion quality:claims",
+    "quality:duplicates": "pnpm --filter @hka/ingestion quality:duplicates",
+    "quality:rights": "pnpm --filter @hka/ingestion quality:rights",
+    "quality:index": "pnpm --filter @hka/ingestion quality:index"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0",
+    "wrangler": "^3.40.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

@@ -1,0 +1,44 @@
+// Cloudflare Workers configuration for the Historical Knowledge Platform
+// See: https://developers.cloudflare.com/workers/wrangler/configuration/
+// Generated: 2026-08-05 | Status: scaffold (TASK-001 in progress)
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "historical-knowledge-api",
+  "main": "apps/api/src/index.ts",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Observability — Workers Logs + Traces
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1.0
+  },
+
+  // Placeholder environment (TASK-001 will populate)
+  "vars": {
+    "ENVIRONMENT": "development"
+  },
+
+  // Bindings (TASK-001 will populate):
+  // - DB: D1 (system of record)
+  // - RAW_BUCKET: R2 (immutable raw payloads)
+  // - INGEST_QUEUE: Queue (decoupled ingest)
+  // - CACHE: KV (short-lived cache + feature flags)
+  // - VECTORIZE: Vectorize (semantic retrieval, derived)
+  // - API_RATE_LIMITER: RateLimit (per-key, per-IP, per-route)
+
+  "env": {
+    "dev": {
+      "name": "historical-knowledge-api-dev",
+      "vars": {
+        "ENVIRONMENT": "development"
+      }
+    },
+    "production": {
+      "name": "historical-knowledge-api-prod",
+      "vars": {
+        "ENVIRONMENT": "production"
+      }
+    }
+  }
+}
