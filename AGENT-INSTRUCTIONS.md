@@ -36,14 +36,46 @@ The agent must complete one task at a time. It may not begin the next task until
 
 # 2.5 Git Workflow (binding)
 
-- `main` is the production branch. Every commit on `main` is deployable.
-- `develop` is the integration branch. All new work lands on `develop` first.
-- Feature work happens on a branch off `develop` using a worktree.
-- The worktree for `develop` lives at `../historical-knowledge-api-worktrees/develop/`. Use it for active development; the main checkout is reserved for review-only operations.
-- When ready, the feature branch is fast-forward merged into `develop`:
-  `git merge --ff-only feature/<name> develop`
-- After integration, `develop` is periodically merged into `main` (typically after a TASK-### passes).
-- For commit staging, use `git add -A && git commit` (NOT `git commit -a`); `-a` only stages modifications to tracked files, missing new untracked files. Always `git show --stat HEAD` before pushing.
+## Branches
+
+- `main` is the **production** branch. Only updated via merges from `develop`. Every commit on `main` is deployable to production.
+- `develop` is the **integration** branch. All completed feature work lands here.
+- `feature/<name>` (or `fix/<name>`, `task-<###>`) is where active work happens, branched off `develop`.
+
+## The full lifecycle of a change
+
+```
+1. Branch off develop:        git checkout -b feature/TASK-002-some-name develop
+2. Make changes + commit:     git add -A && git commit -m "..."
+3. Push feature branch:       git push -u origin feature/TASK-002-some-name
+4. Deploy to DEV worker:      pnpm exec wrangler deploy --env dev
+5. Hand off to user for QA:   share the live URL + what to test
+6. User runs smoke + verifies on https://historical-knowledge-api-dev.nsura2029.workers.dev
+7. User replies "LGTM" (or "needs fix")
+8. On LGTM: merge to develop:  git checkout develop && git merge --ff-only feature/TASK-002-some-name
+9. On needs fix: more commits on the feature branch, redeploy to dev, repeat
+10. Periodically, develop → main (after a TASK-### passes the user-facing bar)
+```
+
+## Key invariants
+
+- **Never push directly to `main`.** The only way `main` changes is via a merge from `develop`.
+- **Never push directly to `develop` either.** The only way `develop` changes is via a merge from a reviewed `feature/*` branch.
+- **Every change must hit the dev worker before merging.** User verifies on `https://historical-knowledge-api-dev.nsura2029.workers.dev`.
+- **The dev worker is `historical-knowledge-api-dev`** (NOT the production domain). The URL is always `https://historical-knowledge-api-dev.nsura2029.workers.dev`.
+- **Worker version IDs in the deploy log are noise** — the source of truth is the git commit. Always note "deployed: <commit hash>" in the user-facing summary.
+- **Re-deploying is fine.** A second `wrangler deploy --env dev` from the same commit just rolls the same code forward.
+
+## Worktrees
+
+- The `develop` worktree lives at `../historical-knowledge-api-worktrees/develop/`. Use it for review operations (merging a feature branch, periodic deploys).
+- Active feature work happens in a NEW worktree per feature:
+  `git worktree add ../historical-knowledge-api-worktrees/feature-task-002 -b feature/TASK-002-some-name develop`
+- The main checkout (the one you started in) is for read-only review operations.
+
+## Staging conventions
+
+- Use `git add -A && git commit` (NOT `git commit -a`); `-a` only stages modifications to tracked files, missing new untracked files. Always `git show --stat HEAD` before pushing.
 - Out-of-scope lint errors (do NOT touch): any TypeScript narrowing error in code we did not modify this turn.
 - The `historical-knowledge-api-d1` database is **READ-ONLY** for any D1 not prefixed `historical-knowledge-api-`. All schema changes go to `historical-knowledge-api-d1` via migrations under `packages/db/migrations/`.
 
