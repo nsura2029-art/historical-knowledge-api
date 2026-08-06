@@ -42,28 +42,43 @@ The agent must complete one task at a time. It may not begin the next task until
 - `develop` is the **integration** branch. All completed feature work lands here.
 - `feature/<name>` (or `fix/<name>`, `task-<###>`) is where active work happens, branched off `develop`.
 
-## The full lifecycle of a change
+## The full lifecycle of a change (with quality gate)
 
 ```
-1. Branch off develop:        git checkout -b feature/TASK-002-some-name develop
-2. Make changes + commit:     git add -A && git commit -m "..."
-3. Push feature branch:       git push -u origin feature/TASK-002-some-name
-4. Deploy to DEV worker:      pnpm exec wrangler deploy --env dev
-5. Hand off to user for QA:   share verification links + what to test
-6. User runs smoke + verifies on https://historical-knowledge-api-dev.nsura2029.workers.dev
-7. User replies "LGTM" (or "needs fix")
-8. On LGTM: merge to develop:  git checkout develop && git merge --ff-only feature/TASK-002-some-name
-9. On LGTM: cleanup worktree:  git worktree remove ../feature-task-002 && git worktree prune
-10. On LGTM: setup next worktree from develop:
+1.  Branch off develop:        git checkout -b feature/TASK-002-some-name develop
+2.  Make changes + commit:     git add -A && git commit -m "..."
+3.  Push feature branch:       git push -u origin feature/TASK-002-some-name
+4.  Deploy to DEV worker:      pnpm exec wrangler deploy --env dev
+5.  RUN QUALITY GATE (binding):
+    a. Smoke tests:             node scripts/v#-smoke.mjs (all suites)
+    b. Edge case tests:        node scripts/v#-edge.mjs (if exists)
+    c. Quality gate checks:    node scripts/quality-gate.mjs
+    d. If any FAIL:             fix + redeploy + re-run gate. DO NOT hand off
+                                with a failing gate. Loop until ALL pass.
+    e. If all PASS:             proceed to step 6.
+6.  Hand off to user for QA:   share verification links + quality gate report
+7.  User runs smoke + verifies on dev worker
+8.  User replies "LGTM" (or "needs fix")
+9.  On LGTM: merge to develop:  git merge --ff-only feature/TASK-002-some-name develop
+10. On LGTM: cleanup worktree:  git worktree remove ../feature-task-002 && git worktree prune
+11. On LGTM: setup next worktree from develop:
     git worktree add ../feature-TASK-003-some-name -b feature/TASK-003-some-name develop
-11. On needs fix: more commits on the feature branch, redeploy to dev, repeat
-12. Periodically, develop → main (after a TASK-### passes the user-facing bar)
+12. On needs fix: more commits + re-run quality gate + redeploy + re-hand off
+13. Periodically: develop → main (after a TASK-### passes the user-facing bar)
 ```
 
-**Steps 8, 9, 10 always happen together as a single LGTM response.** Never
+**Steps 9, 10, 11 always happen together as a single LGTM response.** Never
 merge without also cleaning up the worktree AND setting up the next one. The
 next worktree is created from the FRESH `develop` (which now includes the
 just-merged changes) — this keeps the linear history clean.
+
+**Step 5 (Quality Gate) is binding.** A task is not done when the code
+compiles, smoke passes, or the user LGTMs. It is done when:
+- All smoke tests pass (basic happy path)
+- All edge case tests pass (400/404/empty/pagination/error envelopes)
+- All quality gate checks pass (per task spec's "Quality gates" section + the
+  PRD's universal quality thresholds)
+- All previous-task smokes still pass (no regression)
 
 ## Key invariants
 
@@ -86,8 +101,9 @@ just-merged changes) — this keeps the linear history clean.
 
 ## Verification links (binding)
 
-**After every task completes** (before LGTM), provide these links in the
-hand-off message so the user can verify the work. Every task MUST include:
+**After every task completes AND the quality gate passes** (before LGTM),
+provide these links in the hand-off message so the user can verify the work.
+Every task MUST include:
 
 ### 1. Dev Worker URL
 - `https://historical-knowledge-api-dev.nsura2029.workers.dev`
@@ -122,6 +138,7 @@ hand-off message so the user can verify the work. Every task MUST include:
 
 **Deployed commit**: <hash>
 **Worker version**: <id> (noise — use commit hash as truth)
+**Quality gate**: PASS / BLOCKED
 
 ### Live
 - Dev URL: https://historical-knowledge-api-dev.nsura2029.workers.dev
@@ -131,8 +148,15 @@ hand-off message so the user can verify the work. Every task MUST include:
 ### Test endpoints
 [3-5 specific curl commands]
 
-### Smoke results
-v2: 44 / v3: 31 / v4: 27 / v5: 54 / v6: 41 / v7: 25 = 222/222
+### Quality gate report
+- Smoke tests: v2: 44 / v3: 31 / v4: 27 / v5: 54 / v6: 41 / v7: 25 = 222/222
+- Edge case tests: v#-edge.mjs: 12 pass / 0 fail
+- Migration idempotent: yes (re-run safe)
+- All CHECK constraints enforced: yes
+- No regression in previous smokes: confirmed
+- OpenAPI validates: yes
+- No 500 errors in any tested path: confirmed
+- Quality gate status: PASS
 
 ### Database state
 - claim: 150 rows
@@ -152,9 +176,119 @@ https://github.com/.../pull/new/feature/...
 - cleanup worktree
 - create next worktree from develop for the next task
 
-If LGTM, reply "lgtm" and I'll do steps 8/9/10 in one shot.
-If "needs fix", I'll add commits to the feature branch and redeploy.
+If LGTM, reply "lgtm" and I'll do steps 9/10/11 in one shot.
+If "needs fix", I'll add commits on the feature branch + re-run quality gate + redeploy + re-hand off.
 ```
+
+## Quality gate (binding)
+
+A task is not done when the code compiles, smoke passes, or the user LGTMs. It
+is done when **all** of the following hold:
+
+### 1. Smoke tests (basic happy path)
+- All `v#-smoke.mjs` suites pass
+- The new task's smoke (e.g. `v7-smoke.mjs` for KP-003) has ≥20 tests
+- All previous smokes still pass (no regression)
+
+### 2. Edge case tests (boundary + error paths)
+- 400 for invalid input (malformed dates, bad slugs, missing required fields)
+- 404 for not-found (nonexistent entity, year before 1700, etc.)
+- Empty data (days with no events, persons with no claims, etc.)
+- Pagination edge cases (limit=0, limit=99999, offset beyond data)
+- Tier-1 boundary cases (year 1699, year 2101, etc.)
+- Error envelope shape (`{ error: { code, message, requestId, details } }`)
+- Cache invalidation (after a write, the next read is fresh)
+
+### 3. Quality gate checks (per task spec)
+Every task spec has a "Quality gates" section. The agent must run those
+checks explicitly. Example for a schema task:
+- [ ] All CHECK constraints enforced
+- [ ] Migration is idempotent (re-run safe)
+- [ ] All indexes created
+- [ ] No orphan rows after migration
+- [ ] Row counts match expectations
+- [ ] Foreign keys intact
+
+### 4. Universal quality thresholds (per PRD §5)
+These apply to every task, regardless of type:
+- `identity_confidence >= 0.95` for automatic entity resolution
+- `critical_fact_source_coverage = 1.00`
+- `weighted_provenance_score >= 0.90`
+- `unsupported_generated_material_claims = 0`
+- `unresolved_duplicate_count = 0`
+- `rights_readiness = 1.00` for displayed media
+- `broken_primary_internal_links = 0`
+- `expired_high_impact_current_claims = 0`
+- `critical_security_failures = 0`
+- `critical_accessibility_failures = 0`
+- `OpenAPI_contract_failures = 0`
+
+### 5. Self-loop on failure
+If ANY check fails:
+1. Diagnose (read the error, check the Worker logs)
+2. Fix (edit the code, migration, or schema)
+3. Re-deploy
+4. Re-run the failing checks
+5. Loop until ALL pass
+6. Only then hand off
+
+**A task is never handed off with a failing gate.** The user LGTM is the
+"feature is good" signal, but the **quality gate is the "task is done"
+signal**. Both are required.
+
+### 6. Quality gate scripts
+
+Per quarter, the agent maintains:
+- `scripts/v#-smoke.mjs` — basic happy path (already exists for v2-v6)
+- `scripts/v#-edge.mjs` — boundary + error path tests (new convention)
+- `scripts/quality-gate.mjs` — runs all quality gate checks (universal thresholds)
+
+The `quality-gate.mjs` script is the **single source of truth** for "is this
+task done?" It runs at the end of every task and prints:
+
+```
+=== Quality Gate: <task-name> ===
+[PASS] smoke tests (v#-smoke.mjs): N/N
+[PASS] edge case tests (v#-edge.mjs): N/N
+[PASS] migration idempotent
+[PASS] CHECK constraints enforced
+[PASS] no orphan rows
+[PASS] foreign keys intact
+[PASS] row counts match expected
+[PASS] no 500 errors in any tested path
+[PASS] no regression in previous smokes
+[PASS] OpenAPI validates
+[PASS] identity_confidence >= 0.95
+[PASS] critical_fact_source_coverage = 1.00
+[PASS] rights_readiness = 1.00 for displayed media
+[PASS] broken_primary_internal_links = 0
+[PASS] OpenAPI_contract_failures = 0
+=== Result: PASS ===
+```
+
+If any line is FAIL, the gate blocks. The agent fixes, redeploys, re-runs.
+Loops until PASS.
+
+### 7. Specs already have quality gate sections
+
+Per AGENT-INSTRUCTIONS.md §3 (Standard Task File template), every task spec
+MUST have a "## Quality gates" section. The agent converts that section
+into runnable checks in `quality-gate.mjs`.
+
+Example from `docs/tasks/KP-003-universal-ontology-claim-model.md`:
+```markdown
+## Quality gates
+- [ ] All 24+ CHECK constraints enforced
+- [ ] Migration is idempotent
+- [ ] No regression in v2-v6 smoke (197 tests still pass)
+- [ ] New v7 smoke (25+ tests) all pass
+- [ ] Every existing career_event has a corresponding claim row
+- [ ] Every existing career_event.source_id has a corresponding source_record
+- [ ] claim + claim_source are FK-consistent
+- [ ] No orphan rows after migration
+```
+
+These become explicit assertions in the `quality-gate.mjs` script.
 
 ## Staging conventions
 
