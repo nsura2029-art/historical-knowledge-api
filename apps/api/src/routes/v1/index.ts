@@ -20,6 +20,7 @@ import { relatedRouter } from './related.js';
 import { referencesRouter } from './references.js';
 import { onThisDayRouter } from './on-this-day.js';
 import { claimsRouter } from './claims.js';
+import { sourcesRouter } from './sources.js';
 
 export const v1Router = new OpenAPIHono<AppEnv>();
 
@@ -39,3 +40,4 @@ v1Router.route('/', relatedRouter);
 v1Router.route('/', referencesRouter);
 v1Router.route('/', onThisDayRouter);
 v1Router.route('/', claimsRouter);
+v1Router.route('/', sourcesRouter);
