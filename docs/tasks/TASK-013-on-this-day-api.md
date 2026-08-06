@@ -369,15 +369,22 @@ After TASK-013 PASS:
 - **TASK-014** (Search + intent) — improve /v1/search to surface
   on-this-day queries
 
-## Open questions
+## Open questions — ANSWERED 2026-08-06
 
-1. **Calendrify** — what is it? User said "I will tell you the details".
-2. **Image storage** — keep Wikimedia URLs (no copy) or download to R2
-   (faster, no dependency)? Recommendation: keep URLs, Wikimedia is
-   reliable enough for MVP.
-3. **Date precision** — how strict? "August 5, 1858" vs "August 1858" vs
-   "1858"? Recommend: prefer day-precision, fall back to month/year with
-   `?` suffix.
+1. **Calendrify** — `dateandtime.live` (a sister project) has 190-country
+   holidays data in its D1 (read-only per HKA isolation rule). We can
+   COPY this to our D1 in Phase A and surface it via the on-this-day
+   `holidays` section. The D1 is likely `timeandtimepro-full-v2` or
+   similar — will check via the Cloudflare API before importing.
+2. **Image storage** — **download to R2**. All event illustrations go to
+   R2 (`historical-knowledge-api-raw` binding). Schema has
+   `hero_image_r2_key` + `hero_image_credit`. Public URL is constructed
+   via our R2 public dev URL.
+3. **Date precision** — **day-precision only** for MVP. If a date is
+   month- or year-only, we still require a `start_date` of YYYY-MM-DD
+   and fall back to a known day (e.g. 1st of month) with a `?` suffix
+   in the display. The schema allows month/year precision but
+   on-this-day events require day.
 
 ## Notes
 
