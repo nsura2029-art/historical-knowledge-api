@@ -240,6 +240,7 @@ personDetailRouter.openapi(route, async (c) => {
     citizenships: citizenships.map((cit) => ({
       country_code: cit.country_code,
       country_name: cit.country_name,
+      country_url: `/v1/countries/${cit.country_code}`,
       valid_from: cit.valid_from,
       valid_to: cit.valid_to,
       primary_flag: cit.primary_flag === 1,
@@ -247,6 +248,7 @@ personDetailRouter.openapi(route, async (c) => {
     professions: professions.map((p) => ({
       profession_slug: p.profession_slug,
       profession_name: p.profession_name,
+      profession_url: `/v1/professions/${p.profession_slug}`,
       category: p.category as 'arts' | 'science' | 'politics' | 'sports' | 'business' | 'military' | 'religion' | 'royalty' | 'media' | 'law' | 'academia' | 'other',
       is_primary: p.is_primary === 1,
       start_year: p.start_year,
@@ -343,6 +345,7 @@ personDetailRouter.openapi(route, async (c) => {
       relation_type: r.relation_type,
       related_person_name: r.related_person_name,
       related_person_slug: r.related_person_slug,
+      related_person_url: r.related_person_slug ? `/v1/people/${r.related_person_slug}` : null,
       valid_from: r.valid_from,
       valid_to: r.valid_to,
     })),
@@ -360,13 +363,13 @@ personDetailRouter.openapi(route, async (c) => {
       current_age: person.living_status === 'living' && daMap['current_age'] ? Number(daMap['current_age']) : null,
       age_at_death: person.age_at_death,
       generation: daMap['generation']
-        ? { slug: daMap['generation'], name: daMap['generation'], rule_version: 'pew_generations_2019_v1' }
+        ? { slug: daMap['generation'], name: daMap['generation'], url: `/v1/generations/${daMap['generation']}`, rule_version: 'pew_generations_2019_v1' }
         : null,
       star_sign: daMap['star_sign']
-        ? { slug: daMap['star_sign'], name: daMap['star_sign'], rule_version: 'western_tropical_v1' }
+        ? { slug: daMap['star_sign'], name: daMap['star_sign'], url: `/v1/star-signs/${daMap['star_sign']}`, rule_version: 'western_tropical_v1' }
         : null,
       chinese_zodiac: daMap['chinese_zodiac']
-        ? { animal: daMap['chinese_zodiac'], rule_version: 'chinese_lunisolar_v1' }
+        ? { animal: daMap['chinese_zodiac'], url: `/v1/chinese-zodiacs/${daMap['chinese_zodiac']}`, rule_version: 'chinese_lunisolar_v1' }
         : null,
       active_years_min: daMap['active_years_min'] ? Number(daMap['active_years_min']) : null,
       active_years_max: daMap['active_years_max'] ? Number(daMap['active_years_max']) : null,
