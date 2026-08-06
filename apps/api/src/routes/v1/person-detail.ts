@@ -130,33 +130,65 @@ personDetailRouter.openapi(route, async (c) => {
     daMap[d.attribute_type] = d.attribute_value;
   }
 
-  // Get birth/death as HistoricalDate
+  // Get birth/death as HistoricalDate (prefer day-precision from derived_attribute.birth_date)
+  const birthDate = daMap['birth_date'] || null; // YYYY-MM-DD
+  const deathDate = daMap['death_date'] || null; // YYYY-MM-DD
   const birthYear = daMap['birth_year'] ? Number(daMap['birth_year']) : null;
   const deathYear = daMap['death_year'] ? Number(daMap['death_year']) : null;
-  const birthHistorical = birthYear
+
+  const datePrecision = (d: string | null): 'day' | 'month' | 'year' => {
+    if (!d) return 'year';
+    if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return 'day';
+    if (/^\d{4}-\d{2}$/.test(d)) return 'month';
+    return 'year';
+  };
+
+  const birthHistorical = birthDate
     ? {
-        original: `${birthYear}`,
-        earliest_gregorian: `${birthYear}-01-01`,
-        latest_gregorian: `${birthYear}-12-31`,
+        original: birthDate,
+        earliest_gregorian: birthDate,
+        latest_gregorian: birthDate,
         calendar: 'gregorian' as const,
-        precision: 'year' as const,
+        precision: datePrecision(birthDate),
         certainty: 'undisputed' as const,
         place_name: birthplace?.place_name ?? null,
         place_country_code: birthplace?.country_code ?? null,
       }
-    : null;
-  const deathHistorical = deathYear
+    : birthYear
+      ? {
+          original: `${birthYear}`,
+          earliest_gregorian: `${birthYear}-01-01`,
+          latest_gregorian: `${birthYear}-12-31`,
+          calendar: 'gregorian' as const,
+          precision: 'year' as const,
+          certainty: 'undisputed' as const,
+          place_name: birthplace?.place_name ?? null,
+          place_country_code: birthplace?.country_code ?? null,
+        }
+      : null;
+  const deathHistorical = deathDate
     ? {
-        original: `${deathYear}`,
-        earliest_gregorian: `${deathYear}-01-01`,
-        latest_gregorian: `${deathYear}-12-31`,
+        original: deathDate,
+        earliest_gregorian: deathDate,
+        latest_gregorian: deathDate,
         calendar: 'gregorian' as const,
-        precision: 'year' as const,
+        precision: datePrecision(deathDate),
         certainty: 'undisputed' as const,
         place_name: deathPlace?.place_name ?? null,
         place_country_code: deathPlace?.country_code ?? null,
       }
-    : null;
+    : deathYear
+      ? {
+          original: `${deathYear}`,
+          earliest_gregorian: `${deathYear}-01-01`,
+          latest_gregorian: `${deathYear}-12-31`,
+          calendar: 'gregorian' as const,
+          precision: 'year' as const,
+          certainty: 'undisputed' as const,
+          place_name: deathPlace?.place_name ?? null,
+          place_country_code: deathPlace?.country_code ?? null,
+        }
+      : null;
 
   // Pick hero image
   const heroImage = media[0]
@@ -304,6 +336,7 @@ personDetailRouter.openapi(route, async (c) => {
       source_tier: e.source_tier,
       source_name: e.source_name,
       source_url: e.source_url,
+      source_locator: e.source_locator,
     })),
     relations: relations.map((r) => ({
       relation_type: r.relation_type,

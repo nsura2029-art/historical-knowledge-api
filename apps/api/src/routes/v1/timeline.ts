@@ -46,6 +46,7 @@ const route = createRoute({
                 tier: z.enum(['A', 'B', 'C', 'D', 'E']),
                 source_name: z.string(),
                 source_url: z.string().nullable(),
+                locator: z.string().nullable(),
               }).nullable(),
             })),
           }),
@@ -80,15 +81,16 @@ timelineRouter.openapi(route, async (c) => {
     .prepare(`
       SELECT
         ce.id, ce.event_type, ce.start_date, ce.end_date, ce.description, ce.organization_id, ce.place_id,
-        ce.source_claim_id,
+        ce.source_claim_id, ce.source_locator,
         src.source_name, src.source_quality_tier AS tier, src.base_url AS source_url,
         sr.external_url AS record_url,
+        COALESCE(ce.source_url, sr.external_url, src.base_url) AS specific_url,
         p.canonical_name AS place_name, pl.country_code
       FROM career_event ce
+      LEFT JOIN source_registry src ON src.id = ce.source_id
       LEFT JOIN claim c ON c.id = ce.source_claim_id
       LEFT JOIN claim_source cs ON cs.claim_id = c.id
       LEFT JOIN source_record sr ON sr.id = cs.source_record_id
-      LEFT JOIN source_registry src ON src.id = sr.source_id
       LEFT JOIN entity p ON p.id = ce.place_id
       LEFT JOIN place pl ON pl.id = ce.place_id
       WHERE ce.person_id = ?
@@ -104,10 +106,12 @@ timelineRouter.openapi(route, async (c) => {
       organization_id: string | null;
       place_id: string | null;
       source_claim_id: string | null;
+      source_locator: string | null;
       source_name: string | null;
       tier: string | null;
       source_url: string | null;
       record_url: string | null;
+      specific_url: string | null;
       place_name: string | null;
       country_code: string | null;
     }>();
@@ -138,7 +142,8 @@ timelineRouter.openapi(route, async (c) => {
       source: e.source_name ? {
         tier: e.tier as 'A' | 'B' | 'C' | 'D' | 'E',
         source_name: e.source_name,
-        source_url: e.record_url ?? e.source_url,
+        source_url: e.specific_url ?? e.source_url,
+        locator: e.source_locator,
       } : null,
     })),
   }) as any;
