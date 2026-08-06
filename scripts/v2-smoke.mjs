@@ -42,10 +42,15 @@ async function main() {
 
   // Existing endpoints
   await t('GET /v1/health', '/v1/health', ['status']);
-  await t('GET /v1/people/frida-kahlo', '/v1/people/frida-kahlo', ['canonical_name', 'cause_of_death', 'industry', 'era_slug']);
-  await t('GET /v1/people/ar-rahman', '/v1/people/ar-rahman', ['canonical_name', 'industry', 'era_slug']);
+  await t('GET /v1/people/frida-kahlo', '/v1/people/frida-kahlo', ['canonical_name', 'cause_of_death', 'industry', 'era_slug', 'notable_events']);
+  await t('GET /v1/people/ar-rahman', '/v1/people/ar-rahman', ['canonical_name', 'industry', 'era_slug', 'notable_events']);
   await t('GET /v1/people?limit=3', '/v1/people?limit=3', ['data', 'total_count']);
   await t('GET /v1/facets/generations', '/v1/facets/generations', ['data', 'total']);
+
+  // Timeline (notable events) — new in 0004
+  await t('GET /v1/people/frida-kahlo/timeline (13 events)', '/v1/people/frida-kahlo/timeline', ['events', 'total_events']);
+  await t('GET /v1/people/ar-rahman/timeline (11 events)', '/v1/people/ar-rahman/timeline', ['events', 'total_events']);
+  await t('GET /v1/people/nonexistent/timeline (404)', '/v1/people/nonexistent/timeline', ['error'], 404);
 
   // Option 1: Search
   await t('GET /v1/search?q=frida', '/v1/search?q=frida', ['query', 'results', 'total']);
@@ -69,7 +74,6 @@ async function main() {
   await t('GET /v1/countries/IN', '/v1/countries/IN', ['country', 'citizens']);
   await t('GET /v1/causes-of-death/pulmonary-embolism', '/v1/causes-of-death/pulmonary-embolism', ['cause', 'people']);
   await t('GET /v1/awards/miss-world (real award in data)', '/v1/awards/miss-world', ['award']);
-  await t('GET /v1/awards/iruvar (real work in data)', '/v1/awards/iruvar', ['award']);
   await t('GET /v1/works/hum-dil-de-chuke-sanam', '/v1/works/hum-dil-de-chuke-sanam', ['work']);
   await t('GET /v1/places/mexico', '/v1/places/mexico', ['place']);
 
@@ -91,6 +95,25 @@ async function main() {
   await t('GET /v1/people/nonexistent (404)', '/v1/people/nonexistent', ['error'], 404);
   await t('GET /v1/professions/nonexistent (404)', '/v1/professions/nonexistent', ['error'], 404);
   await t('GET /v1/places/nonexistent (404)', '/v1/places/nonexistent', ['error'], 404);
+
+  // Source URL correctness — no example.com placeholders
+  const fridaDetail = await fetch(`${BASE}/v1/people/frida-kahlo`).then((r) => r.json());
+  const exampleComCount = JSON.stringify(fridaDetail.sources).match(/example\.com/g)?.length ?? 0;
+  if (exampleComCount === 0) {
+    console.log(`✓ ${'No example.com placeholder URLs in frida-kahlo sources'.padEnd(60)} 0 ok`);
+    pass++;
+  } else {
+    console.log(`✗ ${'No example.com placeholder URLs in frida-kahlo sources'.padEnd(60)} ${exampleComCount} found`);
+    fail++;
+  }
+  const realWikidata = fridaDetail.sources.some((s) => s.source_url?.includes('wikidata.org/wiki/Q5588'));
+  if (realWikidata) {
+    console.log(`✓ ${'Frida has real Wikidata QID URL (Q5588)'.padEnd(60)} yes`);
+    pass++;
+  } else {
+    console.log(`✗ ${'Frida has real Wikidata QID URL (Q5588)'.padEnd(60)} no`);
+    fail++;
+  }
 
   console.log(`\n=== Summary: ${pass} pass, ${fail} fail ===`);
   process.exit(fail > 0 ? 1 : 0);

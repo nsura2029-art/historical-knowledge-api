@@ -514,7 +514,7 @@ export async function getSourcesForPerson(db: D1Database, personId: string): Pro
         c.predicate AS claim,
         src.source_quality_tier AS tier,
         src.source_name,
-        src.base_url AS source_url,
+        COALESCE(sr.external_url, src.base_url) AS source_url,
         cs.support_type,
         sr.fetched_at
       FROM claim c
@@ -526,6 +526,48 @@ export async function getSourcesForPerson(db: D1Database, personId: string): Pro
     `)
     .bind(personId)
     .all<SourceRecordRow>();
+  return result.results ?? [];
+}
+
+// ---------------------------------------------------------------------------
+// Notable events (timeline)
+// ---------------------------------------------------------------------------
+
+export interface CareerEventRow {
+  id: string;
+  event_type: 'birth' | 'death' | 'marriage' | 'education' | 'work_start' | 'work_end' | 'award_received' | 'role_assumed' | 'custom';
+  start_date: string | null;
+  end_date: string | null;
+  description: string | null;
+  place_name: string | null;
+  country_code: string | null;
+  source_tier: string | null;
+  source_name: string | null;
+  source_url: string | null;
+}
+
+export async function getEventsForPerson(db: D1Database, personId: string): Promise<CareerEventRow[]> {
+  const result = await db
+    .prepare(`
+      SELECT
+        ce.id, ce.event_type, ce.start_date, ce.end_date, ce.description,
+        e_place.canonical_name AS place_name,
+        pl.country_code,
+        src.source_quality_tier AS source_tier,
+        src.source_name,
+        COALESCE(sr.external_url, src.base_url) AS source_url
+      FROM career_event ce
+      LEFT JOIN entity e_place ON e_place.id = ce.place_id
+      LEFT JOIN place pl ON pl.id = ce.place_id
+      LEFT JOIN claim c ON c.id = ce.source_claim_id
+      LEFT JOIN claim_source cs ON cs.claim_id = c.id
+      LEFT JOIN source_record sr ON sr.id = cs.source_record_id
+      LEFT JOIN source_registry src ON src.id = sr.source_id
+      WHERE ce.person_id = ?
+      ORDER BY COALESCE(ce.start_date, '9999-99-99') ASC
+    `)
+    .bind(personId)
+    .all<CareerEventRow>();
   return result.results ?? [];
 }
 

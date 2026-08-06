@@ -21,6 +21,7 @@ import {
   getDerivedAttributesForPerson,
   getPlacesForPerson,
   getSourcesForPerson,
+  getEventsForPerson,
 } from '../../repositories/people.js';
 
 const route = createRoute({
@@ -90,6 +91,7 @@ personDetailRouter.openapi(route, async (c) => {
     derivedAttrs,
     places,
     sources,
+    events,
   ] = await Promise.all([
     getNamesForPerson(c.env.DB, person.id).catch((e) => { console.log('names err:', String(e)); return []; }),
     getCitizenshipsForPerson(c.env.DB, person.id).catch((e) => { console.log('cit err:', String(e)); return []; }),
@@ -103,6 +105,7 @@ personDetailRouter.openapi(route, async (c) => {
     getDerivedAttributesForPerson(c.env.DB, person.id).catch((e) => { console.log('derived err:', String(e)); return []; }),
     getPlacesForPerson(c.env.DB, person.id).catch((e) => { console.log('places err:', String(e)); return []; }),
     getSourcesForPerson(c.env.DB, person.id).catch((e) => { console.log('sources err:', String(e)); return []; }),
+    getEventsForPerson(c.env.DB, person.id).catch((e) => { console.log('events err:', String(e)); return []; }),
   ]);
 
   // Resolve birthplace/death place
@@ -289,6 +292,18 @@ personDetailRouter.openapi(route, async (c) => {
       award_name: a.award_name,
       year: a.year,
       result: a.result as 'won' | 'nominated' | 'shortlisted' | 'announced' | 'declined',
+    })),
+    notable_events: events.map((e) => ({
+      id: e.id,
+      event_type: e.event_type,
+      start_date: e.start_date,
+      end_date: e.end_date,
+      description: e.description,
+      place_name: e.place_name,
+      country_code: e.country_code,
+      source_tier: e.source_tier,
+      source_name: e.source_name,
+      source_url: e.source_url,
     })),
     relations: relations.map((r) => ({
       relation_type: r.relation_type,
