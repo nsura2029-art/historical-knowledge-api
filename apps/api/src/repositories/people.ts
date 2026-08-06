@@ -423,19 +423,57 @@ export interface RelationRow {
 }
 
 export async function getRelationsForPerson(db: D1Database, personId: string): Promise<RelationRow[]> {
+  // Include both directions of relations:
+  // 1. Outgoing: personId is the SUBJECT (e.g., Frida → Diego as spouse_of)
+  // 2. Incoming: personId is the OBJECT (e.g., Breton → Frida as champion_of)
+  //    For incoming, we invert the relation type so the UI can render it sensibly:
+  //    champion_of (Breton→Frida) becomes championed_by (Frida's perspective)
+  const INVERSE_MAP: Record<string, string> = {
+    champion_of: 'championed_by',
+    mentor_of: 'mentored_by',
+    parent_of: 'child_of',   // person is the parent → inverse is they have a child
+    child_of: 'parent_of',
+    spouse_of: 'spouse_of',  // symmetric
+    sibling_of: 'sibling_of', // symmetric
+    collaborator_with: 'collaborator_with',
+    friend_of: 'friend_of',   // symmetric
+    rival_of: 'rival_of',     // symmetric
+    student_of: 'student_of', // symmetric
+  };
+  const inverse = (rt: string): string => INVERSE_MAP[rt] ?? `${rt}_inverse`;
+
+  // We do the inverse in JS after fetching, since the case-by-case mapping is
+  // easier to maintain as data than as SQL CASE WHEN logic.
   const result = await db
     .prepare(`
+      -- Outgoing
       SELECT er.relation_type, e2.canonical_name AS related_person_name,
              e2.slug AS related_person_slug,
-             er.valid_from, er.valid_to
+             er.valid_from, er.valid_to,
+             'outgoing' AS direction
       FROM entity_relation er
       JOIN entity e2 ON e2.id = er.object_entity_id
       WHERE er.subject_entity_id = ?
-      ORDER BY er.relation_type ASC, e2.canonical_name ASC
+      UNION ALL
+      -- Incoming
+      SELECT er.relation_type, e1.canonical_name AS related_person_name,
+             e1.slug AS related_person_slug,
+             er.valid_from, er.valid_to,
+             'incoming' AS direction
+      FROM entity_relation er
+      JOIN entity e1 ON e1.id = er.subject_entity_id
+      WHERE er.object_entity_id = ?
     `)
-    .bind(personId)
-    .all<RelationRow>();
-  return result.results ?? [];
+    .bind(personId, personId)
+    .all<{ relation_type: string; related_person_name: string; related_person_slug: string | null; valid_from: number | null; valid_to: number | null; direction: string }>();
+
+  return (result.results ?? []).map((r) => ({
+    relation_type: r.direction === 'incoming' ? inverse(r.relation_type) : r.relation_type,
+    related_person_name: r.related_person_name,
+    related_person_slug: r.related_person_slug,
+    valid_from: r.valid_from,
+    valid_to: r.valid_to,
+  }));
 }
 
 export interface ExternalIdRow {
@@ -538,7 +576,7 @@ export async function getSourcesForPerson(db: D1Database, personId: string): Pro
 
 export interface CareerEventRow {
   id: string;
-  event_type: 'birth' | 'death' | 'marriage' | 'education' | 'work_start' | 'work_end' | 'award_received' | 'role_assumed' | 'custom';
+  event_type: 'birth' | 'death' | 'marriage' | 'education' | 'work_start' | 'work_end' | 'award_received' | 'role_assumed' | 'custom' | 'cultural_impact';
   start_date: string | null;
   end_date: string | null;
   description: string | null;
@@ -548,6 +586,7 @@ export interface CareerEventRow {
   source_tier: string | null;
   source_name: string | null;
   source_url: string | null;
+  year_url: string | null;
 }
 
 export async function getEventsForPerson(db: D1Database, personId: string): Promise<CareerEventRow[]> {
@@ -572,7 +611,11 @@ export async function getEventsForPerson(db: D1Database, personId: string): Prom
     `)
     .bind(personId)
     .all<CareerEventRow>();
-  return result.results ?? [];
+  // Annotate each event with year/decade URLs so the front-end can make them clickable
+  return (result.results ?? []).map((e) => ({
+    ...e,
+    year_url: e.start_date ? `/v1/years/${e.start_date.slice(0, 4)}` : null,
+  }));
 }
 
 // ---------------------------------------------------------------------------

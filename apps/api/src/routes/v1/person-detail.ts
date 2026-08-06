@@ -337,6 +337,7 @@ personDetailRouter.openapi(route, async (c) => {
       source_name: e.source_name,
       source_url: e.source_url,
       source_locator: e.source_locator,
+      year_url: e.year_url,
     })),
     relations: relations.map((r) => ({
       relation_type: r.relation_type,
@@ -378,6 +379,12 @@ personDetailRouter.openapi(route, async (c) => {
     provenance_score: 0.90,
     hero_image: heroImage,
     last_reviewed_at: null,
+    _links: {
+      self: `/v1/people/${slug}`,
+      timeline: `/v1/people/${slug}/timeline`,
+      birth_year: birthYear ? `/v1/years/${birthYear}` : null,
+      death_year: deathYear ? `/v1/years/${deathYear}` : null,
+    },
     sources: sources.map((s) => ({
       claim: s.claim,
       tier: s.tier as 'A' | 'B' | 'C' | 'D' | 'E',

@@ -116,7 +116,7 @@ timelineRouter.openapi(route, async (c) => {
       country_code: string | null;
     }>();
 
-  // Compute date_precision from start_date
+  // Compute date_precision from start_date + year_url for clickable dates
   const datePrecision = (d: string | null): 'day' | 'month' | 'year' | 'decade' | 'century' | 'approximate' | 'before' | 'after' | 'range' | 'unknown' => {
     if (!d) return 'unknown';
     if (/^\d{4}-\d{2}-\d{2}/.test(d)) return 'day';
@@ -124,6 +124,7 @@ timelineRouter.openapi(route, async (c) => {
     if (/^\d{4}$/.test(d)) return 'year';
     return 'unknown';
   };
+  const yearUrl = (d: string | null): string | null => d ? `/v1/years/${d.slice(0, 4)}` : null;
 
   return c.json({
     person_id: person.id,
@@ -132,10 +133,11 @@ timelineRouter.openapi(route, async (c) => {
     total_events: events.results?.length ?? 0,
     events: (events.results ?? []).map((e) => ({
       id: e.id,
-      event_type: e.event_type as 'birth' | 'death' | 'marriage' | 'education' | 'work_start' | 'work_end' | 'award_received' | 'role_assumed' | 'custom',
+      event_type: e.event_type as 'birth' | 'death' | 'marriage' | 'education' | 'work_start' | 'work_end' | 'award_received' | 'role_assumed' | 'custom' | 'cultural_impact',
       start_date: e.start_date,
       end_date: e.end_date,
       date_precision: datePrecision(e.start_date),
+      year_url: yearUrl(e.start_date),
       description: e.description,
       place_name: e.place_name,
       country_code: e.country_code,
