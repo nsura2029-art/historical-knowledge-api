@@ -34,6 +34,19 @@ The agent must complete one task at a time. It may not begin the next task until
 
 12. NEXT: Move to the next task only when every blocking gate is PASS.
 
+# 2.5 Git Workflow (binding)
+
+- `main` is the production branch. Every commit on `main` is deployable.
+- `develop` is the integration branch. All new work lands on `develop` first.
+- Feature work happens on a branch off `develop` using a worktree.
+- The worktree for `develop` lives at `../historical-knowledge-api-worktrees/develop/`. Use it for active development; the main checkout is reserved for review-only operations.
+- When ready, the feature branch is fast-forward merged into `develop`:
+  `git merge --ff-only feature/<name> develop`
+- After integration, `develop` is periodically merged into `main` (typically after a TASK-### passes).
+- For commit staging, use `git add -A && git commit` (NOT `git commit -a`); `-a` only stages modifications to tracked files, missing new untracked files. Always `git show --stat HEAD` before pushing.
+- Out-of-scope lint errors (do NOT touch): any TypeScript narrowing error in code we did not modify this turn.
+- The `historical-knowledge-api-d1` database is **READ-ONLY** for any D1 not prefixed `historical-knowledge-api-`. All schema changes go to `historical-knowledge-api-d1` via migrations under `packages/db/migrations/`.
+
 # 3. Standard Task File
 
 Create one task specification under `docs/tasks/TASK-###-short-name.md` using this exact structure:
