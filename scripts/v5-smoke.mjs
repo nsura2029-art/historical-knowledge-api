@@ -214,6 +214,26 @@ async function main() {
   await t('References include NPR', '/v1/people/donald-trump/references',
     ({ body }) => body.by_source.some(s => s.source_name.includes('NPR')));
 
+  // === 8. Slug redirects ===
+  console.log('\n--- 8. Slug redirects (user-typed variations) ---');
+
+  await t('donald-j-trump → donald-trump (redirect)', '/v1/people/donald-j-trump',
+    ({ body }) => body.canonical_name === 'Donald Trump' && body.slug === 'donald-trump');
+
+  await t('Redirect response has redirected_from field', '/v1/people/donald-j-trump',
+    ({ body }) => body._links?.redirected_from === '/v1/people/donald-j-trump');
+
+  await t('Full birth name slug → frida-kahlo', '/v1/people/magdalena-carmen-frida-kahlo-y-calderon',
+    ({ body }) => body.canonical_name === 'Frida Kahlo' && body.slug === 'frida-kahlo');
+
+  await t('a.r.-rahman with dots → ar-rahman', '/v1/people/a.r.-rahman',
+    ({ body }) => body.canonical_name === 'A. R. Rahman' && body.slug === 'ar-rahman');
+
+  await t('Birth name Allah Rakha Rahman → ar-rahman', '/v1/people/allahrakka-rahman',
+    ({ body }) => body.canonical_name === 'A. R. Rahman' && body.slug === 'ar-rahman');
+
+  await t('Truly nonexistent slug still 404s', '/v1/people/this-person-does-not-exist', ({ status }) => status === 404);
+
   console.log(`\n=== Summary: ${pass} pass, ${fail} fail ===`);
   process.exit(fail > 0 ? 1 : 0);
 }
