@@ -35,6 +35,9 @@ async function check(name, path, predicate, opts = {}) {
 
 async function main() {
   console.log('=== v3 Smoke Test: onthisday.com data points + new endpoints ===\n');
+  // Reset state so previous runs don't leave Frida unpublished
+  await fetch(`${BASE}/v1/admin/people/ent_frida-kahlo/publish`, { method: 'POST' }).catch(() => {});
+  await fetch(`${BASE}/v1/admin/people/ent_ar-rahman/publish`, { method: 'POST' }).catch(() => {});
   let pass = 0, fail = 0;
   const t = async (...args) => ((await check(...args)) ? pass++ : fail++);
 
