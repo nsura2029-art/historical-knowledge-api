@@ -2,6 +2,23 @@
 
 > **This file is the entry point.** The dox framework (https://github.com/agent0ai/dox) requires that before any edit, the agent walks the docs tree from the root to the area it will touch. The relevant docs give exact local guidelines, so the agent does not edit blindly. After meaningful changes, the agent updates the affected `AGENTS.md` files.
 
+## Roadmap alignment: 24-task KP sequence
+
+As of 2026-08-06, the platform aligns with the **Britannica-inspired PRD**:
+6 verticals, 24 sequential KP-### tasks. The 20-task sequence in
+`AGENT-INSTRUCTIONS.md` is a **subset** of this. Going forward, every new
+feature work references BOTH the relevant TASK-### (team context) and the
+relevant KP-### (platform context).
+
+- **Master roadmap**: `docs/strategy/PRD-MVP-ROADMAP.md`
+- **DOX alignment notes**: `docs/architecture/00-DOX-ALIGNMENT-NOTES.md`
+- **KP status table**: `docs/tasks/AGENTS.md` (this is the master list)
+- **Year 1 target**: 10-min avg visit by end of Q4
+- **Editorial team**: comes end of Year 1; LLM-first until then
+
+**Critical next task**: KP-003 atomic-claim model. See spec at
+`docs/tasks/KP-003-universal-ontology-claim-model.md`.
+
 ## What this project is
 
 **Historical Knowledge Platform** (`historical-knowledge-api`) — a public, free, source-backed "On This Day" + Famous People API on Cloudflare Workers. Every fact is a claim, every claim has provenance, every disputed date is preserved as a range, every generation step cites its inputs.

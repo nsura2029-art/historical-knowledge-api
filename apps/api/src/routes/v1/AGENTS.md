@@ -72,6 +72,51 @@
 - **GET `/sitemap.xml`** — segmented sitemap. (Phase 5)
 - **Rate limit middleware** — TASK-018.
 
+## Roadmap: new endpoints coming in Q1 (KP-003, KP-004, KP-007)
+
+The 24-task KP roadmap (see root `AGENTS.md` and `docs/architecture/00-DOX-ALIGNMENT-NOTES.md`)
+adds these endpoints. They land in Q1 of Year 1.
+
+### KP-003 (atomic-claim model)
+
+```
+GET  /v1/claims/{id}                              # single claim detail
+GET  /v1/entities/{id-or-slug}/claims              # all claims for an entity
+GET  /v1/entities/{id-or-slug}/conflicts           # claim conflicts for an entity
+GET  /v1/claim-conflicts                           # all open conflict groups
+```
+
+### KP-004 (evidence graph + citation export)
+
+```
+GET  /v1/sources/{id}                              # full source detail (existing, enriched)
+GET  /v1/entities/{id-or-slug}/sources             # existing endpoint, claim-level drilldown
+GET  /v1/claims/{id}/sources                       # all sources for a specific claim
+GET  /v1/sources/{id}/claims                       # all claims citing a source
+GET  /v1/entities/{id-or-slug}/citations?format=  # BibTeX/RIS/CSL JSON export
+POST /v1/sources/{id}/refresh                      # re-fetch (admin)
+POST /v1/admin/editorial-revisions                 # record a change
+GET  /v1/entities/{id-or-slug}/revisions           # change history
+```
+
+### KP-007 (media + rights pipeline)
+
+```
+GET    /v1/entities/{id-or-slug}/media             # all approved media for an entity
+GET    /v1/media/{id}                              # media detail with rights
+GET    /v1/media/{id}/download                     # signed R2 URL (or 403)
+GET    /v1/r2/{r2_key}                             # direct R2 access
+POST   /v1/admin/media/upload                      # upload new (admin)
+POST   /v1/admin/media/{id}/approve                # approve rights (admin)
+POST   /v1/admin/media/{id}/reject                 # reject rights (admin)
+```
+
+### Display gate (enforcement, KP-007)
+
+Every API response that includes `media_assets` MUST filter by
+`media_rights.status = 'approved'`. No image = OK. Rights-unknown image =
+blocked at query level. See `packages/db/AGENTS.md` for the query pattern.
+
 ## On This Day API gotchas (TASK-013)
 
 - **Hono path params can't have hyphens** — use `{mm_dd}` and `{yyyy_mm_dd}` in the route definition, the URL still has hyphens. The schema uses underscore.
