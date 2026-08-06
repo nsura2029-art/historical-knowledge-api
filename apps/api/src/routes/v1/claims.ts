@@ -145,7 +145,7 @@ const listClaimsRoute = createRoute({
       status: z.enum(['pending', 'approved', 'rejected', 'published', 'disputed']).optional(),
       subject_entity_id: z.string().optional(),
       min_confidence: z.coerce.number().min(0).max(1).optional(),
-      limit: z.coerce.number().int().min(1).max(200).default(50),
+      limit: z.coerce.number().int().min(1).max(100).default(20),
       cursor: z.string().optional(),
     }),
   },

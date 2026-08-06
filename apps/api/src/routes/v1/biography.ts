@@ -165,7 +165,14 @@ const getBiographyRoute = createRoute({
   operationId: 'getBiography',
   tags: ['biography'],
   summary: 'Get aggregated biography data (one call, Britannica-style)',
-  request: { params: z.object({ slug: z.string() }) },
+  description: 'Optional ?fields=header,hero_image,quick_facts,narrative,timeline,related,sources,citations,revisions,on_this_page to fetch a subset (faster on mobile). Default = all fields.',
+  request: {
+    params: z.object({ slug: z.string() }),
+    query: z.object({
+      fields: z.string().optional(),
+      timeline_limit: z.coerce.number().int().min(1).max(100).default(20),
+    }),
+  },
   responses: {
     200: { description: 'Aggregated biography', content: { 'application/json': { schema: BiographyResponse } } },
     404: { description: 'Person not found', content: { 'application/json': { schema: RefDocError } } },
@@ -394,6 +401,9 @@ export const biographyRouter = new OpenAPIHono<AppEnv>();
 
 biographyRouter.openapi(getBiographyRoute, async (c) => {
   const { slug } = c.req.valid('param');
+  const { fields, timeline_limit } = c.req.valid('query');
+  const requestedFields = fields ? new Set(fields.split(',').map(f => f.trim())) : null;
+
   const person = await c.env.DB.prepare(`
     SELECT e.id, e.slug, e.canonical_name, e.type,
            p.short_description, e.popularity_score, e.popularity_rank
@@ -406,16 +416,28 @@ biographyRouter.openapi(getBiographyRoute, async (c) => {
   }
   const entityId = (person as any).id;
 
-  // Parallel fetch all sub-resources
-  const [heroImage, quickFacts, narrative, timeline, related, sources, revisions] = await Promise.all([
-    getHeroImage(c.env.DB, entityId),
-    getQuickFacts(c.env.DB, entityId),
-    getNarrativeSections(c.env.DB, entityId),
-    getTimeline(c.env.DB, entityId),
-    getRelatedPeople(c.env.DB, entityId),
-    getSourceSummary(c.env.DB, entityId),
-    getRevisionSummary(c.env.DB, entityId),
-  ]);
+  const want = (name: string) => !requestedFields || requestedFields.has(name);
+
+  // Parallel fetch only the requested sub-resources
+  const promises: Promise<any>[] = [];
+  if (want('hero_image')) promises.push(getHeroImage(c.env.DB, entityId));
+  if (want('quick_facts')) promises.push(getQuickFacts(c.env.DB, entityId));
+  if (want('narrative') || want('on_this_page')) promises.push(getNarrativeSections(c.env.DB, entityId));
+  if (want('timeline')) promises.push(getTimeline(c.env.DB, entityId, timeline_limit));
+  if (want('related')) promises.push(getRelatedPeople(c.env.DB, entityId));
+  if (want('sources')) promises.push(getSourceSummary(c.env.DB, entityId));
+  if (want('revisions')) promises.push(getRevisionSummary(c.env.DB, entityId));
+  const fetched = await Promise.all(promises);
+
+  // Map results back to their field names
+  let i = 0;
+  const heroImage = want('hero_image') ? fetched[i++] : null;
+  const quickFacts = want('quick_facts') ? fetched[i++] : [];
+  const narrative = (want('narrative') || want('on_this_page')) ? fetched[i++] : [];
+  const timeline = want('timeline') ? fetched[i++] : [];
+  const related = want('related') ? fetched[i++] : [];
+  const sources = want('sources') ? fetched[i++] : { count: 0, list: [] };
+  const revisions = want('revisions') ? fetched[i++] : { pending: 0, approved: 0, rejected: 0, auto_approved: 0 };
 
   const onThisPage = narrative.map((s: any) => ({
     id: s.id,

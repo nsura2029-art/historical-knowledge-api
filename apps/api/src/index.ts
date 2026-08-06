@@ -15,14 +15,16 @@ import { apiReference } from '@scalar/hono-api-reference';
 import { requestIdMiddleware } from './middleware/request-id.js';
 import { errorMiddleware, notFoundHandler } from './middleware/errors.js';
 import { corsMiddleware } from './middleware/cors.js';
+import { cacheMiddleware } from './middleware/cache.js';
 import type { AppEnv } from './bindings.js';
 import { v1Router } from './routes/v1/index.js';
 
 const app = new OpenAPIHono<AppEnv>();
 
 // Middleware (order matters: CORS FIRST so it runs even on errors, then
-// request-id, then error middleware)
+// cache, then request-id, then error middleware)
 app.use('*', corsMiddleware());
+app.use('*', cacheMiddleware());
 app.use('*', requestIdMiddleware());
 app.use('*', errorMiddleware());
 
