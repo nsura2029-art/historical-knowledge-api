@@ -49,13 +49,21 @@ The agent must complete one task at a time. It may not begin the next task until
 2. Make changes + commit:     git add -A && git commit -m "..."
 3. Push feature branch:       git push -u origin feature/TASK-002-some-name
 4. Deploy to DEV worker:      pnpm exec wrangler deploy --env dev
-5. Hand off to user for QA:   share the live URL + what to test
+5. Hand off to user for QA:   share verification links + what to test
 6. User runs smoke + verifies on https://historical-knowledge-api-dev.nsura2029.workers.dev
 7. User replies "LGTM" (or "needs fix")
 8. On LGTM: merge to develop:  git checkout develop && git merge --ff-only feature/TASK-002-some-name
-9. On needs fix: more commits on the feature branch, redeploy to dev, repeat
-10. Periodically, develop → main (after a TASK-### passes the user-facing bar)
+9. On LGTM: cleanup worktree:  git worktree remove ../feature-task-002 && git worktree prune
+10. On LGTM: setup next worktree from develop:
+    git worktree add ../feature-TASK-003-some-name -b feature/TASK-003-some-name develop
+11. On needs fix: more commits on the feature branch, redeploy to dev, repeat
+12. Periodically, develop → main (after a TASK-### passes the user-facing bar)
 ```
+
+**Steps 8, 9, 10 always happen together as a single LGTM response.** Never
+merge without also cleaning up the worktree AND setting up the next one. The
+next worktree is created from the FRESH `develop` (which now includes the
+just-merged changes) — this keeps the linear history clean.
 
 ## Key invariants
 
@@ -65,13 +73,88 @@ The agent must complete one task at a time. It may not begin the next task until
 - **The dev worker is `historical-knowledge-api-dev`** (NOT the production domain). The URL is always `https://historical-knowledge-api-dev.nsura2029.workers.dev`.
 - **Worker version IDs in the deploy log are noise** — the source of truth is the git commit. Always note "deployed: <commit hash>" in the user-facing summary.
 - **Re-deploying is fine.** A second `wrangler deploy --env dev` from the same commit just rolls the same code forward.
+- **Fast-forward merges only** for `develop`. If the feature branch has diverged from develop, rebase the feature branch on develop first (or use `--no-ff` if a merge commit is wanted for history).
 
 ## Worktrees
 
 - The `develop` worktree lives at `../historical-knowledge-api-worktrees/develop/`. Use it for review operations (merging a feature branch, periodic deploys).
-- Active feature work happens in a NEW worktree per feature:
+- **Each task = one worktree + one feature branch + one merge.** Active feature work happens in a NEW worktree per feature:
   `git worktree add ../historical-knowledge-api-worktrees/feature-task-002 -b feature/TASK-002-some-name develop`
 - The main checkout (the one you started in) is for read-only review operations.
+- **Worktree naming convention**: `../historical-knowledge-api-worktrees/feature-<short-name>/` — short, kebab-case, descriptive.
+- **On LGTM**: remove the worktree (`git worktree remove`), prune (`git worktree prune`), delete the local branch (`git branch -d feature/...`), then create the next worktree from develop.
+
+## Verification links (binding)
+
+**After every task completes** (before LGTM), provide these links in the
+hand-off message so the user can verify the work. Every task MUST include:
+
+### 1. Dev Worker URL
+- `https://historical-knowledge-api-dev.nsura2029.workers.dev`
+
+### 2. Specific test endpoints
+- 3-5 concrete curl commands the user can paste to verify
+- Example: `curl .../v1/people/donald-trump/timeline | jq '.total_events'`
+
+### 3. OpenAPI spec URL
+- `https://historical-knowledge-api-dev.nsura2029.workers.dev/openapi.json`
+- `https://historical-knowledge-api-dev.nsura2029.workers.dev/docs` (Swagger UI)
+
+### 4. Smoke test results
+- The output of `node scripts/v#-smoke.mjs` for the relevant suite(s)
+- Format: "v2: 44 ✓ / v3: 31 ✓ / v4: 27 ✓ / v5: 54 ✓ / v6: 41 ✓ / v7: 25 ✓ = 222/222 pass"
+
+### 5. PR URL
+- `https://github.com/nsura2029-art/historical-knowledge-api/pull/new/feature/<name>`
+
+### 6. Database state (for schema tasks)
+- Row counts for new tables: `SELECT COUNT(*) FROM claim;` etc.
+- Migration applied: `git log --oneline -1` + `wrangler d1 execute ... --file=migration.sql`
+
+### 7. Commit hashes
+- The commit hash on the feature branch (always pin: "deployed: <hash>")
+- The Worker version ID (note: it's noise but include for reference)
+
+### Standard hand-off format
+
+```
+## <Task name> — deployed to dev for verification
+
+**Deployed commit**: <hash>
+**Worker version**: <id> (noise — use commit hash as truth)
+
+### Live
+- Dev URL: https://historical-knowledge-api-dev.nsura2029.workers.dev
+- OpenAPI: .../openapi.json
+- Swagger UI: .../docs
+
+### Test endpoints
+[3-5 specific curl commands]
+
+### Smoke results
+v2: 44 / v3: 31 / v4: 27 / v5: 54 / v6: 41 / v7: 25 = 222/222
+
+### Database state
+- claim: 150 rows
+- claim_source: 150 rows
+- source_record: 150 rows
+- editorial_revision: 0 rows
+
+### PR
+https://github.com/.../pull/new/feature/...
+
+### Branch
+- Active: feature/<name>
+- Worktree: ../historical-knowledge-api-worktrees/feature-<name>/
+
+### After LGTM
+- merge to develop
+- cleanup worktree
+- create next worktree from develop for the next task
+
+If LGTM, reply "lgtm" and I'll do steps 8/9/10 in one shot.
+If "needs fix", I'll add commits to the feature branch and redeploy.
+```
 
 ## Staging conventions
 
