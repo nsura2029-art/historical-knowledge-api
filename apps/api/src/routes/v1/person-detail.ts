@@ -55,6 +55,8 @@ personDetailRouter.openapi(route, async (c) => {
   const { slug } = c.req.valid('param');
 
   let person;
+  let resolvedSlug = slug;
+  let followedRedirect = false;
   try {
     person = await getPersonBySlug(c.env.DB, slug);
   } catch (err) {
@@ -63,6 +65,20 @@ personDetailRouter.openapi(route, async (c) => {
       { error: { code: 'GET_PERSON_FAILED', message: String(err), requestId, details: [] } },
       500
     ) as any;
+  }
+  // If the slug didn't match, try the slug_redirect table (per ref doc).
+  // This handles user-typed variations like "donald-j-trump" → "donald-trump"
+  // and full birth names like "magdalena-carmen-frida-kahlo-y-calderon" → "frida-kahlo".
+  if (!person) {
+    const redirect = await c.env.DB
+      .prepare(`SELECT new_slug FROM slug_redirect WHERE old_slug = ? AND (expires_at IS NULL OR expires_at > unixepoch()) LIMIT 1`)
+      .bind(slug)
+      .first<{ new_slug: string }>();
+    if (redirect) {
+      resolvedSlug = redirect.new_slug;
+      followedRedirect = true;
+      person = await getPersonBySlug(c.env.DB, resolvedSlug);
+    }
   }
   if (!person) {
     return c.json(
@@ -383,10 +399,12 @@ personDetailRouter.openapi(route, async (c) => {
     hero_image: heroImage,
     last_reviewed_at: null,
     _links: {
-      self: `/v1/people/${slug}`,
-      timeline: `/v1/people/${slug}/timeline`,
+      self: `/v1/people/${resolvedSlug}`,
+      timeline: `/v1/people/${resolvedSlug}/timeline`,
       birth_year: birthYear ? `/v1/years/${birthYear}` : null,
       death_year: deathYear ? `/v1/years/${deathYear}` : null,
+      canonical: followedRedirect ? `/v1/people/${resolvedSlug}` : `/v1/people/${resolvedSlug}`,
+      redirected_from: followedRedirect ? `/v1/people/${slug}` : null,
     },
     sources: sources.map((s) => ({
       claim: s.claim,
