@@ -163,6 +163,57 @@ async function main() {
     return body !== null;
   });
 
+  // === 7. Trump deep-dive events (migration 0009) ===
+  console.log('\n--- 7. Trump deep-dive events ---');
+
+  await t('Timeline has >= 40 events (was 14 before 0009)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.total_events >= 40);
+
+  await t('Timeline includes Trump Tower opening (1983)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.events.some(e => e.start_date === '1983-11-30' && e.event_type === 'role_assumed'));
+
+  await t('Timeline includes Apprentice debut (2004)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.events.some(e => e.start_date === '2004-01-08' && e.event_type === 'role_assumed'));
+
+  await t('Timeline includes Travel Ban (2017-01-27)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.events.some(e => e.start_date === '2017-01-27'));
+
+  await t('Timeline includes Tax Cuts & Jobs Act (2017-12-22)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.events.some(e => e.start_date === '2017-12-22'));
+
+  await t('Timeline includes Helsinki Summit (2018-07-16)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.events.some(e => e.start_date === '2018-07-16'));
+
+  await t('Timeline includes First Impeachment (2019-12-18)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.events.some(e => e.start_date === '2019-12-18'));
+
+  await t('Timeline includes Soleimani strike (2020-01-03)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.events.some(e => e.start_date === '2020-01-03'));
+
+  await t('Timeline includes Capitol attack (2021-01-06)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.events.some(e => e.start_date === '2021-01-06'));
+
+  await t('Timeline includes Second Impeachment (2021-01-13)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.events.some(e => e.start_date === '2021-01-13'));
+
+  await t('Timeline includes GA RICO indictment (2023-08-14)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.events.some(e => e.start_date === '2023-08-14'));
+
+  await t('Timeline includes Jan 6 pardons (2025-01-20)', '/v1/people/donald-trump/timeline',
+    ({ body }) => body.events.some(e => e.start_date === '2025-01-20' && (e.description || '').toLowerCase().includes('pardon')));
+
+  await t('References count >= 12 sources (was 9 before 0009)', '/v1/people/donald-trump/references',
+    ({ body }) => body.total_sources >= 12);
+
+  await t('References include Washington Post', '/v1/people/donald-trump/references',
+    ({ body }) => body.by_source.some(s => s.source_name.includes('Washington Post')));
+
+  await t('References include The Guardian', '/v1/people/donald-trump/references',
+    ({ body }) => body.by_source.some(s => s.source_name.includes('Guardian')));
+
+  await t('References include NPR', '/v1/people/donald-trump/references',
+    ({ body }) => body.by_source.some(s => s.source_name.includes('NPR')));
+
   console.log(`\n=== Summary: ${pass} pass, ${fail} fail ===`);
   process.exit(fail > 0 ? 1 : 0);
 }
