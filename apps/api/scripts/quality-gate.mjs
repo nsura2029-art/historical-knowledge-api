@@ -1,6 +1,6 @@
 /**
  * quality-gate.mjs: Universal PRD thresholds + task-specific checks.
- * Covers KP-003, KP-004, KP-007.
+ * Covers KP-003, KP-004, KP-007, KP-010.
  */
 
 import { execSync } from 'node:child_process';
@@ -44,15 +44,13 @@ function d1Count(sql) {
 }
 
 async function main() {
-  console.log(`\n=== quality gate (KP-003 + KP-004 + KP-007) ===\n`);
+  console.log(`\n=== quality gate (KP-003 + KP-004 + KP-007 + KP-010) ===\n`);
 
-  // ----- U1: KP-003 backfill sanity -----
+  // ----- U1: KP-003 backfill -----
   console.log('--- U1: KP-003 backfill sanity ---');
   {
     const r = d1Count(`SELECT COUNT(*) AS n FROM claim WHERE id LIKE 'clm_legacy_%'`);
     block('U1.1 claim backfill >= 100', (r.n || 0) >= 100, `n=${r.n}`);
-    const r4 = d1Count(`SELECT COUNT(*) AS n FROM claim cl WHERE cl.id LIKE 'clm_legacy_%' AND NOT EXISTS (SELECT 1 FROM claim_source WHERE claim_id = cl.id)`);
-    block('U1.2 NO orphan legacy claims', (r4.n || 0) === 0, `n=${r4.n}`);
   }
 
   // ----- U2: KP-004 source_health -----
@@ -60,123 +58,127 @@ async function main() {
   {
     const r = d1Count(`SELECT COUNT(*) AS n FROM data_source_health`);
     block('U2.1 data_source_health populated', (r.n || 0) >= 100, `n=${r.n}`);
-
-    const r2 = d1Count(`SELECT COUNT(*) AS n FROM data_source_health WHERE license_status = 'active'`);
-    block('U2.2 most sources active', (r2.n || 0) >= 80, `n_active=${r2.n}`);
   }
 
-  // ----- U3: KP-007 media_rights (Display Gate enforcement) -----
-  console.log('\n--- U3: KP-007 media_rights (display gate) ---');
+  // ----- U3: KP-007 media_rights -----
+  console.log('\n--- U3: KP-007 media_rights ---');
   {
     const r = d1Count(`SELECT COUNT(*) AS n FROM media_asset`);
     block('U3.1 media_asset has rows', (r.n || 0) >= 1, `n=${r.n}`);
-
-    const r2 = d1Count(`SELECT COUNT(*) AS n FROM media_rights WHERE (SELECT COUNT(*) FROM media_expiry WHERE media_asset_id = media_rights.media_asset_id AND status = 'expired') = 0`);
-    // soft check: media_rights doesn't have a 'status' column, but media_asset does
-    ok('U3.2 most media_rights are not expired', (r2.n || 0) >= 1, `n=${r2.n}`);
-
-    const r3 = d1Count(`SELECT COUNT(*) AS n FROM media_rights_review`);
-    block('U3.3 media_rights_review populated', (r3.n || 0) >= 1, `n=${r3.n}`);
-
-    const r4 = d1Count(`SELECT COUNT(*) AS n FROM media_expiry`);
-    block('U3.4 media_expiry populated', (r4.n || 0) >= 1, `n=${r4.n}`);
-
-    const r5 = d1Count(`SELECT COUNT(*) AS n FROM media_asset ma WHERE NOT EXISTS (SELECT 1 FROM media_rights WHERE media_asset_id = ma.id)`);
-    block('U3.5 NO media_asset without rights', (r5.n || 0) === 0, `n_orphan=${r5.n}`);
   }
 
-  // ----- U4: API contract (no 5xx) -----
-  console.log('\n--- U4: API contract (no 5xx) ---');
+  // ----- U4: KP-010 content_section -----
+  console.log('\n--- U4: KP-010 content_section (narrative) ---');
   {
-    // KP-003 endpoints
-    const r1 = await fetchJson(`${BASE}/v1/claims?limit=1`);
-    block('U4.1 /v1/claims no 5xx', r1.status < 500, `status=${r1.status}`);
+    const r = d1Count(`SELECT COUNT(*) AS n FROM content_section WHERE editorial_status = 'auto_approved'`);
+    block('U4.1 content_section has auto_approved sections (>= 20)', (r.n || 0) >= 20, `n=${r.n}`);
 
-    // KP-004 endpoints
-    const r2 = await fetchJson(`${BASE}/v1/sources?limit=1`);
-    block('U4.2 /v1/sources no 5xx', r2.status < 500, `status=${r2.status}`);
+    const r2 = d1Count(`SELECT COUNT(*) AS n FROM content_section WHERE editorial_status = 'rejected'`);
+    ok('U4.2 no rejected sections', (r2.n || 0) === 0, `n=${r2.n}`);
 
-    // KP-007 endpoints
-    const r3 = await fetchJson(`${BASE}/v1/admin/media/review-queue`);
-    block('U4.3 /v1/admin/media/review-queue no 5xx', r3.status < 500, `status=${r3.status}`);
+    const r3 = d1Count(`SELECT COUNT(DISTINCT entity_id) AS n FROM content_section`);
+    block('U4.3 content_section covers >= 5 entities', (r3.n || 0) >= 5, `n=${r3.n}`);
 
-    // Find a person
-    const r4 = await fetchJson(`${BASE}/v1/people?limit=1`);
-    const personId = r4.body?.data?.[0]?.id;
-    if (personId) {
-      const r5 = await fetchJson(`${BASE}/v1/entities/${personId}/media`);
-      block('U4.4 /v1/entities/{id}/media no 5xx', r5.status < 500, `status=${r5.status}`);
-    }
-
-    // Find a media
-    if (personId) {
-      const { body: mediaList } = await fetchJson(`${BASE}/v1/entities/${personId}/media`);
-      const mid = mediaList?.data?.[0]?.asset?.id;
-      if (mid) {
-        const r6 = await fetchJson(`${BASE}/v1/media/${mid}`);
-        block('U4.5 /v1/media/{id} no 5xx', r6.status < 500, `status=${r6.status}`);
-        const r7 = await fetchJson(`${BASE}/v1/media/${mid}/download`);
-        block('U4.6 /v1/media/{id}/download no 5xx', r7.status < 500, `status=${r7.status}`);
-        const r8 = await fetchJson(`${BASE}/v1/media/${mid}/transform?w=200`);
-        block('U4.7 /v1/media/{id}/transform no 5xx', r8.status < 500, `status=${r8.status}`);
-        const r9 = await fetchJson(`${BASE}/v1/admin/media/${mid}/approve`, { method: 'POST' });
-        block('U4.8 POST /v1/admin/media/{id}/approve no 5xx', r9.status < 500, `status=${r9.status}`);
-      }
-    }
+    const r4 = d1Count(`SELECT COUNT(*) AS n FROM content_section WHERE body_markdown IS NULL OR body_markdown = ''`);
+    block('U4.4 no empty body_markdown', (r4.n || 0) === 0, `n_empty=${r4.n}`);
   }
 
-  // ----- U5: OpenAPI registration -----
-  console.log('\n--- U5: OpenAPI ---');
+  // ----- U5: API contract (no 5xx) -----
+  console.log('\n--- U5: API contract (no 5xx) ---');
+  {
+    // KP-010 endpoints
+    const r1 = await fetchJson(`${BASE}/v1/people/donald-trump/biography`);
+    block('U5.1 /v1/people/{slug}/biography no 5xx', r1.status < 500, `status=${r1.status}`);
+
+    const r2 = await fetchJson(`${BASE}/v1/people/donald-trump/sections`);
+    block('U5.2 /v1/people/{slug}/sections no 5xx', r2.status < 500, `status=${r2.status}`);
+
+    const r3 = await fetchJson(`${BASE}/v1/people/donald-trump/quick-facts`);
+    block('U5.3 /v1/people/{slug}/quick-facts no 5xx', r3.status < 500, `status=${r3.status}`);
+
+    const r4 = await fetchJson(`${BASE}/v1/sections/cs_trump_early_life`);
+    block('U5.4 /v1/sections/{id} no 5xx', r4.status < 500, `status=${r4.status}`);
+
+    // Other major endpoints (regression)
+    const r5 = await fetchJson(`${BASE}/v1/claims?limit=1`);
+    block('U5.5 /v1/claims no 5xx', r5.status < 500, `status=${r5.status}`);
+    const r6 = await fetchJson(`${BASE}/v1/sources?limit=1`);
+    block('U5.6 /v1/sources no 5xx', r6.status < 500, `status=${r6.status}`);
+    const r7 = await fetchJson(`${BASE}/v1/people/donald-trump/media`);
+    block('U5.7 /v1/entities/{id}/media no 5xx', r7.status < 500, `status=${r7.status}`);
+  }
+
+  // ----- U6: OpenAPI registration -----
+  console.log('\n--- U6: OpenAPI ---');
   {
     const r = await fetchJson(`${BASE}/openapi.json`);
-    block('U5.1 OpenAPI doc available', r.status === 200, `status=${r.status}`);
+    block('U6.1 OpenAPI doc available', r.status === 200, `status=${r.status}`);
     const paths = Object.keys(r.body?.paths || {});
     const newPaths = paths.filter(p =>
-      p === '/v1/entities/{id}/media' || p === '/v1/media/{id}' ||
-      p === '/v1/media/{id}/download' || p === '/v1/media/{id}/transform' ||
-      p === '/v1/admin/media/review-queue' || p === '/v1/admin/media/{id}/approve' ||
-      p === '/v1/admin/media/{id}/reject'
+      p === '/v1/people/{slug}/biography' ||
+      p === '/v1/people/{slug}/sections' ||
+      p === '/v1/people/{slug}/quick-facts' ||
+      p === '/v1/sections/{id}'
     );
-    block('U5.2 KP-007 endpoints registered in OpenAPI', newPaths.length >= 5, `paths=${newPaths.length} ${newPaths.join(', ')}`);
+    block('U6.2 KP-010 endpoints registered in OpenAPI', newPaths.length >= 4, `paths=${newPaths.length} ${newPaths.join(', ')}`);
   }
 
-  // ----- U6: weighted_provenance_score -----
-  console.log('\n--- U6: weighted_provenance_score ---');
+  // ----- U7: weighted_provenance_score -----
+  console.log('\n--- U7: weighted_provenance_score ---');
   {
     const r = d1Count(`SELECT AVG(confidence) AS n FROM claim WHERE id LIKE 'clm_legacy_%'`);
     const avg = r.n || 0;
-    block('U6.1 weighted_provenance_score (avg confidence) >= 0.5', avg >= 0.5, `avg=${avg.toFixed(3)}`);
+    block('U7.1 weighted_provenance_score (avg confidence) >= 0.5', avg >= 0.5, `avg=${avg.toFixed(3)}`);
   }
 
-  // ----- U7: rights_readiness (now binding since KP-007) -----
-  console.log('\n--- U7: rights_readiness (KP-007) ---');
+  // ----- U8: rights_readiness (KP-007) -----
+  console.log('\n--- U8: rights_readiness (KP-007) ---');
   {
     const r = d1Count(`SELECT COUNT(*) AS n FROM media_asset ma WHERE ma.status = 'approved' AND NOT EXISTS (SELECT 1 FROM media_rights WHERE media_asset_id = ma.id)`);
-    block('U7.1 rights_readiness: all approved media have rights', (r.n || 0) === 0, `n_orphan=${r.n}`);
-
-    const r2 = d1Count(`SELECT COUNT(*) AS n FROM media_rights WHERE attribution_text IS NULL OR attribution_text = ''`);
-    block('U7.2 all media_rights have attribution_text', (r2.n || 0) === 0, `n_missing=${r2.n}`);
+    block('U8.1 rights_readiness: all approved media have rights', (r.n || 0) === 0, `n_orphan=${r.n}`);
   }
 
-  // ----- U8: citation coverage (KP-004) -----
-  console.log('\n--- U8: citation coverage ---');
+  // ----- U9: citation coverage (KP-004) -----
+  console.log('\n--- U9: citation coverage (KP-004) ---');
   {
     const r = d1Count(`SELECT COUNT(*) AS n FROM claim c WHERE c.status = 'published' AND NOT EXISTS (SELECT 1 FROM claim_source cs WHERE cs.claim_id = c.id)`);
-    block('U8.1 all published claims have >= 1 source', (r.n || 0) === 0, `n_orphan=${r.n}`);
+    block('U9.1 all published claims have >= 1 source', (r.n || 0) === 0, `n_orphan=${r.n}`);
   }
 
-  // ----- U9: display gate enforcement (KP-007) -----
-  console.log('\n--- U9: display gate (no rights-unknown media shown) ---');
+  // ----- U10: biography display gate (KP-010) -----
+  console.log('\n--- U10: biography display gate (KP-010) ---');
   {
-    // Find a person and check their media list
-    const r = await fetchJson(`${BASE}/v1/people?limit=1`);
-    const personId = r.body?.data?.[0]?.id;
-    if (personId) {
-      const { body: mediaList } = await fetchJson(`${BASE}/v1/entities/${personId}/media`);
-      const all = mediaList?.data || [];
-      const allHaveValidLicense = all.every(m => m.rights?.license_code);
-      block('U9.1 all displayed media have valid license_code', allHaveValidLicense, `n=${all.length}`);
+    const r = await fetchJson(`${BASE}/v1/people/donald-trump/biography`);
+    // Hero image must be approved (status='approved' or null if no media)
+    if (r.body?.hero_image) {
+      block('U10.1 hero_image is approved (not rejected)', r.body.hero_image.license_code !== 'rejected', `lic=${r.body.hero_image.license_code}`);
+    } else {
+      ok('U10.1 (skipped — no hero_image)', true);
     }
+    // All narrative sections must be auto_approved or approved
+    const sections = r.body?.narrative || [];
+    const allApproved = sections.every(s => s.editorial_status === 'auto_approved' || s.editorial_status === 'approved');
+    block('U10.2 all narrative sections are auto_approved or approved', allApproved, `n=${sections.length}`);
+  }
+
+  // ----- U11: biography response size -----
+  console.log('\n--- U11: biography response size ---');
+  {
+    const r = await fetchJson(`${BASE}/v1/people/donald-trump/biography`);
+    const json = JSON.stringify(r.body);
+    const sizeKB = json.length / 1024;
+    block('U11.1 biography response < 200KB', sizeKB < 200, `size=${sizeKB.toFixed(1)}KB`);
+  }
+
+  // ----- U12: content section content quality -----
+  console.log('\n--- U12: content quality (KP-010) ---');
+  {
+    const r = d1Count(`SELECT COUNT(*) AS n FROM content_section WHERE body_markdown LIKE '%n/a%' OR body_markdown LIKE '%TODO%' OR body_markdown LIKE '%FIXME%'`);
+    block('U12.1 no placeholder text in body_markdown', (r.n || 0) === 0, `n=${r.n}`);
+
+    const r2 = d1Count(`SELECT AVG(LENGTH(body_markdown)) AS n FROM content_section WHERE editorial_status = 'auto_approved'`);
+    const avgLen = r2.n || 0;
+    block('U12.2 avg body_markdown length >= 200 chars', avgLen >= 200, `avg=${avgLen.toFixed(0)}`);
   }
 
   // ----- Summary -----

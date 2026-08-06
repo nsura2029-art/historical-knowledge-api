@@ -22,6 +22,7 @@ import { onThisDayRouter } from './on-this-day.js';
 import { claimsRouter } from './claims.js';
 import { sourcesRouter } from './sources.js';
 import { mediaRouter } from './media.js';
+import { biographyRouter } from './biography.js';
 
 export const v1Router = new OpenAPIHono<AppEnv>();
 
@@ -43,3 +44,4 @@ v1Router.route('/', onThisDayRouter);
 v1Router.route('/', claimsRouter);
 v1Router.route('/', sourcesRouter);
 v1Router.route('/', mediaRouter);
+v1Router.route('/', biographyRouter);
