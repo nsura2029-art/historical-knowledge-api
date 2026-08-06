@@ -17,6 +17,7 @@ import { facetsV2Router } from './facets-v2.js';
 import { timelineRouter } from './timeline.js';
 import { yearsRouter } from './years.js';
 import { relatedRouter } from './related.js';
+import { referencesRouter } from './references.js';
 
 export const v1Router = new OpenAPIHono<AppEnv>();
 
@@ -33,3 +34,4 @@ v1Router.route('/', adminRouter);
 v1Router.route('/', timelineRouter);
 v1Router.route('/', yearsRouter);
 v1Router.route('/', relatedRouter);
+v1Router.route('/', referencesRouter);
