@@ -13,7 +13,7 @@ import type { AppEnv } from '../../bindings.js';
 import {
   publishPerson, unpublishPerson,
   approveClaim, rejectClaim, markClaimDisputed,
-  approveMedia, rejectMedia,
+  approveMedia, rejectMedia,  // (approve/reject media routes moved to media.ts)
   verifySocialProfile, rejectSocialProfile,
   recomputeDerivedAttributes, computeQualityScores,
   recordQualityGateResult, getLatestQualityGateResult,
@@ -86,34 +86,8 @@ const markDisputedRoute = createRoute({
   },
 });
 
-// POST /v1/admin/media/{id}/approve
-const approveMediaRoute = createRoute({
-  method: 'post', path: '/v1/admin/media/{id}/approve',
-  operationId: 'adminApproveMedia', tags: ['admin'],
-  summary: 'Approve a media asset (rights verified)',
-  request: { params: personIdParam },
-  responses: {
-    200: { description: 'Approved', content: { 'application/json': { schema: z.object({ status: z.string() }) } } },
-    404: { description: 'Not found', content: { 'application/json': { schema: RefDocError } } },
-  },
-});
-
-// POST /v1/admin/media/{id}/reject
-const rejectMediaRoute = createRoute({
-  method: 'post', path: '/v1/admin/media/{id}/reject',
-  operationId: 'adminRejectMedia', tags: ['admin'],
-  summary: 'Reject a media asset',
-  request: {
-    params: personIdParam,
-    body: {
-      content: { 'application/json': { schema: z.object({ reason: z.string().min(1) }) } },
-    },
-  },
-  responses: {
-    200: { description: 'Rejected', content: { 'application/json': { schema: z.object({ status: z.string(), reason: z.string() }) } } },
-    404: { description: 'Not found', content: { 'application/json': { schema: RefDocError } } },
-  },
-});
+// POST /v1/admin/media/{id}/approve and /v1/admin/media/{id}/reject
+// are defined in media.ts (KP-007) — more comprehensive than this stub.
 
 // POST /v1/admin/social/{id}/verify
 const verifySocialRoute = createRoute({
@@ -227,21 +201,6 @@ adminRouter.openapi(markDisputedRoute, async (c) => {
   const { id } = c.req.valid('param');
   const r = await markClaimDisputed(c.env.DB, id);
   if (!r) return notFound(c, `Claim ${id} not found`);
-  return c.json(r) as any;
-});
-
-adminRouter.openapi(approveMediaRoute, async (c) => {
-  const { id } = c.req.valid('param');
-  const r = await approveMedia(c.env.DB, id);
-  if (!r) return notFound(c, `Media ${id} not found`);
-  return c.json(r) as any;
-});
-
-adminRouter.openapi(rejectMediaRoute, async (c) => {
-  const { id } = c.req.valid('param');
-  const { reason } = c.req.valid('json');
-  const r = await rejectMedia(c.env.DB, id, reason);
-  if (!r) return notFound(c, `Media ${id} not found`);
   return c.json(r) as any;
 });
 
