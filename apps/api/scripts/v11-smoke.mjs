@@ -92,6 +92,12 @@ async function main() {
       ok('T4.7 question has difficulty', typeof q.difficulty === 'string');
       ok('T4.8 question has NO correct_index leaked', q.correct_index === undefined, `correct_index=${q.correct_index}`);
     }
+    // T4.9: no duplicate question ids in a session
+    {
+      const ids = (r.body?.questions || []).map(q => q.id);
+      const unique = new Set(ids);
+      ok('T4.9 no duplicate question ids in mixed session', unique.size === ids.length, `ids=${ids.length} unique=${unique.size}`);
+    }
   }
 
   // ----- T5: /v1/people/{slug}/quizzes/{id}/attempt (correct + wrong) -----

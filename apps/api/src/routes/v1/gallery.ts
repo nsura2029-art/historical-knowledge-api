@@ -299,46 +299,52 @@ galleryRouter.openapi(playQuizRoute, async (c) => {
   const entityId = await getEntityIdBySlug(c.env.DB, slug);
   if (!entityId) return c.json({ error: { code: 'PERSON_NOT_FOUND', message: `No person with slug ${slug}` } }, 404) as any;
 
-  // Pick 4 questions: either mixed (1 of each easy/medium/hard + 1 random) or all of the same difficulty
-  let query: string;
-  let params: any[];
+  // Pick 4 questions: either mixed (1 of each easy/medium/hard + 1 NEW random) or all of the same difficulty.
+  // Bug fix v2: the CTE + window-function approach caused an internal server error in D1.
+  // Simpler: do 2 sequential queries. D1 latency is sub-ms locally, this is cheap.
+  let questionRows: any[];
   if (difficulty === 'mixed') {
-    query = `
-      SELECT * FROM (
-        SELECT id, question, options_json, difficulty, category FROM (
-          SELECT id, question, options_json, difficulty, category,
-                         ROW_NUMBER() OVER (PARTITION BY difficulty ORDER BY RANDOM()) as rn
-                  FROM quiz_question
-                  WHERE entity_id = ? AND status = 'live'
-        ) WHERE rn = 1
-        UNION ALL
-        SELECT id, question, options_json, difficulty, category FROM (
-          SELECT id, question, options_json, difficulty, category FROM quiz_question
-            WHERE entity_id = ? AND status = 'live'
-            ORDER BY RANDOM() LIMIT 1
-        )
-      )
-    `;
-    params = [entityId, entityId];
+    // Step 1: 1 of each difficulty (3 questions)
+    const step1 = await c.env.DB.prepare(`
+      SELECT id, question, options_json, difficulty, category FROM (
+        SELECT id, question, options_json, difficulty, category,
+               ROW_NUMBER() OVER (PARTITION BY difficulty ORDER BY RANDOM()) as rn
+          FROM quiz_question
+          WHERE entity_id = ? AND status = 'live'
+      ) WHERE rn = 1
+    `).bind(entityId).all();
+    const pickedIds = (step1.results as any[]).map(r => r.id);
+    // Step 2: 1 more question that isn't already picked
+    const placeholders = pickedIds.map(() => '?').join(',');
+    const step2 = await c.env.DB.prepare(`
+      SELECT id, question, options_json, difficulty, category FROM quiz_question
+        WHERE entity_id = ? AND status = 'live'
+          AND id NOT IN (${placeholders})
+        ORDER BY RANDOM() LIMIT 1
+    `).bind(entityId, ...pickedIds).all();
+    questionRows = [...(step1.results as any[]), ...(step2.results as any[])];
   } else {
-    query = `SELECT id, question, options_json, difficulty, category FROM quiz_question WHERE entity_id = ? AND status = 'live' AND difficulty = ? ORDER BY RANDOM() LIMIT 4`;
-    params = [entityId, difficulty];
+    const result = await c.env.DB.prepare(`
+      SELECT id, question, options_json, difficulty, category FROM quiz_question
+        WHERE entity_id = ? AND status = 'live' AND difficulty = ?
+        ORDER BY RANDOM() LIMIT 4
+    `).bind(entityId, difficulty).all();
+    questionRows = result.results as any[];
   }
 
-  const { results } = await c.env.DB.prepare(query).bind(...params).all();
-  if (!(results as any[]).length) {
+  if (!questionRows.length) {
     return c.json({ error: { code: 'NO_QUIZZES', message: `No quiz questions available for ${slug}` } }, 404) as any;
   }
 
   const sessionId = newId('qses');
-  const questionIds = (results as any[]).map(q => q.id);
+  const questionIds = questionRows.map(q => q.id);
   await c.env.DB.prepare(`
     INSERT INTO quiz_session (id, user_token, entity_id, question_ids, total)
     VALUES (?, ?, ?, ?, ?)
   `).bind(sessionId, user_token || 'anon', entityId, JSON.stringify(questionIds), questionIds.length).run();
 
   // Strip correct_index + explanation from public response
-  const publicQuestions = (results as any[]).map(q => ({
+  const publicQuestions = questionRows.map(q => ({
     id: q.id,
     question: q.question,
     options: JSON.parse(q.options_json),
