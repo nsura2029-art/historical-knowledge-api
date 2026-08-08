@@ -25,6 +25,7 @@ const EventItem = z.object({
   category: z.string(),
   title: z.string(),
   body: z.string(),
+  source_id: z.string().nullable(),
   source_section: z.string().nullable(),
   display_order: z.number().int(),
   confidence: z.number(),
@@ -155,7 +156,7 @@ eventsRouter.openapi(getEventsRoute, async (c) => {
 
   const { results } = await c.env.DB.prepare(`
     SELECT id, event_date, event_year, event_type, category, title, body,
-           source_section, display_order, confidence
+           source_id, source_section, display_order, confidence
     FROM entity_event
     WHERE ${where.join(' AND ')}
     ORDER BY event_year ASC, display_order ASC
@@ -195,7 +196,7 @@ eventsRouter.openapi(getEventsByCategoryRoute, async (c) => {
 
   const { results } = await c.env.DB.prepare(`
     SELECT id, event_date, event_year, event_type, category, title, body,
-           source_section, display_order, confidence
+           source_id, source_section, display_order, confidence
     FROM entity_event
     WHERE entity_id = ?
     ORDER BY category ASC, event_year ASC
@@ -240,7 +241,7 @@ eventsRouter.openapi(getTimelineRoute, async (c) => {
 
   const { results } = await c.env.DB.prepare(`
     SELECT id, event_date, event_year, event_type, category, title, body,
-           source_section, display_order, confidence
+           source_id, source_section, display_order, confidence
     FROM entity_event
     WHERE entity_id = ?
     ORDER BY event_year ASC
