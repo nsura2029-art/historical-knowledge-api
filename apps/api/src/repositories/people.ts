@@ -520,12 +520,14 @@ export interface PlaceRow {
   relation_type: string;
   place_name: string;
   country_code: string | null;
+  place_slug?: string | null;
+  place_id?: string | null;
 }
 
 export async function getPlacesForPerson(db: D1Database, personId: string): Promise<PlaceRow[]> {
   const result = await db
     .prepare(`
-      SELECT ppr.relation_type, e.canonical_name AS place_name, p.country_code
+      SELECT ppr.relation_type, e.canonical_name AS place_name, p.country_code, e.slug AS place_slug, e.id AS place_id
       FROM person_place_relation ppr
       JOIN place p ON p.id = ppr.place_id
       JOIN entity e ON e.id = p.id
@@ -534,6 +536,36 @@ export async function getPlacesForPerson(db: D1Database, personId: string): Prom
     `)
     .bind(personId)
     .all<PlaceRow>();
+  return result.results ?? [];
+}
+
+export interface CompanyRow {
+  id: string;
+  name: string;
+  slug: string;
+  relation_type: string;
+  valid_from: number | null;
+  valid_to: number | null;
+}
+
+export async function getCompaniesForPerson(db: D1Database, personId: string): Promise<CompanyRow[]> {
+  // Person -> Organization via entity_relation
+  const result = await db
+    .prepare(`
+      SELECT er.object_entity_id AS id,
+             e.canonical_name AS name,
+             e.slug AS slug,
+             er.relation_type,
+             er.valid_from,
+             er.valid_to
+      FROM entity_relation er
+      JOIN entity e ON e.id = er.object_entity_id
+      WHERE er.subject_entity_id = ?
+        AND e.type = 'organization'
+      ORDER BY er.relation_type ASC, e.canonical_name ASC
+    `)
+    .bind(personId)
+    .all<CompanyRow>();
   return result.results ?? [];
 }
 

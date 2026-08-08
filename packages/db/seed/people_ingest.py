@@ -205,14 +205,18 @@ VALUES
 def render_person_row_sql(entity_id: str, name: str, birth_year: int = None,
                           death_year: int = None, occupation: str = None,
                           nationality: str = "United States") -> str:
-    """Render an INSERT OR IGNORE for the person row (subclass of entity)."""
-    by = str(birth_year) if birth_year else "NULL"
-    dy = str(death_year) if death_year else "NULL"
+    """Render an INSERT OR IGNORE for the person row (subclass of entity).
+
+    Uses the correct person schema columns (primary_profession_id, fame_scope,
+    fame_intensity, etc.). birth_year/death_year are NOT columns in person table —
+    they're stored via event_id/derived_attribute. Nationality is via citizenship table.
+    """
     occ = (occupation or "").replace("'", "''")[:100]
+    living = "deceased" if death_year else "living"
     return f"""INSERT OR IGNORE INTO person
-  (id, short_description, primary_profession, nationality, birth_year, death_year)
+  (id, living_status, short_description, known_for_summary, primary_profession_id, editorial_risk_level, identity_confidence, completeness_score, provenance_score, fame_scope, fame_intensity, gender, controversy_level, era_relevance, is_celebrity, is_historical_figure, is_professional, is_cultural_icon, is_royalty, is_controversial, is_living, is_military_leader, is_religious_spiritual, is_activist, is_pioneer, is_internet_personality, is_polarizing, is_living_legend)
 VALUES
-  ('{entity_id}', NULL, '{occ}', '{nationality}', {by}, {dy});
+  ('{entity_id}', '{living}', NULL, NULL, '{occ}', 'low', 0.95, 0.5, 0.7, 'global', 'well_known', 'unknown', 0, NULL, 0, 1, 1, 1, 0, 0, {'0' if living == 'deceased' else '1'}, 0, 0, 0, 0, 0, 0, 0);
 """
 
 
