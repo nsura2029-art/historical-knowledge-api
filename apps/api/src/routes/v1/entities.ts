@@ -12,6 +12,7 @@
  *   GET /v1/causes-of-death/{slug}
  *   GET /v1/works/{slug}
  *   GET /v1/awards/{slug}
+ *   GET /v1/organizations/{slug}
  */
 
 import { createRoute, OpenAPIHono } from '@hono/zod-openapi';
@@ -22,6 +23,7 @@ import {
   getPlaceBySlug, getCountryByCode, getProfessionBySlug,
   getGenerationBySlug, getStarSignBySlug, getChineseZodiacBySlug,
   getCauseOfDeathBySlug, getAwardBySlug, getWorkBySlug,
+  getOrganizationBySlug,
 } from '../../repositories/entities.js';
 
 const notFound = (c: any, entity: string, identifier: string) => c.json(
@@ -220,5 +222,34 @@ entitiesRouter.openapi(workRoute, async (c) => {
   const { slug } = c.req.valid('param');
   const result = await getWorkBySlug(c.env.DB, slug);
   if (!result.work) return notFound(c, 'work', slug);
+  return c.json(result) as any;
+});
+
+// ---------------------------------------------------------------------------
+// /v1/organizations/{slug}
+// ---------------------------------------------------------------------------
+
+const organizationRoute = createRoute({
+  method: 'get',
+  path: '/v1/organizations/{slug}',
+  operationId: 'getOrganization',
+  tags: ['entities'],
+  summary: 'Organization detail (companies, universities, etc.)',
+  description: 'Returns the organization record plus a list of notable people linked to it.',
+  request: {
+    params: z.object({
+      slug: z.string().min(1).max(255),
+    }),
+  },
+  responses: {
+    200: { description: 'The organization detail' },
+    404: { description: 'Organization not found', content: { 'application/json': { schema: RefDocError } } },
+  },
+});
+
+entitiesRouter.openapi(organizationRoute, async (c) => {
+  const { slug } = c.req.valid('param');
+  const result = await getOrganizationBySlug(c.env.DB, slug);
+  if (!result.organization) return notFound(c, 'organization', slug);
   return c.json(result) as any;
 });

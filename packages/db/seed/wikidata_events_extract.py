@@ -315,6 +315,7 @@ def main():
 
     out_path = sys.argv[1] if len(sys.argv) > 1 else "packages/db/migrations/0030_wikidata_events_extracted.sql"
     limit = int(sys.argv[2]) if len(sys.argv) > 2 else 0
+    slug_filter = sys.argv[3] if len(sys.argv) > 3 else None  # path to file with one slug per line
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     api_dir = os.path.normpath(os.path.join(script_dir, "..", "..", "..", "apps", "api"))
@@ -327,11 +328,42 @@ def main():
             env["PATH"] = f"{wrangler_path}:{env.get('PATH', '')}"
 
     print("[wd] loading entities from D1...", file=sys.stderr)
-    res = subprocess.run(
-        ["wrangler", "d1", "execute", "historical-knowledge-api-d1", "--remote",
-         "--command",
-         "SELECT e.id, e.slug, e.canonical_name FROM entity e WHERE e.type='person' ORDER BY e.popularity_score DESC NULLS LAST"],
-        capture_output=True, text=True, timeout=120, cwd=api_dir, env=env)
+    if slug_filter and os.path.exists(slug_filter):
+        with open(slug_filter) as f:
+            slugs = [s.strip() for s in f if s.strip()]
+        # Chunk into smaller groups because wrangler --command has length limits
+        # Use a single IN clause via a hardcoded SQL string
+        all_rows = []
+        chunk_size = 30
+        for i in range(0, len(slugs), chunk_size):
+            chunk = slugs[i:i+chunk_size]
+            quoted = ",".join(f"'{s.replace(chr(39), chr(39)+chr(39))}'" for s in chunk)
+            sql = f"SELECT e.id, e.slug, e.canonical_name FROM entity e WHERE e.type='person' AND e.slug IN ({quoted})"
+            cmd = ["wrangler", "d1", "execute", "historical-knowledge-api-d1", "--remote",
+                   "--command", sql, "--json"]
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=60, cwd=api_dir, env=env)
+            if r.returncode != 0:
+                print(f"[wd] chunk error: {r.stderr[:300]}", file=sys.stderr)
+                continue
+            try:
+                idx = r.stdout.find("[")
+                if idx == -1:
+                    continue
+                parsed = json.loads(r.stdout[idx:])
+                rows = parsed[0].get("results", [])
+                all_rows.extend(rows)
+            except Exception as e:
+                print(f"[wd] parse error: {e}", file=sys.stderr)
+        print(f"[wd] filtering to {len(slugs)} slugs ({len(all_rows)} found)", file=sys.stderr)
+        # Build a fake res object
+        import io
+        fake_stdout = json.dumps([{"results": all_rows, "success": True}]).encode()
+        res = type('Res', (), {'returncode': 0, 'stdout': fake_stdout.decode(), 'stderr': ''})()
+    else:
+        cmd = ["wrangler", "d1", "execute", "historical-knowledge-api-d1", "--remote",
+               "--command",
+               "SELECT e.id, e.slug, e.canonical_name FROM entity e WHERE e.type='person' ORDER BY e.popularity_score DESC NULLS LAST", "--json"]
+        res = subprocess.run(cmd, capture_output=True, text=True, timeout=120, cwd=api_dir, env=env)
     if res.returncode != 0:
         print(f"[wd] wrangler error: {res.stderr[:500]}", file=sys.stderr)
         return 1

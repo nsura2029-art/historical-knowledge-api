@@ -647,3 +647,84 @@ export async function getWorkBySlug(db: D1Database, slug: string): Promise<{
     credits: credits.results ?? [],
   };
 }
+
+// ---------------------------------------------------------------------------
+// Organization (Fortune 500, universities, etc.)
+// ---------------------------------------------------------------------------
+
+export async function getOrganizationBySlug(db: D1Database, slug: string): Promise<{
+  organization: {
+    id: string;
+    slug: string;
+    canonical_name: string;
+    org_type: string;
+    founded_year: number | null;
+    dissolved_year: number | null;
+    parent_id: string | null;
+    wikidata_qid: string | null;
+    summary: string | null;
+  } | null;
+  notable_people: Array<{
+    id: string;
+    slug: string;
+    canonical_name: string;
+    short_description: string | null;
+    living_status: string;
+    relation_type: string;
+    valid_from: number | null;
+    valid_to: number | null;
+  }>;
+}> {
+  const org = await db
+    .prepare(`
+      SELECT e.id, e.slug, e.canonical_name, e.summary,
+             o.org_type, o.founded_year, o.dissolved_year,
+             o.parent_id, o.wikidata_qid
+      FROM entity e
+      LEFT JOIN organization o ON o.id = e.id
+      WHERE e.slug = ? AND e.type = 'organization'
+    `)
+    .bind(slug)
+    .first<{
+      id: string; slug: string; canonical_name: string; summary: string | null;
+      org_type: string | null; founded_year: number | null; dissolved_year: number | null;
+      parent_id: string | null; wikidata_qid: string | null;
+    }>();
+
+  if (!org) return { organization: null, notable_people: [] };
+
+  // Find people who are linked to this org via entity_relation (outgoing from person)
+  const people = await db
+    .prepare(`
+      SELECT e.id, e.slug, e.canonical_name, p.short_description, p.living_status,
+             er.relation_type, er.valid_from, er.valid_to
+      FROM entity_relation er
+      JOIN entity e ON e.id = er.subject_entity_id
+      LEFT JOIN person p ON p.id = e.id
+      WHERE er.object_entity_id = ?
+        AND e.type = 'person'
+      ORDER BY er.relation_type ASC, e.canonical_name ASC
+      LIMIT 50
+    `)
+    .bind(org.id)
+    .all<{
+      id: string; slug: string; canonical_name: string; short_description: string | null;
+      living_status: string; relation_type: string;
+      valid_from: number | null; valid_to: number | null;
+    }>();
+
+  return {
+    organization: {
+      id: org.id,
+      slug: org.slug,
+      canonical_name: org.canonical_name,
+      org_type: org.org_type ?? 'company',
+      founded_year: org.founded_year,
+      dissolved_year: org.dissolved_year,
+      parent_id: org.parent_id,
+      wikidata_qid: org.wikidata_qid,
+      summary: org.summary,
+    },
+    notable_people: people.results ?? [],
+  };
+}

@@ -22,6 +22,7 @@ import {
   getPlacesForPerson,
   getSourcesForPerson,
   getEventsForPerson,
+  getCompaniesForPerson,
 } from '../../repositories/people.js';
 
 const route = createRoute({
@@ -108,6 +109,7 @@ personDetailRouter.openapi(route, async (c) => {
     places,
     sources,
     events,
+    companies,
   ] = await Promise.all([
     getNamesForPerson(c.env.DB, person.id).catch((e) => { console.log('names err:', String(e)); return []; }),
     getCitizenshipsForPerson(c.env.DB, person.id).catch((e) => { console.log('cit err:', String(e)); return []; }),
@@ -122,6 +124,7 @@ personDetailRouter.openapi(route, async (c) => {
     getPlacesForPerson(c.env.DB, person.id).catch((e) => { console.log('places err:', String(e)); return []; }),
     getSourcesForPerson(c.env.DB, person.id).catch((e) => { console.log('sources err:', String(e)); return []; }),
     getEventsForPerson(c.env.DB, person.id).catch((e) => { console.log('events err:', String(e)); return []; }),
+    getCompaniesForPerson(c.env.DB, person.id).catch((e) => { console.log('companies err:', String(e)); return []; }),
   ]);
 
   // Resolve birthplace/death place
@@ -365,6 +368,42 @@ personDetailRouter.openapi(route, async (c) => {
       valid_from: r.valid_from,
       valid_to: r.valid_to,
     })),
+    related_entities: {
+      places: places
+        .filter((p) => p.place_slug)
+        .map((p) => ({
+          relation_type: p.relation_type,
+          entity_type: 'place' as const,
+          name: p.place_name,
+          slug: p.place_slug!,
+          url: `/v1/places/${p.place_slug}`,
+        })),
+      companies: companies.map((c) => ({
+        relation_type: c.relation_type,
+        entity_type: 'organization' as const,
+        name: c.name,
+        slug: c.slug,
+        url: `/v1/organizations/${c.slug}`,
+        valid_from: c.valid_from,
+        valid_to: c.valid_to,
+      })),
+      works: works.slice(0, 10).map((w) => ({
+        entity_type: 'work' as const,
+        name: w.work_title,
+        slug: null,
+        url: null,
+        work_type: w.work_type,
+        release_date: w.release_date,
+      })),
+      awards: awards.slice(0, 10).map((a) => ({
+        entity_type: 'award' as const,
+        name: a.award_name,
+        slug: null,
+        url: null,
+        year: a.year,
+        result: a.result,
+      })),
+    },
     external_identifiers: {
       wikidata_qid: extIdMap.wikidata_qid,
       viaf_id: extIdMap.viaf_id,
