@@ -4,7 +4,7 @@
 
 ## File naming
 
-`TASK-###.md` where `###` is the task number. There must be ONE report per task (either PASS or BLOCKED).
+`TASK-###.md` or `KP-###.md` where `###` is the task number. There must be ONE report per task (either PASS or BLOCKED).
 
 ## Required template
 
@@ -62,6 +62,7 @@ A PR with a BLOCKED quality report is **not mergeable**. The 11 questions are:
 | Task | Status | File |
 |---|---|---|
 | 001 | ✅ PASS | `TASK-001.md` |
+| KP-029 | ✅ PASS | `KP-029.md` (multi-source events) |
 
 ## How to write a quality report
 

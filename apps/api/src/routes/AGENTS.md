@@ -82,6 +82,9 @@ app.route('/v1/people', personDetailRouter);  // not /v1/people/ — the router 
 - **Year filters on date TEXT** — `substr(start_date, 1, 4) = ?` works for year-prefix match. SQLite/D1 has no native date math; don't use `strftime()` on the YYYY-MM-DD strings, it's slow.
 - **Cursor pagination** — never use OFFSET. Use a keyset (id > last_id) for stable cursor pagination.
 - **Tier ordering** — references endpoint sorts by tier (A first). Use the same sort order in any facet that lists sources.
+- **Event source attribution (NEW 2026-08-08)** — every `entity_event` row has a `source_id` FK. SELECT it in the response so the UI can show source provenance badges. See `events.ts` for the pattern.
+- **`source_id` response shape (NEW 2026-08-08)** — return it as `source_id: string | null` (NOT nested in a `source` object). The D1 FK is a string, and clients index it as a flat key.
+- **Don't name DB row `c`** — Hono context collision. Use `eventRow`, `entityRow`, etc.
 
 ## How to add a new route file
 

@@ -40,6 +40,17 @@ Cursor-paginated response envelope. Not yet built. When added, every list endpoi
 
 Calendar-aware date type with proleptic Gregorian + `original` text. Not yet exported here — it's currently inline in `apps/api/src/routes/v1/years.ts`. Should be moved here when TASK-008 lands.
 
+### Source quality tier (NEW 2026-08-08)
+
+`source_quality_tier` enum: `A | B | C | D | E`. Used across the source_registry, media, and event tables. Defined in `apps/api/src/routes/v1/sources.ts` but not yet exported here.
+
+### Event source categories (NEW 2026-08-08)
+
+The `entity_event.source_id` FK references `source_registry.id`. The 3 currently-populated sources for events:
+- `src_en_wikipedia` (Tier E, body text extraction)
+- `src_dbpedia` (Tier B, SPARQL date properties)
+- `src_wikidata` (Tier A, structured claims, rate-limited)
+
 ## How to add a new shared type
 
 1. Define the Zod schema in `packages/contracts/src/`.

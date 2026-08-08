@@ -6,13 +6,23 @@
 
 ```
 apps/api/scripts/
-├── v2-smoke.mjs     # 44 tests — original smoke + entity + facets
-├── v3-smoke.mjs     # 31 tests — timeline + years + deep-dive
-├── v4-smoke.mjs     # 27 tests — related + references
-└── v5-smoke.mjs     # 48 tests — Trump deep-dive + slug redirects
+├── v7-smoke.mjs              # 33 tests — T1 baseline + T2 entity pages + T3 facets
+├── v8-smoke.mjs              # 42 tests — biography endpoints (KP-010)
+├── v9-smoke.mjs              # 37 tests — timeline + claims + sources (KP-003/004)
+├── v10-smoke.mjs             # 58 tests — top-500 catalog + tags
+├── v11-smoke.mjs             # 66 tests — media rights (KP-007)
+├── v12-smoke.mjs             # 40 tests — events + tags + by-tag (KP-018 + KP-029 base)
+├── v13-smoke.mjs             # 21 tests — multi-source events + source_id [NEW 2026-08-08]
+├── v7-edge.mjs               # 18 edge cases
+├── v8-edge.mjs               # 12 edge cases
+├── v9-edge.mjs               # 15 edge cases
+├── v10-edge.mjs              # 15 edge cases
+├── quality-gate.mjs          # 24 quality gates
+├── smoke.mjs                 # main smoke (legacy)
+└── AGENTS.md                 # ← this file
 ```
 
-Total: **150 tests** as of 2026-08-05, all passing.
+Total: **357 smoke + edge tests** as of 2026-08-08, all passing. Plus **24/24 quality gate**.
 
 ## The pattern
 
@@ -50,9 +60,23 @@ main().catch(err => { console.error(err); process.exit(1); });
 - **No auth needed** — the dev Worker is open. Don't put real secrets in test queries.
 - **All 4 smokes must pass before merging to develop.** If a smoke fails, the merge is blocked.
 
+## Per-smoke coverage map (NEW 2026-08-08)
+
+| Smoke | Tests | Coverage |
+|---|---|---|
+| v7 | 33 | Health, version, browse, entity pages, facets |
+| v8 | 42 | Biography endpoints (header, narrative, quick_facts, sources) |
+| v9 | 37 | Timeline (events), claims, sources, citation export |
+| v10 | 58 | Top-500 catalog, people, professions, generations, etc. |
+| v11 | 66 | Media rights (review queue, approve, reject, download) |
+| v12 | 40 | Tags, by-tag, events (KP-029 first cut) |
+| v13 | 21 | Multi-source events: source_id, DBpedia events, source_registry |
+| quality-gate | 24 | Performance, content quality, SEO, no-regression |
+| **TOTAL** | **321** | All endpoints + cross-cutting concerns |
+
 ## How to add a new test
 
-1. Pick the right `v#-smoke.mjs` (next available number — v6, v7, etc.). If adding to an existing one, append at the end before the summary line.
+1. Pick the right `v#-smoke.mjs` (next available number — v14 next). If adding to an existing one, append at the end before the summary line.
 2. Use the `t()` helper. Pick a unique name.
 3. Group by feature (use `// === N. Feature name ===` comment block).
 4. After adding, run: `node apps/api/scripts/v#-smoke.mjs` from the worktree root. Confirm pass count went up.
@@ -70,3 +94,4 @@ main().catch(err => { console.error(err); process.exit(1); });
 - Unit tests (Vitest) — not set up yet. Smoke tests are our primary correctness check.
 - Integration tests against local D1 — would require a local D1 emulator. The dev Worker is the test target.
 - Load tests — out of MVP scope. Hand-test by hammering `/v1/health`.
+
