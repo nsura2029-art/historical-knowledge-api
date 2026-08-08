@@ -57,3 +57,4 @@ Thumbs.db
 # Tasks and quality reports that are NOT yet reviewed
 # (We commit them as drafts; the PASS/BLOCKED decision is what matters)
 # docs/quality-reports/TASK-*.md
+apps/api/node_modules
