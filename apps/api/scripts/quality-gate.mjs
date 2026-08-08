@@ -173,7 +173,7 @@ async function main() {
   // ----- U12: content section content quality -----
   console.log('\n--- U12: content quality (KP-010) ---');
   {
-    const r = d1Count(`SELECT COUNT(*) AS n FROM content_section WHERE body_markdown LIKE '%n/a%' OR body_markdown LIKE '%TODO%' OR body_markdown LIKE '%FIXME%'`);
+    const r = d1Count(`SELECT COUNT(*) AS n FROM content_section WHERE body_markdown LIKE '%TODO%' OR body_markdown LIKE '%FIXME%' OR body_markdown LIKE '%PLACEHOLDER%' OR body_markdown LIKE '%Lorem%' OR body_markdown LIKE '%lorem ipsum%'`);
     block('U12.1 no placeholder text in body_markdown', (r.n || 0) === 0, `n=${r.n}`);
 
     const r2 = d1Count(`SELECT AVG(LENGTH(body_markdown)) AS n FROM content_section WHERE editorial_status = 'auto_approved'`);
