@@ -27,11 +27,16 @@ import urllib.parse
 RATE_LIMIT_HIT = False
 RATE_LIMIT_HIT_AT = 0
 
+# Wikimedia requires a User-Agent. Without one, requests get 403.
+# Also use a longer --max-time and explicit --write-out for HTTP status.
+USER_AGENT = "HistoricalKnowledgePlatform/0.1 (https://github.com/nsura2029-art/historical-knowledge-api; contact: research@hka.local)"
+
 
 def http_get_json(url: str, retries: int = 2, force_wait: float = 0) -> dict | list | None:
     """HTTP GET via curl, return parsed JSON or None.
 
-    Detects 429 rate limit and waits before retrying.
+    Detects 429/403 rate limit by HTTP status code (NOT body size — empty search
+    results are short by design). Uses a User-Agent to avoid Wikimedia 403s.
     """
     global RATE_LIMIT_HIT, RATE_LIMIT_HIT_AT
     for attempt in range(retries + 1):
@@ -42,19 +47,47 @@ def http_get_json(url: str, retries: int = 2, force_wait: float = 0) -> dict | l
                 time.sleep(wait_time)
         try:
             res = subprocess.run(
-                ["curl", "-s", "--max-time", "10", "--connect-timeout", "5", url],
-                capture_output=True, text=True, timeout=15)
+                ["curl", "-s", "--max-time", "15", "--connect-timeout", "5",
+                 "-A", USER_AGENT,
+                 "-w", "\n__HTTP_STATUS__%{http_code}",
+                 url],
+                capture_output=True, text=True, timeout=20)
             if res.returncode != 0:
                 continue
-            # Check for rate limit
-            if "Too Many Reqs" in res.stdout[:500] or len(res.stdout) < 500:
+            # Parse HTTP status from the appended line
+            out = res.stdout
+            status = 0
+            if "__HTTP_STATUS__" in out:
+                status_str = out.rsplit("__HTTP_STATUS__", 1)[-1].strip()
+                try:
+                    status = int(status_str)
+                except ValueError:
+                    status = 0
+                out = out.rsplit("__HTTP_STATUS__", 1)[0]
+            # Check for rate limit by HTTP status code, not body size
+            if status == 429 or status == 503:
                 if attempt < retries:
                     RATE_LIMIT_HIT = True
                     RATE_LIMIT_HIT_AT = time.time()
                     time.sleep(2 ** (attempt + 2))
                     continue
                 return None
-            return json.loads(res.stdout)
+            if status == 403 and "Too Many Reqs" in out[:500]:
+                if attempt < retries:
+                    RATE_LIMIT_HIT = True
+                    RATE_LIMIT_HIT_AT = time.time()
+                    time.sleep(2 ** (attempt + 2))
+                    continue
+                return None
+            if status >= 400:
+                # 4xx other than rate limit — not a retry, just return None
+                return None
+            if not out.strip():
+                return None
+            try:
+                return json.loads(out)
+            except json.JSONDecodeError:
+                return None
         except Exception:
             if attempt < retries:
                 time.sleep(2)
@@ -81,16 +114,33 @@ def get_labels_batch(qids: list, cache: dict) -> None:
                     time.sleep(wait_time)
             try:
                 res = subprocess.run(
-                    ["curl", "-s", "--max-time", "10", "--connect-timeout", "5", url],
-                    capture_output=True, text=True, timeout=15)
+                    ["curl", "-s", "--max-time", "15", "--connect-timeout", "5",
+                     "-A", USER_AGENT,
+                     "-w", "\n__HTTP_STATUS__%{http_code}",
+                     url],
+                    capture_output=True, text=True, timeout=20)
                 if res.returncode != 0:
                     continue
-                if "Too Many Reqs" in res.stdout[:500] or len(res.stdout) < 500:
+                out = res.stdout
+                status = 0
+                if "__HTTP_STATUS__" in out:
+                    status_str = out.rsplit("__HTTP_STATUS__", 1)[-1].strip()
+                    try:
+                        status = int(status_str)
+                    except ValueError:
+                        status = 0
+                    out = out.rsplit("__HTTP_STATUS__", 1)[0]
+                # Rate limit detection: HTTP 429/503
+                if status == 429 or status == 503:
                     RATE_LIMIT_HIT = True
                     RATE_LIMIT_HIT_AT = time.time()
                     time.sleep(2 ** (attempt + 2))
                     continue
-                data = json.loads(res.stdout)
+                if status >= 400:
+                    # Other 4xx — try next attempt but don't mark as rate limit
+                    time.sleep(2)
+                    continue
+                data = json.loads(out)
                 entities = data.get("entities", {})
                 for q in batch:
                     label = entities.get(q, {}).get("labels", {}).get("en", {}).get("value", q)

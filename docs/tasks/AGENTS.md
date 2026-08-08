@@ -93,6 +93,7 @@ Arts & Culture, Games & Quizzes) using a strict 24-task dependency order
 | KP-023 | Observability + source health + freshness + cost | 🟡 partial (data_source_health, no live monitoring) | — | — |
 | KP-024 | Pilot release + independent audit + rollback | ❌ not started | — | — |
 | **KP-029** | **Multi-source events (Wikipedia + DBpedia + Wikidata)** | **✅ done** | **`608d1ea`** | — |
+| **KP-029-full** | **Full Wikidata extraction (415 people, 6048 wd events)** | **✅ done** | **migration 0033** | — |
 
 **Bold KP tasks** = critical path / has formal spec.
 
@@ -108,6 +109,7 @@ Arts & Culture, Games & Quizzes) using a strict 24-task dependency order
 | KP-017 | All API endpoints + OpenAPI | — | 50+ | `9ce30cc` |
 | KP-018 | 459 top-500 USA, 31 tags, 666 links, 6040 events | 494 + 6040 | 2 (`/v1/tags*`) | `9ce30cc` + `608d1ea` |
 | KP-029 | Multi-source events (Wikipedia/DBpedia/Wikidata) | 6040 events | 3 (`/v1/people/{slug}/events*`) | `608d1ea` |
+| KP-029-full | Full Wikidata extraction (415 people, 6048 wd events) | +6028 events | — (no API change) | migration 0033 |
 
 ### Next KP (the critical next task)
 

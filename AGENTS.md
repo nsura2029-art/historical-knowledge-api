@@ -17,9 +17,9 @@ relevant KP-### (platform context).
 - **Editorial team**: comes end of Year 1; LLM-first until then
 
 **Current focus**: Famous People / Biographies vertical. Top-500 famous Americans
-shipped with 6040 date-anchored events from 3 sources (Wikipedia, DBpedia, Wikidata).
+shipped with 12068 date-anchored events from 3 sources (Wikipedia, DBpedia, Wikidata).
 Next: KP-018 v2 (extend top-500 to top-1000 + non-American famous people) OR
-KP-006 (temporal precision to hour/minute) OR add a 4th data source (VIAF/LoC).
+KP-006 (temporal precision to hour/minute) OR add more Wikidata properties.
 
 ## What this project is
 
@@ -43,28 +43,31 @@ KP-006 (temporal precision to hour/minute) OR add a 4th data source (VIAF/LoC).
 | KP-017 | Public + admin Hono APIs with OpenAPI | ✅ done (50+ endpoints) | `9ce30cc` |
 | KP-018 | Top-500 USA + 6040 events from 3 sources | ✅ done | `9ce30cc` + `608d1ea` |
 | KP-029 | Multi-source events (Wikipedia + DBpedia + Wikidata) | ✅ done | `608d1ea` |
+| KP-029-full | Full Wikidata extraction (415 people, 6048 wd events) | ✅ done | migration 0033 |
 
 ### Numbers (dev D1, 2026-08-08)
 
 - **494 people** (459 top-500 USA + 35 international)
-- **6040 entity_event rows** across 3 sources (Wikipedia 4133 + DBpedia 1887 + Wikidata 20)
+- **12068 entity_event rows** across 3 sources (Wikipedia 4133 + DBpedia 1887 + Wikidata 6048)
+- **415 people have 1+ Wikidata events** (was 1 person in KP-029)
 - **109 source_registry** entries (Tier A-E)
 - **31 profession/dimension tags** with 666 entity_tag links
 - **183 entity_image** rows (Wikimedia R2-mirrored)
 - **1025 content_section** rows
 - **50+ API endpoints** (28+ baseline + 22 across KP-003/004/007/010/017/018/029)
-- **357 smoke + edge tests** passing (v7-v13)
+- **372 smoke + edge tests** passing (v7-v14)
 - **24/24 quality gate** passing
 - **Live worker**: https://historical-knowledge-api-dev.nsura2029.workers.dev
 - **Latest preview**: https://rpaav0t3mehv6.space.minimax.io
 
-### Migrations applied (32 total)
+### Migrations applied (33 total)
 
 0001-0009 (initial schema), 0010-0011 (on-this-day), 0012 (KP-003 claim model),
 0013 (KP-004 evidence), 0014 (KP-007 media rights), 0015-0017 (KP-010 biographies),
 0018 (Wikimedia gallery), 0019-0022 (topic sections), 0023 (news GDELT), 0024 (image fixes),
 0025-0026 (top-500 + tags), 0027 (sections re-pass), 0028 (entity_event), 0029 (Wikipedia events),
-0030 (Wikidata events), 0031 (DBpedia events), 0031a (src_dbpedia), 0032 (fix source labels).
+0030 (Wikidata events, 20 rows), 0031 (DBpedia events), 0031a (src_dbpedia), 0032 (fix source labels),
+0033 (KP-029-full: full Wikidata events, 6028 new rows).
 
 See `packages/db/migrations/AGENTS.md` for per-migration details.
 
