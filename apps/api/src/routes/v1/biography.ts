@@ -20,6 +20,7 @@ const Header = z.object({
   slug: z.string(),
   canonical_name: z.string(),
   short_description: z.string().nullable(),
+  summary: z.string().nullable(),
   popularity_score: z.number().nullable(),
   popularity_rank: z.number().int().nullable(),
   type: z.string(),
@@ -47,10 +48,18 @@ const NarrativeSection = z.object({
   heading: z.string().nullable(),
   section_type: z.string(),
   body_markdown: z.string(),
+  target_year: z.number().int().nullable(),
+  target_year_end: z.number().int().nullable(),
+  display_order: z.number().int(),
   reading_level: z.string(),
   author_type: z.string(),
   editorial_status: z.string(),
   version: z.number().int(),
+  claim_count: z.number().int(),
+  source_count: z.number().int(),
+  word_count: z.number().int(),
+  last_verified_at: z.number().int().nullable(),
+  last_verified_by: z.string().nullable(),
 }).openapi('NarrativeSection');
 
 const TimelineEvent = z.object({
@@ -285,22 +294,15 @@ async function getQuickFacts(db: D1Database, entityId: string): Promise<any[]> {
 async function getNarrativeSections(db: D1Database, entityId: string): Promise<any[]> {
   const { results } = await db.prepare(`
     SELECT id, section_type, heading, body_markdown, reading_level,
-           author_type, editorial_status, version
+           author_type, editorial_status, version,
+           target_year, target_year_end, display_order,
+           claim_count, source_count, word_count,
+           last_verified_at, last_verified_by
     FROM content_section
     WHERE entity_id = ? AND editorial_status != 'rejected'
     ORDER BY
-      CASE section_type
-        WHEN 'biography_intro' THEN 1
-        WHEN 'early_life' THEN 2
-        WHEN 'career' THEN 3
-        WHEN 'narrative' THEN 4
-        WHEN 'legacy' THEN 5
-        WHEN 'overview' THEN 6
-        WHEN 'timeline' THEN 7
-        WHEN 'quick_facts' THEN 8
-        WHEN 'quiz_hook' THEN 9
-        ELSE 10
-      END ASC,
+      COALESCE(display_order, 100) ASC,
+      target_year ASC NULLS LAST,
       version DESC
   `).bind(entityId).all();
   return results as any[];
@@ -406,7 +408,8 @@ biographyRouter.openapi(getBiographyRoute, async (c) => {
 
   const person = await c.env.DB.prepare(`
     SELECT e.id, e.slug, e.canonical_name, e.type,
-           p.short_description, e.popularity_score, e.popularity_rank
+           p.short_description, e.popularity_score, e.popularity_rank,
+           e.summary
     FROM entity e
     LEFT JOIN person p ON p.id = e.id
     WHERE e.slug = ? AND e.type = 'person'
@@ -450,6 +453,7 @@ biographyRouter.openapi(getBiographyRoute, async (c) => {
       slug: (person as any).slug,
       canonical_name: (person as any).canonical_name,
       short_description: (person as any).short_description,
+      summary: (person as any).summary || null,
       popularity_score: (person as any).popularity_score,
       popularity_rank: (person as any).popularity_rank,
       type: (person as any).type,

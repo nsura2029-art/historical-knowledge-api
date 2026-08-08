@@ -23,6 +23,7 @@ import { claimsRouter } from './claims.js';
 import { sourcesRouter } from './sources.js';
 import { mediaRouter } from './media.js';
 import { biographyRouter } from './biography.js';
+import { galleryRouter } from './gallery.js';
 
 export const v1Router = new OpenAPIHono<AppEnv>();
 
@@ -45,3 +46,4 @@ v1Router.route('/', claimsRouter);
 v1Router.route('/', sourcesRouter);
 v1Router.route('/', mediaRouter);
 v1Router.route('/', biographyRouter);
+v1Router.route('/', galleryRouter);
