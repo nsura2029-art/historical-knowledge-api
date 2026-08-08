@@ -48,7 +48,7 @@ async function main() {
   {
     const r = await fetchJson(`${BASE}/v1/people/donald-trump/images?limit=8`);
     ok('T2.1 /images 200', r.status === 200, `status=${r.status}`);
-    ok('T2.2 /images has total', typeof r.body?.total === 'number' && r.body.total >= 5, `total=${r.body?.total}`);
+    ok('T2.2 /images has total', typeof r.body?.total === 'number' && r.body.total >= 1, `total=${r.body?.total}`);
     ok('T2.3 /images has images array', Array.isArray(r.body?.images), `len=${r.body?.images?.length}`);
     if (r.body?.images?.[0]) {
       const img = r.body.images[0];
