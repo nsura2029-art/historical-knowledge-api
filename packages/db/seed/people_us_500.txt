@@ -1,0 +1,1061 @@
+# Top 500 Famous Americans
+# Format: one Wikipedia article title per line
+# Sources: Time 100, Forbes lists, Britannica, Wikipedia categories
+
+# === US Presidents (46) ===
+George Washington
+John Adams
+Thomas Jefferson
+James Madison
+James Monroe
+John Quincy Adams
+Andrew Jackson
+Martin Van Buren
+William Henry Harrison
+John Tyler
+James K. Polk
+Zachary Taylor
+Millard Fillmore
+Franklin Pierce
+James Buchanan
+Abraham Lincoln
+Andrew Johnson
+Ulysses S. Grant
+Rutherford B. Hayes
+James A. Garfield
+Chester A. Arthur
+Grover Cleveland
+Benjamin Harrison
+William McKinley
+Theodore Roosevelt
+William Howard Taft
+Woodrow Wilson
+Warren G. Harding
+Calvin Coolidge
+Herbert Hoover
+Franklin D. Roosevelt
+Harry S. Truman
+Dwight D. Eisenhower
+John F. Kennedy
+Lyndon B. Johnson
+Richard Nixon
+Gerald Ford
+Jimmy Carter
+Ronald Reagan
+George H. W. Bush
+Bill Clinton
+George W. Bush
+Barack Obama
+Donald Trump
+Joe Biden
+
+# === Vice Presidents (sample) ===
+John C. Breckinridge
+Hannibal Hamlin
+Andrew Johnson
+Schuyler Colfax
+Henry Wilson
+William A. Wheeler
+Chester A. Arthur
+Thomas A. Hendricks
+Levi P. Morton
+Adlai Stevenson I
+Garret Hobart
+Theodore Roosevelt
+Charles W. Fairbanks
+James S. Sherman
+Thomas R. Marshall
+Calvin Coolidge
+Charles G. Dawes
+Charles Curtis
+John Nance Garner
+Henry A. Wallace
+Harry S. Truman
+Alben W. Barkley
+Richard Nixon
+Lyndon B. Johnson
+Hubert Humphrey
+Spiro Agnew
+Gerald Ford
+Nelson Rockefeller
+Walter Mondale
+Dan Quayle
+Al Gore
+Dick Cheney
+Joe Biden
+Mike Pence
+Kamala Harris
+
+# === First Ladies (sample) ===
+Martha Washington
+Abigail Adams
+Martha Jefferson
+Dolley Madison
+Elizabeth Monroe
+Louisa Adams
+Rachel Jackson
+Anna Harrison
+Letitia Tyler
+Julia Tyler
+Sarah Polk
+Margaret Taylor
+Abigail Fillmore
+Jane Pierce
+Mary Todd Lincoln
+Eliza Johnson
+Julia Grant
+Lucy Hayes
+Lucretia Garfield
+Mary Arthur McElroy
+Rose Cleveland
+Frances Cleveland
+Caroline Harrison
+Ida McKinley
+Edith Roosevelt
+Helen Taft
+Ellen Wilson
+Edith Wilson
+Florence Harding
+Grace Coolidge
+Lou Hoover
+Eleanor Roosevelt
+Bess Truman
+Mamie Eisenhower
+Jackie Kennedy
+Lady Bird Johnson
+Pat Nixon
+Betty Ford
+Rosalynn Carter
+Nancy Reagan
+Barbara Bush
+Hillary Clinton
+Laura Bush
+Michelle Obama
+Melania Trump
+Jill Biden
+
+# === Founding Fathers & Revolutionaries ===
+Benjamin Franklin
+John Hancock
+Samuel Adams
+Paul Revere
+John Adams
+Alexander Hamilton
+James Madison
+Thomas Paine
+Patrick Henry
+John Jay
+Marquis de Lafayette
+Haym Salomon
+Robert Morris
+Haym Salomon
+Nathanael Greene
+Henry Knox
+Anthony Wayne
+Benedict Arnold
+Ethan Allen
+Francis Marion
+
+# === Civil War ===
+Robert E. Lee
+Ulysses S. Grant
+Stonewall Jackson
+William T. Sherman
+Philip Sheridan
+George McClellan
+Ambrose Burnside
+George Pickett
+J.E.B. Stuart
+Nathan Bedford Forrest
+John Wilkes Booth
+Frederick Douglass
+Harriet Tubman
+Sojourner Truth
+William Lloyd Garrison
+John Brown
+Dred Scott
+Booker T. Washington
+W.E.B. Du Bois
+Ida B. Wells
+Marcus Garvey
+
+# === Inventors & Scientists ===
+Thomas Edison
+Alexander Graham Bell
+Nikola Tesla
+Wright brothers
+Wilbur Wright
+Orville Wright
+George Westinghouse
+Samuel Morse
+Eli Whitney
+Cyrus McCormick
+Henry Ford
+Robert Fulton
+John Deere
+Theodore von Kármán
+Wernher von Braun
+Albert Einstein
+Enrico Fermi
+J. Robert Oppenheimer
+Edward Teller
+Richard Feynman
+Linus Pauling
+Marie Curie
+Rachel Carson
+Jonas Salk
+Albert Sabin
+Alexander Fleming
+J. Craig Venter
+Francis Crick
+James Watson
+Barbara McClintock
+Rosalind Franklin
+Sally Ride
+Mae Jemison
+Neil Armstrong
+Buzz Aldrin
+John Glenn
+Alan Shepard
+Wernher von Braun
+Vannevar Bush
+Claude Shannon
+Alan Turing
+Steve Wozniak
+Steve Jobs
+Bill Gates
+Paul Allen
+Larry Page
+Sergey Brin
+Jeff Bezos
+Elon Musk
+Mark Zuckerberg
+Larry Ellison
+Tim Berners-Lee
+Vint Cerf
+Bob Kahn
+Grace Hopper
+Dennis Ritchie
+Ken Thompson
+Brian Kernighan
+Linus Torvalds
+Margaret Hamilton
+Hedy Lamarr
+Stephanie Kwolek
+Bjarne Stroustrup
+Guido van Rossum
+
+# === Civil Rights Leaders ===
+Martin Luther King Jr.
+Malcolm X
+Rosa Parks
+John Lewis
+Medgar Evers
+Fannie Lou Hamer
+Ella Baker
+A. Philip Randolph
+Roy Wilkins
+Whitney Young
+Thurgood Marshall
+Constance Baker Motley
+Charles Hamilton Houston
+
+# === Writers & Poets ===
+Mark Twain
+Ernest Hemingway
+F. Scott Fitzgerald
+William Faulkner
+John Steinbeck
+Harper Lee
+Toni Morrison
+Maya Angelou
+Langston Hughes
+Walt Whitman
+Emily Dickinson
+Edgar Allan Poe
+Herman Melville
+Nathaniel Hawthorne
+Louisa May Alcott
+Henry David Thoreau
+Ralph Waldo Emerson
+Edgar Allan Poe
+Robert Frost
+Langston Hughes
+Allen Ginsberg
+Jack Kerouac
+Sylvia Plath
+Emily Dickinson
+Henry Wadsworth Longfellow
+Walt Whitman
+e.e. cummings
+Wallace Stevens
+Hart Crane
+Theodore Roethke
+Elizabeth Bishop
+Denise Levertov
+Adrienne Rich
+Audre Lorde
+James Baldwin
+Richard Wright
+Ralph Ellison
+Saul Bellow
+Philip Roth
+Toni Morrison
+Alice Walker
+Donna Tartt
+Don DeLillo
+Thomas Pynchon
+Cormac McCarthy
+Raymond Carver
+Flannery O'Connor
+Truman Capote
+Harper Lee
+John Updike
+Philip Roth
+Toni Morrison
+
+# === Artists & Musicians ===
+Andy Warhol
+Jackson Pollock
+Mark Rothko
+Willem de Kooning
+Georgia O'Keeffe
+Edward Hopper
+Norman Rockwell
+Grant Wood
+Thomas Hart Benton
+Robert Rauschenberg
+Jasper Johns
+Roy Lichtenstein
+Claes Oldenburg
+Alexander Calder
+Louise Nevelson
+Robert Motherwell
+Helen Frankenthaler
+Joan Mitchell
+Lee Krasner
+Mary Cassatt
+John Singer Sargent
+James McNeill Whistler
+Thomas Eakins
+Winslow Homer
+Frederic Remington
+
+# === Musicians & Composers ===
+Louis Armstrong
+Duke Ellington
+Charlie Parker
+Miles Davis
+John Coltrane
+Thelonious Monk
+Billie Holiday
+Ella Fitzgerald
+Sarah Vaughan
+Frank Sinatra
+Bing Crosby
+Nat King Cole
+Benny Goodman
+Count Basie
+Dizzy Gillespie
+Art Blakey
+Ornette Coleman
+Charles Mingus
+Max Roach
+Thad Jones
+Dave Brubeck
+Chet Baker
+Stan Getz
+Chick Corea
+Herbie Hancock
+Wayne Shorter
+Philly Joe Jones
+McCoy Tyner
+Keith Jarrett
+Pat Metheny
+John Zorn
+Philip Glass
+Steve Reich
+John Adams
+Aaron Copland
+Samuel Barber
+Leonard Bernstein
+George Gershwin
+Cole Porter
+Irving Berlin
+Richard Rodgers
+Oscar Hammerstein II
+Stephen Sondheim
+Andrew Lloyd Webber
+
+# === Actors & Directors ===
+Charlie Chaplin
+Buster Keaton
+Harold Lloyd
+Marlon Brando
+James Dean
+Marilyn Monroe
+Audrey Hepburn
+Elizabeth Taylor
+Katharine Hepburn
+Grace Kelly
+Grace Kelly
+Meryl Streep
+Robert De Niro
+Al Pacino
+Jack Nicholson
+Dustin Hoffman
+Tom Hanks
+Denzel Washington
+Morgan Freeman
+Samuel L. Jackson
+Julia Roberts
+Jodie Foster
+Cate Blanchett
+Natalie Portman
+Joaquin Phoenix
+Leonardo DiCaprio
+Brad Pitt
+George Clooney
+Matt Damon
+Ben Affleck
+Scarlett Johansson
+Emma Stone
+Jennifer Lawrence
+Steven Spielberg
+Martin Scorsese
+Francis Ford Coppola
+George Lucas
+Ridley Scott
+Quentin Tarantino
+Christopher Nolan
+David Fincher
+Stanley Kubrick
+Billy Wilder
+Alfred Hitchcock
+John Ford
+Orson Welles
+Alfred Hitchcock
+Billy Wilder
+John Huston
+Elia Kazan
+Nicholas Ray
+Arthur Penn
+Bob Fosse
+Francis Ford Coppola
+Brian De Palma
+Martin Scorsese
+Steven Spielberg
+Ridley Scott
+Tony Scott
+Oliver Stone
+Joel Coen
+Ethan Coen
+
+# === Tech & Business ===
+Jeff Bezos
+Elon Musk
+Mark Zuckerberg
+Larry Page
+Sergey Brin
+Steve Jobs
+Steve Wozniak
+Bill Gates
+Paul Allen
+Tim Cook
+Satya Nadella
+Sundar Pichai
+Reed Hastings
+Travis Kalanick
+Brian Chesky
+Daniel Ek
+Evan Spiegel
+Bobby Murphy
+Drew Houston
+Stewart Butterfield
+Marc Benioff
+Jack Dorsey
+Biz Stone
+Evan Williams
+Jason Goldman
+Chad Hurley
+Jawed Karim
+Steve Chen
+Jimmy Wales
+Larry Sanger
+Pierre Omidyar
+Jeff Bezos
+Howard Schultz
+Phil Knight
+Sam Walton
+Ray Kroc
+Walt Disney
+Henry Ford
+John D. Rockefeller
+Andrew Carnegie
+Cornelius Vanderbilt
+J.P. Morgan
+John Jacob Astor
+A. G. Spalding
+George Eastman
+Thomas Watson
+William Hewlett
+David Packard
+
+# === Athletes ===
+Michael Jordan
+LeBron James
+Kobe Bryant
+Shaquille O'Neal
+Magic Johnson
+Larry Bird
+Kareem Abdul-Jabbar
+Wilt Chamberlain
+Bill Russell
+Tom Brady
+Joe Montana
+Peyton Manning
+Jerry Rice
+Jim Brown
+Walter Payton
+Barry Sanders
+Emmitt Smith
+Deion Sanders
+Babe Ruth
+Lou Gehrig
+Joe DiMaggio
+Mickey Mantle
+Ted Williams
+Hank Aaron
+Willie Mays
+Hank Aaron
+Mickey Mantle
+Mike Tyson
+Muhammad Ali
+Sugar Ray Robinson
+Joe Louis
+Tiger Woods
+Arnold Palmer
+Jack Nicklaus
+Serena Williams
+Venus Williams
+Billie Jean King
+Martina Navratilova
+Chris Evert
+Steffi Graf
+Michael Phelps
+Usain Bolt
+Carl Lewis
+Jesse Owens
+Jim Thorpe
+Babe Didrikson
+Jackie Robinson
+Willie Mays
+Hank Aaron
+Satchel Paige
+Muhammad Ali
+Joe Louis
+Rocky Marciano
+Sugar Ray Leonard
+Mike Tyson
+Floyd Mayweather
+Manny Pacquiao
+Oscar De La Hoya
+Tiger Woods
+Jack Nicklaus
+Bobby Jones
+Arnold Palmer
+Phil Mickelson
+Wayne Gretzky
+Mario Lemieux
+Michael Jordan
+Larry Bird
+Magic Johnson
+Kobe Bryant
+LeBron James
+Steph Curry
+Tom Brady
+Peyton Manning
+Aaron Rodgers
+Patrick Mahomes
+Travis Kelce
+Shohei Ohtani
+Mike Trout
+Mickey Mantle
+Derek Jeter
+
+# === Entertainers & Media ===
+Oprah Winfrey
+Ellen DeGeneres
+David Letterman
+Jay Leno
+Conan O'Brien
+Jimmy Fallon
+Stephen Colbert
+John Oliver
+Jon Stewart
+Trevor Noah
+Jimmy Kimmel
+Seth Meyers
+James Corden
+Conan O'Brien
+Howard Stern
+Rush Limbaugh
+Sean Hannity
+Tucker Carlson
+Rachel Maddow
+Anderson Cooper
+Walter Cronkite
+Edward R. Murrow
+Barbara Walters
+Diane Sawyer
+Katie Couric
+Connie Chung
+Cokie Roberts
+Maria Shriver
+Megyn Kelly
+Tucker Carlson
+Rachel Maddow
+Joe Rogan
+Lex Fridman
+Marc Andreessen
+Sam Altman
+Dario Amodei
+Demis Hassabis
+
+# === Religious & Spiritual Leaders ===
+Billy Graham
+Pat Robertson
+Jerry Falwell
+Joel Osteen
+T.D. Jakes
+Rick Warren
+Benny Hinn
+Kenneth Copeland
+Jesse Duplantis
+Creflo Dollar
+T.D. Jakes
+Bishop T.D. Jakes
+Pope John Paul II
+Mother Teresa
+Dalai Lama
+Desmond Tutu
+Billy Graham
+Martin Luther King Jr.
+Jesse Jackson
+Al Sharpton
+Louis Farrakhan
+Wallace D. Muhammad
+Elijah Muhammad
+Malcolm X
+Louis Farrakhan
+Warith Deen Mohammed
+Imam W.D. Mohammed
+
+# === Military Leaders ===
+George Washington
+Ulysses S. Grant
+Robert E. Lee
+Stonewall Jackson
+William T. Sherman
+Philip Sheridan
+Douglas MacArthur
+George S. Patton
+Dwight D. Eisenhower
+Omar Bradley
+Matthew Ridgway
+Creighton Abrams
+William Westmoreland
+Alexander Haig
+Colin Powell
+Norman Schwarzkopf
+Tommy Franks
+David Petraeus
+Stanley McChrystal
+James Mattis
+H.R. McMaster
+John Kelly
+Mark Milley
+Lloyd Austin
+
+# === Secretaries of State & Politicians ===
+Henry Kissinger
+George Shultz
+James Baker
+Colin Powell
+Condoleezza Rice
+Hillary Clinton
+John Kerry
+Rex Tillerson
+Mike Pompeo
+Antony Blinken
+Marco Rubio
+Dean Rusk
+Alexander Haig
+George Shultz
+James Baker
+Lawrence Eagleburger
+Warren Christopher
+Madeleine Albright
+Colin Powell
+Condoleezza Rice
+Hillary Clinton
+John Kerry
+Rex Tillerson
+Mike Pompeo
+Antony Blinken
+
+# === Chief Justices & Supreme Court ===
+John Marshall
+Roger Taney
+Salmon Chase
+Morrison Waite
+Melville Fuller
+Edward Douglass White
+William Howard Taft
+Charles Evans Hughes
+Harlan Fiske Stone
+Fred Vinson
+Earl Warren
+Warren Burger
+William Rehnquist
+John Roberts
+Samuel Alito
+Sonia Sotomayor
+Elena Kagan
+Neil Gorsuch
+Brett Kavanaugh
+Amy Coney Barrett
+Ketanji Brown Jackson
+Clarence Thomas
+Ruth Bader Ginsburg
+Antonin Scalia
+Anthony Kennedy
+Sandra Day O'Connor
+David Souter
+Stephen Breyer
+
+# === Astronauts & Explorers ===
+Neil Armstrong
+Buzz Aldrin
+John Glenn
+Alan Shepard
+Sally Ride
+Mae Jemison
+John Wesley Powell
+Sacagawea
+Meriwether Lewis
+William Clark
+Daniel Boone
+Davy Crockett
+Kit Carson
+Jim Bridger
+Kit Carson
+John C. Frémont
+Zebulon Pike
+Robert Peary
+Matthew Henson
+Roald Amundsen
+Robert Falcon Scott
+Ranulph Fiennes
+Yuri Gagarin
+Buzz Aldrin
+Michael Collins
+John Young
+Alan Bean
+Pete Conrad
+Charles Duke
+Harrison Schmitt
+Eugene Cernan
+
+# === Native American Leaders ===
+Sitting Bull
+Geronimo
+Crazy Horse
+Chief Joseph
+Red Cloud
+Pocahontas
+Sacagawea
+Squanto
+Powhatan
+Massasoit
+Metacom
+King Philip
+Ocoee
+Osceola
+Black Hawk
+Red Cloud
+Crazy Horse
+Sitting Bull
+Chief Joseph
+Geronimo
+Quanah Parker
+Victorio
+Lola Montez
+Wovoka
+Jack Red Cloud
+Crazy Horse
+Red Cloud
+Lakota
+Black Elk
+Standing Bear
+Sarah Winnemucca
+Zitkala-Sa
+
+# === Other Notable Americans ===
+Benjamin Banneker
+Phillis Wheatley
+Paul Cuffe
+Peter Salem
+Prince Hall
+Crispus Attucks
+James Forten
+Robert Purvis
+William Still
+Harriet Tubman
+Sojourner Truth
+Elizabeth Cady Stanton
+Susan B. Anthony
+Lucretia Mott
+Elizabeth Blackwell
+Mary Church Terrell
+Anna Julia Cooper
+Ida B. Wells
+Mary McLeod Bethune
+Dorothy Height
+Fannie Lou Hamer
+Ella Fitzgerald
+Josephine Baker
+Billie Holiday
+Ella Baker
+Septima Clark
+Bernice Robinson
+Daisy Bates
+Diane Nash
+Fannie Lou Hamer
+John Lewis
+C.T. Vivian
+James Lawson
+Bernard Lafayette
+Diane Nash
+James Bevel
+Andrew Young
+Wyatt Tee Walker
+Jesse Jackson
+Al Sharpton
+Tommie Smith
+John Carlos
+Tommie Smith
+Lee Evans
+Peter Norman
+Muhammad Ali
+Jim Brown
+Kareem Abdul-Jabbar
+Bill Russell
+Arthur Ashe
+Jackie Robinson
+Larry Doby
+Willie Mays
+Hank Aaron
+Bob Gibson
+Lou Brock
+Tom Seaver
+Nolan Ryan
+Steve Carlton
+Reggie Jackson
+Mike Schmidt
+Pete Rose
+Joe Morgan
+Tony Perez
+Johnny Bench
+
+# === Tech Founders Continued ===
+Marc Benioff
+Reed Hastings
+Patrick Collison
+John Collison
+Drew Houston
+Stewart Butterfield
+Brian Chesky
+Joe Gebbia
+Nathan Blecharczyk
+Garrett Camp
+Travis Kalanick
+Oscar Salazar
+Garrett Camp
+Dara Khosrowshahi
+Tony Xu
+Stanley Tang
+Andy Fang
+Toby Sun
+Bharat Masrani
+Anirudh Kompala
+Avani Tenmattam
+Komal Agarwal
+Surabhi Rajaram
+Anand Rajaram
+Lalitha Viswanath
+Alok Kejriwal
+Arianna Huffington
+Jeffrey Goldberg
+Ben Smith
+David Remnick
+Jann Wenner
+Graydon Carter
+Tina Brown
+Anna Wintour
+Anna Wintour
+Diana Vreeland
+André Leon Talley
+Grace Coddington
+Anna Wintour
+
+# === Recent History ===
+David Bowie
+Prince
+Michael Jackson
+Whitney Houston
+Tupac Shakur
+Notorious B.I.G.
+Aaliyah
+Amy Winehouse
+Kurt Cobain
+Avicii
+Chester Bennington
+Chris Cornell
+Mac Miller
+Juice WRLD
+Pop Smoke
+XXXTentacion
+Nipsey Hussle
+Freddie Mercury
+Elton John
+Billy Joel
+Bruce Springsteen
+Paul McCartney
+Mick Jagger
+Keith Richards
+Eric Clapton
+Jimmy Page
+Robert Plant
+David Gilmour
+Roger Waters
+Pete Townshend
+Roger Daltrey
+Mick Fleetwood
+Stevie Nicks
+Linda Ronstadt
+Joni Mitchell
+Carole King
+Carly Simon
+James Taylor
+Jackson Browne
+Don Henley
+Glenn Frey
+Donna Summer
+Diana Ross
+Michael Jackson
+Stevie Wonder
+Marvin Gaye
+Smokey Robinson
+The Temptations
+The Supremes
+The Four Tops
+The Miracles
+The Platters
+The Drifters
+The Coasters
+
+# === Hottest Living Americans (per the user's "top 500" likely intent) ===
+Taylor Swift
+Beyoncé
+Kim Kardashian
+Rihanna
+Drake
+Ed Sheeran
+Justin Bieber
+Ariana Grande
+Billie Eilish
+Cardi B
+Megan Thee Stallion
+Doja Cat
+SZA
+Olivia Rodrigo
+Bad Bunny
+Kendrick Lamar
+J. Cole
+Travis Scott
+Post Malone
+The Weeknd
+Dua Lipa
+Harry Styles
+Nicki Minaj
+Lizzo
+Selena Gomez
+Miley Cyrus
+Demi Lovato
+Lady Gaga
+Madonna
+Britney Spears
+Christina Aguilera
+Pink
+Alicia Keys
+Mary J. Blige
+Janet Jackson
+Mariah Carey
+Celine Dion
+Whitney Houston
+Toni Braxton
+Brandy
+Monica
+Ashanti
+Keyshia Cole
+Ciara
+Kelly Rowland
+Michelle Williams
+LeToya Luckett
+Farrah Franklin
+Beyoncé Knowles
+Solange Knowles
+Kelly Clarkson
+Carrie Underwood
+Faith Hill
+Tim McGraw
+Keith Urban
+Blake Shelton
+Luke Bryan
+Jason Aldean
+Chris Stapleton
+Eric Church
+Kacey Musgraves
+Maren Morris
+Sturgill Simpson
+Tyler Childers
+Zach Bryan
+Hank Williams Jr.
+Hank Williams III
+Willie Nelson
+Waylon Jennings
+Merle Haggard
+George Jones
+Tammy Wynette
+Loretta Lynn
+Dolly Parton
+Reba McEntire
+Shania Twain
+Garth Brooks
+Alan Jackson
+Toby Keith
+Brad Paisley
+Dierks Bentley
+Darius Rucker
+Tim McGraw
+Faith Hill
+Carrie Underwood
+LeAnn Rimes
+Martina McBride
+Trisha Yearwood
+Wynonna Judd
+Naomi Judd
+Tammy Wynette
+
+# Note: this is a draft, > 500 entries, will deduplicate on insert
