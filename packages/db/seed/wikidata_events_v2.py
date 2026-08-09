@@ -213,50 +213,50 @@ PERSON_PROPS = {
     "P570":  ("death", "life", "Died", "time"),
     "P166":  ("award", "work", "Received", "qualifier"),
     "P39":   ("political", "public", "Held position", "qualifier"),
-    "P26":   ("marriage", "life", "Married", "qualifier"),
-    "P40":   ("child", "life", "Had child", "qualifier"),
+    "P26":   ("personal_life", "life", "Married", "qualifier"),  # was marriage
+    "P40":   ("personal_life", "life", "Had child", "qualifier"),  # was child
     "P69":   ("education", "life", "Educated at", "qualifier"),
-    "P108":  ("employment", "work", "Employed by", "qualifier"),
+    "P108":  ("career", "work", "Employed by", "qualifier"),  # was employment
     "P800":  ("publication", "work", "Notable work", "qualifier"),
     "P54":   ("athletic", "work", "Played for", "qualifier"),
-    "P551":  ("residence", "life", "Resided at", "qualifier"),
-    "P22":   ("family", "life", "Father was", "qualifier"),
-    "P25":   ("family", "life", "Mother was", "qualifier"),
-    "P3373": ("family", "life", "Sibling", "qualifier"),
-    "P607":  ("military", "public", "Fought in", "qualifier"),
+    "P551":  ("personal_life", "life", "Resided at", "qualifier"),  # was residence
+    "P22":   ("personal_life", "life", "Father was", "qualifier"),  # was family
+    "P25":   ("personal_life", "life", "Mother was", "qualifier"),  # was family
+    "P3373": ("personal_life", "life", "Sibling", "qualifier"),  # was family
+    "P607":  ("political", "public", "Fought in", "qualifier"),  # was military
     "P1343": ("publication", "work", "Described by", "qualifier"),
-    "P1411": ("nomination", "work", "Nominated for", "qualifier"),
+    "P1411": ("award", "work", "Nominated for", "qualifier"),  # was nomination
     "P2522": ("election", "public", "Result in", "qualifier"),
-    "P3342": ("significant", "work", "Significant event", "qualifier"),
-    "P159":  ("workplace", "work", "Headquartered at", "qualifier"),
-    "P937":  ("workplace", "work", "Worked in", "qualifier"),
-    "P19":   ("birthplace", "life", "Born in", "qualifier"),
-    "P20":   ("deathplace", "life", "Died in", "qualifier"),
-    "P119":  ("burial", "life", "Buried at", "qualifier"),
-    "P27":   ("citizenship", "life", "Citizen of", "qualifier"),
-    "P102":  ("party", "public", "Member of", "qualifier"),
-    "P1344": ("participation", "public", "Participated in", "qualifier"),
-    "P793":  ("significant", "work", "Significant event", "qualifier"),
+    "P3342": ("public_appearance", "work", "Significant event", "qualifier"),  # was significant
+    "P159":  ("career", "work", "Headquartered at", "qualifier"),  # was workplace
+    "P937":  ("career", "work", "Worked in", "qualifier"),  # was workplace
+    "P19":   ("personal_life", "life", "Born in", "qualifier"),  # was birthplace
+    "P20":   ("personal_life", "life", "Died in", "qualifier"),  # was deathplace
+    "P119":  ("death", "life", "Buried at", "qualifier"),  # was burial
+    "P27":   ("personal_life", "life", "Citizen of", "qualifier"),  # was citizenship
+    "P102":  ("political", "public", "Member of", "qualifier"),  # was party
+    "P1344": ("public_appearance", "public", "Participated in", "qualifier"),  # was participation
+    "P793":  ("public_appearance", "work", "Significant event", "qualifier"),  # was significant
     "P3602": ("election", "public", "Candidate in", "qualifier"),
-    "P2868": ("subject_of", "work", "Subject of", "qualifier"),
+    "P2868": ("public_appearance", "work", "Subject of", "qualifier"),  # was subject_of
     "P2638": ("travel", "life", "Traveled to", "qualifier"),
     "P1269": ("legal", "public", "Facet of", "qualifier"),
 }
 
 PLACE_PROPS = {
     "P571":  ("founding", "history", "Founded", "time"),
-    "P576":  ("dissolution", "history", "Dissolved", "time"),
-    "P793":  ("significant", "history", "Significant event", "qualifier"),
-    "P1082": ("population", "demographics", "Population", "qualifier"),
-    "P36":   ("capital", "politics", "Capital of", "qualifier"),
-    "P1619": ("opening", "history", "Opened", "time"),
-    "P3999": ("closure", "history", "Closed", "time"),
-    "P1448": ("renaming", "history", "Officially named", "qualifier"),
-    "P31":   ("instance_of_change", "history", "Became", "qualifier"),
-    "P17":   ("country_change", "politics", "Country", "qualifier"),
-    "P131":  ("admin_change", "politics", "Admin parent", "qualifier"),
-    "P1376": ("capital_of", "politics", "Capital of", "qualifier"),
-    "P112":  ("founder", "history", "Founded by", "qualifier"),
+    "P576":  ("public_appearance", "history", "Dissolved", "time"),  # was dissolution
+    "P793":  ("public_appearance", "history", "Significant event", "qualifier"),  # was significant
+    "P1082": ("public_appearance", "demographics", "Population", "qualifier"),  # was population
+    "P36":   ("political", "politics", "Capital of", "qualifier"),
+    "P1619": ("public_appearance", "history", "Opened", "time"),  # was opening
+    "P3999": ("public_appearance", "history", "Closed", "time"),  # was closure
+    "P1448": ("public_appearance", "history", "Officially named", "qualifier"),  # was renaming
+    "P31":   ("public_appearance", "history", "Became", "qualifier"),  # was instance_of_change
+    "P17":   ("political", "politics", "Country", "qualifier"),  # was country_change
+    "P131":  ("political", "politics", "Admin parent", "qualifier"),  # was admin_change
+    "P1376": ("political", "politics", "Capital of", "qualifier"),  # was capital_of
+    "P112":  ("founding", "history", "Founded by", "qualifier"),  # was founder
 }
 
 

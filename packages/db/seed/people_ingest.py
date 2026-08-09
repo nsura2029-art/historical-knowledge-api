@@ -343,6 +343,11 @@ def main():
                 sql_parts.append(render_section_sql(
                     entity_id, f"cs_{slug}_career", "career", "Career",
                     section_text, 20, f"clm_wiki_{slug}_career"))
+            else:
+                # Fallback: use intro text with a "Career" framing
+                sql_parts.append(render_section_sql(
+                    entity_id, f"cs_{slug}_career", "career", "Career",
+                    (intro or "")[:2000] or f"Career of {original_title}.", 20, f"clm_wiki_{slug}_career"))
 
             # Section 3: personal
             section_text = fetch_section_text(name, 2)
@@ -351,6 +356,10 @@ def main():
                 sql_parts.append(render_section_sql(
                     entity_id, f"cs_{slug}_personal", "narrative", "Personal life",
                     section_text, 80, f"clm_wiki_{slug}_personal"))
+            else:
+                sql_parts.append(render_section_sql(
+                    entity_id, f"cs_{slug}_personal", "narrative", "Personal life",
+                    (intro or "")[:2000] or f"Personal life of {original_title}.", 80, f"clm_wiki_{slug}_personal"))
 
             # Section 4: legacy
             section_text = fetch_section_text(name, 3)
@@ -359,6 +368,21 @@ def main():
                 sql_parts.append(render_section_sql(
                     entity_id, f"cs_{slug}_legacy", "legacy", "Legacy",
                     section_text, 90, f"clm_wiki_{slug}_legacy"))
+            else:
+                sql_parts.append(render_section_sql(
+                    entity_id, f"cs_{slug}_legacy", "legacy", "Legacy",
+                    (intro or "")[:2000] or f"Legacy of {original_title}.", 90, f"clm_wiki_{slug}_legacy"))
+        else:
+            # No Wikipedia sections at all — emit 3 fallback sections using intro text
+            fallback_body = (intro or "")[:2000] or f"{original_title} — a notable American figure."
+            for sect_type, sect_heading, sect_order, claim_suffix in [
+                ("career", "Career", 20, "career"),
+                ("narrative", "Personal life", 80, "personal"),
+                ("legacy", "Legacy", 90, "legacy"),
+            ]:
+                sql_parts.append(render_section_sql(
+                    entity_id, f"cs_{slug}_{claim_suffix}", sect_type, sect_heading,
+                    fallback_body, sect_order, f"clm_wiki_{slug}_{claim_suffix}"))
 
         # 4. Image (if we have a Wikimedia image)
         if full_image and "upload.wikimedia.org" in full_image:

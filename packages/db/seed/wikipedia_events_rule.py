@@ -285,22 +285,24 @@ def main():
             sentence_clean = sentence[:480].replace("'", "''").replace("\n", " ").replace("\r", " ").replace("\t", " ")
             title_clean = sentence[:200].replace("'", "''").replace("\n", " ").replace("\r", " ").replace("\t", " ")
             date_sql = f"'{date}'" if date else "NULL"
-            # Guess event_type from sentence keywords
-            et = "narrative"
+            # Guess event_type from sentence keywords (must be in CHECK constraint:
+            # personal_life, career, award, publication, public_appearance, legal, political,
+            # athletic, scientific, creative, travel, education, death, birth, founding, controversy)
+            et = "personal_life"
             cat = "narrative"
             text_lower = sentence.lower()
             if any(w in text_lower for w in ['born', 'birth']):
-                et = "narrative_birth"
+                et = "birth"
             elif any(w in text_lower for w in ['died', 'death', 'killed', 'assassinated', 'murdered']):
-                et = "narrative_death"
+                et = "death"
             elif any(w in text_lower for w in ['married', 'wedding', 'spouse']):
-                et = "narrative_marriage"
+                et = "personal_life"  # was narrative_marriage
             elif any(w in text_lower for w in ['founded', 'established', 'incorporated']):
-                et = "narrative_founding"
+                et = "founding"
             elif any(w in text_lower for w in ['won', 'awarded', 'prize', 'medal', 'championship', 'election']):
-                et = "narrative_achievement"
+                et = "award"
             elif any(w in text_lower for w in ['graduated', 'enrolled', 'attended']):
-                et = "narrative_education"
+                et = "education"
 
             source_url = f"https://en.wikipedia.org/wiki/{title.replace(' ', '_')}"
             # entity_event table has source_section (not source_url) — store URL there
