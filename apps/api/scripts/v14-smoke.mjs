@@ -99,7 +99,7 @@ async function countWikidataEvents(slug) {
   const d = await fjson('/v1/people/donald-trump/events/by-category');
   const all = d.categories.flatMap(c => c.events);
   const sources = new Set(all.map(e => e.source_id));
-  ok('T5.1 by-category has 3 sources', sources.size === 3, `sources: ${[...sources].join(', ')}`);
+  ok('T5.1 by-category has 4 sources', sources.size === 4, `sources: ${[...sources].join(', ')}`);
   const withSourceId = all.filter(e => e.source_id).length;
   ok('T5.2 all by-category events have source_id', withSourceId === all.length, `${withSourceId}/${all.length}`);
 }
