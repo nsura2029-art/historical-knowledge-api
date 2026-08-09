@@ -220,6 +220,15 @@ VALUES
 """
 
 
+def render_us_citizenship_sql(entity_id: str) -> str:
+    """Render person_citizenship for a US person (nationality = ent_usa)."""
+    return f"""INSERT OR IGNORE INTO person_citizenship
+  (id, person_id, country_id, primary_flag, source_claim_id, created_at)
+VALUES
+  ('pcs_{entity_id[4:]}_us', '{entity_id}', 'ent_usa', 1, NULL, unixepoch());
+"""
+
+
 def extract_birth_death_year(text: str) -> tuple[int | None, int | None]:
     """Extract birth and death years from the first paragraph if possible."""
     m = re.search(r"\((\d{1,4})\s*[-–]\s*(\d{1,4})\)", text)
@@ -315,6 +324,9 @@ def main():
         # 2. Person subclass (with birth/death)
         sql_parts.append(render_person_row_sql(entity_id, original_title, birth_year, death_year))
 
+        # 2b. Person citizenship: us_500.txt is curated US-only, mark ent_usa
+        sql_parts.append(render_us_citizenship_sql(entity_id))
+
         # 3. Content sections
         # Section 1: bio_intro (early life) — first part of intro
         bio_intro_body = intro[:2000] if intro else f"{original_title} is a notable American figure."
@@ -368,7 +380,8 @@ VALUES
         # Write the entity's SQL to disk (incremental, crash-safe)
         for sql in [f"-- {i+1}. {original_title}",
                      render_entity_sql(entity_id, slug, original_title, summary),
-                     render_person_row_sql(entity_id, original_title, birth_year, death_year)]:
+                     render_person_row_sql(entity_id, original_title, birth_year, death_year),
+                     render_us_citizenship_sql(entity_id)]:
             out_f.write(sql + "\n")
         if sections:
             section_text1 = clean_wikitext(fetch_section_text(name, 1))[:2500]
