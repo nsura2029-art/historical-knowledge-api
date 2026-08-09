@@ -12,6 +12,7 @@
 
 import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi';
 import type { AppEnv } from '../../bindings.js';
+import { resolveEntitySlug } from '../../repositories/lookup.js';
 
 // ============================================================
 // Schemas
@@ -138,13 +139,21 @@ eventsRouter.openapi(getEventsRoute, async (c) => {
   const { slug } = c.req.valid('param');
   const { event_type, category, from_year, to_year, min_confidence, limit } = c.req.valid('query');
 
-  // Resolve person
-  const person = await c.env.DB.prepare(
-    `SELECT id FROM entity WHERE slug = ? AND type = 'person'`
-  ).bind(slug).first();
-  if (!person) {
+  // Resolve person (KP-005: follows slug_redirects)
+  const resolved = await resolveEntitySlug(c.env.DB, slug, 'person');
+  if (!resolved) {
     return c.json({ error: { code: 'PERSON_NOT_FOUND', message: `No person with slug ${slug}` } }, 404) as any;
   }
+  if (resolved.is_redirect) {
+    return c.json({
+      error: {
+        code: 'PERSON_MOVED',
+        message: `Slug "${resolved.old_slug}" has been merged into "${resolved.slug}"`,
+        redirect_to: `/v1/people/${resolved.slug}`,
+      }
+    }, 308 as any) as any;
+  }
+  const person = { id: resolved.entity_id };
 
   // Build query
   const where: string[] = ['entity_id = ?', 'confidence >= ?'];
@@ -188,12 +197,20 @@ eventsRouter.openapi(getEventsRoute, async (c) => {
 eventsRouter.openapi(getEventsByCategoryRoute, async (c) => {
   const { slug } = c.req.valid('param');
 
-  const person = await c.env.DB.prepare(
-    `SELECT id FROM entity WHERE slug = ? AND type = 'person'`
-  ).bind(slug).first();
-  if (!person) {
+  const resolved = await resolveEntitySlug(c.env.DB, slug, 'person');
+  if (!resolved) {
     return c.json({ error: { code: 'PERSON_NOT_FOUND', message: `No person with slug ${slug}` } }, 404) as any;
   }
+  if (resolved.is_redirect) {
+    return c.json({
+      error: {
+        code: 'PERSON_MOVED',
+        message: `Slug "${resolved.old_slug}" has been merged into "${resolved.slug}"`,
+        redirect_to: `/v1/people/${resolved.slug}/events/by-category`,
+      }
+    }, 308 as any) as any;
+  }
+  const person = { id: resolved.entity_id };
 
   const { results } = await c.env.DB.prepare(`
     SELECT id, event_date, event_year, event_type, category, title, body,
@@ -233,12 +250,20 @@ eventsRouter.openapi(getEventsByCategoryRoute, async (c) => {
 eventsRouter.openapi(getTimelineRoute, async (c) => {
   const { slug } = c.req.valid('param');
 
-  const person = await c.env.DB.prepare(
-    `SELECT id FROM entity WHERE slug = ? AND type = 'person'`
-  ).bind(slug).first();
-  if (!person) {
+  const resolved = await resolveEntitySlug(c.env.DB, slug, 'person');
+  if (!resolved) {
     return c.json({ error: { code: 'PERSON_NOT_FOUND', message: `No person with slug ${slug}` } }, 404) as any;
   }
+  if (resolved.is_redirect) {
+    return c.json({
+      error: {
+        code: 'PERSON_MOVED',
+        message: `Slug "${resolved.old_slug}" has been merged into "${resolved.slug}"`,
+        redirect_to: `/v1/people/${resolved.slug}/events/timeline`,
+      }
+    }, 308 as any) as any;
+  }
+  const person = { id: resolved.entity_id };
 
   const { results } = await c.env.DB.prepare(`
     SELECT id, event_date, event_year, event_type, category, title, body,

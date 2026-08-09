@@ -1,0 +1,25 @@
+-- ========================================
+-- Migration 0044: KP-005 slug_redirect (doc only — table already exists)
+-- ========================================
+-- The slug_redirect table was created in migration 0003 for historical-name
+-- redirects (Bombay→Mumbai, Edo→Tokyo, etc.) and has been used for slug
+-- variations since 0008. KP-005 reuses the same table for entity merges.
+--
+-- Schema reference (created in 0003, NOT recreated here):
+--   CREATE TABLE slug_redirect (
+--     id            TEXT PRIMARY KEY,
+--     entity_id     TEXT NOT NULL REFERENCES entity(id),
+--     old_slug      TEXT NOT NULL,
+--     new_slug      TEXT NOT NULL,
+--     redirect_type TEXT NOT NULL DEFAULT '301' CHECK (redirect_type IN ('301', '308', 'rewrite')),
+--     reason        TEXT,
+--     effective_at  INTEGER NOT NULL,
+--     expires_at    INTEGER,
+--     created_at    INTEGER NOT NULL DEFAULT (unixepoch())
+--   );
+--
+-- KP-005 inserts 5 rows with redirect_type='rewrite' (same semantics as
+-- existing rows: "this old slug points to a different entity_id; the lookup
+-- should resolve to the entity_id of the new slug").
+-- ========================================
+SELECT 'KP-005: slug_redirect table is pre-existing from 0003; no schema change' AS status;
