@@ -1,0 +1,942 @@
+# US places to add for KP-places-1000
+# Format: canonical_name|place_type|state_code|parent_place|lat|lon|population
+Brooklyn|city|NY|ent_ny|40.6501|-73.94958|2736074
+Queens|city|NY|ent_ny|40.68149|-73.83652|2316841
+Manhattan|city|NY|ent_ny|40.78343|-73.96625|1487536
+The Bronx|city|NY|ent_ny|40.84985|-73.86641|1385108
+Jacksonville|city|FL|ent_fl|30.33218|-81.65565|1009833
+Fort Worth|city|TX|ent_tx|32.72541|-97.32085|1008106
+Oklahoma City|city|OK|ent_ok|35.46756|-97.51643|681054
+El Paso|city|TX|ent_tx|31.75872|-106.48693|678815
+Louisville|city|KY|ent_ky|38.25424|-85.75941|624444
+Fresno|city|CA|ent_ca|36.74773|-119.77237|542107
+Sacramento|city|CA|ent_ca|38.58157|-121.4944|524943
+Staten Island|city|NY|ent_ny|40.56233|-74.13986|468730
+Colorado Springs|city|CO|ent_co|38.83388|-104.82136|456568
+Virginia Beach|city|VA|ent_va|36.85293|-75.97799|454808
+Oakland|city|CA|ent_ca|37.80437|-122.2708|419267
+Tampa|city|FL|ent_fl|27.94752|-82.45843|414547
+Bakersfield|city|CA|ent_ca|35.37329|-119.01871|373640
+Lexington|city|KY|ent_ky|37.98869|-84.47772|320347
+Riverside|city|CA|ent_ca|33.95335|-117.39616|317261
+Corpus Christi|city|TX|ent_tx|27.80058|-97.39638|316239
+Santa Ana|city|CA|ent_ca|33.74557|-117.86783|310227
+Stockton|city|CA|ent_ca|37.9577|-121.29078|305658
+Saint Paul|city|MN|ent_mn|44.94441|-93.09327|303176
+Lincoln|city|NE|ent_ne|40.8|-96.66696|294757
+Newark|city|NJ|ent_nj|40.73566|-74.17237|281944
+Madison|city|WI|ent_wi|43.07305|-89.40123|280305
+Toledo|city|OH|ent_oh|41.66394|-83.55521|265638
+Jersey City|city|NJ|ent_nj|40.72816|-74.07764|264290
+Reno|city|NV|ent_nv|39.52963|-119.8138|264165
+Fort Wayne|city|IN|ent_in|41.1306|-85.12886|260326
+Buffalo|city|NY|ent_ny|42.88645|-78.87837|258071
+Durham|city|NC|ent_nc|35.99403|-78.89862|257636
+Laredo|city|TX|ent_tx|27.50641|-99.50754|256153
+Lubbock|city|TX|ent_tx|33.57786|-101.85517|249042
+Winston-Salem|city|NC|ent_nc|36.09986|-80.24422|241218
+Norfolk|city|VA|ent_va|36.84681|-76.28522|238005
+Boise|city|ID|ent_id|43.6135|-116.20345|235684
+Chesapeake|city|VA|ent_va|36.81904|-76.27494|235429
+Spokane|city|WA|ent_wa|47.65966|-117.42908|229447
+Richmond|city|VA|ent_va|37.55376|-77.46026|226610
+Tacoma|city|WA|ent_wa|47.25288|-122.44429|222906
+San Bernardino|city|CA|ent_ca|34.10834|-117.28977|216108
+Huntsville|city|AL|ent_al|34.7304|-86.58594|215006
+Des Moines|city|IA|ent_ia|41.60054|-93.60911|214133
+Modesto|city|CA|ent_ca|37.6391|-120.99688|211266
+Rochester|city|NY|ent_ny|43.15478|-77.61556|209802
+Arlington|city|VA|ent_va|38.88101|-77.10428|207627
+Worcester|city|MA|ent_ma|42.26259|-71.80229|206518
+Little Rock|city|AR|ent_ar|34.74648|-92.28959|202591
+Fayetteville|city|NC|ent_nc|35.05266|-78.87836|201963
+Tallahassee|city|FL|ent_fl|30.43826|-84.28073|201731
+Amarillo|city|TX|ent_tx|35.222|-101.8313|198645
+Akron|city|OH|ent_oh|41.08144|-81.51901|197542
+Vancouver|city|WA|ent_wa|45.63873|-122.66149|196442
+Montgomery|city|AL|ent_al|32.36681|-86.29997|195287
+Grand Rapids|city|MI|ent_mi|42.96336|-85.66809|195097
+Providence|city|RI|ent_ri|41.82399|-71.41283|190934
+Knoxville|city|TN|ent_tn|35.96064|-83.92074|190740
+Shreveport|city|LA|ent_la|32.52515|-93.75018|187593
+Brownsville|city|TX|ent_tx|25.90175|-97.49748|186738
+Newport News|city|VA|ent_va|36.98038|-76.42975|186247
+Mobile|city|AL|ent_al|30.69436|-88.04305|183289
+Fort Lauderdale|city|FL|ent_fl|26.12231|-80.14338|183146
+Chattanooga|city|TN|ent_tn|35.04563|-85.30968|181099
+Santa Rosa|city|CA|ent_ca|38.44047|-122.71443|178127
+Eugene|city|OR|ent_or|44.05207|-123.08675|176654
+Salem|city|OR|ent_or|44.9429|-123.0351|175535
+Sioux Falls|city|SD|ent_sd|43.54369|-96.72796|171544
+Fort Collins|city|CO|ent_co|40.58526|-105.08442|170924
+Springfield|city|MO|ent_mo|37.21533|-93.29824|170188
+Clarksville|city|TN|ent_tn|36.52977|-87.35945|166722
+Murfreesboro|city|TN|ent_tn|35.84562|-86.39027|165430
+McKinney|city|TX|ent_tx|33.19762|-96.61527|162898
+Alexandria|city|VA|ent_va|38.80484|-77.04692|159467
+Salinas|city|CA|ent_ca|36.67774|-121.6555|157380
+Jackson|city|MS|ent_ms|32.29876|-90.18481|153701
+Rockford|city|IL|ent_il|42.27113|-89.094|148278
+Joliet|city|IL|ent_il|41.52519|-88.0834|147861
+Savannah|city|GA|ent_ga|32.08354|-81.09983|147780
+Paterson|city|NJ|ent_nj|40.91677|-74.17181|147754
+Gainesville|city|FL|ent_fl|29.65163|-82.32483|145214
+Syracuse|city|NY|ent_ny|43.04812|-76.14742|144142
+Columbia|city|SC|ent_sc|34.00071|-81.03481|142416
+Orange|city|CA|ent_ca|33.78779|-117.85311|140992
+Hampton|city|VA|ent_va|37.02987|-76.34522|137148
+Dayton|city|OH|ent_oh|39.75895|-84.19161|135512
+Olathe|city|KS|ent_ks|38.8814|-94.81913|134305
+Charleston|city|SC|ent_sc|32.77632|-79.93275|132609
+Midland|city|TX|ent_tx|31.99735|-102.07791|132524
+Waco|city|TX|ent_tx|31.54933|-97.14667|132356
+Denton|city|TX|ent_tx|33.21484|-97.13307|131044
+Cedar Rapids|city|IA|ent_ia|42.00833|-91.64407|130405
+Visalia|city|CA|ent_ca|36.33023|-119.29206|130104
+Columbia|city|MO|ent_mo|38.95171|-92.33407|129330
+Elizabeth|city|NJ|ent_nj|40.66399|-74.2107|129007
+Norman|city|OK|ent_ok|35.22257|-97.43948|128026
+Athens|city|GA|ent_ga|33.96095|-83.37794|127315
+Topeka|city|KS|ent_ks|39.04833|-95.67804|125963
+Abilene|city|TX|ent_tx|32.44874|-99.73314|125182
+Lafayette|city|LA|ent_la|30.22409|-92.01984|121374
+West Palm Beach|city|FL|ent_fl|26.71534|-80.05337|120932
+Allentown|city|PA|ent_pa|40.60843|-75.49018|120207
+Evansville|city|IN|ent_in|37.97476|-87.55585|119943
+Fargo|city|ND|ent_nd|46.87719|-96.7898|118523
+Clearwater|city|FL|ent_fl|27.96585|-82.8001|117292
+Billings|city|MT|ent_mt|45.78329|-108.50069|117116
+Ann Arbor|city|MI|ent_mi|42.27756|-83.74088|117070
+Wilmington|city|NC|ent_nc|34.23556|-77.94604|115933
+Beaumont|city|TX|ent_tx|30.08605|-94.10185|115282
+Provo|city|UT|ent_ut|40.23384|-111.65853|115162
+Peoria|city|IL|ent_il|40.69365|-89.58899|115070
+Odessa|city|TX|ent_tx|31.84568|-102.36764|114428
+Springfield|city|IL|ent_il|39.80172|-89.64371|114394
+Fairfield|city|CA|ent_ca|38.24936|-122.03997|112970
+Lansing|city|MI|ent_mi|42.73253|-84.55553|112644
+Rochester|city|MN|ent_mn|44.02163|-92.4699|112225
+Tuscaloosa|city|AL|ent_al|33.20984|-87.56917|111338
+Pueblo|city|CO|ent_co|38.25445|-104.60914|109412
+Greeley|city|CO|ent_co|40.42331|-104.70913|108795
+Everett|city|WA|ent_wa|47.97898|-122.20208|108010
+Boulder|city|CO|ent_co|40.01499|-105.27055|106803
+Green Bay|city|WI|ent_wi|44.51916|-88.01983|105207
+Wichita Falls|city|TX|ent_tx|33.91371|-98.49339|104710
+Tyler|city|TX|ent_tx|32.35126|-95.30106|103700
+Davenport|city|IA|ent_ia|41.52364|-90.57764|102582
+Hillsboro|city|OR|ent_or|45.52289|-122.98983|102347
+Las Cruces|city|NM|ent_nm|32.31232|-106.77834|101643
+South Bend|city|IN|ent_in|41.68338|-86.25001|101516
+Albany|city|NY|ent_ny|42.65258|-73.75623|101228
+Roanoke|city|VA|ent_va|37.27097|-79.94143|100011
+San Angelo|city|TX|ent_tx|31.46377|-100.43704|99893
+Kenosha|city|WI|ent_wi|42.58474|-87.82119|99858
+Erie|city|PA|ent_pa|42.12922|-80.08506|99475
+Flint|city|MI|ent_mi|43.01253|-83.68746|98310
+Ventura|city|CA|ent_ca|34.27834|-119.29317|96769
+Lawton|city|OK|ent_ok|34.60869|-98.39033|96655
+Portsmouth|city|VA|ent_va|36.83543|-76.29827|96201
+Yuma|city|AZ|ent_az|32.72532|-114.6244|95548
+Asheville|city|NC|ent_nc|35.60095|-82.55402|95056
+Lawrence|city|KS|ent_ks|38.97167|-95.23525|93917
+Yakima|city|WA|ent_wa|46.60207|-120.5059|93701
+Santa Barbara|city|CA|ent_ca|34.42083|-119.69819|91842
+Redding|city|CA|ent_ca|40.58654|-122.39168|91582
+Macon|city|GA|ent_ga|32.84069|-83.6324|91351
+Greenville|city|NC|ent_nc|35.61266|-77.36635|90597
+Trenton|city|NJ|ent_nj|40.21705|-74.74294|89620
+Toms River|city|NJ|ent_nj|39.95373|-74.19792|88791
+Waukegan|city|IL|ent_il|42.36363|-87.84479|88475
+Suffolk|city|VA|ent_va|36.72836|-76.58496|88161
+Reading|city|PA|ent_pa|40.33565|-75.92687|87879
+Concord|city|NC|ent_nc|35.40888|-80.58158|87696
+Santa Fe|city|NM|ent_nm|35.68698|-105.9378|87505
+Bend|city|OR|ent_or|44.05817|-121.31531|87014
+Duluth|city|MN|ent_mn|46.78327|-92.10658|86110
+Ogden|city|UT|ent_ut|41.223|-111.97383|85444
+Redwood City|city|CA|ent_ca|37.48522|-122.23635|85288
+Bellingham|city|WA|ent_wa|48.75955|-122.48822|85146
+Edinburg|city|TX|ent_tx|26.30174|-98.16334|84497
+Bloomington|city|IN|ent_in|39.16533|-86.52639|84067
+Fayetteville|city|AR|ent_ar|36.06258|-94.15743|82830
+Sioux City|city|IA|ent_ia|42.49999|-96.40031|82821
+Merced|city|CA|ent_ca|37.30216|-120.48297|82436
+Longview|city|TX|ent_tx|32.5007|-94.74049|82287
+Bryan|city|TX|ent_tx|30.67436|-96.36996|82118
+Napa|city|CA|ent_ca|38.29714|-122.28553|80434
+Lynchburg|city|VA|ent_va|37.41375|-79.14225|79812
+Medford|city|OR|ent_or|42.32652|-122.87559|79805
+Bloomington|city|IL|ent_il|40.4842|-88.99369|78292
+Racine|city|WI|ent_wi|42.72613|-87.78285|77742
+Scranton|city|PA|ent_pa|41.40916|-75.6649|77118
+Saint Joseph|city|MO|ent_mo|39.76861|-94.84663|76780
+Camden|city|NJ|ent_nj|39.92595|-75.11962|76119
+Lake Charles|city|LA|ent_la|30.21309|-93.2044|76070
+Kalamazoo|city|MI|ent_mi|42.29171|-85.58723|76041
+Bismarck|city|ND|ent_nd|46.80833|-100.78374|75092
+Albany|city|GA|ent_ga|31.57851|-84.15574|74843
+Gastonia|city|NC|ent_nc|35.26208|-81.1873|74543
+Iowa City|city|IA|ent_ia|41.66113|-91.53017|74220
+Appleton|city|WI|ent_wi|44.26193|-88.41538|74139
+Fort Myers|city|FL|ent_fl|26.62168|-81.84059|74013
+Rapid City|city|SD|ent_sd|44.08054|-103.23101|73569
+Decatur|city|IL|ent_il|39.84031|-88.9548|73254
+Franklin|city|TN|ent_tn|35.92506|-86.86889|72639
+Waukesha|city|WI|ent_wi|43.01168|-88.23148|71970
+Canton|city|OH|ent_oh|40.79895|-81.37845|71885
+Lafayette|city|IN|ent_in|40.4167|-86.87529|71111
+Missoula|city|MT|ent_mt|46.87215|-113.994|71022
+Wilmington|city|DE|ent_de|39.74595|-75.54659|70898
+New Braunfels|city|TX|ent_tx|29.703|-98.12445|70543
+Flagstaff|city|AZ|ent_az|35.19807|-111.65127|70320
+Muncie|city|IN|ent_in|40.19338|-85.38636|70087
+Frederick|city|MD|ent_md|39.41427|-77.41054|69479
+Pasco|city|WA|ent_wa|46.23958|-119.10057|69451
+Kissimmee|city|FL|ent_fl|28.30468|-81.41667|69152
+Conroe|city|TX|ent_tx|30.31188|-95.45605|68602
+Dothan|city|AL|ent_al|31.22323|-85.39049|68567
+Waterloo|city|IA|ent_ia|42.49276|-92.34296|68460
+Eau Claire|city|WI|ent_wi|44.81135|-91.49849|67778
+Victoria|city|TX|ent_tx|28.80527|-97.0036|67574
+Jacksonville|city|NC|ent_nc|34.75405|-77.43024|67357
+Rockville|city|MD|ent_md|39.084|-77.15276|66980
+Jackson|city|TN|ent_tn|35.61452|-88.81395|66975
+Yuba City|city|CA|ent_ca|39.14045|-121.61691|66941
+Oshkosh|city|WI|ent_wi|44.02471|-88.54261|66555
+Saint Cloud|city|MN|ent_mn|45.5608|-94.16249|65842
+Ellicott City|city|MD|ent_md|39.26733|-76.79831|65834
+Saint Charles|city|MO|ent_mo|38.78394|-90.48123|65794
+Schenectady|city|NY|ent_ny|42.81424|-73.93957|65305
+Cheyenne|city|WY|ent_wy|41.13998|-104.82025|65132
+Broomfield|city|CO|ent_co|39.92054|-105.08665|65065
+Conway|city|AR|ent_ar|35.0887|-92.4421|64980
+Youngstown|city|OH|ent_oh|41.09978|-80.64952|64628
+Greenville|city|SC|ent_sc|34.85262|-82.39401|64579
+Santa Cruz|city|CA|ent_ca|36.97412|-122.0308|64220
+Madera|city|CA|ent_ca|36.96134|-120.06072|64208
+Janesville|city|WI|ent_wi|42.68279|-89.01872|64123
+Georgetown|city|TX|ent_tx|30.63269|-97.67723|63716
+Bowling Green|city|KY|ent_ky|36.99032|-86.4436|63616
+Council Bluffs|city|IA|ent_ia|41.26194|-95.86083|62597
+Hamilton|city|OH|ent_oh|39.3995|-84.56134|62407
+Utica|city|NY|ent_ny|43.1009|-75.23266|61100
+Terre Haute|city|IN|ent_in|39.4667|-87.41391|60825
+San Marcos|city|TX|ent_tx|29.88327|-97.94139|60684
+Grand Junction|city|CO|ent_co|39.06387|-108.55065|60358
+Casper|city|WY|ent_wy|42.86663|-106.31308|60285
+Pontiac|city|MI|ent_mi|42.63892|-83.29105|59917
+Springfield|city|OH|ent_oh|39.92423|-83.80882|59680
+Great Falls|city|MT|ent_mt|47.50024|-111.30081|59638
+Lancaster|city|PA|ent_pa|40.03788|-76.30551|59339
+Idaho Falls|city|ID|ent_id|43.46658|-112.03414|59184
+San Rafael|city|CA|ent_ca|37.97353|-122.53109|59162
+Noblesville|city|IN|ent_in|40.04559|-86.0086|59093
+Marietta|city|GA|ent_ga|33.9526|-84.54993|59067
+Owensboro|city|KY|ent_ky|37.77422|-87.11333|59042
+Dubuque|city|IA|ent_ia|42.50056|-90.66457|58799
+Carson City|city|NV|ent_nv|39.1638|-119.7674|58639
+Woodland|city|CA|ent_ca|38.67852|-121.7733|58567
+White Plains|city|NY|ent_ny|41.03399|-73.76291|58459
+Ocala|city|FL|ent_fl|29.1872|-82.14009|58218
+Sanford|city|FL|ent_fl|28.80055|-81.27312|58111
+Kokomo|city|IN|ent_in|40.48643|-86.1336|57995
+New Brunswick|city|NJ|ent_nj|40.48622|-74.45182|57035
+Grand Forks|city|ND|ent_nd|47.92526|-97.03285|57011
+Taunton|city|MA|ent_ma|41.9001|-71.08977|56789
+Manhattan|city|KS|ent_ks|39.18361|-96.57167|56308
+Corvallis|city|OR|ent_or|44.56457|-123.26204|55780
+Olympia|city|WA|ent_wa|47.04491|-122.90169|55733
+Valdosta|city|GA|ent_ga|30.83334|-83.28032|55724
+Hanford|city|CA|ent_ca|36.32745|-119.64568|55659
+Castle Rock|city|CO|ent_co|39.37221|-104.85609|55591
+Decatur|city|AL|ent_al|34.60593|-86.98334|55437
+Anderson|city|IN|ent_in|40.10532|-85.68025|55305
+Towson|city|MD|ent_md|39.4015|-76.60191|55197
+Sarasota|city|FL|ent_fl|27.33643|-82.53065|55118
+Pocatello|city|ID|ent_id|42.8713|-112.44553|54441
+Bradenton|city|FL|ent_fl|27.49893|-82.57482|54437
+Elyria|city|OH|ent_oh|41.36838|-82.10765|53775
+Pensacola|city|FL|ent_fl|30.42131|-87.21691|53724
+Wheaton|city|IL|ent_il|41.86614|-88.10701|53715
+Harrisonburg|city|VA|ent_va|38.44957|-78.86892|52538
+La Crosse|city|WI|ent_wi|43.80136|-91.23958|52306
+Albany|city|OR|ent_or|44.63651|-123.10593|52175
+Enid|city|OK|ent_ok|36.39559|-97.87839|51776
+Caldwell|city|ID|ent_id|43.66294|-116.68736|51686
+Grand Island|city|NE|ent_ne|40.92501|-98.34201|51440
+Leesburg|city|VA|ent_va|39.11566|-77.5636|51209
+Logan|city|UT|ent_ut|41.73549|-111.83439|50371
+Harrisburg|city|PA|ent_pa|40.2737|-76.88442|50183
+Galveston|city|TX|ent_tx|29.30135|-94.7977|50180
+Troy|city|NY|ent_ny|42.72841|-73.69179|49906
+Wilson|city|NC|ent_nc|35.72127|-77.91554|49643
+Monroe|city|LA|ent_la|32.50931|-92.1193|49598
+Minot|city|ND|ent_nd|48.23251|-101.29627|49450
+Saginaw|city|MI|ent_mi|43.41947|-83.95081|49347
+Stillwater|city|OK|ent_ok|36.11561|-97.05837|48967
+Sheboygan|city|WI|ent_wi|43.75083|-87.71453|48797
+Huntington|city|WV|ent_wv|38.41925|-82.44515|48638
+Roswell|city|NM|ent_nm|33.39437|-104.52491|48544
+Newark|city|OH|ent_oh|40.05812|-82.40126|47986
+Alexandria|city|LA|ent_la|31.31129|-92.44514|47889
+Barnstable|city|MA|ent_ma|41.70011|-70.29947|47821
+Salina|city|KS|ent_ks|38.84028|-97.61142|47813
+Twin Falls|city|ID|ent_id|42.56297|-114.46087|47468
+San Luis Obispo|city|CA|ent_ca|35.28275|-120.65962|47339
+Jeffersonville|city|IN|ent_in|38.27757|-85.73718|46960
+Charleston|city|WV|ent_wv|38.34982|-81.63262|46838
+Mansfield|city|OH|ent_oh|40.75839|-82.51545|46830
+Hattiesburg|city|MS|ent_ms|31.32712|-89.29034|46805
+Charlottesville|city|VA|ent_va|38.02931|-78.47668|46597
+Littleton|city|CO|ent_co|39.61332|-105.01665|46368
+Binghamton|city|NY|ent_ny|42.09869|-75.91797|46032
+Titusville|city|FL|ent_fl|28.61222|-80.80755|45393
+Hackensack|city|NJ|ent_nj|40.88593|-74.04347|44834
+Pine Bluff|city|AR|ent_ar|34.22843|-92.0032|44772
+Bentonville|city|AR|ent_ar|36.37285|-94.20882|44499
+Fort Pierce|city|FL|ent_fl|27.44671|-80.32561|44484
+York|city|PA|ent_pa|39.9626|-76.72774|43992
+Concord|city|NH|ent_nh|43.20814|-71.53757|43976
+El Centro|city|CA|ent_ca|32.792|-115.56305|43956
+Augusta|city|GA|ent_ga|33.47097|-81.97484|43459
+Bozeman|city|MT|ent_mt|45.67965|-111.03856|43405
+Hilo|city|HI|ent_hi|19.72991|-155.09073|43263
+Fond du Lac|city|WI|ent_wi|43.775|-88.43883|42933
+Jefferson City|city|MO|ent_mo|38.5767|-92.17352|42595
+Rockwall|city|TX|ent_tx|32.93123|-96.45971|42566
+Burlington|city|VT|ent_vt|44.47588|-73.21207|42452
+Urbana|city|IL|ent_il|40.11059|-88.20727|42311
+Midland|city|MI|ent_mi|43.61558|-84.24721|42200
+Danville|city|VA|ent_va|36.58597|-79.39502|42082
+Belleville|city|IL|ent_il|38.52005|-89.98399|42034
+Moorhead|city|MN|ent_mn|46.87386|-96.76951|42005
+Prescott|city|AZ|ent_az|34.54002|-112.4685|41899
+Manassas|city|VA|ent_va|38.75095|-77.47527|41764
+Hutchinson|city|KS|ent_ks|38.06084|-97.92977|41569
+Findlay|city|OH|ent_oh|41.04422|-83.64993|41149
+Mankato|city|MN|ent_mn|44.15906|-94.00915|41044
+Huntsville|city|TX|ent_tx|30.72353|-95.55078|40938
+Sumter|city|SC|ent_sc|33.92044|-80.34147|40816
+Annapolis|city|MD|ent_md|38.97859|-76.49184|40812
+Quincy|city|IL|ent_il|39.9356|-91.40987|40780
+Sherman|city|TX|ent_tx|33.63566|-96.60888|40667
+Hagerstown|city|MD|ent_md|39.64176|-77.71999|40432
+Warren|city|OH|ent_oh|41.23756|-80.81842|40245
+Florence|city|AL|ent_al|34.79981|-87.67725|40026
+Shakopee|city|MN|ent_mn|44.79802|-93.5269|39981
+Lancaster|city|OH|ent_oh|39.71368|-82.59933|39766
+Meridian|city|MS|ent_ms|32.36431|-88.70366|39661
+Clovis|city|NM|ent_nm|34.4048|-103.20523|39480
+Dover|city|DE|ent_de|39.15817|-75.52437|39403
+Wausau|city|WI|ent_wi|44.95914|-89.63012|39094
+Gainesville|city|GA|ent_ga|34.29788|-83.82407|38712
+Rock Island|city|IL|ent_il|41.50948|-90.57875|38620
+Muskogee|city|OK|ent_ok|35.74788|-95.36969|38456
+Muskegon|city|MI|ent_mi|43.23418|-86.24839|38401
+Panama City|city|FL|ent_fl|30.15946|-85.65983|38286
+Florence|city|SC|ent_sc|34.19543|-79.76256|38228
+Martinez|city|CA|ent_ca|38.01937|-122.13413|38137
+Delaware|city|OH|ent_oh|40.29867|-83.06797|37995
+Lima|city|OH|ent_oh|40.74255|-84.10523|37873
+Spartanburg|city|SC|ent_sc|34.94957|-81.93205|37867
+Brighton|city|CO|ent_co|39.98526|-104.82053|37585
+Phenix City|city|AL|ent_al|32.47098|-85.00077|37570
+Hollister|city|CA|ent_ca|36.85245|-121.4016|37462
+Newnan|city|GA|ent_ga|33.38067|-84.79966|37291
+Grants Pass|city|OR|ent_or|42.43933|-123.33067|37088
+Columbia|city|TN|ent_tn|35.61507|-87.03528|36800
+New Albany|city|IN|ent_in|38.28562|-85.82413|36732
+Bartlesville|city|OK|ent_ok|36.74731|-95.98082|36595
+Marion|city|OH|ent_oh|40.58867|-83.12852|36363
+Lufkin|city|TX|ent_tx|31.33824|-94.7291|36333
+Rome|city|GA|ent_ga|34.25704|-85.16467|36323
+Del Rio|city|TX|ent_tx|29.36273|-100.89676|36153
+Gadsden|city|AL|ent_al|34.01434|-86.00639|36084
+Leavenworth|city|KS|ent_ks|39.31111|-94.92246|35980
+Richmond|city|IN|ent_in|39.82894|-84.89024|35854
+Oregon City|city|OR|ent_or|45.35734|-122.60676|35831
+Goldsboro|city|NC|ent_nc|35.38488|-77.99277|35826
+Tupelo|city|MS|ent_ms|34.25807|-88.70464|35680
+Hot Springs|city|AR|ent_ar|34.5037|-93.05518|35635
+Prattville|city|AL|ent_al|32.46402|-86.4597|35420
+Monroe|city|NC|ent_nc|34.98543|-80.54951|34623
+Norristown|city|PA|ent_pa|40.1215|-75.3399|34412
+Gallatin|city|TN|ent_tn|36.38838|-86.44666|34334
+Houma|city|LA|ent_la|29.59577|-90.71953|34287
+Butte|city|MT|ent_mt|46.00382|-112.53474|34190
+Benton|city|AR|ent_ar|34.56454|-92.58683|34177
+Salisbury|city|NC|ent_nc|35.67097|-80.47423|34017
+Bay City|city|MI|ent_mi|43.59447|-83.88886|33917
+Nacogdoches|city|TX|ent_tx|31.60351|-94.65549|33894
+McMinnville|city|OR|ent_or|45.21012|-123.19872|33892
+Dalton|city|GA|ent_ga|34.7698|-84.97022|33853
+Wenatchee|city|WA|ent_wa|47.42346|-120.31035|33636
+New City|city|NY|ent_ny|41.1476|-73.98931|33559
+Richmond|city|KY|ent_ky|37.74786|-84.29465|33533
+Hinesville|city|GA|ent_ga|31.84688|-81.59595|33398
+Waxahachie|city|TX|ent_tx|32.38653|-96.84833|33384
+Pekin|city|IL|ent_il|40.56754|-89.64066|33223
+Tooele|city|UT|ent_ut|40.53078|-112.29828|33157
+Jackson|city|MI|ent_mi|42.24587|-84.40135|33133
+Kearney|city|NE|ent_ne|40.69946|-99.08148|33021
+Manitowoc|city|WI|ent_wi|44.08861|-87.65758|33010
+Goshen|city|IN|ent_in|41.58227|-85.83444|32983
+Salisbury|city|MD|ent_md|38.36067|-75.59937|32899
+Douglasville|city|GA|ent_ga|33.7515|-84.74771|32897
+Gillette|city|WY|ent_wy|44.29109|-105.50222|32649
+Valparaiso|city|IN|ent_in|41.47309|-87.06114|32626
+Lewiston|city|ID|ent_id|46.41655|-117.01766|32544
+Petersburg|city|VA|ent_va|37.22793|-77.40193|32477
+Bangor|city|ME|ent_me|44.79884|-68.77265|32391
+Georgetown|city|KY|ent_ky|38.2098|-84.55883|32356
+Fairbanks|city|AK|ent_ak|64.83778|-147.71639|32325
+Walla Walla|city|WA|ent_wa|46.06458|-118.34302|32237
+Hopkinsville|city|KY|ent_ky|36.86561|-87.49117|32205
+Laramie|city|WY|ent_wy|41.31137|-105.5911|32158
+Greenville|city|MS|ent_ms|33.40898|-91.05978|32156
+Cookeville|city|TN|ent_tn|36.16284|-85.50164|32113
+Danville|city|IL|ent_il|40.12448|-87.63002|32108
+Helena|city|MT|ent_mt|46.59271|-112.03611|32091
+West Bend|city|WI|ent_wi|43.42528|-88.18343|31695
+Juneau|city|AK|ent_ak|58.30194|-134.41972|31555
+Shawnee|city|OK|ent_ok|35.32729|-96.9253|31286
+Galesburg|city|IL|ent_il|40.94782|-90.37124|31273
+Bowling Green|city|OH|ent_oh|41.37477|-83.65132|31246
+Florence|city|AZ|ent_az|33.03145|-111.38734|31110
+Parkersburg|city|WV|ent_wv|39.26674|-81.56151|30991
+Dover|city|NH|ent_nh|43.19786|-70.87367|30880
+Ithaca|city|NY|ent_ny|42.44063|-76.49661|30788
+New Iberia|city|LA|ent_la|30.00354|-91.81873|30754
+Alamogordo|city|NM|ent_nm|32.89953|-105.96027|30753
+Statesboro|city|GA|ent_ga|32.44879|-81.78317|30721
+Morgantown|city|WV|ent_wv|39.62953|-79.9559|30708
+Aiken|city|SC|ent_sc|33.56042|-81.71955|30604
+Lawrenceville|city|GA|ent_ga|33.95621|-83.98796|30493
+Liberty|city|MO|ent_mo|39.24611|-94.41912|30450
+Poughkeepsie|city|NY|ent_ny|41.70037|-73.92097|30371
+Texarkana|city|AR|ent_ar|33.44179|-94.03769|30353
+Lebanon|city|TN|ent_tn|36.20811|-86.2911|30262
+DeLand|city|FL|ent_fl|29.02832|-81.30312|30195
+New Bern|city|NC|ent_nc|35.10849|-77.04411|30070
+Cleburne|city|TX|ent_tx|32.34764|-97.38668|30020
+Nicholasville|city|KY|ent_ky|37.88063|-84.573|29754
+Elizabethtown|city|KY|ent_ky|37.69395|-85.85913|29678
+Opelika|city|AL|ent_al|32.64541|-85.37828|29527
+Morristown|city|TN|ent_tn|36.21398|-83.29489|29478
+Port Huron|city|MI|ent_mi|42.97086|-82.42491|29330
+Williamsport|city|PA|ent_pa|41.24119|-77.00108|29201
+Russellville|city|AR|ent_ar|35.27842|-93.13379|29166
+Sanford|city|NC|ent_nc|35.47988|-79.1803|29144
+Marion|city|IN|ent_in|40.55837|-85.65914|29081
+Carlsbad|city|NM|ent_nm|32.42067|-104.22884|28957
+Kingman|city|AZ|ent_az|35.18944|-114.05301|28912
+Henderson|city|KY|ent_ky|37.83615|-87.59001|28890
+Crown Point|city|IN|ent_in|41.41698|-87.36531|28879
+Big Spring|city|TX|ent_tx|32.2504|-101.47874|28862
+Eagle Pass|city|TX|ent_tx|28.70914|-100.49952|28765
+Weatherford|city|TX|ent_tx|32.7593|-97.79725|28742
+Maryville|city|TN|ent_tn|35.75647|-83.97046|28464
+Frankfort|city|KY|ent_ky|38.20091|-84.87328|28391
+Elmira|city|NY|ent_ny|42.0898|-76.80773|28213
+Fredericksburg|city|VA|ent_va|38.30318|-77.46054|28118
+Aberdeen|city|SD|ent_sd|45.4647|-98.48648|28102
+Dodge City|city|KS|ent_ks|37.7528|-100.01708|27912
+Paragould|city|AR|ent_ar|36.0584|-90.49733|27900
+Seguin|city|TX|ent_tx|29.56884|-97.96473|27864
+Queensbury|city|NY|ent_ny|43.37729|-73.61317|27703
+Rexburg|city|ID|ent_id|43.82602|-111.78969|27663
+Wheeling|city|WV|ent_wv|40.06396|-80.72091|27648
+Marshalltown|city|IA|ent_ia|42.04943|-92.90798|27620
+Mason City|city|IA|ent_ia|43.15357|-93.20104|27366
+Anderson|city|SC|ent_sc|34.50344|-82.65013|27335
+Winchester|city|VA|ent_va|39.18566|-78.16333|27284
+Winona|city|MN|ent_mn|44.04996|-91.63932|27094
+Eureka|city|CA|ent_ca|40.80207|-124.16367|27017
+Garden City|city|KS|ent_ks|37.97169|-100.87266|27005
+Auburn|city|NY|ent_ny|42.93173|-76.56605|26985
+Williston|city|ND|ent_nd|48.14697|-103.61797|26977
+Easton|city|PA|ent_pa|40.68843|-75.22073|26915
+Watertown|city|NY|ent_ny|43.97478|-75.91076|26780
+Wooster|city|OH|ent_oh|40.80517|-81.93646|26749
+Kankakee|city|IL|ent_il|41.12003|-87.86115|26676
+Stevens Point|city|WI|ent_wi|44.52358|-89.57456|26604
+Superior|city|WI|ent_wi|46.72077|-92.10408|26579
+Greenville|city|TX|ent_tx|33.13845|-96.11081|26515
+Fremont|city|NE|ent_ne|41.43333|-96.49808|26474
+Medina|city|OH|ent_oh|41.13839|-81.86375|26339
+Kingsville|city|TX|ent_tx|27.51587|-97.85611|26225
+Statesville|city|NC|ent_nc|35.78264|-80.8873|26221
+Carrollton|city|GA|ent_ga|33.58011|-85.07661|26203
+Asheboro|city|NC|ent_nc|35.70791|-79.81364|26103
+Clinton|city|IA|ent_ia|41.84447|-90.18874|26064
+Mount Pleasant|city|MI|ent_mi|43.59781|-84.76751|26060
+Xenia|city|OH|ent_oh|39.68478|-83.92965|25976
+Key West|city|FL|ent_fl|24.55524|-81.78163|25755
+Owatonna|city|MN|ent_mn|44.08385|-93.22604|25725
+Troy|city|OH|ent_oh|40.0395|-84.20328|25659
+Lebanon|city|PA|ent_pa|40.34093|-76.41135|25534
+Zanesville|city|OH|ent_oh|39.94035|-82.01319|25498
+Canton|city|GA|ent_ga|34.23676|-84.49076|25469
+Salem|city|VA|ent_va|37.29347|-80.05476|25432
+Burlington|city|IA|ent_ia|40.80754|-91.11292|25410
+Starkville|city|MS|ent_ms|33.45049|-88.81961|25366
+Sandusky|city|OH|ent_oh|41.44894|-82.70796|25212
+Chaska|city|MN|ent_mn|44.78941|-93.60218|25199
+Woodstock|city|IL|ent_il|42.31474|-88.4487|25189
+Ardmore|city|OK|ent_ok|34.17426|-97.14363|25176
+Belvidere|city|IL|ent_il|42.26391|-88.84427|25132
+Moscow|city|ID|ent_id|46.73239|-117.00017|25060
+Athens|city|OH|ent_oh|39.32924|-82.10126|25044
+Bridgeton|city|NJ|ent_nj|39.42734|-75.23408|25031
+Edwardsville|city|IL|ent_il|38.81144|-89.95316|24992
+Athens|city|AL|ent_al|34.80243|-86.97219|24966
+Hastings|city|NE|ent_ne|40.58612|-98.38839|24924
+Paducah|city|KY|ent_ky|37.08339|-88.60005|24864
+Paris|city|TX|ent_tx|33.66094|-95.55551|24782
+Dedham|city|MA|ent_ma|42.24177|-71.16616|24729
+Fort Dodge|city|IA|ent_ia|42.49747|-94.16802|24649
+Emporia|city|KS|ent_ks|38.4039|-96.18166|24649
+Ottumwa|city|IA|ent_ia|41.02001|-92.4113|24624
+Junction City|city|KS|ent_ks|39.02861|-96.8314|24621
+Franklin|city|IN|ent_in|39.48061|-86.05499|24598
+Freeport|city|IL|ent_il|42.29669|-89.62123|24476
+Staunton|city|VA|ent_va|38.14991|-79.0732|24416
+Searcy|city|AR|ent_ar|35.25064|-91.73625|24196
+North Platte|city|NE|ent_ne|41.12389|-100.76542|24194
+Fairfax|city|VA|ent_va|38.84622|-77.30637|24013
+Muscatine|city|IA|ent_ia|41.42447|-91.04321|23968
+Elk River|city|MN|ent_mn|45.30385|-93.56718|23963
+Corsicana|city|TX|ent_tx|32.09543|-96.46887|23952
+Marshall|city|TX|ent_tx|32.54487|-94.36742|23820
+Dickinson|city|ND|ent_nd|46.87918|-102.78962|23765
+Brookings|city|SD|ent_sd|44.31136|-96.79839|23657
+Faribault|city|MN|ent_mn|44.29496|-93.26883|23650
+Brandon|city|MS|ent_ms|32.2732|-89.98592|23529
+Kingston|city|NY|ent_ny|41.92704|-73.99736|23436
+McDonough|city|GA|ent_ga|33.44734|-84.14686|23417
+Crestview|city|FL|ent_fl|30.76213|-86.57051|23270
+Keene|city|NH|ent_nh|42.93369|-72.27814|23265
+Greenwood|city|SC|ent_sc|34.1954|-82.16179|23260
+Gallup|city|NM|ent_nm|35.52808|-108.74258|23240
+Duncan|city|OK|ent_ok|34.5023|-97.95781|23231
+Griffin|city|GA|ent_ga|33.24678|-84.26409|23211
+Kerrville|city|TX|ent_tx|30.04743|-99.14032|23136
+Vicksburg|city|MS|ent_ms|32.35265|-90.87788|23131
+Van Buren|city|AR|ent_ar|35.43676|-94.34827|23081
+Auburn|city|ME|ent_me|44.09785|-70.23117|22871
+Marysville|city|OH|ent_oh|40.23645|-83.36714|22817
+Farmington|city|UT|ent_ut|40.9805|-111.88744|22566
+Hastings|city|MN|ent_mn|44.7433|-92.85243|22554
+Hopewell|city|VA|ent_va|37.30432|-77.2872|22378
+New Castle|city|PA|ent_pa|41.00367|-80.34701|22375
+Anniston|city|AL|ent_al|33.65983|-85.83163|22347
+Ruston|city|LA|ent_la|32.52321|-92.63793|22340
+Oxford|city|MS|ent_ms|34.3665|-89.51925|22314
+Pascagoula|city|MS|ent_ms|30.36576|-88.55613|22126
+Roseburg|city|OR|ent_or|43.2165|-123.34174|22114
+Watertown|city|SD|ent_sd|44.89941|-97.11507|22073
+Kalispell|city|MT|ent_mt|48.19579|-114.31291|22052
+Decatur|city|GA|ent_ga|33.77483|-84.29631|21957
+Christiansburg|city|VA|ent_va|37.12985|-80.40894|21943
+Geneva|city|IL|ent_il|41.88753|-88.30535|21806
+Chillicothe|city|OH|ent_oh|39.33312|-82.9824|21727
+Lumberton|city|NC|ent_nc|34.61834|-79.01045|21667
+Sedalia|city|MO|ent_mo|38.70446|-93.22826|21516
+Naples|city|FL|ent_fl|26.14234|-81.79596|21512
+Greenfield|city|IN|ent_in|39.78504|-85.76942|21497
+Waynesboro|city|VA|ent_va|38.06847|-78.88947|21491
+Klamath Falls|city|OR|ent_or|42.22487|-121.78167|21399
+Mandan|city|ND|ent_nd|46.82666|-100.88958|21382
+Kinston|city|NC|ent_nc|35.26266|-77.58164|21337
+Shelbyville|city|TN|ent_tn|35.48341|-86.46027|21317
+Marquette|city|MI|ent_mi|46.54354|-87.39542|21297
+Charleston|city|IL|ent_il|39.49615|-88.17615|21196
+Hays|city|KS|ent_ks|38.87918|-99.32677|21092
+Conway|city|SC|ent_sc|33.836|-79.04781|21053
+Plainview|city|TX|ent_tx|34.18479|-101.70684|20919
+Sidney|city|OH|ent_oh|40.28422|-84.1555|20858
+Liberal|city|KS|ent_ks|37.04308|-100.921|20746
+Chambersburg|city|PA|ent_pa|39.93759|-77.6611|20691
+Adrian|city|MI|ent_mi|41.89755|-84.03717|20691
+Lockport|city|NY|ent_ny|43.17061|-78.69031|20624
+Lebanon|city|OH|ent_oh|39.43534|-84.20299|20623
+Sapulpa|city|OK|ent_ok|35.9987|-96.11417|20579
+Belton|city|TX|ent_tx|31.05601|-97.46445|20547
+Portsmouth|city|OH|ent_oh|38.73174|-82.99767|20409
+Golden|city|CO|ent_co|39.75554|-105.2211|20330
+Cartersville|city|GA|ent_ga|34.16533|-84.80231|20319
+Ashland|city|OH|ent_oh|40.86867|-82.31822|20317
+Elko|city|NV|ent_nv|40.83242|-115.76312|20279
+Nogales|city|AZ|ent_az|31.34038|-110.93425|20252
+Shelby|city|NC|ent_nc|35.29235|-81.53565|20189
+Lexington|city|SC|ent_sc|33.98154|-81.23621|20138
+Cumberland|city|MD|ent_md|39.65287|-78.76252|20130
+Stephenville|city|TX|ent_tx|32.2207|-98.20226|20120
+Monroe|city|MI|ent_mi|41.91643|-83.39771|20092
+Rolla|city|MO|ent_mo|37.95143|-91.77127|20019
+Warrensburg|city|MO|ent_mo|38.76279|-93.73605|19927
+West Chester|city|PA|ent_pa|39.96097|-75.60804|19842
+Plattsburgh|city|NY|ent_ny|44.69949|-73.45291|19806
+Painesville|city|OH|ent_oh|41.72449|-81.24566|19776
+Willmar|city|MN|ent_mn|45.12191|-95.04334|19638
+Madisonville|city|KY|ent_ky|37.3281|-87.49889|19539
+Selma|city|AL|ent_al|32.40736|-87.0211|19519
+Papillion|city|NE|ent_ne|41.15444|-96.04224|19510
+Port Angeles|city|WA|ent_wa|48.11815|-123.43074|19448
+Angleton|city|TX|ent_tx|29.16941|-95.43188|19429
+Alice|city|TX|ent_tx|27.75225|-98.06972|19408
+Orange|city|TX|ent_tx|30.09299|-93.73655|19347
+Lexington|city|NC|ent_nc|35.82403|-80.25338|19326
+Newton|city|KS|ent_ks|38.04668|-97.34504|19216
+Altus|city|OK|ent_ok|34.63813|-99.33398|19214
+Carlisle|city|PA|ent_pa|40.20148|-77.18887|19143
+Mineola|city|NY|ent_ny|40.74927|-73.64068|19139
+Shelbyville|city|IN|ent_in|39.52144|-85.77692|19133
+Ozark|city|MO|ent_mo|37.02089|-93.20602|19120
+Jacksonville|city|IL|ent_il|39.73394|-90.22901|19103
+Montrose|city|CO|ent_co|38.47832|-107.87617|19062
+Brownwood|city|TX|ent_tx|31.70932|-98.99116|19031
+Ellensburg|city|WA|ent_wa|46.99651|-120.54785|19001
+Claremore|city|OK|ent_ok|36.3126|-95.61609|18997
+Bartow|city|FL|ent_fl|27.89641|-81.84314|18972
+Murray|city|KY|ent_ky|36.61033|-88.31476|18954
+Milledgeville|city|GA|ent_ga|33.08014|-83.2321|18931
+Stillwater|city|MN|ent_mn|45.05636|-92.80604|18924
+Cortland|city|NY|ent_ny|42.60118|-76.18048|18907
+Augusta|city|ME|ent_me|44.31062|-69.77949|18899
+Troy|city|AL|ent_al|31.80877|-85.96995|18853
+Brigham City|city|UT|ent_ut|41.51021|-112.0155|18752
+Thomasville|city|GA|ent_ga|30.83658|-83.97878|18742
+Fairmont|city|WV|ent_wv|39.48508|-80.14258|18733
+Westminster|city|MD|ent_md|39.57538|-76.99581|18670
+Morristown|city|NJ|ent_nj|40.79677|-74.48154|18594
+Macomb|city|IL|ent_il|40.45921|-90.6718|18547
+El Reno|city|OK|ent_ok|35.53227|-97.95505|18516
+Yorkville|city|IL|ent_il|41.64114|-88.44729|18451
+Winchester|city|KY|ent_ky|37.99008|-84.17965|18446
+El Dorado|city|AR|ent_ar|33.20763|-92.66627|18386
+Natchitoches|city|LA|ent_la|31.76072|-93.08627|18365
+Ottawa|city|IL|ent_il|41.34559|-88.84258|18342
+McAlester|city|OK|ent_ok|34.93343|-95.76971|18310
+Palestine|city|TX|ent_tx|31.76212|-95.63079|18288
+Steubenville|city|OH|ent_oh|40.36979|-80.63396|18219
+Farmington|city|MO|ent_mo|37.78088|-90.42179|18181
+Pampa|city|TX|ent_tx|35.53616|-100.95987|18177
+Boone|city|NC|ent_nc|36.21679|-81.67455|18156
+Punta Gorda|city|FL|ent_fl|26.92978|-82.04537|18150
+Vincennes|city|IN|ent_in|38.67727|-87.52863|18012
+Durango|city|CO|ent_co|37.27528|-107.88007|18006
+Elizabeth City|city|NC|ent_nc|36.2946|-76.25105|17988
+Wisconsin Rapids|city|WI|ent_wi|44.38358|-89.81735|17897
+Lenoir|city|NC|ent_nc|35.91402|-81.53898|17888
+Gretna|city|LA|ent_la|29.91465|-90.05396|17880
+Sheridan|city|WY|ent_wy|44.79719|-106.95618|17873
+Colonial Heights|city|VA|ent_va|37.26804|-77.40726|17820
+Marion|city|IL|ent_il|37.73061|-88.93313|17803
+Logansport|city|IN|ent_in|40.75448|-86.35667|17793
+Oswego|city|NY|ent_ny|43.45535|-76.5105|17787
+Sycamore|city|IL|ent_il|41.98892|-88.68675|17712
+Martinsburg|city|WV|ent_wv|39.45621|-77.96389|17700
+Tiffin|city|OH|ent_oh|41.1145|-83.17797|17687
+Albert Lea|city|MN|ent_mn|43.64801|-93.36827|17674
+New Castle|city|IN|ent_in|39.92894|-85.37025|17621
+Bay City|city|TX|ent_tx|28.98276|-95.9694|17598
+Culpeper|city|VA|ent_va|38.47318|-77.99666|17557
+Kirksville|city|MO|ent_mo|40.19475|-92.58325|17520
+New Philadelphia|city|OH|ent_oh|40.48979|-81.44567|17484
+Radford|city|VA|ent_va|37.13179|-80.57645|17403
+Anoka|city|MN|ent_mn|45.19774|-93.38718|17350
+Ada|city|OK|ent_ok|34.77453|-96.67834|17303
+Durant|city|OK|ent_ok|33.99399|-96.37082|17286
+Poplar Bluff|city|MO|ent_mo|36.757|-90.39289|17266
+Bristol|city|VA|ent_va|36.59649|-82.18847|17141
+Huntington|city|IN|ent_in|40.8831|-85.49748|17095
+Beckley|city|WV|ent_wv|37.77817|-81.18816|17056
+Fayetteville|city|GA|ent_ga|33.44873|-84.45493|16990
+Pendleton|city|OR|ent_or|45.67207|-118.7886|16881
+Clarksdale|city|MS|ent_ms|34.20011|-90.57093|16847
+Norwalk|city|OH|ent_oh|41.24255|-82.61573|16827
+Springfield|city|TN|ent_tn|36.50921|-86.885|16808
+Dyersburg|city|TN|ent_tn|36.03452|-89.38563|16781
+Defiance|city|OH|ent_oh|41.28449|-84.35578|16776
+Chalmette|city|LA|ent_la|29.94296|-89.96537|16751
+Tifton|city|GA|ent_ga|31.45046|-83.5085|16725
+Morganton|city|NC|ent_nc|35.74541|-81.68482|16692
+Danville|city|KY|ent_ky|37.64563|-84.77217|16690
+Easton|city|MD|ent_md|38.77428|-76.07633|16617
+Tahlequah|city|OK|ent_ok|35.91537|-94.96996|16598
+Opelousas|city|LA|ent_la|30.53353|-92.08151|16591
+Brenham|city|TX|ent_tx|30.16688|-96.39774|16579
+Sevierville|city|TN|ent_tn|35.86815|-83.56184|16490
+Chickasha|city|OK|ent_ok|35.05257|-97.93643|16488
+Uvalde|city|TX|ent_tx|29.20968|-99.78617|16476
+Stuart|city|FL|ent_fl|27.19755|-80.25283|16462
+Red Wing|city|MN|ent_mn|44.56247|-92.5338|16445
+Mount Clemens|city|MI|ent_mi|42.59726|-82.87798|16400
+Vero Beach|city|FL|ent_fl|27.63864|-80.39727|16358
+Calhoun|city|GA|ent_ga|34.50259|-84.95105|16309
+Fremont|city|OH|ent_oh|41.35033|-83.12186|16297
+Gainesville|city|TX|ent_tx|33.62594|-97.13335|16292
+Oroville|city|CA|ent_ca|39.51394|-121.55776|16260
+Laconia|city|NH|ent_nh|43.52785|-71.47035|16227
+Dublin|city|GA|ent_ga|32.54044|-82.90375|16197
+Brunswick|city|GA|ent_ga|31.15013|-81.49147|16157
+Clarksburg|city|WV|ent_wv|39.28065|-80.34453|16152
+Sulphur Springs|city|TX|ent_tx|33.13845|-95.60107|16098
+Frankfort|city|IN|ent_in|40.27948|-86.51084|16060
+Mount Pleasant|city|TX|ent_tx|33.15679|-94.96827|16051
+Americus|city|GA|ent_ga|32.07239|-84.23269|16028
+Buffalo|city|MN|ent_mn|45.17191|-93.87469|16026
+Crawfordsville|city|IN|ent_in|40.04115|-86.87445|16024
+Albemarle|city|NC|ent_nc|35.35014|-80.20006|16003
+Burlington|city|KY|ent_ky|39.02756|-84.72411|15926
+Ukiah|city|CA|ent_ca|39.15017|-123.20778|15917
+Lebanon|city|IN|ent_in|40.04837|-86.46917|15892
+Clayton|city|MO|ent_mo|38.64255|-90.32373|15884
+Conyers|city|GA|ent_ga|33.66761|-84.01769|15875
+Rutland|city|VT|ent_vt|43.61062|-72.97261|15824
+Elkton|city|MD|ent_md|39.60678|-75.83327|15782
+Manassas Park|city|VA|ent_va|38.784|-77.46971|15726
+Gatesville|city|TX|ent_tx|31.43516|-97.74391|15724
+Great Bend|city|KS|ent_ks|38.36446|-98.76481|15717
+Talladega|city|AL|ent_al|33.43594|-86.1058|15709
+Mitchell|city|SD|ent_sd|43.70943|-98.0298|15669
+Laurinburg|city|NC|ent_nc|34.77405|-79.46282|15507
+Hernando|city|MS|ent_ms|34.82399|-89.9937|15503
+Indianola|city|IA|ent_ia|41.35805|-93.55744|15467
+Perry|city|GA|ent_ga|32.45821|-83.73157|15457
+Jasper|city|IN|ent_in|38.39144|-86.93111|15451
+Winder|city|GA|ent_ga|33.99261|-83.72017|15447
+Greenwood|city|MS|ent_ms|33.51623|-90.17953|15431
+Tavares|city|FL|ent_fl|28.80416|-81.72563|15430
+Jamestown|city|ND|ent_nd|46.91054|-98.70844|15422
+Newport|city|KY|ent_ky|39.09145|-84.49578|15354
+Cullman|city|AL|ent_al|34.17482|-86.84361|15350
+The Dalles|city|OR|ent_or|45.59456|-121.17868|15340
+Los Lunas|city|NM|ent_nm|34.80617|-106.73336|15336
+Dixon|city|IL|ent_il|41.83892|-89.47955|15319
+Wailuku|city|HI|ent_hi|20.89133|-156.50604|15313
+Henderson|city|NC|ent_nc|36.32959|-78.39916|15271
+Shelbyville|city|KY|ent_ky|38.21201|-85.22357|15253
+Susanville|city|CA|ent_ca|40.41628|-120.65301|15247
+Traverse City|city|MI|ent_mi|44.76306|-85.62063|15218
+Natchez|city|MS|ent_ms|31.56017|-91.40329|15128
+Newton|city|IA|ent_ia|41.69971|-93.04798|15125
+Greeneville|city|TN|ent_tn|36.16316|-82.83099|15094
+Front Royal|city|VA|ent_va|38.91817|-78.19444|15070
+Williamsburg|city|VA|ent_va|37.2707|-76.70746|15052
+Hereford|city|TX|ent_tx|34.81521|-102.39932|15021
+Batavia|city|NY|ent_ny|42.99812|-78.18752|15010
+Dumas|city|TX|ent_tx|35.86559|-101.97324|15001
+Canyon|city|TX|ent_tx|34.98033|-101.9188|14887
+Jackson|city|MO|ent_mo|37.38227|-89.66621|14869
+Corinth|city|MS|ent_ms|34.93425|-88.52227|14866
+Scottsboro|city|AL|ent_al|34.67231|-86.03415|14722
+Ozark|city|AL|ent_al|31.45906|-85.64049|14719
+Lebanon|city|MO|ent_mo|37.6806|-92.66379|14688
+Forrest City|city|AR|ent_ar|35.00815|-90.78983|14672
+Graham|city|NC|ent_nc|36.06903|-79.40058|14647
+Bemidji|city|MN|ent_mn|47.47356|-94.88028|14594
+Bloomsburg|city|PA|ent_pa|41.0037|-76.45495|14585
+Thibodaux|city|LA|ent_la|29.79576|-90.82287|14584
+Yankton|city|SD|ent_sd|42.87111|-97.39728|14557
+Deming|city|NM|ent_nm|32.2687|-107.75864|14522
+Greensburg|city|PA|ent_pa|40.30146|-79.53893|14495
+Warsaw|city|IN|ent_in|41.2381|-85.85305|14472
+Glasgow|city|KY|ent_ky|36.99588|-85.91192|14470
+Rio Grande City|city|TX|ent_tx|26.37979|-98.8203|14404
+Moultrie|city|GA|ent_ga|31.17991|-83.78906|14377
+Morris|city|IL|ent_il|41.35725|-88.42118|14363
+Carthage|city|MO|ent_mo|37.17645|-94.31022|14319
+Fort Payne|city|AL|ent_al|34.44425|-85.71969|14150
+Red Bluff|city|CA|ent_ca|40.17849|-122.23583|14131
+Sterling|city|CO|ent_co|40.62554|-103.20771|14104
+Indiana|city|PA|ent_pa|40.62146|-79.15253|14100
+Pierre|city|SD|ent_sd|44.36832|-100.35097|14091
+Jasper|city|AL|ent_al|33.83122|-87.27751|14071
+Waycross|city|GA|ent_ga|31.21368|-82.3557|14053
+Chippewa Falls|city|WI|ent_wi|44.93691|-91.39293|14047
+Washington Court House|city|OH|ent_oh|39.53645|-83.43908|14019
+Lincoln|city|IL|ent_il|40.14838|-89.36482|13966
+Covington|city|GA|ent_ga|33.59678|-83.86018|13916
+Levelland|city|TX|ent_tx|33.58732|-102.37796|13914
+Marietta|city|OH|ent_oh|39.41535|-81.45484|13900
+Falls Church|city|VA|ent_va|38.88233|-77.17109|13892
+Circleville|city|OH|ent_oh|39.60062|-82.94601|13857
+Sault Ste. Marie|city|MI|ent_mi|46.4953|-84.34532|13827
+Andrews|city|TX|ent_tx|32.31872|-102.54572|13816
+Hendersonville|city|NC|ent_nc|35.31873|-82.46095|13814
+Pottsville|city|PA|ent_pa|40.68565|-76.1955|13802
+Auburn|city|CA|ent_ca|38.89657|-121.07689|13776
+Elizabethton|city|TN|ent_tn|36.34872|-82.21069|13772
+McMinnville|city|TN|ent_tn|35.6834|-85.76998|13759
+Mountain Home|city|ID|ent_id|43.13295|-115.6912|13730
+Athens|city|TN|ent_tn|35.44285|-84.59299|13688
+Canton|city|MS|ent_ms|32.61264|-90.03675|13676
+Boerne|city|TX|ent_tx|29.79466|-98.73197|13674
+Marshall|city|MN|ent_mn|44.4469|-95.78835|13652
+Martinsville|city|VA|ent_va|36.69153|-79.87254|13645
+Monroe|city|GA|ent_ga|33.79484|-83.71323|13641
+Port Orchard|city|WA|ent_wa|47.54037|-122.63625|13607
+Hudson|city|WI|ent_wi|44.97469|-92.75687|13566
+Henderson|city|TX|ent_tx|32.15322|-94.79938|13529
+Washington|city|PA|ent_pa|40.17396|-80.24617|13497
+Orangeburg|city|SC|ent_sc|33.49182|-80.85565|13460
+Lockhart|city|TX|ent_tx|29.88494|-97.67|13446
+Brainerd|city|MN|ent_mn|46.35802|-94.20083|13371
+Bedford|city|IN|ent_in|38.86116|-86.48721|13347
+New Ulm|city|MN|ent_mn|44.31246|-94.46053|13327
+Huron|city|SD|ent_sd|44.36332|-98.21426|13313
+Beaufort|city|SC|ent_sc|32.4317|-80.66993|13306
+Riverhead|city|NY|ent_ny|40.91704|-72.66204|13299
+Butler|city|PA|ent_pa|40.86118|-79.89533|13289
+Fergus Falls|city|MN|ent_mn|46.28302|-96.07756|13281
+Beeville|city|TX|ent_tx|28.40095|-97.74974|13277
+McPherson|city|KS|ent_ks|38.37084|-97.66421|13144
+Crowley|city|LA|ent_la|30.21409|-92.37458|13144
+Harrison|city|AR|ent_ar|36.22979|-93.10768|13138
+Bellefontaine|city|OH|ent_oh|40.36116|-83.75966|13117
+Bardstown|city|KY|ent_ky|37.80923|-85.4669|13091
+Worthington|city|MN|ent_mn|43.61996|-95.5964|13090
+La Grande|city|OR|ent_or|45.32458|-118.08772|13074
+Meadville|city|PA|ent_pa|41.64144|-80.15145|13061
+Marshall|city|MO|ent_mo|39.12308|-93.19687|13039
+Newton|city|NC|ent_nc|35.66986|-81.22147|13035
+Connersville|city|IN|ent_in|39.64116|-85.14107|13010
+Greenville|city|OH|ent_oh|40.10283|-84.63301|13006
+Woodward|city|OK|ent_ok|36.43365|-99.39039|12993
+Auburn|city|IN|ent_in|41.36699|-85.05886|12979
+Saint Augustine|city|FL|ent_fl|29.89469|-81.31452|12975
+Fulton|city|MO|ent_mo|38.84671|-91.94796|12939
+El Dorado|city|KS|ent_ks|37.81724|-96.86225|12931
+Grenada|city|MS|ent_ms|33.769|-89.80842|12900
+Saint Helens|city|OR|ent_or|45.864|-122.80649|12883
+Athens|city|TX|ent_tx|32.20487|-95.85552|12788
+Boone|city|IA|ent_ia|42.0597|-93.88023|12692
+Minden|city|LA|ent_la|32.61543|-93.28684|12690
+Effingham|city|IL|ent_il|39.12004|-88.54338|12604
+Gaffney|city|SC|ent_sc|35.07179|-81.64982|12566
+Cambridge|city|MD|ent_md|38.56317|-76.07883|12507
+Bainbridge|city|GA|ent_ga|30.9038|-84.57547|12507
+Green River|city|WY|ent_wy|41.52858|-109.46625|12465
+Wilmington|city|OH|ent_oh|39.44534|-83.82854|12449
+Steamboat Springs|city|CO|ent_co|40.48498|-106.83172|12435
+Abbeville|city|LA|ent_la|29.97465|-92.13429|12434
+Port Lavaca|city|TX|ent_tx|28.615|-96.62609|12416
+Brookhaven|city|MS|ent_ms|31.57906|-90.44065|12414
+Beatrice|city|NE|ent_ne|40.26806|-96.74697|12388
+Ottawa|city|KS|ent_ks|38.61557|-95.26775|12387
+Fernandina Beach|city|FL|ent_fl|30.66968|-81.46259|12339
+Escanaba|city|MI|ent_mi|45.74525|-87.06458|12334
+Mountain Home|city|AR|ent_ar|36.33534|-92.38516|12330
+Marion|city|AR|ent_ar|35.21453|-90.19648|12292
+West Plains|city|MO|ent_mo|36.72812|-91.85237|12285
+Okmulgee|city|OK|ent_ok|35.62344|-95.96055|12244
+Marysville|city|CA|ent_ca|39.14573|-121.59135|12216
+Winfield|city|KS|ent_ks|37.23975|-96.99559|12204
+Somerville|city|NJ|ent_nj|40.57427|-74.60988|12202
+Lake City|city|FL|ent_fl|30.18968|-82.63929|12161
+Neosho|city|MO|ent_mo|36.86896|-94.368|12156
+Baraboo|city|WI|ent_wi|43.47109|-89.74429|12155
+Richmond|city|TX|ent_tx|29.58218|-95.76078|12138
+Evanston|city|WY|ent_wy|41.26828|-110.96324|12133
+Washington|city|IN|ent_in|38.65922|-87.17279|12078
+Poquoson|city|VA|ent_va|37.12237|-76.34578|12059
+Madison|city|IN|ent_in|38.73589|-85.37996|12040
+Smithfield|city|NC|ent_nc|35.50849|-78.33945|12022
+Los Alamos|city|NM|ent_nm|35.88808|-106.30697|12019
+Portales|city|NM|ent_nm|34.18619|-103.3344|11995
+Shepherdsville|city|KY|ent_ky|37.9884|-85.71579|11967
+Freehold|city|NJ|ent_nj|40.26011|-74.27376|11959
+Guymon|city|OK|ent_ok|36.6828|-101.48155|11921
+Bucyrus|city|OH|ent_oh|40.80839|-82.97546|11916
+Kelso|city|WA|ent_wa|46.14678|-122.90844|11901
+Maryville|city|MO|ent_mo|40.3461|-94.87247|11879
+Alexandria|city|MN|ent_mn|45.88524|-95.37754|11843
+Greensburg|city|IN|ent_in|39.33727|-85.48358|11819
+Lovington|city|NM|ent_nm|32.94401|-103.34855|11800
+Pontiac|city|IL|ent_il|40.88087|-88.62978|11794
+Snyder|city|TX|ent_tx|32.71789|-100.91762|11768
+Blackfoot|city|ID|ent_id|43.19047|-112.34498|11740
+Douglas|city|GA|ent_ga|31.50881|-82.84987|11718
+Martinsville|city|IN|ent_in|39.42783|-86.42833|11690
+Magnolia|city|AR|ent_ar|33.26707|-93.23933|11669
+Mexico|city|MO|ent_mo|39.16976|-91.88295|11660
+Ravenna|city|OH|ent_oh|41.15756|-81.24205|11619
+Oskaloosa|city|IA|ent_ia|41.29639|-92.64436|11607
+Port Washington|city|WI|ent_wi|43.38722|-87.87564|11576
+Urbana|city|OH|ent_oh|40.10839|-83.75243|11547
+Troy|city|MO|ent_mo|38.97949|-90.9807|11542
+Lewisburg|city|TN|ent_tn|35.44924|-86.78889|11480
+Somerset|city|KY|ent_ky|37.09202|-84.60411|11439
+Crossville|city|TN|ent_tn|35.94896|-85.0269|11411
+Ionia|city|MI|ent_mi|42.98725|-85.07112|11372
+Camden|city|AR|ent_ar|33.58456|-92.83433|11347
+Fort Morgan|city|CO|ent_co|40.25026|-103.79995|11319
+Guthrie|city|OK|ent_ok|35.87894|-97.42532|11270
+Cusseta|city|GA|ent_ga|32.30543|-84.7727|11267
+Yazoo City|city|MS|ent_ms|32.85513|-90.40565|11245
+Campbellsville|city|KY|ent_ky|37.3434|-85.34191|11237
+Spencer|city|IA|ent_ia|43.14136|-95.14444|11212
+Vernal|city|UT|ent_ut|40.45552|-109.52875|11200
+Saint Peter|city|MN|ent_mn|44.32358|-93.95801|11196
+Jerome|city|ID|ent_id|42.72407|-114.51865|11184
+Tarboro|city|NC|ent_nc|35.89682|-77.5358|11164
+Raymondville|city|TX|ent_tx|26.48146|-97.78305|11139
+Grand Rapids|city|MN|ent_mn|47.23717|-93.53021|11127
+Coshocton|city|OH|ent_oh|40.27202|-81.85958|11121
+Lawrenceburg|city|KY|ent_ky|38.0373|-84.89662|11103
+Fredericksburg|city|TX|ent_tx|30.2752|-98.87198|11094
+Grand Haven|city|MI|ent_mi|43.06307|-86.22839|11062
+Peru|city|IN|ent_in|40.75365|-86.06888|11060
+Alabama|state|AL|ent_usa|||Alabama
+Alaska|state|AK|ent_usa|||Alaska
+Arizona|state|AZ|ent_usa|||Arizona
+Arkansas|state|AR|ent_usa|||Arkansas
+California|state|CA|ent_usa|||California
+Colorado|state|CO|ent_usa|||Colorado
+Connecticut|state|CT|ent_usa|||Connecticut
+Delaware|state|DE|ent_usa|||Delaware
+Florida|state|FL|ent_usa|||Florida
+Georgia|state|GA|ent_usa|||Georgia
+Hawaii|state|HI|ent_usa|||Hawaii
+Idaho|state|ID|ent_usa|||Idaho
+Illinois|state|IL|ent_usa|||Illinois
+Indiana|state|IN|ent_usa|||Indiana
+Iowa|state|IA|ent_usa|||Iowa
+Kansas|state|KS|ent_usa|||Kansas
+Kentucky|state|KY|ent_usa|||Kentucky
+Louisiana|state|LA|ent_usa|||Louisiana
+Maine|state|ME|ent_usa|||Maine
+Maryland|state|MD|ent_usa|||Maryland
+Massachusetts|state|MA|ent_usa|||Massachusetts
+Michigan|state|MI|ent_usa|||Michigan
+Minnesota|state|MN|ent_usa|||Minnesota
+Mississippi|state|MS|ent_usa|||Mississippi
+Missouri|state|MO|ent_usa|||Missouri
+Montana|state|MT|ent_usa|||Montana
+Nebraska|state|NE|ent_usa|||Nebraska
+Nevada|state|NV|ent_usa|||Nevada
+New Hampshire|state|NH|ent_usa|||New Hampshire
+New Jersey|state|NJ|ent_usa|||New Jersey
+New Mexico|state|NM|ent_usa|||New Mexico
+New York|state|NY|ent_usa|||New York
+North Carolina|state|NC|ent_usa|||North Carolina
+North Dakota|state|ND|ent_usa|||North Dakota
+Ohio|state|OH|ent_usa|||Ohio
+Oklahoma|state|OK|ent_usa|||Oklahoma
+Oregon|state|OR|ent_usa|||Oregon
+Pennsylvania|state|PA|ent_usa|||Pennsylvania
+Rhode Island|state|RI|ent_usa|||Rhode Island
+South Carolina|state|SC|ent_usa|||South Carolina
+South Dakota|state|SD|ent_usa|||South Dakota
+Tennessee|state|TN|ent_usa|||Tennessee
+Texas|state|TX|ent_usa|||Texas
+Utah|state|UT|ent_usa|||Utah
+Vermont|state|VT|ent_usa|||Vermont
+Virginia|state|VA|ent_usa|||Virginia
+Washington|state|WA|ent_usa|||Washington
+West Virginia|state|WV|ent_usa|||West Virginia
+Wisconsin|state|WI|ent_usa|||Wisconsin
+Wyoming|state|WY|ent_usa|||Wyoming

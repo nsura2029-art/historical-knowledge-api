@@ -1,0 +1,50 @@
+Alabama|state|AL|ent_usa|||Alabama
+Alaska|state|AK|ent_usa|||Alaska
+Arizona|state|AZ|ent_usa|||Arizona
+Arkansas|state|AR|ent_usa|||Arkansas
+California|state|CA|ent_usa|||California
+Colorado|state|CO|ent_usa|||Colorado
+Connecticut|state|CT|ent_usa|||Connecticut
+Delaware|state|DE|ent_usa|||Delaware
+Florida|state|FL|ent_usa|||Florida
+Georgia|state|GA|ent_usa|||Georgia
+Hawaii|state|HI|ent_usa|||Hawaii
+Idaho|state|ID|ent_usa|||Idaho
+Illinois|state|IL|ent_usa|||Illinois
+Indiana|state|IN|ent_usa|||Indiana
+Iowa|state|IA|ent_usa|||Iowa
+Kansas|state|KS|ent_usa|||Kansas
+Kentucky|state|KY|ent_usa|||Kentucky
+Louisiana|state|LA|ent_usa|||Louisiana
+Maine|state|ME|ent_usa|||Maine
+Maryland|state|MD|ent_usa|||Maryland
+Massachusetts|state|MA|ent_usa|||Massachusetts
+Michigan|state|MI|ent_usa|||Michigan
+Minnesota|state|MN|ent_usa|||Minnesota
+Mississippi|state|MS|ent_usa|||Mississippi
+Missouri|state|MO|ent_usa|||Missouri
+Montana|state|MT|ent_usa|||Montana
+Nebraska|state|NE|ent_usa|||Nebraska
+Nevada|state|NV|ent_usa|||Nevada
+New Hampshire|state|NH|ent_usa|||New Hampshire
+New Jersey|state|NJ|ent_usa|||New Jersey
+New Mexico|state|NM|ent_usa|||New Mexico
+New York|state|NY|ent_usa|||New York
+North Carolina|state|NC|ent_usa|||North Carolina
+North Dakota|state|ND|ent_usa|||North Dakota
+Ohio|state|OH|ent_usa|||Ohio
+Oklahoma|state|OK|ent_usa|||Oklahoma
+Oregon|state|OR|ent_usa|||Oregon
+Pennsylvania|state|PA|ent_usa|||Pennsylvania
+Rhode Island|state|RI|ent_usa|||Rhode Island
+South Carolina|state|SC|ent_usa|||South Carolina
+South Dakota|state|SD|ent_usa|||South Dakota
+Tennessee|state|TN|ent_usa|||Tennessee
+Texas|state|TX|ent_usa|||Texas
+Utah|state|UT|ent_usa|||Utah
+Vermont|state|VT|ent_usa|||Vermont
+Virginia|state|VA|ent_usa|||Virginia
+Washington|state|WA|ent_usa|||Washington
+West Virginia|state|WV|ent_usa|||West Virginia
+Wisconsin|state|WI|ent_usa|||Wisconsin
+Wyoming|state|WY|ent_usa|||Wyoming

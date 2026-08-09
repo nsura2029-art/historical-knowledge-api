@@ -1,0 +1,128 @@
+West Point|city|MS|ent_ms|33.60762|-88.65033|10990
+Union|city|MO|ent_mo|38.45005|-91.00848|10957
+Cordele|city|GA|ent_ga|31.96351|-83.78239|10943
+Malvern|city|AR|ent_ar|34.36231|-92.81295|10928
+Storm Lake|city|IA|ent_ia|42.64109|-95.20972|10910
+Lincolnton|city|NC|ent_nc|35.47375|-81.25453|10900
+Ironton|city|OH|ent_oh|38.53675|-82.68294|10900
+DeRidder|city|LA|ent_la|30.84631|-93.28905|10890
+Taylorville|city|IL|ent_il|39.54894|-89.29453|10873
+Coldwater|city|MI|ent_mi|41.94033|-85.00052|10844
+Sweetwater|city|TX|ent_tx|32.47095|-100.40594|10809
+Mount Holly|city|NJ|ent_nj|39.99289|-74.78766|10804
+Marinette|city|WI|ent_wi|45.09998|-87.63066|10799
+Van Wert|city|OH|ent_oh|40.86949|-84.58412|10798
+Monroe|city|WI|ent_wi|42.60112|-89.63845|10796
+Arkadelphia|city|AR|ent_ar|34.12093|-93.05378|10745
+Vermillion|city|SD|ent_sd|42.77944|-96.92921|10738
+Bolivar|city|MO|ent_mo|37.61448|-93.41047|10714
+Bastrop|city|LA|ent_la|32.77828|-91.91144|10713
+Atchison|city|KS|ent_ks|39.56305|-95.12164|10712
+Batesville|city|AR|ent_ar|35.7698|-91.64097|10668
+Kennett|city|MO|ent_mo|36.23618|-90.05565|10662
+Placerville|city|CA|ent_ca|38.72963|-120.79855|10650
+Vernon|city|TX|ent_tx|34.15536|-99.26628|10573
+Union City|city|TN|ent_tn|36.42423|-89.05701|10573
+Lawrenceburg|city|TN|ent_tn|35.2423|-87.33474|10569
+Manchester|city|TN|ent_tn|35.48174|-86.0886|10517
+Sebring|city|FL|ent_fl|27.49559|-81.44091|10497
+Rockport|city|TX|ent_tx|28.02077|-97.05601|10490
+Burley|city|ID|ent_id|42.53574|-113.79279|10436
+Canandaigua|city|NY|ent_ny|42.87423|-77.28804|10431
+Cambridge|city|OH|ent_oh|40.03118|-81.58846|10402
+Greencastle|city|IN|ent_in|39.64449|-86.86473|10401
+Big Rapids|city|MI|ent_mi|43.69808|-85.48366|10397
+Palatka|city|FL|ent_fl|29.64858|-81.63758|10390
+Celina|city|OH|ent_oh|40.54894|-84.57023|10387
+Portage|city|WI|ent_wi|43.53915|-89.46262|10382
+Wabash|city|IN|ent_in|40.79782|-85.82054|10381
+Cadillac|city|MI|ent_mi|44.25195|-85.40116|10373
+Newberry|city|SC|ent_sc|34.27458|-81.61872|10331
+Newport|city|OR|ent_or|44.63678|-124.05345|10268
+Waterloo|city|IL|ent_il|38.33589|-90.14983|10236
+Fairmont|city|MN|ent_mn|43.65218|-94.46108|10221
+Jefferson|city|GA|ent_ga|34.11705|-83.57239|10195
+Bel Air|city|MD|ent_md|39.53594|-76.34829|10190
+Jennings|city|LA|ent_la|30.22243|-92.65708|10180
+Alpena|city|MI|ent_mi|45.06168|-83.43275|10175
+Paris|city|TN|ent_tn|36.302|-88.32671|10150
+Mayfield|city|KY|ent_ky|36.74172|-88.63672|10080
+Bonham|city|TX|ent_tx|33.57733|-96.17831|10079
+Lexington|city|NE|ent_ne|40.78084|-99.7415|10075
+Waverly|city|IA|ent_ia|42.72581|-92.47546|10066
+London|city|OH|ent_oh|39.88645|-83.44825|10060
+Clinton|city|TN|ent_tn|36.10341|-84.13186|10049
+Plymouth|city|IN|ent_in|41.34366|-86.30973|10035
+Woodbury|city|NJ|ent_nj|39.83817|-75.15268|10020
+Bluffton|city|IN|ent_in|40.73866|-85.17164|10005
+Silver City|city|NM|ent_nm|32.77007|-108.28033|10004
+Uniontown|city|PA|ent_pa|39.90008|-79.71643|9990
+Harrisonville|city|MO|ent_mo|38.65334|-94.34884|9986
+Pearsall|city|TX|ent_tx|28.89219|-99.09503|9980
+Carroll|city|IA|ent_ia|42.06582|-94.86693|9968
+Indianola|city|MS|ent_ms|33.45095|-90.65509|9943
+Covington|city|LA|ent_la|30.47549|-90.10042|9928
+Glenwood Springs|city|CO|ent_co|39.55054|-107.32478|9906
+Warrenton|city|VA|ent_va|38.71345|-77.79527|9897
+Elkhorn|city|WI|ent_wi|42.67279|-88.54454|9895
+Fairfield|city|IA|ent_ia|41.00863|-91.96267|9892
+Hope|city|AR|ent_ar|33.66706|-93.59157|9891
+Brownsville|city|TN|ent_tn|35.59397|-89.26229|9876
+Moncks Corner|city|SC|ent_sc|33.19632|-80.01429|9873
+Paris|city|KY|ent_ky|38.2098|-84.25299|9870
+Russellville|city|AL|ent_al|34.50787|-87.72864|9847
+Shelton|city|WA|ent_wa|47.21509|-123.10071|9834
+Havre|city|MT|ent_mt|48.55|-109.68409|9834
+Wapakoneta|city|OH|ent_oh|40.56783|-84.19356|9823
+Monticello|city|AR|ent_ar|33.629|-91.79096|9820
+Alamosa|city|CO|ent_co|37.46945|-105.87002|9819
+Waynesville|city|NC|ent_nc|35.48871|-82.98875|9809
+Cody|city|WY|ent_wy|44.52634|-109.05653|9792
+Washington|city|NC|ent_nc|35.54655|-77.05217|9788
+Le Mars|city|IA|ent_ia|42.79416|-96.16558|9761
+Cairo|city|GA|ent_ga|30.87751|-84.20214|9752
+Baker City|city|OR|ent_or|44.77487|-117.83438|9752
+Cedartown|city|GA|ent_ga|34.01123|-85.25593|9750
+Brownfield|city|TX|ent_tx|33.1812|-102.27435|9736
+Safford|city|AZ|ent_az|32.83395|-109.70758|9683
+Sparta|city|WI|ent_wi|43.94413|-90.81291|9679
+Sunbury|city|PA|ent_pa|40.86259|-76.79441|9652
+Milton|city|FL|ent_fl|30.63241|-87.03969|9628
+Astoria|city|OR|ent_or|46.18788|-123.83125|9626
+Danville|city|IN|ent_in|39.7606|-86.52639|9614
+Lock Haven|city|PA|ent_pa|41.13701|-77.44693|9604
+Prineville|city|OR|ent_or|44.29985|-120.83447|9530
+Howell|city|MI|ent_mi|42.60726|-83.9294|9521
+Pecos|city|TX|ent_tx|31.42291|-103.49323|9517
+Chillicothe|city|MO|ent_mo|39.79529|-93.55244|9487
+Decatur|city|IN|ent_in|40.8306|-84.92913|9465
+Clarksville|city|AR|ent_ar|35.47147|-93.46657|9433
+Lamesa|city|TX|ent_tx|32.7376|-101.95099|9427
+Anaconda|city|MT|ent_mt|46.12854|-112.94226|9417
+Granbury|city|TX|ent_tx|32.44208|-97.7942|9386
+Port Townsend|city|WA|ent_wa|48.11742|-122.76071|9335
+Warren|city|PA|ent_pa|41.84395|-79.14504|9334
+Monmouth|city|IL|ent_il|40.91143|-90.64736|9291
+Bay Saint Louis|city|MS|ent_ms|30.30881|-89.33005|9260
+Perryton|city|TX|ent_tx|36.40003|-100.80265|9252
+Waseca|city|MN|ent_mn|44.07774|-93.50744|9241
+Grants|city|NM|ent_nm|35.1476|-107.85261|9239
+Merrill|city|WI|ent_wi|45.18052|-89.68346|9233
+Rockingham|city|NC|ent_nc|34.93932|-79.77395|9220
+Laurens|city|SC|ent_sc|34.49901|-82.01426|9166
+Versailles|city|KY|ent_ky|38.05258|-84.72995|9146
+Shawano|city|WI|ent_wi|44.78221|-88.60899|9128
+La Plata|city|MD|ent_md|38.52929|-76.97525|9125
+Hondo|city|TX|ent_tx|29.34746|-99.14142|9119
+Bay Minette|city|AL|ent_al|30.88296|-87.77305|9118
+Marianna|city|FL|ent_fl|30.77436|-85.22687|9100
+Andalusia|city|AL|ent_al|31.30808|-86.48243|9063
+Georgetown|city|SC|ent_sc|33.37683|-79.2945|9062
+Charlotte|city|MI|ent_mi|42.56365|-84.83582|9054
+Rawlins|city|WY|ent_wy|41.79107|-107.23866|9040
+Liberty|city|TX|ent_tx|30.05799|-94.79548|9039
+Covington|city|TN|ent_tn|35.56425|-89.64647|9036
+Thomaston|city|GA|ent_ga|32.88819|-84.32659|9032
+Fitzgerald|city|GA|ent_ga|31.71491|-83.25265|9013
+Olney|city|IL|ent_il|38.73088|-88.08532|9005
+Detroit Lakes|city|MN|ent_mn|46.81718|-95.84533|9002

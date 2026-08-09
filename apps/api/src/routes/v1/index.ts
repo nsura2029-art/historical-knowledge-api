@@ -26,6 +26,7 @@ import { biographyRouter } from './biography.js';
 import { galleryRouter } from './gallery.js';
 import { tagsRouter } from './tags.js';
 import { eventsRouter } from './events.js';
+import { placesRouter } from './places.js';
 
 export const v1Router = new OpenAPIHono<AppEnv>();
 
@@ -51,3 +52,4 @@ v1Router.route('/', biographyRouter);
 v1Router.route('/', galleryRouter);
 v1Router.route('/', tagsRouter);
 v1Router.route('/', eventsRouter);
+v1Router.route('/', placesRouter);

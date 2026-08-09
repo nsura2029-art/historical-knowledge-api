@@ -1,0 +1,4 @@
+# US places to add for KP-places-1000
+# Format: canonical_name|place_type|state_code|parent_place|lat|lon|population
+# place_type: city, state, landmark, park, region
+# parent_place: parent entity_id (e.g. ent_california for cities in CA)
