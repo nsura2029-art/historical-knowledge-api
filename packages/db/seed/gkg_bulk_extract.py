@@ -57,8 +57,8 @@ def enumerate_gkg_urls(days=7, end_date=None):
     return urls
 
 
-def load_subject_names():
-    """Load subject slug → canonical_name + entity_id map."""
+def load_subject_names(top_n=None):
+    """Load subject slug → canonical_name + entity_id map (and aliases from entity_name)."""
     script_dir = os.path.dirname(os.path.abspath(__file__))
     api_dir = os.path.normpath(os.path.join(script_dir, "..", "..", "..", "apps", "api"))
     if not os.path.isdir(api_dir):
@@ -70,35 +70,66 @@ def load_subject_names():
     cmd = ["wrangler", "d1", "execute", "historical-knowledge-api-d1", "--remote",
            "--env", "dev",
            "--command",
-           "SELECT e.id, e.slug, e.canonical_name, e.type FROM entity e WHERE e.type IN ('person','place') AND e.popularity_score >= 50 ORDER BY e.popularity_score DESC, e.canonical_name LIMIT 200",
+           "SELECT e.id, e.slug, e.canonical_name, e.type FROM entity e WHERE e.type IN ('person','place') AND e.popularity_score >= 50 ORDER BY e.popularity_score DESC, e.canonical_name" + (f" LIMIT {int(top_n)}" if top_n else ""),
            "--json"]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=60, cwd=api_dir, env=env)
     if r.returncode != 0:
         return []
     idx = r.stdout.find("[")
     parsed = json.loads(r.stdout[idx:])
-    return parsed[0].get("results", [])
+    subjects = parsed[0].get("results", [])
+
+    # Load aliases from entity_name
+    cmd2 = ["wrangler", "d1", "execute", "historical-knowledge-api-d1", "--remote",
+            "--env", "dev",
+            "--command",
+            "SELECT en.entity_id, en.name_value, en.name_type FROM entity_name en WHERE en.name_type IN ('birth','stage','initials','married','common_misspelling')",
+            "--json"]
+    r2 = subprocess.run(cmd2, capture_output=True, text=True, timeout=60, cwd=api_dir, env=env)
+    if r2.returncode == 0:
+        idx2 = r2.stdout.find("[")
+        parsed2 = json.loads(r2.stdout[idx2:])
+        aliases = parsed2[0].get("results", [])
+        # Build entity_id → list of alias names
+        alias_map = {}
+        for a in aliases:
+            alias_map.setdefault(a["entity_id"], []).append(a["name_value"])
+        for s in subjects:
+            s["_aliases"] = [a for a in alias_map.get(s["id"], []) if a]
+    else:
+        for s in subjects:
+            s["_aliases"] = []
+
+    return subjects
 
 
 def main():
     out_path = sys.argv[1] if len(sys.argv) > 1 else "packages/db/migrations/0043_gkg_bulk_events.sql"
     days = int(sys.argv[2]) if len(sys.argv) > 2 else 7
-    top_n = int(sys.argv[3]) if len(sys.argv) > 3 else 200
-    per_day_cap = int(sys.argv[4]) if len(sys.argv) > 4 else 5
+    top_n = sys.argv[3] if len(sys.argv) > 3 else "all"  # "all" or number
+    per_day_cap = int(sys.argv[4]) if len(sys.argv) > 4 else 3
 
-    print(f"[gkg-bulk] loading top {top_n} subjects...", file=sys.stderr)
-    subjects = load_subject_names()
+    if top_n.lower() == "all":
+        top_n_int = None
+    else:
+        top_n_int = int(top_n)
+
+    print(f"[gkg-bulk] loading subjects (top_n={top_n})...", file=sys.stderr)
+    subjects = load_subject_names(top_n=top_n_int)
     if not subjects:
         print("[gkg-bulk] no subjects loaded", file=sys.stderr)
         return 1
     print(f"[gkg-bulk] loaded {len(subjects)} subjects", file=sys.stderr)
 
-    # Build name → id map (case-insensitive)
+    # Build name → id map (case-insensitive), with aliases
     name_to_id = {}
     for s in subjects:
-        n = s["canonical_name"].lower()
-        name_to_id[n] = s
-    print(f"[gkg-bulk] {len(name_to_id)} unique names to match", file=sys.stderr)
+        names = [s["canonical_name"]] + (s.get("_aliases") or [])
+        for n in names:
+            n_lower = n.lower().strip()
+            if n_lower and n_lower not in name_to_id:
+                name_to_id[n_lower] = s
+    print(f"[gkg-bulk] {len(name_to_id)} unique names to match (incl. aliases)", file=sys.stderr)
 
     # Enumerate URLs
     urls = enumerate_gkg_urls(days=days)
@@ -107,10 +138,11 @@ def main():
     # Open output file
     out_f = open(out_path, "w")
     out_f.write(f"""-- ========================================
--- Migration 0043: GKG bulk events for top {top_n} subjects
+-- Migration 0043: GKG bulk events for {len(subjects)} subjects
 -- Generated: {time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime())}
 -- Time range: last {days} days, capped at {per_day_cap} events per subject per day
 -- Source: GDELT 2.0 GKG raw files (no rate limit)
+-- Aliases: entity_name (birth, stage, initials, married, common_misspelling)
 -- ========================================
 
 """)
@@ -118,8 +150,9 @@ def main():
 
     total_events = 0
     n_articles = 0
-    # (slug, date_iso) → count, to cap per day
     per_day_counter = {}
+    # URL → events emitted (dedup across files)
+    seen_urls = set()
 
     for i, (ts, url) in enumerate(urls):
         if i % 24 == 0:
@@ -141,7 +174,6 @@ def main():
                                     continue
 
                                 # GDELT 2.0 GKG columns are variable-width.
-                                # Find V1Persons heuristically: semicolon-delimited, all lowercase, no commas, no '#'.
                                 v1persons = ""
                                 for c in cols[5:20]:
                                     if not c or ";" not in c:
@@ -159,10 +191,9 @@ def main():
                                 if not v1persons:
                                     continue
 
-                                # Find matching subjects
                                 persons_in_article = set(p.strip().lower() for p in v1persons.split(";") if p.strip())
 
-                                # Try to extract PAGE_TITLE (last column if formatted as <PAGE_TITLE>...</PAGE_TITLE>)
+                                # Extract PAGE_TITLE
                                 page_title = ""
                                 for c in reversed(cols):
                                     if c.startswith("<PAGE_TITLE>") and c.endswith("</PAGE_TITLE>"):
@@ -190,7 +221,13 @@ def main():
                                     if per_day_counter[cap_key] > per_day_cap:
                                         continue
 
-                                    # Title: prefer PAGE_TITLE (real article title) when present
+                                    # URL dedup (avoid same article 5+ times across days)
+                                    url_key = (s['id'], title_url)
+                                    if url_key in seen_urls:
+                                        continue
+                                    seen_urls.add(url_key)
+
+                                    # Title: prefer PAGE_TITLE
                                     if page_title:
                                         title = f"{page_title} ({s['canonical_name']} mentioned)"
                                     else:
@@ -205,7 +242,7 @@ def main():
                                     out_f.write(f"""INSERT OR IGNORE INTO entity_event
   (id, entity_id, event_date, event_year, event_type, category, title, body, source_id, source_section, confidence, display_order, lang, date_precision, fetched_at, last_verified_at)
 VALUES
-  ('{ev_id}', '{s['id']}', '{date_iso}', {year}, 'news', 'news',
+  ('{ev_id}', '{s['id']}', '{date_iso}', {year}, 'public_appearance', 'news',
    '{title_safe}', '{body_safe}', 'src_gdelt',
    '{url_safe}', 0.65, {n_articles}, 'en', 'DAY', unixepoch(), unixepoch());
 """)
