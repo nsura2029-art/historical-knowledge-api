@@ -1,0 +1,4421 @@
+[
+  {
+    "ticker": "",
+    "name": "3M",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Conglomerates",
+    "hq_city": "Saint Paul",
+    "hq_state": "Minnesota",
+    "founded": 1902
+  },
+  {
+    "ticker": "",
+    "name": "A. O. Smith",
+    "sector": "Industrials",
+    "sub_industry": "Building Products",
+    "hq_city": "Milwaukee",
+    "hq_state": "Wisconsin",
+    "founded": 1916
+  },
+  {
+    "ticker": "",
+    "name": "Abbott Laboratories",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "North Chicago",
+    "hq_state": "Illinois",
+    "founded": 1888
+  },
+  {
+    "ticker": "",
+    "name": "AbbVie",
+    "sector": "Health Care",
+    "sub_industry": "Biotechnology",
+    "hq_city": "North Chicago",
+    "hq_state": "Illinois",
+    "founded": 2013
+  },
+  {
+    "ticker": "",
+    "name": "Accenture",
+    "sector": "Information Technology",
+    "sub_industry": "IT Consulting & Other Services",
+    "hq_city": "Dublin",
+    "hq_state": "Ireland",
+    "founded": 1989
+  },
+  {
+    "ticker": "",
+    "name": "Adobe Inc.",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "San Jose",
+    "hq_state": "California",
+    "founded": 1982
+  },
+  {
+    "ticker": "",
+    "name": "Advanced Micro Devices",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Santa Clara",
+    "hq_state": "California",
+    "founded": 1969
+  },
+  {
+    "ticker": "",
+    "name": "AES Corporation",
+    "sector": "Utilities",
+    "sub_industry": "Independent Power Producers & Energy Traders",
+    "hq_city": "Arlington",
+    "hq_state": "Virginia",
+    "founded": 1981
+  },
+  {
+    "ticker": "",
+    "name": "Aflac",
+    "sector": "Financials",
+    "sub_industry": "Life & Health Insurance",
+    "hq_city": "Columbus",
+    "hq_state": "Georgia",
+    "founded": 1955
+  },
+  {
+    "ticker": "",
+    "name": "Agilent Technologies",
+    "sector": "Health Care",
+    "sub_industry": "Life Sciences Tools & Services",
+    "hq_city": "Santa Clara",
+    "hq_state": "California",
+    "founded": 1999
+  },
+  {
+    "ticker": "",
+    "name": "Air Products",
+    "sector": "Materials",
+    "sub_industry": "Industrial Gases",
+    "hq_city": "Upper Macungie Township",
+    "hq_state": "Pennsylvania",
+    "founded": 1940
+  },
+  {
+    "ticker": "",
+    "name": "Airbnb",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Hotels, Resorts & Cruise Lines",
+    "hq_city": "San Francisco",
+    "hq_state": "California",
+    "founded": 2008
+  },
+  {
+    "ticker": "",
+    "name": "Akamai Technologies",
+    "sector": "Information Technology",
+    "sub_industry": "Internet Services & Infrastructure",
+    "hq_city": "Cambridge",
+    "hq_state": "Massachusetts",
+    "founded": 1998
+  },
+  {
+    "ticker": "",
+    "name": "Albemarle Corporation",
+    "sector": "Materials",
+    "sub_industry": "Specialty Chemicals",
+    "hq_city": "Charlotte",
+    "hq_state": "North Carolina",
+    "founded": 1994
+  },
+  {
+    "ticker": "",
+    "name": "Alexandria Real Estate Equities",
+    "sector": "Real Estate",
+    "sub_industry": "Office REITs",
+    "hq_city": "Pasadena",
+    "hq_state": "California",
+    "founded": 1994
+  },
+  {
+    "ticker": "",
+    "name": "Align Technology",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Supplies",
+    "hq_city": "Tempe",
+    "hq_state": "Arizona",
+    "founded": 1997
+  },
+  {
+    "ticker": "",
+    "name": "Allegion",
+    "sector": "Industrials",
+    "sub_industry": "Building Products",
+    "hq_city": "Dublin",
+    "hq_state": "Ireland",
+    "founded": 1908
+  },
+  {
+    "ticker": "",
+    "name": "Alliant Energy",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Madison",
+    "hq_state": "Wisconsin",
+    "founded": 1917
+  },
+  {
+    "ticker": "",
+    "name": "Allstate",
+    "sector": "Financials",
+    "sub_industry": "Property & Casualty Insurance",
+    "hq_city": "Northbrook",
+    "hq_state": "Illinois",
+    "founded": 1931
+  },
+  {
+    "ticker": "",
+    "name": "Altria",
+    "sector": "Consumer Staples",
+    "sub_industry": "Tobacco",
+    "hq_city": "Richmond",
+    "hq_state": "Virginia",
+    "founded": 1985
+  },
+  {
+    "ticker": "",
+    "name": "Amazon",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Broadline Retail",
+    "hq_city": "Seattle",
+    "hq_state": "Washington",
+    "founded": 1994
+  },
+  {
+    "ticker": "",
+    "name": "Amcor",
+    "sector": "Materials",
+    "sub_industry": "Paper & Plastic Packaging Products & Materials",
+    "hq_city": "Warmley, Bristol",
+    "hq_state": "United Kingdom",
+    "founded": 2019
+  },
+  {
+    "ticker": "",
+    "name": "Ameren",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "St. Louis",
+    "hq_state": "Missouri",
+    "founded": 1902
+  },
+  {
+    "ticker": "",
+    "name": "American Electric Power",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Columbus",
+    "hq_state": "Ohio",
+    "founded": 1906
+  },
+  {
+    "ticker": "",
+    "name": "American Express",
+    "sector": "Financials",
+    "sub_industry": "Consumer Finance",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1850
+  },
+  {
+    "ticker": "",
+    "name": "American International Group",
+    "sector": "Financials",
+    "sub_industry": "Multi-line Insurance",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1919
+  },
+  {
+    "ticker": "",
+    "name": "American Tower",
+    "sector": "Real Estate",
+    "sub_industry": "Telecom Tower REITs",
+    "hq_city": "Boston",
+    "hq_state": "Massachusetts",
+    "founded": 1995
+  },
+  {
+    "ticker": "",
+    "name": "American Water Works",
+    "sector": "Utilities",
+    "sub_industry": "Water Utilities",
+    "hq_city": "Camden",
+    "hq_state": "New Jersey",
+    "founded": 1886
+  },
+  {
+    "ticker": "",
+    "name": "Ameriprise Financial",
+    "sector": "Financials",
+    "sub_industry": "Asset Management & Custody Banks",
+    "hq_city": "Minneapolis",
+    "hq_state": "Minnesota",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Ametek",
+    "sector": "Industrials",
+    "sub_industry": "Electrical Components & Equipment",
+    "hq_city": "Berwyn",
+    "hq_state": "Pennsylvania",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Amgen",
+    "sector": "Health Care",
+    "sub_industry": "Biotechnology",
+    "hq_city": "Thousand Oaks",
+    "hq_state": "California",
+    "founded": 1980
+  },
+  {
+    "ticker": "",
+    "name": "Amphenol",
+    "sector": "Information Technology",
+    "sub_industry": "Electronic Components",
+    "hq_city": "Wallingford",
+    "hq_state": "Connecticut",
+    "founded": 1932
+  },
+  {
+    "ticker": "",
+    "name": "Analog Devices",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Wilmington",
+    "hq_state": "Massachusetts",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Aon plc",
+    "sector": "Financials",
+    "sub_industry": "Insurance Brokers",
+    "hq_city": "London",
+    "hq_state": "United Kingdom",
+    "founded": 1982
+  },
+  {
+    "ticker": "",
+    "name": "APA Corporation",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Exploration & Production",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1954
+  },
+  {
+    "ticker": "",
+    "name": "Apple Inc.",
+    "sector": "Information Technology",
+    "sub_industry": "Technology Hardware, Storage & Peripherals",
+    "hq_city": "Cupertino",
+    "hq_state": "California",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Applied Materials",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductor Materials & Equipment",
+    "hq_city": "Santa Clara",
+    "hq_state": "California",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "AppLovin",
+    "sector": "Communication Services",
+    "sub_industry": "Advertising",
+    "hq_city": "Palo Alto",
+    "hq_state": "California",
+    "founded": 2012
+  },
+  {
+    "ticker": "",
+    "name": "Aptiv",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Automotive Parts & Equipment",
+    "hq_city": "Schaffhausen",
+    "hq_state": "Switzerland",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Arch Capital Group",
+    "sector": "Financials",
+    "sub_industry": "Property & Casualty Insurance",
+    "hq_city": "Hamilton",
+    "hq_state": "Bermuda",
+    "founded": 1995
+  },
+  {
+    "ticker": "",
+    "name": "Archer Daniels Midland",
+    "sector": "Consumer Staples",
+    "sub_industry": "Agricultural Products & Services",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Ares Management",
+    "sector": "Financials",
+    "sub_industry": "Asset Management & Custody Banks",
+    "hq_city": "Los Angeles",
+    "hq_state": "California",
+    "founded": 1977
+  },
+  {
+    "ticker": "",
+    "name": "Arista Networks",
+    "sector": "Information Technology",
+    "sub_industry": "Communications Equipment",
+    "hq_city": "Santa Clara",
+    "hq_state": "California",
+    "founded": 2004
+  },
+  {
+    "ticker": "",
+    "name": "Arthur J. Gallagher & Co.",
+    "sector": "Financials",
+    "sub_industry": "Insurance Brokers",
+    "hq_city": "Rolling Meadows",
+    "hq_state": "Illinois",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Assurant",
+    "sector": "Financials",
+    "sub_industry": "Multi-line Insurance",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 1892
+  },
+  {
+    "ticker": "",
+    "name": "AT&T",
+    "sector": "Communication Services",
+    "sub_industry": "Integrated Telecommunication Services",
+    "hq_city": "Dallas",
+    "hq_state": "Texas",
+    "founded": 1983
+  },
+  {
+    "ticker": "",
+    "name": "Atmos Energy",
+    "sector": "Utilities",
+    "sub_industry": "Gas Utilities",
+    "hq_city": "Dallas",
+    "hq_state": "Texas",
+    "founded": 1906
+  },
+  {
+    "ticker": "",
+    "name": "Autodesk",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "San Francisco",
+    "hq_state": "California",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Automatic Data Processing",
+    "sector": "Industrials",
+    "sub_industry": "Human Resource & Employment Services",
+    "hq_city": "Roseland",
+    "hq_state": "New Jersey",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "AutoZone",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Automotive Retail",
+    "hq_city": "Memphis",
+    "hq_state": "Tennessee",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "AvalonBay Communities",
+    "sector": "Real Estate",
+    "sub_industry": "Multi-Family Residential REITs",
+    "hq_city": "Arlington",
+    "hq_state": "Virginia",
+    "founded": 1978
+  },
+  {
+    "ticker": "",
+    "name": "Avery Dennison",
+    "sector": "Materials",
+    "sub_industry": "Paper & Plastic Packaging Products & Materials",
+    "hq_city": "Mentor",
+    "hq_state": "Ohio",
+    "founded": 1935
+  },
+  {
+    "ticker": "",
+    "name": "Axon Enterprise",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Scottsdale",
+    "hq_state": "Arizona",
+    "founded": 1993
+  },
+  {
+    "ticker": "",
+    "name": "Baker Hughes",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Equipment & Services",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 2017
+  },
+  {
+    "ticker": "",
+    "name": "Ball Corporation",
+    "sector": "Materials",
+    "sub_industry": "Metal, Glass & Plastic Containers",
+    "hq_city": "Broomfield",
+    "hq_state": "Colorado",
+    "founded": 1880
+  },
+  {
+    "ticker": "",
+    "name": "Bank of America",
+    "sector": "Financials",
+    "sub_industry": "Diversified Banks",
+    "hq_city": "Charlotte",
+    "hq_state": "North Carolina",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Baxter International",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Deerfield",
+    "hq_state": "Illinois",
+    "founded": 1931
+  },
+  {
+    "ticker": "",
+    "name": "Becton Dickinson",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Franklin Lakes",
+    "hq_state": "New Jersey",
+    "founded": 1897
+  },
+  {
+    "ticker": "",
+    "name": "Berkshire Hathaway",
+    "sector": "Financials",
+    "sub_industry": "Multi-Sector Holdings",
+    "hq_city": "Omaha",
+    "hq_state": "Nebraska",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Best Buy",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Computer & Electronics Retail",
+    "hq_city": "Richfield",
+    "hq_state": "Minnesota",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Bio-Techne",
+    "sector": "Health Care",
+    "sub_industry": "Life Sciences Tools & Services",
+    "hq_city": "Minneapolis",
+    "hq_state": "Minnesota",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Biogen",
+    "sector": "Health Care",
+    "sub_industry": "Biotechnology",
+    "hq_city": "Cambridge",
+    "hq_state": "Massachusetts",
+    "founded": 1978
+  },
+  {
+    "ticker": "",
+    "name": "BlackRock",
+    "sector": "Financials",
+    "sub_industry": "Asset Management & Custody Banks",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "BNY Mellon",
+    "sector": "Financials",
+    "sub_industry": "Asset Management & Custody Banks",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1784
+  },
+  {
+    "ticker": "",
+    "name": "Boeing",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Arlington",
+    "hq_state": "Virginia",
+    "founded": 1916
+  },
+  {
+    "ticker": "",
+    "name": "Booking Holdings",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Hotels, Resorts & Cruise Lines",
+    "hq_city": "Norwalk",
+    "hq_state": "Connecticut",
+    "founded": 1996
+  },
+  {
+    "ticker": "",
+    "name": "Boston Scientific",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Marlborough",
+    "hq_state": "Massachusetts",
+    "founded": 1979
+  },
+  {
+    "ticker": "",
+    "name": "Bristol Myers Squibb",
+    "sector": "Health Care",
+    "sub_industry": "Pharmaceuticals",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1989
+  },
+  {
+    "ticker": "",
+    "name": "Broadcom",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Palo Alto",
+    "hq_state": "California",
+    "founded": 1961
+  },
+  {
+    "ticker": "",
+    "name": "Broadridge Financial Solutions",
+    "sector": "Industrials",
+    "sub_industry": "Data Processing & Outsourced Services",
+    "hq_city": "Lake Success",
+    "hq_state": "New York",
+    "founded": 1962
+  },
+  {
+    "ticker": "",
+    "name": "Brown & Brown",
+    "sector": "Financials",
+    "sub_industry": "Insurance Brokers",
+    "hq_city": "Daytona Beach",
+    "hq_state": "Florida",
+    "founded": 1939
+  },
+  {
+    "ticker": "",
+    "name": "Brown\u2013Forman",
+    "sector": "Consumer Staples",
+    "sub_industry": "Distillers & Vintners",
+    "hq_city": "Louisville",
+    "hq_state": "Kentucky",
+    "founded": 1870
+  },
+  {
+    "ticker": "",
+    "name": "Builders FirstSource",
+    "sector": "Industrials",
+    "sub_industry": "Building Products",
+    "hq_city": "Irving",
+    "hq_state": "Texas",
+    "founded": 1998
+  },
+  {
+    "ticker": "",
+    "name": "Bunge Global",
+    "sector": "Consumer Staples",
+    "sub_industry": "Agricultural Products & Services",
+    "hq_city": "Chesterfield",
+    "hq_state": "Missouri",
+    "founded": 1818
+  },
+  {
+    "ticker": "",
+    "name": "BXP, Inc.",
+    "sector": "Real Estate",
+    "sub_industry": "Office REITs",
+    "hq_city": "Boston",
+    "hq_state": "Massachusetts",
+    "founded": 1970
+  },
+  {
+    "ticker": "",
+    "name": "C.H. Robinson",
+    "sector": "Industrials",
+    "sub_industry": "Air Freight & Logistics",
+    "hq_city": "Eden Prairie",
+    "hq_state": "Minnesota",
+    "founded": 1905
+  },
+  {
+    "ticker": "",
+    "name": "Cadence Design Systems",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "San Jose",
+    "hq_state": "California",
+    "founded": 1988
+  },
+  {
+    "ticker": "",
+    "name": "Camden Property Trust",
+    "sector": "Real Estate",
+    "sub_industry": "Multi-Family Residential REITs",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1981
+  },
+  {
+    "ticker": "",
+    "name": "Capital One",
+    "sector": "Financials",
+    "sub_industry": "Consumer Finance",
+    "hq_city": "Tysons Corner",
+    "hq_state": "Virginia",
+    "founded": 1994
+  },
+  {
+    "ticker": "",
+    "name": "Cardinal Health",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Distributors",
+    "hq_city": "Dublin",
+    "hq_state": "Ohio",
+    "founded": 1971
+  },
+  {
+    "ticker": "",
+    "name": "Carnival Corporation",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Hotels, Resorts & Cruise Lines",
+    "hq_city": "Miami",
+    "hq_state": "Florida",
+    "founded": 1972
+  },
+  {
+    "ticker": "",
+    "name": "Carrier Global",
+    "sector": "Industrials",
+    "sub_industry": "Building Products",
+    "hq_city": "Palm Beach Gardens",
+    "hq_state": "Florida",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Carvana",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Automotive Retail",
+    "hq_city": "Tempe",
+    "hq_state": "Arizona",
+    "founded": 2012
+  },
+  {
+    "ticker": "",
+    "name": "Casey's",
+    "sector": "Consumer Staples",
+    "sub_industry": "Food Retail",
+    "hq_city": "Ankeny",
+    "hq_state": "Iowa",
+    "founded": 1967
+  },
+  {
+    "ticker": "",
+    "name": "Caterpillar Inc.",
+    "sector": "Industrials",
+    "sub_industry": "Construction Machinery & Heavy Transportation Equipment",
+    "hq_city": "Irving",
+    "hq_state": "Texas",
+    "founded": 1925
+  },
+  {
+    "ticker": "",
+    "name": "Cboe Global Markets",
+    "sector": "Financials",
+    "sub_industry": "Financial Exchanges & Data",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 1973
+  },
+  {
+    "ticker": "",
+    "name": "CBRE Group",
+    "sector": "Real Estate",
+    "sub_industry": "Real Estate Services",
+    "hq_city": "Dallas",
+    "hq_state": "Texas",
+    "founded": 1906
+  },
+  {
+    "ticker": "",
+    "name": "CDW Corporation",
+    "sector": "Information Technology",
+    "sub_industry": "Technology Distributors",
+    "hq_city": "Vernon Hills",
+    "hq_state": "Illinois",
+    "founded": 1984
+  },
+  {
+    "ticker": "",
+    "name": "Cencora",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Distributors",
+    "hq_city": "Conshohocken",
+    "hq_state": "Pennsylvania",
+    "founded": 1985
+  },
+  {
+    "ticker": "",
+    "name": "Centene Corporation",
+    "sector": "Health Care",
+    "sub_industry": "Managed Health Care",
+    "hq_city": "St. Louis",
+    "hq_state": "Missouri",
+    "founded": 1984
+  },
+  {
+    "ticker": "",
+    "name": "CenterPoint Energy",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1882
+  },
+  {
+    "ticker": "",
+    "name": "CF Industries",
+    "sector": "Materials",
+    "sub_industry": "Fertilizers & Agricultural Chemicals",
+    "hq_city": "Deerfield",
+    "hq_state": "Illinois",
+    "founded": 1946
+  },
+  {
+    "ticker": "",
+    "name": "Charles River Laboratories",
+    "sector": "Health Care",
+    "sub_industry": "Life Sciences Tools & Services",
+    "hq_city": "Wilmington",
+    "hq_state": "Massachusetts",
+    "founded": 1947
+  },
+  {
+    "ticker": "",
+    "name": "Charles Schwab Corporation",
+    "sector": "Financials",
+    "sub_industry": "Investment Banking & Brokerage",
+    "hq_city": "Westlake",
+    "hq_state": "Texas",
+    "founded": 1971
+  },
+  {
+    "ticker": "",
+    "name": "Charter Communications",
+    "sector": "Communication Services",
+    "sub_industry": "Cable & Satellite",
+    "hq_city": "Stamford",
+    "hq_state": "Connecticut",
+    "founded": 1993
+  },
+  {
+    "ticker": "",
+    "name": "Chevron Corporation",
+    "sector": "Energy",
+    "sub_industry": "Integrated Oil & Gas",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1879
+  },
+  {
+    "ticker": "",
+    "name": "Chipotle Mexican Grill",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Restaurants",
+    "hq_city": "Newport Beach",
+    "hq_state": "California",
+    "founded": 1993
+  },
+  {
+    "ticker": "",
+    "name": "Chubb Limited",
+    "sector": "Financials",
+    "sub_industry": "Property & Casualty Insurance",
+    "hq_city": "Zurich",
+    "hq_state": "Switzerland",
+    "founded": 1985
+  },
+  {
+    "ticker": "",
+    "name": "Church & Dwight",
+    "sector": "Consumer Staples",
+    "sub_industry": "Household Products",
+    "hq_city": "Ewing",
+    "hq_state": "New Jersey",
+    "founded": 1847
+  },
+  {
+    "ticker": "",
+    "name": "Ciena",
+    "sector": "Information Technology",
+    "sub_industry": "Communications Equipment",
+    "hq_city": "Hanover",
+    "hq_state": "Maryland",
+    "founded": 1992
+  },
+  {
+    "ticker": "",
+    "name": "Cigna",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Services",
+    "hq_city": "Bloomfield",
+    "hq_state": "Connecticut",
+    "founded": 1982
+  },
+  {
+    "ticker": "",
+    "name": "Cincinnati Financial",
+    "sector": "Financials",
+    "sub_industry": "Property & Casualty Insurance",
+    "hq_city": "Fairfield",
+    "hq_state": "Ohio",
+    "founded": 1950
+  },
+  {
+    "ticker": "",
+    "name": "Cintas",
+    "sector": "Industrials",
+    "sub_industry": "Diversified Support Services",
+    "hq_city": "Mason",
+    "hq_state": "Ohio",
+    "founded": 1929
+  },
+  {
+    "ticker": "",
+    "name": "Cisco",
+    "sector": "Information Technology",
+    "sub_industry": "Communications Equipment",
+    "hq_city": "San Jose",
+    "hq_state": "California",
+    "founded": 1984
+  },
+  {
+    "ticker": "",
+    "name": "Citigroup",
+    "sector": "Financials",
+    "sub_industry": "Diversified Banks",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1998
+  },
+  {
+    "ticker": "",
+    "name": "Citizens Financial Group",
+    "sector": "Financials",
+    "sub_industry": "Regional Banks",
+    "hq_city": "Providence",
+    "hq_state": "Rhode Island",
+    "founded": 1828
+  },
+  {
+    "ticker": "",
+    "name": "Clorox",
+    "sector": "Consumer Staples",
+    "sub_industry": "Household Products",
+    "hq_city": "Oakland",
+    "hq_state": "California",
+    "founded": 1913
+  },
+  {
+    "ticker": "",
+    "name": "CME Group",
+    "sector": "Financials",
+    "sub_industry": "Financial Exchanges & Data",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 1848
+  },
+  {
+    "ticker": "",
+    "name": "CMS Energy",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "Jackson",
+    "hq_state": "Michigan",
+    "founded": 1886
+  },
+  {
+    "ticker": "",
+    "name": "Coca-Cola Company (The)",
+    "sector": "Consumer Staples",
+    "sub_industry": "Soft Drinks & Non-alcoholic Beverages",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 1886
+  },
+  {
+    "ticker": "",
+    "name": "Cognizant",
+    "sector": "Information Technology",
+    "sub_industry": "IT Consulting & Other Services",
+    "hq_city": "Teaneck",
+    "hq_state": "New Jersey",
+    "founded": 1994
+  },
+  {
+    "ticker": "",
+    "name": "Coherent Corp.",
+    "sector": "Information Technology",
+    "sub_industry": "Electronic Components",
+    "hq_city": "Saxonburg",
+    "hq_state": "Pennsylvania",
+    "founded": 1971
+  },
+  {
+    "ticker": "",
+    "name": "Coinbase",
+    "sector": "Financials",
+    "sub_industry": "Financial Exchanges & Data",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 2012
+  },
+  {
+    "ticker": "",
+    "name": "Colgate-Palmolive",
+    "sector": "Consumer Staples",
+    "sub_industry": "Household Products",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1806
+  },
+  {
+    "ticker": "",
+    "name": "Comcast",
+    "sector": "Communication Services",
+    "sub_industry": "Cable & Satellite",
+    "hq_city": "Philadelphia",
+    "hq_state": "Pennsylvania",
+    "founded": 1963
+  },
+  {
+    "ticker": "",
+    "name": "Comfort Systems USA",
+    "sector": "Industrials",
+    "sub_industry": "Construction & Engineering",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1997
+  },
+  {
+    "ticker": "",
+    "name": "ConocoPhillips",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Exploration & Production",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 2002
+  },
+  {
+    "ticker": "",
+    "name": "Consolidated Edison",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1823
+  },
+  {
+    "ticker": "",
+    "name": "Constellation Brands",
+    "sector": "Consumer Staples",
+    "sub_industry": "Distillers & Vintners",
+    "hq_city": "Rochester",
+    "hq_state": "New York",
+    "founded": 1945
+  },
+  {
+    "ticker": "",
+    "name": "Constellation Energy",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Baltimore",
+    "hq_state": "Maryland",
+    "founded": 1999
+  },
+  {
+    "ticker": "",
+    "name": "Cooper Companies (The)",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Supplies",
+    "hq_city": "San Ramon",
+    "hq_state": "California",
+    "founded": 1958
+  },
+  {
+    "ticker": "",
+    "name": "Copart",
+    "sector": "Industrials",
+    "sub_industry": "Diversified Support Services",
+    "hq_city": "Dallas",
+    "hq_state": "Texas",
+    "founded": 1982
+  },
+  {
+    "ticker": "",
+    "name": "Corning Inc.",
+    "sector": "Information Technology",
+    "sub_industry": "Electronic Components",
+    "hq_city": "Corning (city)",
+    "hq_state": "New York",
+    "founded": 1851
+  },
+  {
+    "ticker": "",
+    "name": "Corpay",
+    "sector": "Financials",
+    "sub_industry": "Transaction & Payment Processing Services",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 2000
+  },
+  {
+    "ticker": "",
+    "name": "Corteva",
+    "sector": "Materials",
+    "sub_industry": "Fertilizers & Agricultural Chemicals",
+    "hq_city": "Indianapolis",
+    "hq_state": "Indiana",
+    "founded": 2019
+  },
+  {
+    "ticker": "",
+    "name": "CoStar Group",
+    "sector": "Real Estate",
+    "sub_industry": "Real Estate Services",
+    "hq_city": "Washington",
+    "hq_state": "D.C.",
+    "founded": 1987
+  },
+  {
+    "ticker": "",
+    "name": "Costco",
+    "sector": "Consumer Staples",
+    "sub_industry": "Consumer Staples Merchandise Retail",
+    "hq_city": "Issaquah",
+    "hq_state": "Washington",
+    "founded": 1976
+  },
+  {
+    "ticker": "",
+    "name": "CRH plc",
+    "sector": "Materials",
+    "sub_industry": "Construction Materials",
+    "hq_city": "Dublin",
+    "hq_state": "Ireland",
+    "founded": 1970
+  },
+  {
+    "ticker": "",
+    "name": "CrowdStrike",
+    "sector": "Information Technology",
+    "sub_industry": "Systems Software",
+    "hq_city": "Austin",
+    "hq_state": "Texas",
+    "founded": 2011
+  },
+  {
+    "ticker": "",
+    "name": "Crown Castle",
+    "sector": "Real Estate",
+    "sub_industry": "Telecom Tower REITs",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1994
+  },
+  {
+    "ticker": "",
+    "name": "CSX Corporation",
+    "sector": "Industrials",
+    "sub_industry": "Rail Transportation",
+    "hq_city": "Jacksonville",
+    "hq_state": "Florida",
+    "founded": 1980
+  },
+  {
+    "ticker": "",
+    "name": "Cummins",
+    "sector": "Industrials",
+    "sub_industry": "Construction Machinery & Heavy Transportation Equipment",
+    "hq_city": "Columbus",
+    "hq_state": "Indiana",
+    "founded": 1919
+  },
+  {
+    "ticker": "",
+    "name": "CVS Health",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Services",
+    "hq_city": "Woonsocket",
+    "hq_state": "Rhode Island",
+    "founded": 1996
+  },
+  {
+    "ticker": "",
+    "name": "Danaher Corporation",
+    "sector": "Health Care",
+    "sub_industry": "Life Sciences Tools & Services",
+    "hq_city": "Washington",
+    "hq_state": "D.C.",
+    "founded": 1969
+  },
+  {
+    "ticker": "",
+    "name": "Darden Restaurants",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Restaurants",
+    "hq_city": "Orlando",
+    "hq_state": "Florida",
+    "founded": 1938
+  },
+  {
+    "ticker": "",
+    "name": "Datadog",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 2010
+  },
+  {
+    "ticker": "",
+    "name": "DaVita",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Services",
+    "hq_city": "Denver",
+    "hq_state": "Colorado",
+    "founded": 1979
+  },
+  {
+    "ticker": "",
+    "name": "Deckers Brands",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Footwear",
+    "hq_city": "Goleta",
+    "hq_state": "California",
+    "founded": 1973
+  },
+  {
+    "ticker": "",
+    "name": "Deere & Company",
+    "sector": "Industrials",
+    "sub_industry": "Agricultural & Farm Machinery",
+    "hq_city": "Moline",
+    "hq_state": "Illinois",
+    "founded": 1837
+  },
+  {
+    "ticker": "",
+    "name": "Dell Technologies",
+    "sector": "Information Technology",
+    "sub_industry": "Technology Hardware, Storage & Peripherals",
+    "hq_city": "Round Rock",
+    "hq_state": "Texas",
+    "founded": 2016
+  },
+  {
+    "ticker": "",
+    "name": "Delta Air Lines",
+    "sector": "Industrials",
+    "sub_industry": "Passenger Airlines",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 1929
+  },
+  {
+    "ticker": "",
+    "name": "Devon Energy",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Exploration & Production",
+    "hq_city": "Oklahoma City",
+    "hq_state": "Oklahoma",
+    "founded": 1971
+  },
+  {
+    "ticker": "",
+    "name": "Dexcom",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "San Diego",
+    "hq_state": "California",
+    "founded": 1999
+  },
+  {
+    "ticker": "",
+    "name": "Diamondback Energy",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Exploration & Production",
+    "hq_city": "Midland",
+    "hq_state": "Texas",
+    "founded": 2007
+  },
+  {
+    "ticker": "",
+    "name": "Digital Realty",
+    "sector": "Real Estate",
+    "sub_industry": "Data Center REITs",
+    "hq_city": "Austin",
+    "hq_state": "Texas",
+    "founded": 2004
+  },
+  {
+    "ticker": "",
+    "name": "Dollar General",
+    "sector": "Consumer Staples",
+    "sub_industry": "Consumer Staples Merchandise Retail",
+    "hq_city": "Goodlettsville",
+    "hq_state": "Tennessee",
+    "founded": 1939
+  },
+  {
+    "ticker": "",
+    "name": "Dollar Tree",
+    "sector": "Consumer Staples",
+    "sub_industry": "Consumer Staples Merchandise Retail",
+    "hq_city": "Chesapeake",
+    "hq_state": "Virginia",
+    "founded": 1986
+  },
+  {
+    "ticker": "",
+    "name": "Dominion Energy",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "Richmond",
+    "hq_state": "Virginia",
+    "founded": 1983
+  },
+  {
+    "ticker": "",
+    "name": "Domino's",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Restaurants",
+    "hq_city": "Ann Arbor",
+    "hq_state": "Michigan",
+    "founded": 1960
+  },
+  {
+    "ticker": "",
+    "name": "DoorDash",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Specialized Consumer Services",
+    "hq_city": "San Francisco",
+    "hq_state": "California",
+    "founded": 2012
+  },
+  {
+    "ticker": "",
+    "name": "Dover Corporation",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "Downers Grove",
+    "hq_state": "Illinois",
+    "founded": 1955
+  },
+  {
+    "ticker": "",
+    "name": "Dow Inc.",
+    "sector": "Materials",
+    "sub_industry": "Commodity Chemicals",
+    "hq_city": "Midland",
+    "hq_state": "Michigan",
+    "founded": 2019
+  },
+  {
+    "ticker": "",
+    "name": "D. R. Horton",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Homebuilding",
+    "hq_city": "Arlington",
+    "hq_state": "Texas",
+    "founded": 1978
+  },
+  {
+    "ticker": "",
+    "name": "DTE Energy",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "Detroit",
+    "hq_state": "Michigan",
+    "founded": 1995
+  },
+  {
+    "ticker": "",
+    "name": "Duke Energy",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Charlotte",
+    "hq_state": "North Carolina",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "DuPont",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Conglomerates",
+    "hq_city": "Wilmington",
+    "hq_state": "Delaware",
+    "founded": 2017
+  },
+  {
+    "ticker": "",
+    "name": "Eaton Corporation",
+    "sector": "Industrials",
+    "sub_industry": "Electrical Components & Equipment",
+    "hq_city": "Dublin",
+    "hq_state": "Ireland",
+    "founded": 1911
+  },
+  {
+    "ticker": "",
+    "name": "eBay Inc.",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Broadline Retail",
+    "hq_city": "San Jose",
+    "hq_state": "California",
+    "founded": 1995
+  },
+  {
+    "ticker": "",
+    "name": "EchoStar",
+    "sector": "Communication Services",
+    "sub_industry": "Wireless Telecommunication Services",
+    "hq_city": "Englewood",
+    "hq_state": "Colorado",
+    "founded": 2008
+  },
+  {
+    "ticker": "",
+    "name": "Ecolab",
+    "sector": "Materials",
+    "sub_industry": "Specialty Chemicals",
+    "hq_city": "Saint Paul",
+    "hq_state": "Minnesota",
+    "founded": 1923
+  },
+  {
+    "ticker": "",
+    "name": "Edison International",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Rosemead",
+    "hq_state": "California",
+    "founded": 1886
+  },
+  {
+    "ticker": "",
+    "name": "Edwards Lifesciences",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Irvine",
+    "hq_state": "California",
+    "founded": 1958
+  },
+  {
+    "ticker": "",
+    "name": "Elevance Health",
+    "sector": "Health Care",
+    "sub_industry": "Managed Health Care",
+    "hq_city": "Indianapolis",
+    "hq_state": "Indiana",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Emcor",
+    "sector": "Industrials",
+    "sub_industry": "Construction & Engineering",
+    "hq_city": "Norwalk",
+    "hq_state": "Connecticut",
+    "founded": 1994
+  },
+  {
+    "ticker": "",
+    "name": "Emerson Electric",
+    "sector": "Industrials",
+    "sub_industry": "Electrical Components & Equipment",
+    "hq_city": "Ferguson",
+    "hq_state": "Missouri",
+    "founded": 1890
+  },
+  {
+    "ticker": "",
+    "name": "Entergy",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "New Orleans",
+    "hq_state": "Louisiana",
+    "founded": 1913
+  },
+  {
+    "ticker": "",
+    "name": "EOG Resources",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Exploration & Production",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1999
+  },
+  {
+    "ticker": "",
+    "name": "EQT Corporation",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Exploration & Production",
+    "hq_city": "Pittsburgh",
+    "hq_state": "Pennsylvania",
+    "founded": 1888
+  },
+  {
+    "ticker": "",
+    "name": "Equifax",
+    "sector": "Industrials",
+    "sub_industry": "Research & Consulting Services",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 1899
+  },
+  {
+    "ticker": "",
+    "name": "Equinix",
+    "sector": "Real Estate",
+    "sub_industry": "Data Center REITs",
+    "hq_city": "Redwood City",
+    "hq_state": "California",
+    "founded": 1998
+  },
+  {
+    "ticker": "",
+    "name": "Equity Residential",
+    "sector": "Real Estate",
+    "sub_industry": "Multi-Family Residential REITs",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 1969
+  },
+  {
+    "ticker": "",
+    "name": "Erie Indemnity",
+    "sector": "Financials",
+    "sub_industry": "Insurance Brokers",
+    "hq_city": "Erie",
+    "hq_state": "Pennsylvania",
+    "founded": 1925
+  },
+  {
+    "ticker": "",
+    "name": "Essex Property Trust",
+    "sector": "Real Estate",
+    "sub_industry": "Multi-Family Residential REITs",
+    "hq_city": "San Mateo",
+    "hq_state": "California",
+    "founded": 1971
+  },
+  {
+    "ticker": "",
+    "name": "Est\u00e9e Lauder Companies (The)",
+    "sector": "Consumer Staples",
+    "sub_industry": "Personal Care Products",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1946
+  },
+  {
+    "ticker": "",
+    "name": "Everest Group",
+    "sector": "Financials",
+    "sub_industry": "Reinsurance",
+    "hq_city": "Hamilton",
+    "hq_state": "Bermuda",
+    "founded": 1973
+  },
+  {
+    "ticker": "",
+    "name": "Evergy",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Kansas City",
+    "hq_state": "Missouri",
+    "founded": 1909
+  },
+  {
+    "ticker": "",
+    "name": "Eversource Energy",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Hartford",
+    "hq_state": "Connecticut",
+    "founded": 1966
+  },
+  {
+    "ticker": "",
+    "name": "Exelon",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 2000
+  },
+  {
+    "ticker": "",
+    "name": "Expand Energy",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Exploration & Production",
+    "hq_city": "Oklahoma City",
+    "hq_state": "Oklahoma",
+    "founded": 1989
+  },
+  {
+    "ticker": "",
+    "name": "Expedia Group",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Hotels, Resorts & Cruise Lines",
+    "hq_city": "Seattle",
+    "hq_state": "Washington",
+    "founded": 1996
+  },
+  {
+    "ticker": "",
+    "name": "Expeditors International",
+    "sector": "Industrials",
+    "sub_industry": "Air Freight & Logistics",
+    "hq_city": "Seattle",
+    "hq_state": "Washington",
+    "founded": 1979
+  },
+  {
+    "ticker": "",
+    "name": "Extra Space Storage",
+    "sector": "Real Estate",
+    "sub_industry": "Self-Storage REITs",
+    "hq_city": "Salt Lake City",
+    "hq_state": "Utah",
+    "founded": 1977
+  },
+  {
+    "ticker": "",
+    "name": "ExxonMobil",
+    "sector": "Energy",
+    "sub_industry": "Integrated Oil & Gas",
+    "hq_city": "Irving",
+    "hq_state": "Texas",
+    "founded": 1999
+  },
+  {
+    "ticker": "",
+    "name": "F5, Inc.",
+    "sector": "Information Technology",
+    "sub_industry": "Communications Equipment",
+    "hq_city": "Seattle",
+    "hq_state": "Washington",
+    "founded": 1996
+  },
+  {
+    "ticker": "",
+    "name": "FactSet",
+    "sector": "Financials",
+    "sub_industry": "Financial Exchanges & Data",
+    "hq_city": "Norwalk",
+    "hq_state": "Connecticut",
+    "founded": 1978
+  },
+  {
+    "ticker": "",
+    "name": "Fair Isaac",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "Bozeman",
+    "hq_state": "Montana",
+    "founded": 1956
+  },
+  {
+    "ticker": "",
+    "name": "Fastenal",
+    "sector": "Industrials",
+    "sub_industry": "Trading Companies & Distributors",
+    "hq_city": "Winona",
+    "hq_state": "Minnesota",
+    "founded": 1967
+  },
+  {
+    "ticker": "",
+    "name": "Federal Realty Investment Trust",
+    "sector": "Real Estate",
+    "sub_industry": "Retail REITs",
+    "hq_city": "Rockville",
+    "hq_state": "Maryland",
+    "founded": 1962
+  },
+  {
+    "ticker": "",
+    "name": "FedEx",
+    "sector": "Industrials",
+    "sub_industry": "Air Freight & Logistics",
+    "hq_city": "Memphis",
+    "hq_state": "Tennessee",
+    "founded": 1971
+  },
+  {
+    "ticker": "",
+    "name": "FedEx Freight",
+    "sector": "Industrials",
+    "sub_industry": "Cargo Ground Transportation",
+    "hq_city": "Memphis",
+    "hq_state": "Tennessee",
+    "founded": 1982
+  },
+  {
+    "ticker": "",
+    "name": "Ferguson Enterprises",
+    "sector": "Industrials",
+    "sub_industry": "Building Products",
+    "hq_city": "Newport News",
+    "hq_state": "Virginia",
+    "founded": 1953
+  },
+  {
+    "ticker": "",
+    "name": "Fidelity National Information Services",
+    "sector": "Financials",
+    "sub_industry": "Transaction & Payment Processing Services",
+    "hq_city": "Jacksonville",
+    "hq_state": "Florida",
+    "founded": 1968
+  },
+  {
+    "ticker": "",
+    "name": "Fifth Third Bancorp",
+    "sector": "Financials",
+    "sub_industry": "Regional Banks",
+    "hq_city": "Cincinnati",
+    "hq_state": "Ohio",
+    "founded": 1858
+  },
+  {
+    "ticker": "",
+    "name": "First Solar",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Tempe",
+    "hq_state": "Arizona",
+    "founded": 1999
+  },
+  {
+    "ticker": "",
+    "name": "FirstEnergy",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Akron",
+    "hq_state": "Ohio",
+    "founded": 1997
+  },
+  {
+    "ticker": "",
+    "name": "Fiserv",
+    "sector": "Financials",
+    "sub_industry": "Transaction & Payment Processing Services",
+    "hq_city": "Brookfield",
+    "hq_state": "Wisconsin",
+    "founded": 1984
+  },
+  {
+    "ticker": "",
+    "name": "Flex Ltd.",
+    "sector": "Information Technology",
+    "sub_industry": "Electronic Manufacturing Services",
+    "hq_city": "Austin",
+    "hq_state": "Texas",
+    "founded": 1969
+  },
+  {
+    "ticker": "",
+    "name": "Ford Motor Company",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Automobile Manufacturers",
+    "hq_city": "Dearborn",
+    "hq_state": "Michigan",
+    "founded": 1903
+  },
+  {
+    "ticker": "",
+    "name": "Fortinet",
+    "sector": "Information Technology",
+    "sub_industry": "Systems Software",
+    "hq_city": "Sunnyvale",
+    "hq_state": "California",
+    "founded": 2000
+  },
+  {
+    "ticker": "",
+    "name": "Fortive",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "Everett",
+    "hq_state": "Washington",
+    "founded": 2016
+  },
+  {
+    "ticker": "",
+    "name": "Franklin Resources",
+    "sector": "Financials",
+    "sub_industry": "Asset Management & Custody Banks",
+    "hq_city": "San Mateo",
+    "hq_state": "California",
+    "founded": 1947
+  },
+  {
+    "ticker": "",
+    "name": "Freeport-McMoRan",
+    "sector": "Materials",
+    "sub_industry": "Copper",
+    "hq_city": "Phoenix",
+    "hq_state": "Arizona",
+    "founded": 1912
+  },
+  {
+    "ticker": "",
+    "name": "Garmin",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Consumer Electronics",
+    "hq_city": "Schaffhausen",
+    "hq_state": "Switzerland",
+    "founded": 1989
+  },
+  {
+    "ticker": "",
+    "name": "Gartner",
+    "sector": "Information Technology",
+    "sub_industry": "IT Consulting & Other Services",
+    "hq_city": "Stamford",
+    "hq_state": "Connecticut",
+    "founded": 1979
+  },
+  {
+    "ticker": "",
+    "name": "GE Aerospace",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Evendale",
+    "hq_state": "Ohio",
+    "founded": 1892
+  },
+  {
+    "ticker": "",
+    "name": "GE HealthCare",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 1994
+  },
+  {
+    "ticker": "",
+    "name": "GE Vernova",
+    "sector": "Industrials",
+    "sub_industry": "Heavy Electrical Equipment",
+    "hq_city": "Cambridge",
+    "hq_state": "Massachusetts",
+    "founded": 2024
+  },
+  {
+    "ticker": "",
+    "name": "Gen Digital",
+    "sector": "Information Technology",
+    "sub_industry": "Systems Software",
+    "hq_city": "Tempe",
+    "hq_state": "Arizona",
+    "founded": 1982
+  },
+  {
+    "ticker": "",
+    "name": "Generac",
+    "sector": "Industrials",
+    "sub_industry": "Heavy Electrical Equipment",
+    "hq_city": "Waukesha",
+    "hq_state": "Wisconsin",
+    "founded": 1959
+  },
+  {
+    "ticker": "",
+    "name": "General Dynamics",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Reston",
+    "hq_state": "Virginia",
+    "founded": 1899
+  },
+  {
+    "ticker": "",
+    "name": "General Mills",
+    "sector": "Consumer Staples",
+    "sub_industry": "Packaged Foods & Meats",
+    "hq_city": "Golden Valley",
+    "hq_state": "Minnesota",
+    "founded": 1856
+  },
+  {
+    "ticker": "",
+    "name": "General Motors",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Automobile Manufacturers",
+    "hq_city": "Detroit",
+    "hq_state": "Michigan",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Genuine Parts Company",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Distributors",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 1925
+  },
+  {
+    "ticker": "",
+    "name": "Gilead Sciences",
+    "sector": "Health Care",
+    "sub_industry": "Biotechnology",
+    "hq_city": "Foster City",
+    "hq_state": "California",
+    "founded": 1987
+  },
+  {
+    "ticker": "",
+    "name": "Global Payments",
+    "sector": "Financials",
+    "sub_industry": "Transaction & Payment Processing Services",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 2000
+  },
+  {
+    "ticker": "",
+    "name": "Globe Life",
+    "sector": "Financials",
+    "sub_industry": "Life & Health Insurance",
+    "hq_city": "McKinney",
+    "hq_state": "Texas",
+    "founded": 1900
+  },
+  {
+    "ticker": "",
+    "name": "GoDaddy",
+    "sector": "Information Technology",
+    "sub_industry": "Internet Services & Infrastructure",
+    "hq_city": "Tempe",
+    "hq_state": "Arizona",
+    "founded": 1997
+  },
+  {
+    "ticker": "",
+    "name": "Goldman Sachs",
+    "sector": "Financials",
+    "sub_industry": "Investment Banking & Brokerage",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1869
+  },
+  {
+    "ticker": "",
+    "name": "Halliburton",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Equipment & Services",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1919
+  },
+  {
+    "ticker": "",
+    "name": "Hartford (The)",
+    "sector": "Financials",
+    "sub_industry": "Property & Casualty Insurance",
+    "hq_city": "Hartford",
+    "hq_state": "Connecticut",
+    "founded": 1810
+  },
+  {
+    "ticker": "",
+    "name": "Hasbro",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Leisure Products",
+    "hq_city": "Pawtucket",
+    "hq_state": "Rhode Island",
+    "founded": 1923
+  },
+  {
+    "ticker": "",
+    "name": "HCA Healthcare",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Facilities",
+    "hq_city": "Nashville",
+    "hq_state": "Tennessee",
+    "founded": 1968
+  },
+  {
+    "ticker": "",
+    "name": "Healthpeak Properties",
+    "sector": "Real Estate",
+    "sub_industry": "Health Care REITs",
+    "hq_city": "Denver",
+    "hq_state": "Colorado",
+    "founded": 1985
+  },
+  {
+    "ticker": "",
+    "name": "Henry Schein",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Distributors",
+    "hq_city": "Melville",
+    "hq_state": "New York",
+    "founded": 1932
+  },
+  {
+    "ticker": "",
+    "name": "Hershey Company (The)",
+    "sector": "Consumer Staples",
+    "sub_industry": "Packaged Foods & Meats",
+    "hq_city": "Hershey",
+    "hq_state": "Pennsylvania",
+    "founded": 1894
+  },
+  {
+    "ticker": "",
+    "name": "Hewlett Packard Enterprise",
+    "sector": "Information Technology",
+    "sub_industry": "Technology Hardware, Storage & Peripherals",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 2015
+  },
+  {
+    "ticker": "",
+    "name": "Hilton Worldwide",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Hotels, Resorts & Cruise Lines",
+    "hq_city": "Tysons Corner",
+    "hq_state": "Virginia",
+    "founded": 1919
+  },
+  {
+    "ticker": "",
+    "name": "Home Depot (The)",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Home Improvement Retail",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 1978
+  },
+  {
+    "ticker": "",
+    "name": "Honeywell Aerospace",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Phoenix",
+    "hq_state": "Arizona",
+    "founded": 1914
+  },
+  {
+    "ticker": "",
+    "name": "Honeywell Technologies",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Conglomerates",
+    "hq_city": "Charlotte",
+    "hq_state": "North Carolina",
+    "founded": 1906
+  },
+  {
+    "ticker": "",
+    "name": "Hormel Foods",
+    "sector": "Consumer Staples",
+    "sub_industry": "Packaged Foods & Meats",
+    "hq_city": "Austin",
+    "hq_state": "Minnesota",
+    "founded": 1891
+  },
+  {
+    "ticker": "",
+    "name": "Host Hotels & Resorts",
+    "sector": "Real Estate",
+    "sub_industry": "Hotel & Resort REITs",
+    "hq_city": "Bethesda",
+    "hq_state": "Maryland",
+    "founded": 1993
+  },
+  {
+    "ticker": "",
+    "name": "Howmet Aerospace",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Pittsburgh",
+    "hq_state": "Pennsylvania",
+    "founded": 1888
+  },
+  {
+    "ticker": "",
+    "name": "HP Inc.",
+    "sector": "Information Technology",
+    "sub_industry": "Technology Hardware, Storage & Peripherals",
+    "hq_city": "Palo Alto",
+    "hq_state": "California",
+    "founded": 1939
+  },
+  {
+    "ticker": "",
+    "name": "Hubbell Incorporated",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "Shelton",
+    "hq_state": "Connecticut",
+    "founded": 1888
+  },
+  {
+    "ticker": "",
+    "name": "Humana",
+    "sector": "Health Care",
+    "sub_industry": "Managed Health Care",
+    "hq_city": "Louisville",
+    "hq_state": "Kentucky",
+    "founded": 1961
+  },
+  {
+    "ticker": "",
+    "name": "Huntington Bancshares",
+    "sector": "Financials",
+    "sub_industry": "Regional Banks",
+    "hq_city": "Columbus, Ohio; Detroit",
+    "hq_state": "Michigan",
+    "founded": 1866
+  },
+  {
+    "ticker": "",
+    "name": "Huntington Ingalls Industries",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Newport News",
+    "hq_state": "Virginia",
+    "founded": 2011
+  },
+  {
+    "ticker": "",
+    "name": "IBM",
+    "sector": "Information Technology",
+    "sub_industry": "IT Consulting & Other Services",
+    "hq_city": "Armonk",
+    "hq_state": "New York",
+    "founded": 1911
+  },
+  {
+    "ticker": "",
+    "name": "IDEX Corporation",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "Northbrook",
+    "hq_state": "Illinois",
+    "founded": 1988
+  },
+  {
+    "ticker": "",
+    "name": "Idexx Laboratories",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Westbrook",
+    "hq_state": "Maine",
+    "founded": 1983
+  },
+  {
+    "ticker": "",
+    "name": "Illinois Tool Works",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "Glenview, Cook County",
+    "hq_state": "Illinois",
+    "founded": 1912
+  },
+  {
+    "ticker": "",
+    "name": "Incyte",
+    "sector": "Health Care",
+    "sub_industry": "Biotechnology",
+    "hq_city": "Wilmington",
+    "hq_state": "Delaware",
+    "founded": 1991
+  },
+  {
+    "ticker": "",
+    "name": "Ingersoll Rand",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "Davidson",
+    "hq_state": "North Carolina",
+    "founded": 1859
+  },
+  {
+    "ticker": "",
+    "name": "Intel",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Santa Clara",
+    "hq_state": "California",
+    "founded": 1968
+  },
+  {
+    "ticker": "",
+    "name": "Interactive Brokers",
+    "sector": "Financials",
+    "sub_industry": "Investment Banking & Brokerage",
+    "hq_city": "Greenwich",
+    "hq_state": "Connecticut",
+    "founded": 1977
+  },
+  {
+    "ticker": "",
+    "name": "Intercontinental Exchange",
+    "sector": "Financials",
+    "sub_industry": "Financial Exchanges & Data",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 2000
+  },
+  {
+    "ticker": "",
+    "name": "International Flavors & Fragrances",
+    "sector": "Materials",
+    "sub_industry": "Specialty Chemicals",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1958
+  },
+  {
+    "ticker": "",
+    "name": "International Paper",
+    "sector": "Materials",
+    "sub_industry": "Paper & Plastic Packaging Products & Materials",
+    "hq_city": "Memphis",
+    "hq_state": "Tennessee",
+    "founded": 1898
+  },
+  {
+    "ticker": "",
+    "name": "Intuit",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "Mountain View",
+    "hq_state": "California",
+    "founded": 1983
+  },
+  {
+    "ticker": "",
+    "name": "Intuitive Surgical",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Sunnyvale",
+    "hq_state": "California",
+    "founded": 1995
+  },
+  {
+    "ticker": "",
+    "name": "Invesco",
+    "sector": "Financials",
+    "sub_industry": "Asset Management & Custody Banks",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 1935
+  },
+  {
+    "ticker": "",
+    "name": "Invitation Homes",
+    "sector": "Real Estate",
+    "sub_industry": "Single-Family Residential REITs",
+    "hq_city": "Dallas",
+    "hq_state": "Texas",
+    "founded": 2012
+  },
+  {
+    "ticker": "",
+    "name": "IQVIA",
+    "sector": "Health Care",
+    "sub_industry": "Life Sciences Tools & Services",
+    "hq_city": "Durham",
+    "hq_state": "North Carolina",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Iron Mountain",
+    "sector": "Real Estate",
+    "sub_industry": "Other Specialized REITs",
+    "hq_city": "Portsmouth",
+    "hq_state": "New Hampshire",
+    "founded": 1951
+  },
+  {
+    "ticker": "",
+    "name": "J.B. Hunt",
+    "sector": "Industrials",
+    "sub_industry": "Cargo Ground Transportation",
+    "hq_city": "Lowell",
+    "hq_state": "Arkansas",
+    "founded": 1961
+  },
+  {
+    "ticker": "",
+    "name": "Jabil",
+    "sector": "Information Technology",
+    "sub_industry": "Electronic Manufacturing Services",
+    "hq_city": "St. Petersburg",
+    "hq_state": "Florida",
+    "founded": 1966
+  },
+  {
+    "ticker": "",
+    "name": "Jack Henry & Associates",
+    "sector": "Financials",
+    "sub_industry": "Transaction & Payment Processing Services",
+    "hq_city": "Monett",
+    "hq_state": "Missouri",
+    "founded": 1976
+  },
+  {
+    "ticker": "",
+    "name": "Jacobs Solutions",
+    "sector": "Industrials",
+    "sub_industry": "Construction & Engineering",
+    "hq_city": "Dallas",
+    "hq_state": "Texas",
+    "founded": 1947
+  },
+  {
+    "ticker": "",
+    "name": "Johnson & Johnson",
+    "sector": "Health Care",
+    "sub_industry": "Pharmaceuticals",
+    "hq_city": "New Brunswick",
+    "hq_state": "New Jersey",
+    "founded": 1886
+  },
+  {
+    "ticker": "",
+    "name": "Johnson Controls",
+    "sector": "Industrials",
+    "sub_industry": "Building Products",
+    "hq_city": "",
+    "hq_state": "",
+    "founded": 1885
+  },
+  {
+    "ticker": "",
+    "name": "JPMorgan Chase",
+    "sector": "Financials",
+    "sub_industry": "Diversified Banks",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Kenvue",
+    "sector": "Consumer Staples",
+    "sub_industry": "Personal Care Products",
+    "hq_city": "Skillman",
+    "hq_state": "New Jersey",
+    "founded": 2022
+  },
+  {
+    "ticker": "",
+    "name": "Keurig Dr Pepper",
+    "sector": "Consumer Staples",
+    "sub_industry": "Soft Drinks & Non-alcoholic Beverages",
+    "hq_city": "Burlington",
+    "hq_state": "Massachusetts",
+    "founded": 1981
+  },
+  {
+    "ticker": "",
+    "name": "KeyCorp",
+    "sector": "Financials",
+    "sub_industry": "Regional Banks",
+    "hq_city": "Cleveland",
+    "hq_state": "Ohio",
+    "founded": 1825
+  },
+  {
+    "ticker": "",
+    "name": "Keysight Technologies",
+    "sector": "Information Technology",
+    "sub_industry": "Electronic Equipment & Instruments",
+    "hq_city": "Santa Rosa",
+    "hq_state": "California",
+    "founded": 2014
+  },
+  {
+    "ticker": "",
+    "name": "Kimberly-Clark",
+    "sector": "Consumer Staples",
+    "sub_industry": "Household Products",
+    "hq_city": "Irving",
+    "hq_state": "Texas",
+    "founded": 1872
+  },
+  {
+    "ticker": "",
+    "name": "Kimco Realty",
+    "sector": "Real Estate",
+    "sub_industry": "Retail REITs",
+    "hq_city": "Jericho",
+    "hq_state": "New York",
+    "founded": 1958
+  },
+  {
+    "ticker": "",
+    "name": "Kinder Morgan",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Storage & Transportation",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1997
+  },
+  {
+    "ticker": "",
+    "name": "KLA Corporation",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductor Materials & Equipment",
+    "hq_city": "Milpitas",
+    "hq_state": "California",
+    "founded": 1975
+  },
+  {
+    "ticker": "",
+    "name": "Kraft Heinz",
+    "sector": "Consumer Staples",
+    "sub_industry": "Packaged Foods & Meats",
+    "hq_city": "Chicago, Illinois; Pittsburgh",
+    "hq_state": "Pennsylvania",
+    "founded": 2015
+  },
+  {
+    "ticker": "",
+    "name": "Kroger",
+    "sector": "Consumer Staples",
+    "sub_industry": "Food Retail",
+    "hq_city": "Cincinnati",
+    "hq_state": "Ohio",
+    "founded": 1883
+  },
+  {
+    "ticker": "",
+    "name": "L3Harris",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Melbourne",
+    "hq_state": "Florida",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Labcorp",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Services",
+    "hq_city": "Burlington",
+    "hq_state": "North Carolina",
+    "founded": 1978
+  },
+  {
+    "ticker": "",
+    "name": "Lam Research",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductor Materials & Equipment",
+    "hq_city": "Fremont",
+    "hq_state": "California",
+    "founded": 1980
+  },
+  {
+    "ticker": "",
+    "name": "Las Vegas Sands",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Casinos & Gaming",
+    "hq_city": "Las Vegas",
+    "hq_state": "Nevada",
+    "founded": 1988
+  },
+  {
+    "ticker": "",
+    "name": "Leidos",
+    "sector": "Industrials",
+    "sub_industry": "Diversified Support Services",
+    "hq_city": "Reston",
+    "hq_state": "Virginia",
+    "founded": 1969
+  },
+  {
+    "ticker": "",
+    "name": "Lennar",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Homebuilding",
+    "hq_city": "Miami",
+    "hq_state": "Florida",
+    "founded": 1954
+  },
+  {
+    "ticker": "",
+    "name": "Lennox International",
+    "sector": "Industrials",
+    "sub_industry": "Building Products",
+    "hq_city": "Richardson",
+    "hq_state": "Texas",
+    "founded": 1895
+  },
+  {
+    "ticker": "",
+    "name": "Lilly (Eli)",
+    "sector": "Health Care",
+    "sub_industry": "Pharmaceuticals",
+    "hq_city": "Indianapolis",
+    "hq_state": "Indiana",
+    "founded": 1876
+  },
+  {
+    "ticker": "",
+    "name": "Linde plc",
+    "sector": "Materials",
+    "sub_industry": "Industrial Gases",
+    "hq_city": "",
+    "hq_state": "",
+    "founded": 1879
+  },
+  {
+    "ticker": "",
+    "name": "Live Nation Entertainment",
+    "sector": "Communication Services",
+    "sub_industry": "Movies & Entertainment",
+    "hq_city": "Beverly Hills",
+    "hq_state": "California",
+    "founded": 2010
+  },
+  {
+    "ticker": "",
+    "name": "Lockheed Martin",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Bethesda",
+    "hq_state": "Maryland",
+    "founded": 1995
+  },
+  {
+    "ticker": "",
+    "name": "Loews Corporation",
+    "sector": "Financials",
+    "sub_industry": "Multi-line Insurance",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Lowe's",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Home Improvement Retail",
+    "hq_city": "Mooresville",
+    "hq_state": "North Carolina",
+    "founded": 1904
+  },
+  {
+    "ticker": "",
+    "name": "Lululemon Athletica",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Apparel, Accessories & Luxury Goods",
+    "hq_city": "Vancouver",
+    "hq_state": "Canada",
+    "founded": 1998
+  },
+  {
+    "ticker": "",
+    "name": "Lumentum",
+    "sector": "Information Technology",
+    "sub_industry": "Communications Equipment",
+    "hq_city": "San Jose",
+    "hq_state": "California",
+    "founded": 2015
+  },
+  {
+    "ticker": "",
+    "name": "LyondellBasell",
+    "sector": "Materials",
+    "sub_industry": "Specialty Chemicals",
+    "hq_city": "Rotterdam",
+    "hq_state": "Netherlands",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "M&T Bank",
+    "sector": "Financials",
+    "sub_industry": "Regional Banks",
+    "hq_city": "Buffalo",
+    "hq_state": "New York",
+    "founded": 1856
+  },
+  {
+    "ticker": "",
+    "name": "Marathon Petroleum",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Refining & Marketing",
+    "hq_city": "Findlay",
+    "hq_state": "Ohio",
+    "founded": 2009
+  },
+  {
+    "ticker": "",
+    "name": "Marriott International",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Hotels, Resorts & Cruise Lines",
+    "hq_city": "Bethesda",
+    "hq_state": "Maryland",
+    "founded": 1927
+  },
+  {
+    "ticker": "",
+    "name": "Marsh McLennan",
+    "sector": "Financials",
+    "sub_industry": "Insurance Brokers",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1905
+  },
+  {
+    "ticker": "",
+    "name": "Martin Marietta Materials",
+    "sector": "Materials",
+    "sub_industry": "Construction Materials",
+    "hq_city": "Raleigh",
+    "hq_state": "North Carolina",
+    "founded": 1993
+  },
+  {
+    "ticker": "",
+    "name": "Marvell Technology",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Santa Clara",
+    "hq_state": "California",
+    "founded": 1995
+  },
+  {
+    "ticker": "",
+    "name": "Masco",
+    "sector": "Industrials",
+    "sub_industry": "Building Products",
+    "hq_city": "Livonia",
+    "hq_state": "Michigan",
+    "founded": 1929
+  },
+  {
+    "ticker": "",
+    "name": "Mastercard",
+    "sector": "Financials",
+    "sub_industry": "Transaction & Payment Processing Services",
+    "hq_city": "Harrison",
+    "hq_state": "New York",
+    "founded": 1966
+  },
+  {
+    "ticker": "",
+    "name": "McCormick & Company",
+    "sector": "Consumer Staples",
+    "sub_industry": "Packaged Foods & Meats",
+    "hq_city": "Hunt Valley",
+    "hq_state": "Maryland",
+    "founded": 1889
+  },
+  {
+    "ticker": "",
+    "name": "McDonald's",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Restaurants",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 1940
+  },
+  {
+    "ticker": "",
+    "name": "McKesson Corporation",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Distributors",
+    "hq_city": "Irving",
+    "hq_state": "Texas",
+    "founded": 1833
+  },
+  {
+    "ticker": "",
+    "name": "Medtronic",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Galway",
+    "hq_state": "Ireland",
+    "founded": 1949
+  },
+  {
+    "ticker": "",
+    "name": "Merck & Co.",
+    "sector": "Health Care",
+    "sub_industry": "Pharmaceuticals",
+    "hq_city": "Kenilworth",
+    "hq_state": "New Jersey",
+    "founded": 1891
+  },
+  {
+    "ticker": "",
+    "name": "Meta Platforms",
+    "sector": "Communication Services",
+    "sub_industry": "Interactive Media & Services",
+    "hq_city": "Menlo Park",
+    "hq_state": "California",
+    "founded": 2004
+  },
+  {
+    "ticker": "",
+    "name": "MetLife",
+    "sector": "Financials",
+    "sub_industry": "Life & Health Insurance",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1868
+  },
+  {
+    "ticker": "",
+    "name": "Mettler Toledo",
+    "sector": "Health Care",
+    "sub_industry": "Life Sciences Tools & Services",
+    "hq_city": "Columbus",
+    "hq_state": "Ohio",
+    "founded": 1945
+  },
+  {
+    "ticker": "",
+    "name": "MGM Resorts",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Casinos & Gaming",
+    "hq_city": "Paradise",
+    "hq_state": "Nevada",
+    "founded": 1986
+  },
+  {
+    "ticker": "",
+    "name": "Microchip Technology",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Chandler",
+    "hq_state": "Arizona",
+    "founded": 1989
+  },
+  {
+    "ticker": "",
+    "name": "Micron Technology",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Boise",
+    "hq_state": "Idaho",
+    "founded": 1978
+  },
+  {
+    "ticker": "",
+    "name": "Microsoft",
+    "sector": "Information Technology",
+    "sub_industry": "Systems Software",
+    "hq_city": "Redmond",
+    "hq_state": "Washington",
+    "founded": 1975
+  },
+  {
+    "ticker": "",
+    "name": "Mid-America Apartment Communities",
+    "sector": "Real Estate",
+    "sub_industry": "Multi-Family Residential REITs",
+    "hq_city": "Memphis",
+    "hq_state": "Tennessee",
+    "founded": 1977
+  },
+  {
+    "ticker": "",
+    "name": "Moderna",
+    "sector": "Health Care",
+    "sub_industry": "Biotechnology",
+    "hq_city": "Cambridge",
+    "hq_state": "Massachusetts",
+    "founded": 2010
+  },
+  {
+    "ticker": "",
+    "name": "Molson Coors Beverage Company",
+    "sector": "Consumer Staples",
+    "sub_industry": "Brewers",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 2005
+  },
+  {
+    "ticker": "",
+    "name": "Mondelez International",
+    "sector": "Consumer Staples",
+    "sub_industry": "Packaged Foods & Meats",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 2012
+  },
+  {
+    "ticker": "",
+    "name": "Monolithic Power Systems",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Kirkland",
+    "hq_state": "Washington",
+    "founded": 1997
+  },
+  {
+    "ticker": "",
+    "name": "Monster Beverage",
+    "sector": "Consumer Staples",
+    "sub_industry": "Soft Drinks & Non-alcoholic Beverages",
+    "hq_city": "Corona",
+    "hq_state": "California",
+    "founded": 2012
+  },
+  {
+    "ticker": "",
+    "name": "Moody's Corporation",
+    "sector": "Financials",
+    "sub_industry": "Financial Exchanges & Data",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1909
+  },
+  {
+    "ticker": "",
+    "name": "Morgan Stanley",
+    "sector": "Financials",
+    "sub_industry": "Investment Banking & Brokerage",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1935
+  },
+  {
+    "ticker": "",
+    "name": "Mosaic Company (The)",
+    "sector": "Materials",
+    "sub_industry": "Fertilizers & Agricultural Chemicals",
+    "hq_city": "Tampa",
+    "hq_state": "Florida",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Motorola Solutions",
+    "sector": "Information Technology",
+    "sub_industry": "Communications Equipment",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 1928
+  },
+  {
+    "ticker": "",
+    "name": "MSCI Inc.",
+    "sector": "Financials",
+    "sub_industry": "Financial Exchanges & Data",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1969
+  },
+  {
+    "ticker": "",
+    "name": "Nasdaq, Inc.",
+    "sector": "Financials",
+    "sub_industry": "Financial Exchanges & Data",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1971
+  },
+  {
+    "ticker": "",
+    "name": "NetApp",
+    "sector": "Information Technology",
+    "sub_industry": "Technology Hardware, Storage & Peripherals",
+    "hq_city": "San Jose",
+    "hq_state": "California",
+    "founded": 1992
+  },
+  {
+    "ticker": "",
+    "name": "Netflix",
+    "sector": "Communication Services",
+    "sub_industry": "Movies & Entertainment",
+    "hq_city": "Los Gatos",
+    "hq_state": "California",
+    "founded": 1997
+  },
+  {
+    "ticker": "",
+    "name": "Newmont",
+    "sector": "Materials",
+    "sub_industry": "Gold",
+    "hq_city": "Denver",
+    "hq_state": "Colorado",
+    "founded": 1921
+  },
+  {
+    "ticker": "",
+    "name": "NextEra Energy",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "Juno Beach",
+    "hq_state": "Florida",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Nike, Inc.",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Apparel, Accessories & Luxury Goods",
+    "hq_city": "Washington County",
+    "hq_state": "Oregon",
+    "founded": 1964
+  },
+  {
+    "ticker": "",
+    "name": "NiSource",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "Merrillville",
+    "hq_state": "Indiana",
+    "founded": 1912
+  },
+  {
+    "ticker": "",
+    "name": "Nordson Corporation",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "Westlake",
+    "hq_state": "Ohio",
+    "founded": 1935
+  },
+  {
+    "ticker": "",
+    "name": "Norfolk Southern",
+    "sector": "Industrials",
+    "sub_industry": "Rail Transportation",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 1881
+  },
+  {
+    "ticker": "",
+    "name": "Northern Trust",
+    "sector": "Financials",
+    "sub_industry": "Asset Management & Custody Banks",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 1889
+  },
+  {
+    "ticker": "",
+    "name": "Northrop Grumman",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "West Falls Church, Virginia<ref>{{cite web|url=https://www.northropgrumman.com/who-we-are/contact-us-northrop-grumman|title=Contact Us|publisher=Northrop Grumman|access-date=2025-10-15|quote=Global Headquarters Northrop Grumman Corporation 2980 Fairview Park Drive Falls Church, VA 22042}} - Even though the postal address says \"Falls Church, VA\", the place is physically in the West Falls Church, Virginia census-designated place in Fairfax County, Virginia. [https://www2.census.gov/geo/maps/DC2020/DC20BLK/st51_va/place/p5184368_west_falls_church/DC20BLK_P5184368.pdf See map here].<!--The HQ is actually in Fairfax County. In Virginia",
+    "hq_state": "cities are separate from counties. It is impossible for a place in Fairfax County to be in Falls Church city.--></ref>",
+    "founded": 1994
+  },
+  {
+    "ticker": "",
+    "name": "Norwegian Cruise Line Holdings",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Hotels, Resorts & Cruise Lines",
+    "hq_city": "Miami-Dade County, Florida<ref>{{cite web|url=https://www.ncl.com/terms/privacy-policy|title=Privacy Policy|publisher=Norwegian Cruise Line Holdings|access-date=2025-10-25|quote=Norwegian Cruise Line Holdings Ltd. Legal Department: Privacy Team 7665 Corporate Center Drive Miami",
+    "hq_state": "Florida 33126}} - The office location is outside of the Miami city limits: [https://www2.census.gov/geo/maps/DC2020/DC20BLK/st12_fl/county/c12086_miami-dade/DC20BLK_C12086.pdf Miami-Dade County census map page 31/154].</ref>",
+    "founded": 2011
+  },
+  {
+    "ticker": "",
+    "name": "NRG Energy",
+    "sector": "Utilities",
+    "sub_industry": "Independent Power Producers & Energy Traders",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1992
+  },
+  {
+    "ticker": "",
+    "name": "Nucor",
+    "sector": "Materials",
+    "sub_industry": "Steel",
+    "hq_city": "Charlotte",
+    "hq_state": "North Carolina",
+    "founded": 1940
+  },
+  {
+    "ticker": "",
+    "name": "Nvidia",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Santa Clara",
+    "hq_state": "California",
+    "founded": 1993
+  },
+  {
+    "ticker": "",
+    "name": "NVR, Inc.",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Homebuilding",
+    "hq_city": "Reston",
+    "hq_state": "Virginia",
+    "founded": 1980
+  },
+  {
+    "ticker": "",
+    "name": "NXP Semiconductors",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Eindhoven",
+    "hq_state": "Netherlands",
+    "founded": 1953
+  },
+  {
+    "ticker": "",
+    "name": "O\u2019Reilly Automotive",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Automotive Retail",
+    "hq_city": "Springfield",
+    "hq_state": "Missouri",
+    "founded": 1957
+  },
+  {
+    "ticker": "",
+    "name": "Occidental Petroleum",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Exploration & Production",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1920
+  },
+  {
+    "ticker": "",
+    "name": "Old Dominion",
+    "sector": "Industrials",
+    "sub_industry": "Cargo Ground Transportation",
+    "hq_city": "Thomasville",
+    "hq_state": "North Carolina",
+    "founded": 1934
+  },
+  {
+    "ticker": "",
+    "name": "Omnicom Group",
+    "sector": "Communication Services",
+    "sub_industry": "Advertising",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1986
+  },
+  {
+    "ticker": "",
+    "name": "ON Semiconductor",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Phoenix",
+    "hq_state": "Arizona",
+    "founded": 1999
+  },
+  {
+    "ticker": "",
+    "name": "Oneok",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Storage & Transportation",
+    "hq_city": "Tulsa",
+    "hq_state": "Oklahoma",
+    "founded": 1906
+  },
+  {
+    "ticker": "",
+    "name": "Oracle Corporation",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "Austin",
+    "hq_state": "Texas",
+    "founded": 1977
+  },
+  {
+    "ticker": "",
+    "name": "Otis Worldwide",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "Farmington",
+    "hq_state": "Connecticut",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Paccar",
+    "sector": "Industrials",
+    "sub_industry": "Construction Machinery & Heavy Transportation Equipment",
+    "hq_city": "Bellevue",
+    "hq_state": "Washington",
+    "founded": 1905
+  },
+  {
+    "ticker": "",
+    "name": "Packaging Corporation of America",
+    "sector": "Materials",
+    "sub_industry": "Paper & Plastic Packaging Products & Materials",
+    "hq_city": "Lake Forest",
+    "hq_state": "Illinois",
+    "founded": 1959
+  },
+  {
+    "ticker": "",
+    "name": "Palantir Technologies",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "Aventura",
+    "hq_state": "Florida",
+    "founded": 2003
+  },
+  {
+    "ticker": "",
+    "name": "Palo Alto Networks",
+    "sector": "Information Technology",
+    "sub_industry": "Systems Software",
+    "hq_city": "Santa Clara",
+    "hq_state": "California",
+    "founded": 2005
+  },
+  {
+    "ticker": "",
+    "name": "Paramount Skydance Corporation",
+    "sector": "Communication Services",
+    "sub_industry": "Movies & Entertainment",
+    "hq_city": "Los Angeles",
+    "hq_state": "California",
+    "founded": 2025
+  },
+  {
+    "ticker": "",
+    "name": "Parker Hannifin",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "Cleveland",
+    "hq_state": "Ohio",
+    "founded": 1917
+  },
+  {
+    "ticker": "",
+    "name": "Paychex",
+    "sector": "Industrials",
+    "sub_industry": "Human Resource & Employment Services",
+    "hq_city": "Penfield",
+    "hq_state": "New York",
+    "founded": 1971
+  },
+  {
+    "ticker": "",
+    "name": "PayPal",
+    "sector": "Financials",
+    "sub_industry": "Transaction & Payment Processing Services",
+    "hq_city": "San Jose",
+    "hq_state": "California",
+    "founded": 1998
+  },
+  {
+    "ticker": "",
+    "name": "Pentair",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "",
+    "hq_state": "",
+    "founded": 1966
+  },
+  {
+    "ticker": "",
+    "name": "PepsiCo",
+    "sector": "Consumer Staples",
+    "sub_industry": "Soft Drinks & Non-alcoholic Beverages",
+    "hq_city": "Purchase",
+    "hq_state": "New York",
+    "founded": 1898
+  },
+  {
+    "ticker": "",
+    "name": "Pfizer",
+    "sector": "Health Care",
+    "sub_industry": "Pharmaceuticals",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1849
+  },
+  {
+    "ticker": "",
+    "name": "PG&E Corporation",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "Oakland",
+    "hq_state": "California",
+    "founded": 1905
+  },
+  {
+    "ticker": "",
+    "name": "Philip Morris International",
+    "sector": "Consumer Staples",
+    "sub_industry": "Tobacco",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 2008
+  },
+  {
+    "ticker": "",
+    "name": "Phillips 66",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Refining & Marketing",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 2012
+  },
+  {
+    "ticker": "",
+    "name": "Pinnacle West Capital",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "Phoenix",
+    "hq_state": "Arizona",
+    "founded": 1985
+  },
+  {
+    "ticker": "",
+    "name": "PNC Financial Services",
+    "sector": "Financials",
+    "sub_industry": "Diversified Banks",
+    "hq_city": "Pittsburgh",
+    "hq_state": "Pennsylvania",
+    "founded": 1845
+  },
+  {
+    "ticker": "",
+    "name": "PPG Industries",
+    "sector": "Materials",
+    "sub_industry": "Specialty Chemicals",
+    "hq_city": "Pittsburgh",
+    "hq_state": "Pennsylvania",
+    "founded": 1883
+  },
+  {
+    "ticker": "",
+    "name": "PPL Corporation",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Allentown",
+    "hq_state": "Pennsylvania",
+    "founded": 1920
+  },
+  {
+    "ticker": "",
+    "name": "Principal Financial Group",
+    "sector": "Financials",
+    "sub_industry": "Life & Health Insurance",
+    "hq_city": "Des Moines",
+    "hq_state": "Iowa",
+    "founded": 1879
+  },
+  {
+    "ticker": "",
+    "name": "Procter & Gamble",
+    "sector": "Consumer Staples",
+    "sub_industry": "Personal Care Products",
+    "hq_city": "Cincinnati",
+    "hq_state": "Ohio",
+    "founded": 1837
+  },
+  {
+    "ticker": "",
+    "name": "Progressive Corporation",
+    "sector": "Financials",
+    "sub_industry": "Property & Casualty Insurance",
+    "hq_city": "Mayfield Village",
+    "hq_state": "Ohio",
+    "founded": 1937
+  },
+  {
+    "ticker": "",
+    "name": "Prologis",
+    "sector": "Real Estate",
+    "sub_industry": "Industrial REITs",
+    "hq_city": "San Francisco",
+    "hq_state": "California",
+    "founded": 1983
+  },
+  {
+    "ticker": "",
+    "name": "Prudential Financial",
+    "sector": "Financials",
+    "sub_industry": "Life & Health Insurance",
+    "hq_city": "Newark",
+    "hq_state": "New Jersey",
+    "founded": 1875
+  },
+  {
+    "ticker": "",
+    "name": "Public Service Enterprise Group",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Newark",
+    "hq_state": "New Jersey",
+    "founded": 1903
+  },
+  {
+    "ticker": "",
+    "name": "PTC Inc.",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "Boston",
+    "hq_state": "Massachusetts",
+    "founded": 1985
+  },
+  {
+    "ticker": "",
+    "name": "Public Storage",
+    "sector": "Real Estate",
+    "sub_industry": "Self-Storage REITs",
+    "hq_city": "Glendale",
+    "hq_state": "California",
+    "founded": 1972
+  },
+  {
+    "ticker": "",
+    "name": "PulteGroup",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Homebuilding",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 1956
+  },
+  {
+    "ticker": "",
+    "name": "Quanta Services",
+    "sector": "Industrials",
+    "sub_industry": "Construction & Engineering",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1997
+  },
+  {
+    "ticker": "",
+    "name": "Qualcomm",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "San Diego",
+    "hq_state": "California",
+    "founded": 1985
+  },
+  {
+    "ticker": "",
+    "name": "Quest Diagnostics",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Services",
+    "hq_city": "Secaucus",
+    "hq_state": "New Jersey",
+    "founded": 1967
+  },
+  {
+    "ticker": "",
+    "name": "Qnity Electronics",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductor Materials & Equipment",
+    "hq_city": "Wilmington",
+    "hq_state": "Delaware",
+    "founded": 2025
+  },
+  {
+    "ticker": "",
+    "name": "Ralph Lauren Corporation",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Apparel, Accessories & Luxury Goods",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1967
+  },
+  {
+    "ticker": "",
+    "name": "Raymond James Financial",
+    "sector": "Financials",
+    "sub_industry": "Investment Banking & Brokerage",
+    "hq_city": "St. Petersburg",
+    "hq_state": "Florida",
+    "founded": 1962
+  },
+  {
+    "ticker": "",
+    "name": "RTX Corporation",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Waltham",
+    "hq_state": "Massachusetts",
+    "founded": 1922
+  },
+  {
+    "ticker": "",
+    "name": "Realty Income",
+    "sector": "Real Estate",
+    "sub_industry": "Retail REITs",
+    "hq_city": "San Diego",
+    "hq_state": "California",
+    "founded": 1969
+  },
+  {
+    "ticker": "",
+    "name": "Regency Centers",
+    "sector": "Real Estate",
+    "sub_industry": "Retail REITs",
+    "hq_city": "Jacksonville",
+    "hq_state": "Florida",
+    "founded": 1963
+  },
+  {
+    "ticker": "",
+    "name": "Regeneron Pharmaceuticals",
+    "sector": "Health Care",
+    "sub_industry": "Biotechnology",
+    "hq_city": "Tarrytown",
+    "hq_state": "New York",
+    "founded": 1988
+  },
+  {
+    "ticker": "",
+    "name": "Regions Financial Corporation",
+    "sector": "Financials",
+    "sub_industry": "Regional Banks",
+    "hq_city": "Birmingham",
+    "hq_state": "Alabama",
+    "founded": 1971
+  },
+  {
+    "ticker": "",
+    "name": "Republic Services",
+    "sector": "Industrials",
+    "sub_industry": "Environmental & Facilities Services",
+    "hq_city": "Phoenix",
+    "hq_state": "Arizona",
+    "founded": 1998
+  },
+  {
+    "ticker": "",
+    "name": "ResMed",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "San Diego",
+    "hq_state": "California",
+    "founded": 1989
+  },
+  {
+    "ticker": "",
+    "name": "Revvity",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Waltham",
+    "hq_state": "Massachusetts",
+    "founded": 1937
+  },
+  {
+    "ticker": "",
+    "name": "Robinhood Markets",
+    "sector": "Financials",
+    "sub_industry": "Investment Banking & Brokerage",
+    "hq_city": "Menlo Park",
+    "hq_state": "California",
+    "founded": 2013
+  },
+  {
+    "ticker": "",
+    "name": "Rockwell Automation",
+    "sector": "Industrials",
+    "sub_industry": "Electrical Components & Equipment",
+    "hq_city": "Milwaukee",
+    "hq_state": "Wisconsin",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Rollins, Inc.",
+    "sector": "Industrials",
+    "sub_industry": "Environmental & Facilities Services",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 1948
+  },
+  {
+    "ticker": "",
+    "name": "Roper Technologies",
+    "sector": "Information Technology",
+    "sub_industry": "Electronic Equipment & Instruments",
+    "hq_city": "Sarasota",
+    "hq_state": "Florida",
+    "founded": 1981
+  },
+  {
+    "ticker": "",
+    "name": "Ross Stores",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Apparel Retail",
+    "hq_city": "Dublin",
+    "hq_state": "California",
+    "founded": 1982
+  },
+  {
+    "ticker": "",
+    "name": "Royal Caribbean Group",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Hotels, Resorts & Cruise Lines",
+    "hq_city": "Miami",
+    "hq_state": "Florida",
+    "founded": 1997
+  },
+  {
+    "ticker": "",
+    "name": "S&P Global",
+    "sector": "Financials",
+    "sub_industry": "Financial Exchanges & Data",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Salesforce",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "San Francisco",
+    "hq_state": "California",
+    "founded": 1999
+  },
+  {
+    "ticker": "",
+    "name": "Sandisk",
+    "sector": "Information Technology",
+    "sub_industry": "Technology Hardware, Storage & Peripherals",
+    "hq_city": "Milpitas",
+    "hq_state": "California",
+    "founded": 1988
+  },
+  {
+    "ticker": "",
+    "name": "SBA Communications",
+    "sector": "Real Estate",
+    "sub_industry": "Telecom Tower REITs",
+    "hq_city": "Boca Raton",
+    "hq_state": "Florida",
+    "founded": 1989
+  },
+  {
+    "ticker": "",
+    "name": "Schlumberger",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Equipment & Services",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1926
+  },
+  {
+    "ticker": "",
+    "name": "Seagate Technology",
+    "sector": "Information Technology",
+    "sub_industry": "Technology Hardware, Storage & Peripherals",
+    "hq_city": "Dublin",
+    "hq_state": "Ireland",
+    "founded": 1979
+  },
+  {
+    "ticker": "",
+    "name": "Sempra",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "San Diego",
+    "hq_state": "California",
+    "founded": 1998
+  },
+  {
+    "ticker": "",
+    "name": "ServiceNow",
+    "sector": "Information Technology",
+    "sub_industry": "Systems Software",
+    "hq_city": "Santa Clara",
+    "hq_state": "California",
+    "founded": 2003
+  },
+  {
+    "ticker": "",
+    "name": "Sherwin-Williams",
+    "sector": "Materials",
+    "sub_industry": "Specialty Chemicals",
+    "hq_city": "Cleveland",
+    "hq_state": "Ohio",
+    "founded": 1866
+  },
+  {
+    "ticker": "",
+    "name": "Simon Property Group",
+    "sector": "Real Estate",
+    "sub_industry": "Retail REITs",
+    "hq_city": "Indianapolis",
+    "hq_state": "Indiana",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Skyworks Solutions",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Irvine",
+    "hq_state": "California",
+    "founded": 2002
+  },
+  {
+    "ticker": "",
+    "name": "J.M. Smucker Company (The)",
+    "sector": "Consumer Staples",
+    "sub_industry": "Packaged Foods & Meats",
+    "hq_city": "Orrville",
+    "hq_state": "Ohio",
+    "founded": 1897
+  },
+  {
+    "ticker": "",
+    "name": "Smurfit Westrock",
+    "sector": "Materials",
+    "sub_industry": "Paper & Plastic Packaging Products & Materials",
+    "hq_city": "Dublin",
+    "hq_state": "Ireland",
+    "founded": 1934
+  },
+  {
+    "ticker": "",
+    "name": "Snap-on",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "Kenosha",
+    "hq_state": "Wisconsin",
+    "founded": 1920
+  },
+  {
+    "ticker": "",
+    "name": "Solventum",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Technology",
+    "hq_city": "Saint Paul",
+    "hq_state": "Minnesota",
+    "founded": 2023
+  },
+  {
+    "ticker": "",
+    "name": "Southern Company",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Atlanta",
+    "hq_state": "Georgia",
+    "founded": 1945
+  },
+  {
+    "ticker": "",
+    "name": "Southwest Airlines",
+    "sector": "Industrials",
+    "sub_industry": "Passenger Airlines",
+    "hq_city": "Dallas",
+    "hq_state": "Texas",
+    "founded": 1967
+  },
+  {
+    "ticker": "",
+    "name": "Stanley Black & Decker",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "New Britain",
+    "hq_state": "Connecticut",
+    "founded": 1843
+  },
+  {
+    "ticker": "",
+    "name": "Starbucks",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Restaurants",
+    "hq_city": "Seattle",
+    "hq_state": "Washington",
+    "founded": 1971
+  },
+  {
+    "ticker": "",
+    "name": "State Street Corporation",
+    "sector": "Financials",
+    "sub_industry": "Asset Management & Custody Banks",
+    "hq_city": "Boston",
+    "hq_state": "Massachusetts",
+    "founded": 1792
+  },
+  {
+    "ticker": "",
+    "name": "Steel Dynamics",
+    "sector": "Materials",
+    "sub_industry": "Steel",
+    "hq_city": "Fort Wayne",
+    "hq_state": "Indiana",
+    "founded": 1993
+  },
+  {
+    "ticker": "",
+    "name": "Steris",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Dublin",
+    "hq_state": "Ireland",
+    "founded": 1985
+  },
+  {
+    "ticker": "",
+    "name": "Stryker Corporation",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Kalamazoo",
+    "hq_state": "Michigan",
+    "founded": 1941
+  },
+  {
+    "ticker": "",
+    "name": "Supermicro",
+    "sector": "Information Technology",
+    "sub_industry": "Technology Hardware, Storage & Peripherals",
+    "hq_city": "San Jose",
+    "hq_state": "California",
+    "founded": 1993
+  },
+  {
+    "ticker": "",
+    "name": "Synchrony Financial",
+    "sector": "Financials",
+    "sub_industry": "Consumer Finance",
+    "hq_city": "Stamford",
+    "hq_state": "Connecticut",
+    "founded": 2003
+  },
+  {
+    "ticker": "",
+    "name": "Synopsys",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "Sunnyvale",
+    "hq_state": "California",
+    "founded": 1986
+  },
+  {
+    "ticker": "",
+    "name": "Sysco",
+    "sector": "Consumer Staples",
+    "sub_industry": "Food Distributors",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1969
+  },
+  {
+    "ticker": "",
+    "name": "T-Mobile US",
+    "sector": "Communication Services",
+    "sub_industry": "Wireless Telecommunication Services",
+    "hq_city": "Bellevue",
+    "hq_state": "Washington",
+    "founded": 1994
+  },
+  {
+    "ticker": "",
+    "name": "T. Rowe Price",
+    "sector": "Financials",
+    "sub_industry": "Asset Management & Custody Banks",
+    "hq_city": "Baltimore",
+    "hq_state": "Maryland",
+    "founded": 1937
+  },
+  {
+    "ticker": "",
+    "name": "Take-Two Interactive",
+    "sector": "Communication Services",
+    "sub_industry": "Interactive Home Entertainment",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1993
+  },
+  {
+    "ticker": "",
+    "name": "Tapestry, Inc.",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Apparel, Accessories & Luxury Goods",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 2017
+  },
+  {
+    "ticker": "",
+    "name": "Targa Resources",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Storage & Transportation",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 2005
+  },
+  {
+    "ticker": "",
+    "name": "Target Corporation",
+    "sector": "Consumer Staples",
+    "sub_industry": "Consumer Staples Merchandise Retail",
+    "hq_city": "Minneapolis",
+    "hq_state": "Minnesota",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "TE Connectivity",
+    "sector": "Information Technology",
+    "sub_industry": "Electronic Manufacturing Services",
+    "hq_city": "Galway",
+    "hq_state": "Ireland",
+    "founded": 2007
+  },
+  {
+    "ticker": "",
+    "name": "Teledyne Technologies",
+    "sector": "Information Technology",
+    "sub_industry": "Electronic Equipment & Instruments",
+    "hq_city": "Thousand Oaks",
+    "hq_state": "California",
+    "founded": 1960
+  },
+  {
+    "ticker": "",
+    "name": "Teradyne",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductor Materials & Equipment",
+    "hq_city": "North Reading",
+    "hq_state": "Massachusetts",
+    "founded": 1960
+  },
+  {
+    "ticker": "",
+    "name": "Tesla, Inc.",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Automobile Manufacturers",
+    "hq_city": "Austin",
+    "hq_state": "Texas",
+    "founded": 2003
+  },
+  {
+    "ticker": "",
+    "name": "Texas Instruments",
+    "sector": "Information Technology",
+    "sub_industry": "Semiconductors",
+    "hq_city": "Dallas",
+    "hq_state": "Texas",
+    "founded": 1930
+  },
+  {
+    "ticker": "",
+    "name": "Texas Pacific Land Corporation",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Exploration & Production",
+    "hq_city": "Dallas",
+    "hq_state": "Texas",
+    "founded": 1888
+  },
+  {
+    "ticker": "",
+    "name": "Textron",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Providence",
+    "hq_state": "Rhode Island",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Thermo Fisher Scientific",
+    "sector": "Health Care",
+    "sub_industry": "Life Sciences Tools & Services",
+    "hq_city": "Waltham",
+    "hq_state": "Massachusetts",
+    "founded": 2006
+  },
+  {
+    "ticker": "",
+    "name": "TJX Companies",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Apparel Retail",
+    "hq_city": "Framingham",
+    "hq_state": "Massachusetts",
+    "founded": 1987
+  },
+  {
+    "ticker": "",
+    "name": "TKO Group Holdings",
+    "sector": "Communication Services",
+    "sub_industry": "Movies & Entertainment",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 2023
+  },
+  {
+    "ticker": "",
+    "name": "Trade Desk (The)",
+    "sector": "Communication Services",
+    "sub_industry": "Advertising",
+    "hq_city": "Ventura",
+    "hq_state": "California",
+    "founded": 2009
+  },
+  {
+    "ticker": "",
+    "name": "Tractor Supply",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Other Specialty Retail",
+    "hq_city": "Brentwood",
+    "hq_state": "Tennessee",
+    "founded": 1938
+  },
+  {
+    "ticker": "",
+    "name": "Trane Technologies",
+    "sector": "Industrials",
+    "sub_industry": "Building Products",
+    "hq_city": "Dublin",
+    "hq_state": "Ireland",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "TransDigm Group",
+    "sector": "Industrials",
+    "sub_industry": "Aerospace & Defense",
+    "hq_city": "Cleveland",
+    "hq_state": "Ohio",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Travelers Companies (The)",
+    "sector": "Financials",
+    "sub_industry": "Property & Casualty Insurance",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1853
+  },
+  {
+    "ticker": "",
+    "name": "Trimble Inc.",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "Westminster",
+    "hq_state": "Colorado",
+    "founded": 1978
+  },
+  {
+    "ticker": "",
+    "name": "Truist Financial",
+    "sector": "Financials",
+    "sub_industry": "Diversified Banks",
+    "hq_city": "Charlotte",
+    "hq_state": "North Carolina",
+    "founded": 1872
+  },
+  {
+    "ticker": "",
+    "name": "Tyler Technologies",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "Plano",
+    "hq_state": "Texas",
+    "founded": 1966
+  },
+  {
+    "ticker": "",
+    "name": "Tyson Foods",
+    "sector": "Consumer Staples",
+    "sub_industry": "Packaged Foods & Meats",
+    "hq_city": "Springdale",
+    "hq_state": "Arkansas",
+    "founded": 1935
+  },
+  {
+    "ticker": "",
+    "name": "U.S. Bancorp",
+    "sector": "Financials",
+    "sub_industry": "Diversified Banks",
+    "hq_city": "Minneapolis",
+    "hq_state": "Minnesota",
+    "founded": 1968
+  },
+  {
+    "ticker": "",
+    "name": "Uber",
+    "sector": "Industrials",
+    "sub_industry": "Passenger Ground Transportation",
+    "hq_city": "San Francisco",
+    "hq_state": "California",
+    "founded": 2009
+  },
+  {
+    "ticker": "",
+    "name": "UDR, Inc.",
+    "sector": "Real Estate",
+    "sub_industry": "Multi-Family Residential REITs",
+    "hq_city": "Highlands Ranch",
+    "hq_state": "Colorado",
+    "founded": 1972
+  },
+  {
+    "ticker": "",
+    "name": "Ulta Beauty",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Other Specialty Retail",
+    "hq_city": "Bolingbrook",
+    "hq_state": "Illinois",
+    "founded": 1990
+  },
+  {
+    "ticker": "",
+    "name": "Union Pacific Corporation",
+    "sector": "Industrials",
+    "sub_industry": "Rail Transportation",
+    "hq_city": "Omaha",
+    "hq_state": "Nebraska",
+    "founded": 1862
+  },
+  {
+    "ticker": "",
+    "name": "United Airlines Holdings",
+    "sector": "Industrials",
+    "sub_industry": "Passenger Airlines",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 1967
+  },
+  {
+    "ticker": "",
+    "name": "United Parcel Service",
+    "sector": "Industrials",
+    "sub_industry": "Air Freight & Logistics",
+    "hq_city": "Sandy Springs",
+    "hq_state": "Georgia",
+    "founded": 1907
+  },
+  {
+    "ticker": "",
+    "name": "United Rentals",
+    "sector": "Industrials",
+    "sub_industry": "Trading Companies & Distributors",
+    "hq_city": "Stamford",
+    "hq_state": "Connecticut",
+    "founded": 1997
+  },
+  {
+    "ticker": "",
+    "name": "UnitedHealth Group",
+    "sector": "Health Care",
+    "sub_industry": "Managed Health Care",
+    "hq_city": "Eden Prairie",
+    "hq_state": "Minnesota",
+    "founded": 1977
+  },
+  {
+    "ticker": "",
+    "name": "Universal Health Services",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Facilities",
+    "hq_city": "King of Prussia",
+    "hq_state": "Pennsylvania",
+    "founded": 1979
+  },
+  {
+    "ticker": "",
+    "name": "Valero Energy",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Refining & Marketing",
+    "hq_city": "San Antonio",
+    "hq_state": "Texas",
+    "founded": 1980
+  },
+  {
+    "ticker": "",
+    "name": "Veeva Systems",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Technology",
+    "hq_city": "Pleasanton",
+    "hq_state": "California",
+    "founded": 2007
+  },
+  {
+    "ticker": "",
+    "name": "Ventas",
+    "sector": "Real Estate",
+    "sub_industry": "Health Care REITs",
+    "hq_city": "Chicago",
+    "hq_state": "Illinois",
+    "founded": 1998
+  },
+  {
+    "ticker": "",
+    "name": "Veralto",
+    "sector": "Industrials",
+    "sub_industry": "Environmental & Facilities Services",
+    "hq_city": "Waltham",
+    "hq_state": "Massachusetts",
+    "founded": 2023
+  },
+  {
+    "ticker": "",
+    "name": "Verisign",
+    "sector": "Information Technology",
+    "sub_industry": "Internet Services & Infrastructure",
+    "hq_city": "Reston",
+    "hq_state": "Virginia",
+    "founded": 1995
+  },
+  {
+    "ticker": "",
+    "name": "Verisk Analytics",
+    "sector": "Industrials",
+    "sub_industry": "Research & Consulting Services",
+    "hq_city": "Jersey City",
+    "hq_state": "New Jersey",
+    "founded": 1971
+  },
+  {
+    "ticker": "",
+    "name": "Verizon",
+    "sector": "Communication Services",
+    "sub_industry": "Integrated Telecommunication Services",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 1983
+  },
+  {
+    "ticker": "",
+    "name": "Vertex Pharmaceuticals",
+    "sector": "Health Care",
+    "sub_industry": "Biotechnology",
+    "hq_city": "Boston",
+    "hq_state": "Massachusetts",
+    "founded": 1989
+  },
+  {
+    "ticker": "",
+    "name": "Vertiv",
+    "sector": "Industrials",
+    "sub_industry": "Electrical Components & Equipment",
+    "hq_city": "Westerville",
+    "hq_state": "Ohio",
+    "founded": 2016
+  },
+  {
+    "ticker": "",
+    "name": "Viatris",
+    "sector": "Health Care",
+    "sub_industry": "Pharmaceuticals",
+    "hq_city": "Pittsburgh",
+    "hq_state": "Pennsylvania",
+    "founded": 1961
+  },
+  {
+    "ticker": "",
+    "name": "Vici Properties",
+    "sector": "Real Estate",
+    "sub_industry": "Hotel & Resort REITs",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 2017
+  },
+  {
+    "ticker": "",
+    "name": "Visa Inc.",
+    "sector": "Financials",
+    "sub_industry": "Transaction & Payment Processing Services",
+    "hq_city": "San Francisco",
+    "hq_state": "California",
+    "founded": 1958
+  },
+  {
+    "ticker": "",
+    "name": "Vulcan Materials Company",
+    "sector": "Materials",
+    "sub_industry": "Construction Materials",
+    "hq_city": "Birmingham",
+    "hq_state": "Alabama",
+    "founded": 1909
+  },
+  {
+    "ticker": "",
+    "name": "W. R. Berkley Corporation",
+    "sector": "Financials",
+    "sub_industry": "Property & Casualty Insurance",
+    "hq_city": "Greenwich",
+    "hq_state": "Connecticut",
+    "founded": 1967
+  },
+  {
+    "ticker": "",
+    "name": "W. W. Grainger",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "Lake Forest",
+    "hq_state": "Illinois",
+    "founded": 1927
+  },
+  {
+    "ticker": "",
+    "name": "Wabtec",
+    "sector": "Industrials",
+    "sub_industry": "Construction Machinery & Heavy Transportation Equipment",
+    "hq_city": "Pittsburgh",
+    "hq_state": "Pennsylvania",
+    "founded": 1999
+  },
+  {
+    "ticker": "",
+    "name": "Walmart",
+    "sector": "Consumer Staples",
+    "sub_industry": "Consumer Staples Merchandise Retail",
+    "hq_city": "Bentonville",
+    "hq_state": "Arkansas",
+    "founded": 1962
+  },
+  {
+    "ticker": "",
+    "name": "Walt Disney Company (The)",
+    "sector": "Communication Services",
+    "sub_industry": "Movies & Entertainment",
+    "hq_city": "Burbank",
+    "hq_state": "California",
+    "founded": 1923
+  },
+  {
+    "ticker": "",
+    "name": "Warner Bros. Discovery",
+    "sector": "Communication Services",
+    "sub_industry": "Broadcasting",
+    "hq_city": "New York City",
+    "hq_state": "New York",
+    "founded": 2022
+  },
+  {
+    "ticker": "",
+    "name": "Waste Management",
+    "sector": "Industrials",
+    "sub_industry": "Environmental & Facilities Services",
+    "hq_city": "Houston",
+    "hq_state": "Texas",
+    "founded": 1968
+  },
+  {
+    "ticker": "",
+    "name": "Waters Corporation",
+    "sector": "Health Care",
+    "sub_industry": "Life Sciences Tools & Services",
+    "hq_city": "Milford",
+    "hq_state": "Massachusetts",
+    "founded": 1958
+  },
+  {
+    "ticker": "",
+    "name": "WEC Energy Group",
+    "sector": "Utilities",
+    "sub_industry": "Electric Utilities",
+    "hq_city": "Milwaukee",
+    "hq_state": "Wisconsin",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Wells Fargo",
+    "sector": "Financials",
+    "sub_industry": "Diversified Banks",
+    "hq_city": "San Francisco",
+    "hq_state": "California",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Welltower",
+    "sector": "Real Estate",
+    "sub_industry": "Health Care REITs",
+    "hq_city": "Toledo",
+    "hq_state": "Ohio",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "West Pharmaceutical Services",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Supplies",
+    "hq_city": "Exton",
+    "hq_state": "Pennsylvania",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Western Digital",
+    "sector": "Information Technology",
+    "sub_industry": "Technology Hardware, Storage & Peripherals",
+    "hq_city": "San Jose",
+    "hq_state": "California",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Weyerhaeuser",
+    "sector": "Real Estate",
+    "sub_industry": "Timber REITs",
+    "hq_city": "Seattle",
+    "hq_state": "Washington",
+    "founded": 1900
+  },
+  {
+    "ticker": "",
+    "name": "Williams-Sonoma, Inc.",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Homefurnishing Retail",
+    "hq_city": "San Francisco",
+    "hq_state": "California",
+    "founded": 1956
+  },
+  {
+    "ticker": "",
+    "name": "Williams Companies",
+    "sector": "Energy",
+    "sub_industry": "Oil & Gas Storage & Transportation",
+    "hq_city": "Tulsa",
+    "hq_state": "Oklahoma",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Willis Towers Watson",
+    "sector": "Financials",
+    "sub_industry": "Insurance Brokers",
+    "hq_city": "London",
+    "hq_state": "United Kingdom",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Workday, Inc.",
+    "sector": "Information Technology",
+    "sub_industry": "Application Software",
+    "hq_city": "Pleasanton",
+    "hq_state": "California",
+    "founded": 2005
+  },
+  {
+    "ticker": "",
+    "name": "Wynn Resorts",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Casinos & Gaming",
+    "hq_city": "Paradise",
+    "hq_state": "Nevada",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Xcel Energy",
+    "sector": "Utilities",
+    "sub_industry": "Multi-Utilities",
+    "hq_city": "Minneapolis",
+    "hq_state": "Minnesota",
+    "founded": 1909
+  },
+  {
+    "ticker": "",
+    "name": "Xylem Inc.",
+    "sector": "Industrials",
+    "sub_industry": "Industrial Machinery & Supplies & Components",
+    "hq_city": "White Plains",
+    "hq_state": "New York",
+    "founded": 2011
+  },
+  {
+    "ticker": "",
+    "name": "Yum! Brands",
+    "sector": "Consumer Discretionary",
+    "sub_industry": "Restaurants",
+    "hq_city": "Louisville",
+    "hq_state": "Kentucky",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Zebra Technologies",
+    "sector": "Information Technology",
+    "sub_industry": "Electronic Equipment & Instruments",
+    "hq_city": "Lincolnshire",
+    "hq_state": "Illinois",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Zimmer Biomet",
+    "sector": "Health Care",
+    "sub_industry": "Health Care Equipment",
+    "hq_city": "Warsaw",
+    "hq_state": "Indiana",
+    "founded": null
+  },
+  {
+    "ticker": "",
+    "name": "Zoetis",
+    "sector": "Health Care",
+    "sub_industry": "Pharmaceuticals",
+    "hq_city": "Parsippany",
+    "hq_state": "New Jersey",
+    "founded": 1952
+  }
+]
