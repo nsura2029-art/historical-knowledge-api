@@ -55,6 +55,7 @@ relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpe
 - **1054 persons** (1026 US + 28 international) — top vertical (was 494 in KP-018 v1, 691 in v2)
 - **1023 places** (871 cities + 48 states + 41 landmarks + 51 universities + 12 countries) — 2nd vertical to hit 1000
 - **1075 organizations** (F500 + S&P500 + Banks + Wikidata public cos, was 481, KP-orgs-1000 2026-08-10) — 3rd vertical to hit 1000
+- **1001/1075 orgs with sections** (was 0, KP-orgs-sections 2026-08-10) — 760 with full 4-section set
 - **1018 media entities** + **1018 media_asset** + **1018 media_rights** (CC-BY-SA-4.0)
 - **75365 entity_event rows** across 4 sources (Wikipedia 41466 + Wikidata 31112 + GDELT 10679 + DBpedia 1887)
 - **929 people with 1+ Wikidata events** (was 1 person in KP-029 v1, 415 in KP-029-full)
@@ -91,7 +92,8 @@ relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpe
 0068-0069 (place wiki events), 0070 (place relations), 0071 (place images),
 0072 (KP-places-images-r2: 493 places via /page/summary/ + 'City, State' fallback),
 0073 (KP-place-sections-r2: 158 places with 4 sections each, 560 rows),
-0074 (KP-orgs-1000: 594 new orgs from F500+S&P500+Banks+Wikidata, 1075 total).
+0074 (KP-orgs-1000: 594 new orgs from F500+S&P500+Banks+Wikidata, 1075 total),
+0075 (KP-orgs-sections: 1001 orgs with sections, 3389 section rows, 4 sections each).
 
 See `packages/db/migrations/AGENTS.md` for per-migration details.
 
