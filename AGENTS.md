@@ -64,7 +64,7 @@ relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpe
 - **1015/1051 persons with primary image** (was 173)
 - **1021/1051 persons with all 4 sections** (intro + career + personal + legacy, was 173)
 - **1072 person_place_relations** (was 28)
-- **507/1023 places with primary image** (was 184)
+- **1000/1023 places with primary image** (was 507, KP-places-images-r2 2026-08-10)
 - **846/1023 places with 4 sections** (overview + history + geography + demographics)
 - **7950 entity_event rows for places** (was 4866)
 - **50+ API endpoints** (28+ baseline + 22 across KP-003/004/007/010/017/018/029)
@@ -88,7 +88,8 @@ relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpe
 0047-0048 (KP-018 v3 batches), 0049-0061 (KP-018v3 data enrichment: sections, images, person_derived, pda fix, media_rights),
 0062 (media_rights for backfilled images), 0063 (pda YEAR fallback),
 0065-0067 (KP-places-1000: bulk ingest cities, states, extra cities, sections backfill),
-0068-0069 (place wiki events), 0070 (place relations), 0071 (place images).
+0068-0069 (place wiki events), 0070 (place relations), 0071 (place images),
+0072 (KP-places-images-r2: 493 places via /page/summary/ + 'City, State' fallback).
 
 See `packages/db/migrations/AGENTS.md` for per-migration details.
 
