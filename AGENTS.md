@@ -16,10 +16,13 @@ relevant KP-### (platform context).
 - **Year 1 target**: 10-min avg visit by end of Q4
 - **Editorial team**: comes end of Year 1; LLM-first until then
 
-**Current focus**: Famous People / Biographies vertical. Top-500 famous Americans
-shipped with 12068 date-anchored events from 3 sources (Wikipedia, DBpedia, Wikidata).
-Next: KP-018 v2 (extend top-500 to top-1000 + non-American famous people) OR
-KP-006 (temporal precision to hour/minute) OR add more Wikidata properties.
+**Current focus**: 2nd vertical (Places) to 1000 SHIPPED. Now extending enrichment
+(events, images, relations) to the 846 newly added cities. Next: KP-013 v2 enrichment
+(places events for 600+ more places), orgs vertical 481 → 1000 (need 519 more), and
+the deferred places work (images for 500+ more places, sections backfill for 177).
+
+**Key 2026-08-10 milestone**: 1023 places (5.8x) with 4 sections + 7950 events + 1072 person-place
+relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpedia, Wikidata).
 
 ## What this project is
 
@@ -33,41 +36,59 @@ KP-006 (temporal precision to hour/minute) OR add more Wikidata properties.
 | KP-002 | Source registry + connector allowlist | ✅ done (109 sources, tier A-E) | migration 0013 |
 | KP-003 | Atomic-claim model (claim, claim_source, source_record) | ✅ done | migration 0012 + `a6e30a0` |
 | KP-004 | Evidence + bibliography + citation export | ✅ done | migration 0013 + `1482148` |
-| KP-005 | Identity resolution | 🟡 partial (slug_redirect only) | — |
-| KP-006 | Temporal + geographic foundation | 🟡 partial (day-precision dates) | — |
-| KP-007 | Media + rights pipeline | ✅ done | migration 0014 + `fd8ffae` |
+| KP-005 | Identity resolution (5 merges + 308 redirect) | ✅ done | `47c304a` |
+| KP-006 | Temporal + geographic foundation | 🟡 partial (DAY/MONTH/YEAR precision) | — |
+| KP-007 | Media + rights pipeline (1018 media_asset + media_rights) | ✅ done | migration 0014 + `fd8ffae` + `0059/0062` |
 | KP-008 | Slugs, internal links, breadcrumbs, related | ✅ done | migration 0008 |
 | KP-009 | Universal search + intent detection + facets | 🟡 partial (10 facets) | — |
 | KP-010 | Biography vertical | ✅ done (top-500 + biographies) | migration 0015-0017 + `002addd` |
-| KP-013 | Geography & Travel vertical | 🟡 partial (38 places) | — |
+| KP-013 | Geography & Travel vertical (1023 places, 2nd vertical to 1000) | ✅ done | `64679b1` + `6da31c9` |
 | KP-017 | Public + admin Hono APIs with OpenAPI | ✅ done (50+ endpoints) | `9ce30cc` |
-| KP-018 | Top-500 USA + 6040 events from 3 sources | ✅ done | `9ce30cc` + `608d1ea` |
-| KP-029 | Multi-source events (Wikipedia + DBpedia + Wikidata) | ✅ done | `608d1ea` |
-| KP-029-full | Full Wikidata extraction (415 people, 6048 wd events) | ✅ done | migration 0033 |
+| KP-018 | Top-1000 USA + 75365 events from 4 sources | ✅ done | `b1ff7d6` + `f59c2b7` |
+| KP-025 | Fortune 500 orgs (481 entities) | ✅ done | `29baf04` |
+| KP-026 | Backlinks (organizations + related_entities) | ✅ done | `29baf04` |
+| KP-029 | Multi-source events (Wikipedia + DBpedia + Wikidata + GDELT) | ✅ done | `608d1ea` + `4490c06` |
+| KP-029-full | Full Wikidata extraction (929 people, 13112 wd events) | ✅ done | migrations 0033 + 0050 |
 
-### Numbers (dev D1, 2026-08-08)
+### Numbers (dev D1, 2026-08-10)
 
-- **494 people** (459 top-500 USA + 35 international)
-- **12068 entity_event rows** across 3 sources (Wikipedia 4133 + DBpedia 1887 + Wikidata 6048)
-- **415 people have 1+ Wikidata events** (was 1 person in KP-029)
+- **1054 persons** (1026 US + 28 international) — top vertical (was 494 in KP-018 v1, 691 in v2)
+- **1023 places** (871 cities + 48 states + 41 landmarks + 51 universities + 12 countries) — 2nd vertical to hit 1000
+- **481 organizations** (Fortune 500) — 3rd vertical
+- **1018 media entities** + **1018 media_asset** + **1018 media_rights** (CC-BY-SA-4.0)
+- **75365 entity_event rows** across 4 sources (Wikipedia 41466 + Wikidata 31112 + GDELT 10679 + DBpedia 1887)
+- **929 people with 1+ Wikidata events** (was 1 person in KP-029 v1, 415 in KP-029-full)
+- **64% DAY precision** events (was 51% in KP-018 v1)
 - **109 source_registry** entries (Tier A-E)
-- **31 profession/dimension tags** with 666 entity_tag links
-- **183 entity_image** rows (Wikimedia R2-mirrored)
-- **1025 content_section** rows
+- **1051/1051 persons with US citizenship** (was 120)
+- **1015/1051 persons with primary image** (was 173)
+- **1021/1051 persons with all 4 sections** (intro + career + personal + legacy, was 173)
+- **1072 person_place_relations** (was 28)
+- **507/1023 places with primary image** (was 184)
+- **846/1023 places with 4 sections** (overview + history + geography + demographics)
+- **7950 entity_event rows for places** (was 4866)
 - **50+ API endpoints** (28+ baseline + 22 across KP-003/004/007/010/017/018/029)
-- **372 smoke + edge tests** passing (v7-v14)
+- **72 smoke + edge tests** passing (smoke 7 + v14 15 + kp005 13 + kp018v3 5 + kp-places-1000 8 + quality-gate 24)
 - **24/24 quality gate** passing
 - **Live worker**: https://historical-knowledge-api-dev.nsura2029.workers.dev
-- **Latest preview**: https://rpaav0t3mehv6.space.minimax.io
+- **Latest deploy version**: `080d9327-c014-422b-9e08-ca1822cbcd0d` (2026-08-10)
 
-### Migrations applied (33 total)
+### Migrations applied (70 total)
 
 0001-0009 (initial schema), 0010-0011 (on-this-day), 0012 (KP-003 claim model),
 0013 (KP-004 evidence), 0014 (KP-007 media rights), 0015-0017 (KP-010 biographies),
 0018 (Wikimedia gallery), 0019-0022 (topic sections), 0023 (news GDELT), 0024 (image fixes),
 0025-0026 (top-500 + tags), 0027 (sections re-pass), 0028 (entity_event), 0029 (Wikipedia events),
 0030 (Wikidata events, 20 rows), 0031 (DBpedia events), 0031a (src_dbpedia), 0032 (fix source labels),
-0033 (KP-029-full: full Wikidata events, 6028 new rows).
+0033 (KP-029-full: full Wikidata events, 6028 new rows),
+0034-0036 (F500 orgs, top-1000 US persons batch 1+2),
+0037 (KP-026 backlinks), 0038 (KP-013 v2 US places), 0039 (backfill person rows),
+0040-0042 (events pipeline v2: date_precision, wd, wiki, gdelt, event_type fix),
+0043 (GDELT GKG bulk for top 200), 0043b (GDELT all 869), 0044-0046 (KP-005 merges + Bonnie&Clyde pair),
+0047-0048 (KP-018 v3 batches), 0049-0061 (KP-018v3 data enrichment: sections, images, person_derived, pda fix, media_rights),
+0062 (media_rights for backfilled images), 0063 (pda YEAR fallback),
+0065-0067 (KP-places-1000: bulk ingest cities, states, extra cities, sections backfill),
+0068-0069 (place wiki events), 0070 (place relations), 0071 (place images).
 
 See `packages/db/migrations/AGENTS.md` for per-migration details.
 

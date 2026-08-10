@@ -18,7 +18,9 @@
 
 | Method | Path | What it returns |
 |---|---|---|
-| GET | `/v1/places/{slug}` | Place page. |
+| GET | `/v1/places/{slug}` | Place page. Returns enriched place object: id, type, slug, canonical_name, short_description (500 chars from summary), summary, place_type, country_code, latitude, longitude, founding_year, sections_count, events_count, hero_image_url, popularity_score, count. Plus birthPeople/deathPeople/residencePeople. |
+| GET | `/v1/places/{slug}/sections` | List all content_section rows for a place (lightweight, for nav). Each section has id, heading, section_type, reading_level, editorial_status, display_order. |
+| GET | `/v1/places/{slug}/events` | All entity_event rows for a place. Query: `?type=&category=&from=&to=&limit=` (default 50). Returns total, by_type, by_category, events[]. Each event has id, event_date, event_year, event_type, category, title, body, source_id, source_section, confidence, date_precision. |
 | GET | `/v1/countries/{code}` | Country page. |
 | GET | `/v1/professions/{slug}` | Profession page. |
 | GET | `/v1/generations/{slug}` | Generation page. |
