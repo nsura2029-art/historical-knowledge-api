@@ -52,14 +52,34 @@ const entityHeaderSchema = z.object({
   count: z.number().int(),
 });
 
+// Rich place schema (used for /v1/places/{slug} response)
+const placeSchema = z.object({
+  id: z.string(),
+  type: z.string(),
+  slug: z.string(),
+  canonical_name: z.string(),
+  short_description: z.string().nullable().optional(),
+  summary: z.string().nullable().optional(),
+  place_type: z.string().nullable().optional(),
+  country_code: z.string().nullable().optional(),
+  latitude: z.number().nullable().optional(),
+  longitude: z.number().nullable().optional(),
+  founding_year: z.number().int().nullable().optional(),
+  sections_count: z.number().int().optional(),
+  events_count: z.number().int().optional(),
+  hero_image_url: z.string().nullable().optional(),
+  popularity_score: z.number().optional(),
+  count: z.number().int(),
+}).openapi('PlaceDetail');
+
 // Place
 const placeRoute = createRoute({
   method: 'get', path: '/v1/places/{slug}',
   operationId: 'getPlace', tags: ['entities'],
-  summary: 'Place detail with born/died/lived there',
+  summary: 'Place detail with born/died/lived there + lat/lon/sections/events/hero_image',
   request: { params: z.object({ slug: z.string() }) },
   responses: {
-    200: { description: 'Place detail', content: { 'application/json': { schema: z.object({ place: entityHeaderSchema, birthPeople: z.array(personInListSchema), deathPeople: z.array(personInListSchema), residencePeople: z.array(personInListSchema) }) } } },
+    200: { description: 'Place detail with lat/lon, summary, sections count, events count, hero image', content: { 'application/json': { schema: z.object({ place: placeSchema, birthPeople: z.array(personInListSchema), deathPeople: z.array(personInListSchema), residencePeople: z.array(personInListSchema) }) } } },
     404: { description: 'Place not found', content: { 'application/json': { schema: RefDocError } } },
   },
 });

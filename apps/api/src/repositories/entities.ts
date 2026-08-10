@@ -43,14 +43,15 @@ export interface RelatedPerson {
 // ---------------------------------------------------------------------------
 
 export async function getPlaceBySlug(db: D1Database, slug: string): Promise<{
-  place: EntityHeader | null;
+  place: any | null;
   birthPeople: RelatedPerson[];
   deathPeople: RelatedPerson[];
   residencePeople: RelatedPerson[];
 }> {
   let placeRow = await db
     .prepare(`
-      SELECT e.id, e.type, e.slug, e.canonical_name, p.place_type, p.country_code
+      SELECT e.id, e.type, e.slug, e.canonical_name, e.summary, e.popularity_score,
+             p.place_type, p.country_code, p.latitude, p.longitude, p.valid_from
       FROM entity e
       JOIN place p ON p.id = e.id
       WHERE e.slug = ? AND e.type = 'place'
@@ -62,7 +63,8 @@ export async function getPlaceBySlug(db: D1Database, slug: string): Promise<{
     const normalized = slug.toLowerCase().replace(/-/g, ' ').replace(/[()'"]/g, '');
     placeRow = await db
       .prepare(`
-        SELECT e.id, e.type, e.slug, e.canonical_name, p.place_type, p.country_code
+        SELECT e.id, e.type, e.slug, e.canonical_name, e.summary, e.popularity_score,
+               p.place_type, p.country_code, p.latitude, p.longitude, p.valid_from
         FROM entity e
         JOIN place p ON p.id = e.id
         WHERE e.type = 'place'
@@ -76,6 +78,17 @@ export async function getPlaceBySlug(db: D1Database, slug: string): Promise<{
   if (!placeRow) {
     return { place: null, birthPeople: [], deathPeople: [], residencePeople: [] };
   }
+
+  // Aggregated counts + hero image
+  const countsRow = await db
+    .prepare(`
+      SELECT
+        (SELECT COUNT(*) FROM content_section WHERE entity_id = ? AND editorial_status != 'rejected') AS sections_count,
+        (SELECT COUNT(*) FROM entity_event WHERE entity_id = ?) AS events_count,
+        (SELECT url FROM media_asset WHERE depiction_entity_id = ? AND asset_type = 'image' AND status = 'approved' ORDER BY depiction_confidence DESC LIMIT 1) AS hero_image_url
+    `)
+    .bind(placeRow.id, placeRow.id, placeRow.id)
+    .first<any>();
 
   // People born here
   const birthPeople = await db
@@ -136,7 +149,17 @@ export async function getPlaceBySlug(db: D1Database, slug: string): Promise<{
       type: placeRow.type,
       slug: placeRow.slug,
       canonical_name: placeRow.canonical_name,
-      short_description: `${placeRow.place_type}${placeRow.country_code ? ` in ${placeRow.country_code}` : ''}`,
+      short_description: (placeRow.summary || '').slice(0, 500).replace(/\s+/g, ' ').trim() || `${placeRow.place_type}${placeRow.country_code ? ' in ' + placeRow.country_code : ''}`,
+      summary: placeRow.summary || null,
+      place_type: placeRow.place_type,
+      country_code: placeRow.country_code,
+      latitude: placeRow.latitude,
+      longitude: placeRow.longitude,
+      founding_year: placeRow.valid_from || null,
+      sections_count: countsRow?.sections_count ?? 0,
+      events_count: countsRow?.events_count ?? 0,
+      hero_image_url: countsRow?.hero_image_url ?? null,
+      popularity_score: placeRow.popularity_score || 0,
       count: total,
     },
     birthPeople: birthPeople.results ?? [],
