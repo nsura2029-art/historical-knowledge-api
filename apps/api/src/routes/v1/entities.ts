@@ -13,6 +13,7 @@
  *   GET /v1/works/{slug}
  *   GET /v1/awards/{slug}
  *   GET /v1/organizations/{slug}
+ *   GET /v1/organizations/{slug}/sections — list content_sections for an org
  */
 
 import { createRoute, OpenAPIHono } from '@hono/zod-openapi';
@@ -272,4 +273,64 @@ entitiesRouter.openapi(organizationRoute, async (c) => {
   const result = await getOrganizationBySlug(c.env.DB, slug);
   if (!result.organization) return notFound(c, 'organization', slug);
   return c.json(result) as any;
+});
+
+// ---------------------------------------------------------------------------
+// /v1/organizations/{slug}/sections
+// ---------------------------------------------------------------------------
+
+const OrgSectionListItem = z.object({
+  id: z.string(),
+  heading: z.string().nullable(),
+  section_type: z.string(),
+  reading_level: z.string().nullable(),
+  editorial_status: z.string().nullable(),
+  display_order: z.number().int().nullable(),
+}).openapi('OrgSectionListItem');
+
+const OrgSectionsListResponse = z.object({
+  entity_id: z.string(),
+  slug: z.string(),
+  sections: z.array(OrgSectionListItem),
+  on_this_page: z.array(z.object({ id: z.string(), heading: z.string().nullable() })),
+}).openapi('OrgSectionsListResponse');
+
+const organizationSectionsRoute = createRoute({
+  method: 'get',
+  path: '/v1/organizations/{slug}/sections',
+  operationId: 'getOrganizationSections',
+  tags: ['entities', 'sections'],
+  summary: 'List narrative sections for an organization',
+  request: { params: z.object({ slug: z.string() }) },
+  responses: {
+    200: { description: 'Sections list', content: { 'application/json': { schema: OrgSectionsListResponse } } },
+    404: { description: 'Organization not found', content: { 'application/json': { schema: RefDocError } } },
+  },
+});
+
+entitiesRouter.openapi(organizationSectionsRoute, async (c) => {
+  const { slug } = c.req.valid('param');
+  // Look up the org
+  const orgRow = await c.env.DB.prepare(
+    'SELECT e.id, e.slug FROM entity e WHERE e.slug = ? AND e.type = ?'
+  ).bind(slug, 'organization').first<{ id: string; slug: string }>();
+  if (!orgRow) return notFound(c, 'organization', slug);
+
+  const sectionsRes = await c.env.DB.prepare(`
+    SELECT id, heading, section_type, reading_level, editorial_status, display_order
+    FROM content_section
+    WHERE entity_id = ? AND editorial_status != 'rejected'
+    ORDER BY display_order ASC, id ASC
+  `).bind(orgRow.id).all<{
+    id: string; heading: string | null; section_type: string;
+    reading_level: string | null; editorial_status: string | null;
+    display_order: number | null;
+  }>();
+  const sections = sectionsRes.results || [];
+  return c.json({
+    entity_id: orgRow.id,
+    slug: orgRow.slug,
+    sections,
+    on_this_page: sections.map(s => ({ id: s.id, heading: s.heading })),
+  }) as any;
 });
