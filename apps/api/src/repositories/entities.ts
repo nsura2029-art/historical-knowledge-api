@@ -686,6 +686,10 @@ export async function getOrganizationBySlug(db: D1Database, slug: string): Promi
     parent_id: string | null;
     wikidata_qid: string | null;
     summary: string | null;
+    hero_image_url: string | null;
+    sections_count: number;
+    events_count: number;
+    popularity_score: number | null;
   } | null;
   notable_people: Array<{
     id: string;
@@ -700,9 +704,12 @@ export async function getOrganizationBySlug(db: D1Database, slug: string): Promi
 }> {
   const org = await db
     .prepare(`
-      SELECT e.id, e.slug, e.canonical_name, e.summary,
+      SELECT e.id, e.slug, e.canonical_name, e.summary, e.popularity_score,
              o.org_type, o.founded_year, o.dissolved_year,
-             o.parent_id, o.wikidata_qid
+             o.parent_id, o.wikidata_qid,
+             (SELECT ma.url FROM media_asset ma WHERE ma.depiction_entity_id = e.id AND ma.status = 'approved' AND ma.asset_type = 'image' ORDER BY ma.depiction_confidence DESC LIMIT 1) AS hero_image_url,
+             (SELECT COUNT(*) FROM content_section cs WHERE cs.entity_id = e.id AND cs.editorial_status != 'rejected') AS sections_count,
+             (SELECT COUNT(*) FROM entity_event ee WHERE ee.entity_id = e.id) AS events_count
       FROM entity e
       LEFT JOIN organization o ON o.id = e.id
       WHERE e.slug = ? AND e.type = 'organization'
@@ -712,6 +719,10 @@ export async function getOrganizationBySlug(db: D1Database, slug: string): Promi
       id: string; slug: string; canonical_name: string; summary: string | null;
       org_type: string | null; founded_year: number | null; dissolved_year: number | null;
       parent_id: string | null; wikidata_qid: string | null;
+      hero_image_url: string | null;
+      sections_count: number;
+      events_count: number;
+      popularity_score: number | null;
     }>();
 
   if (!org) return { organization: null, notable_people: [] };
