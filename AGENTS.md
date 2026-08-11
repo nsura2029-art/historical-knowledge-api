@@ -57,6 +57,7 @@ relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpe
 - **1075 organizations** (F500 + S&P500 + Banks + Wikidata public cos, was 481, KP-orgs-1000 2026-08-10) — 3rd vertical to hit 1000
 - **1001/1075 orgs with sections** (was 0, KP-orgs-sections 2026-08-10) — 760 with full 4-section set
 - **719/1075 orgs with primary image** (was 0, KP-orgs-images 2026-08-10)
+- **622/1075 orgs with 17,594 events** (was 0, KP-orgs-events 2026-08-11) — 3633 DAY, 4219 MONTH, 9742 YEAR precision
 - **1018 media entities** + **1018 media_asset** + **1018 media_rights** (CC-BY-SA-4.0)
 - **75365 entity_event rows** across 4 sources (Wikipedia 41466 + Wikidata 31112 + GDELT 10679 + DBpedia 1887)
 - **929 people with 1+ Wikidata events** (was 1 person in KP-029 v1, 415 in KP-029-full)
@@ -95,7 +96,8 @@ relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpe
 0073 (KP-place-sections-r2: 158 places with 4 sections each, 560 rows),
 0074 (KP-orgs-1000: 594 new orgs from F500+S&P500+Banks+Wikidata, 1075 total),
 0075 (KP-orgs-sections: 1001 orgs with sections, 3389 section rows, 4 sections each),
-0076 (KP-orgs-images: 719 orgs with primary image, +hero_image_url/sections_count/events_count/popularity_score on /v1/organizations/{slug}).
+0076 (KP-orgs-images: 719 orgs with primary image, +hero_image_url/sections_count/events_count/popularity_score on /v1/organizations/{slug}),
+0077 (KP-orgs-events: 622 orgs with 17594 events from Wikipedia, +GET /v1/organizations/{slug}/events).
 
 See `packages/db/migrations/AGENTS.md` for per-migration details.
 
