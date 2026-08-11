@@ -350,3 +350,73 @@ entitiesRouter.openapi(organizationSectionsRoute, async (c) => {
     on_this_page: sections.map(s => ({ id: s.id, heading: s.heading })),
   }) as any;
 });
+
+// ---------------------------------------------------------------------------
+// /v1/organizations/{slug}/events
+// ---------------------------------------------------------------------------
+
+const OrgEventListItem = z.object({
+  id: z.string(),
+  event_date: z.string().nullable(),
+  event_year: z.number().int(),
+  event_type: z.string(),
+  category: z.string(),
+  title: z.string().nullable(),
+  body: z.string().nullable(),
+  source_id: z.string().nullable(),
+  source_section: z.string().nullable(),
+  date_precision: z.string(),
+  display_order: z.number().int(),
+}).openapi('OrgEventListItem');
+
+const OrgEventsListResponse = z.object({
+  entity_id: z.string(),
+  slug: z.string(),
+  total: z.number().int(),
+  events: z.array(OrgEventListItem),
+}).openapi('OrgEventsListResponse');
+
+const organizationEventsRoute = createRoute({
+  method: 'get',
+  path: '/v1/organizations/{slug}/events',
+  operationId: 'getOrganizationEvents',
+  tags: ['entities', 'events'],
+  summary: 'List narrative events for an organization',
+  request: { params: z.object({ slug: z.string() }) },
+  responses: {
+    200: { description: 'Events list', content: { 'application/json': { schema: OrgEventsListResponse } } },
+    404: { description: 'Organization not found', content: { 'application/json': { schema: RefDocError } } },
+  },
+});
+
+entitiesRouter.openapi(organizationEventsRoute, async (c) => {
+  const { slug } = c.req.valid('param');
+  const orgRow = await c.env.DB.prepare(
+    'SELECT e.id, e.slug FROM entity e WHERE e.slug = ? AND e.type = ?'
+  ).bind(slug, 'organization').first<{ id: string; slug: string }>();
+  if (!orgRow) return notFound(c, 'organization', slug);
+
+  const eventsRes = await c.env.DB.prepare(`
+    SELECT id, event_date, event_year, event_type, category, title, body,
+           source_id, source_section, date_precision, display_order
+    FROM entity_event
+    WHERE entity_id = ?
+    ORDER BY
+      CASE WHEN event_date IS NULL THEN 1 ELSE 0 END ASC,
+      event_date ASC,
+      event_year ASC,
+      display_order ASC
+  `).bind(orgRow.id).all<{
+    id: string; event_date: string | null; event_year: number;
+    event_type: string; category: string; title: string | null;
+    body: string | null; source_id: string | null; source_section: string | null;
+    date_precision: string; display_order: number;
+  }>();
+  const events = eventsRes.results || [];
+  return c.json({
+    entity_id: orgRow.id,
+    slug: orgRow.slug,
+    total: events.length,
+    events,
+  }) as any;
+});
