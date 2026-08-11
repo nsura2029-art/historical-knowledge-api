@@ -250,6 +250,22 @@ entitiesRouter.openapi(workRoute, async (c) => {
 // /v1/organizations/{slug}
 // ---------------------------------------------------------------------------
 
+const organizationSchema = z.object({
+  id: z.string(),
+  slug: z.string(),
+  canonical_name: z.string(),
+  org_type: z.string().nullable().optional(),
+  founded_year: z.number().int().nullable().optional(),
+  dissolved_year: z.number().int().nullable().optional(),
+  parent_id: z.string().nullable().optional(),
+  wikidata_qid: z.string().nullable().optional(),
+  summary: z.string().nullable().optional(),
+  hero_image_url: z.string().nullable().optional(),
+  sections_count: z.number().int().nullable().optional(),
+  events_count: z.number().int().nullable().optional(),
+  popularity_score: z.number().nullable().optional(),
+}).openapi('OrganizationDetail');
+
 const organizationRoute = createRoute({
   method: 'get',
   path: '/v1/organizations/{slug}',

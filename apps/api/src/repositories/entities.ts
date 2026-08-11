@@ -758,6 +758,10 @@ export async function getOrganizationBySlug(db: D1Database, slug: string): Promi
       parent_id: org.parent_id,
       wikidata_qid: org.wikidata_qid,
       summary: org.summary,
+      hero_image_url: org.hero_image_url,
+      sections_count: org.sections_count,
+      events_count: org.events_count,
+      popularity_score: org.popularity_score,
     },
     notable_people: people.results ?? [],
   };
