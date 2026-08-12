@@ -103,6 +103,7 @@ relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpe
 0078 (KP-place-events-r2: 2 more places (elizabethton 30, cartersville 16) — only quality places kept from broader run, 600+ target via Wikipedia rule alone isn't realistic).
 0079 (KP-place-events-wikidata: 310 more places via Wikidata P571/P793, +317 events. Bootstrapped 731 place.wikidata_qid for future enrichment. Coverage: 549/1023 places with events.)
 0080 (KP-place-founding-year: 486 places with founding_year from earliest founding event. +founding_year column on place table.)
+0081 (KP-states-missing: 50/50 US states now present (was 48/50). Renamed PA cities Indiana→indiana-pennsylvania, Washington→washington-pennsylvania, then added Indiana + Washington states.)
 
 See `packages/db/migrations/AGENTS.md` for per-migration details.
 
