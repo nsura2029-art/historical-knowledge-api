@@ -106,6 +106,7 @@ relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpe
 0081 (KP-states-missing: 50/50 US states now present (was 48/50). Renamed PA cities Indiana→indiana-pennsylvania, Washington→washington-pennsylvania, then added Indiana + Washington states.)
 0082 (KP-person-death-residence: 553 death events from Wikidata P570, 506 age_at_death, +14 death_place, +19 residence, +22 work_location relations. Total 20 death_place, 20 residence, 22 work_location.)
 0083 (KP-place-sections-r3: 7 more places with sections (overview+history+geography+demographics). 988/988 places with sections (100%). Failed attempt at extending events to remaining 423 places via Wikidata r3 — only got 2 events because Wikidata entries don't have P571/P793 for those.)
+0084 (api-bug-fixes: 3 real bugs fixed + 1 phantom. (1) on-this-day rewrote fillSections to query entity_event (97K rows) instead of otd_event (6) and career_event (95) — 30-49 items per query (was 0). (2) org events endpoint added type/category/from/to/limit query params + WHERE clauses — type=founding now returns 4 (was 30). (3) places events from/to filter now also matches YEAR-precision events (was 1, now 6 for NYC 1900-2000). Phantom: by-category/timeline 'empty items' was my test bug — API correctly returns events field.)
 
 See `packages/db/migrations/AGENTS.md` for per-migration details.
 
