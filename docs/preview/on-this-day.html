@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>On This Day + Time Telescope — Historical Knowledge API Preview</title>
+<style>
+  :root {
+    --bg: #0c0d12;
+    --bg-2: #14161e;
+    --bg-3: #1c1f2a;
+    --border: #262936;
+    --text: #e6e8ee;
+    --text-dim: #8a8fa3;
+    --text-faint: #5b5f70;
+    --accent: #f0b429;       /* gold */
+    --accent-dim: #b4862b;
+    --political: #5e8bff;
+    --scientific: #4ad7d4;
+    --cultural: #d36ad6;
+    --economic: #6dd16d;
+    --social: #c8a35e;
+    --crime: #ff6b6b;
+    --religious: #c084ff;
+    --sport: #ff9d3a;
+    --exploration: #6cb6ff;
+    --disaster: #ff4d4d;
+    --royal: #ffd56b;
+    --tech: #6bd5d5;
+    --news: #ff5fbf;          /* pink for news */
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  button, select, input {
+    font-family: inherit;
+    font-size: 14px;
+    background: var(--bg-3);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    outline: none;
+  }
+  button { cursor: pointer; }
+  button:hover, select:hover { border-color: var(--accent-dim); }
+  button.primary { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { background: #ffc94a; }
+  input:focus, select:focus { border-color: var(--accent); }
+
+  /* Layout */
+  .app { max-width: 1400px; margin: 0 auto; padding: 0 24px 64px; }
+  header {
+    background: linear-gradient(180deg, #11131a 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 24px 20px;
+    margin: 0 -24px 24px;
+  }
+  .header-row { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  h1 { font-size: 22px; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+  .tagline { color: var(--text-dim); font-size: 13px; }
+  .subhead { color: var(--text-faint); font-size: 12px; margin-top: 4px; }
+  .endpoint { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace; color: var(--text-faint); font-size: 12px; }
+
+  /* Mode tabs */
+  .mode-tabs { display: flex; gap: 0; margin: 16px 0 0; border-bottom: 1px solid var(--border); }
+  .mode-tab {
+    padding: 10px 18px; border: 0; background: none; color: var(--text-dim);
+    cursor: pointer; font-size: 14px; border-bottom: 2px solid transparent;
+    border-radius: 0;
+  }
+  .mode-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .mode-tab:hover { color: var(--text); }
+
+  /* Date strip */
+  .date-strip { display: flex; gap: 8px; align-items: center; margin: 12px 0 0; flex-wrap: wrap; }
+  .date-pill {
+    padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--bg-2); color: var(--text-dim); cursor: pointer; font-size: 13px;
+  }
+  .date-pill.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+  .date-pill:hover:not(.active) { color: var(--text); border-color: var(--accent-dim); }
+
+  /* Filter bar */
+  .filter-bar {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;
+    background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px; margin-bottom: 20px;
+  }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); font-weight: 600; }
+  .field input, .field select { width: 100%; }
+  .actions { grid-column: span 6; display: flex; gap: 8px; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+  .meta-line { color: var(--text-dim); font-size: 12px; font-family: ui-monospace, monospace; }
+
+  @media (max-width: 900px) { .filter-bar { grid-template-columns: repeat(2, 1fr); } .actions { grid-column: span 2; } }
+
+  /* Stats */
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .stat { background: var(--bg-2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; }
+  .stat .v { font-size: 18px; font-weight: 600; }
+  .stat .k { font-size: 11px; text-transform: uppercase; color: var(--text-faint); letter-spacing: 0.05em; }
+
+  /* Sections grid */
+  .sections { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .section { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; }
+  .section h2 {
+    font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-faint); margin: 0 0 12px; font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section h2 .badge {
+    background: var(--bg-3); color: var(--text-dim); padding: 2px 8px; border-radius: 999px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0; text-transform: none;
+  }
+  .section.events h2 { color: var(--accent); }
+  .section.news h2 { color: var(--news); }
+  .section.politics h2 { color: var(--political); }
+  .section.science h2 { color: var(--scientific); }
+  .section.cultural h2 { color: var(--cultural); }
+  .section.economic h2 { color: var(--economic); }
+  .section.social h2 { color: var(--social); }
+  .section.crime h2 { color: var(--crime); }
+  .section.religion h2 { color: var(--religious); }
+  .section.sports h2 { color: var(--sport); }
+  .section.exploration h2 { color: var(--exploration); }
+  .section.disasters h2 { color: var(--disaster); }
+  .section.royal h2 { color: var(--royal); }
+  .section.technology h2 { color: var(--tech); }
+  .section.births h2 { color: #9ad95e; }
+  .section.deaths h2 { color: #ff6b8b; }
+  .section.weddings h2 { color: #ff9ed1; }
+  .section.holidays h2 { color: #ffba6b; }
+
+  .event {
+    display: grid; grid-template-columns: 60px 1fr; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .event:last-child { border-bottom: none; }
+  .event .year {
+    color: var(--accent); font-family: ui-monospace, monospace; font-size: 16px;
+    font-weight: 600; text-align: right; padding-top: 2px;
+  }
+  .event .body .title { font-size: 14px; color: var(--text); }
+  .event .body .desc { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+  .event .body .cat {
+    display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 4px;
+    background: var(--bg-3); color: var(--text-faint); margin-top: 4px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .event .body .cat.political { color: var(--political); }
+  .event .body .cat.scientific { color: var(--scientific); }
+  .event .body .cat.cultural { color: var(--cultural); }
+  .event .body .cat.economic { color: var(--economic); }
+  .event .body .cat.social { color: var(--social); }
+  .event .body .cat.crime { color: var(--crime); }
+  .event .body .cat.religion { color: var(--religious); }
+  .event .body .cat.sports { color: var(--sport); }
+  .event .body .cat.exploration { color: var(--exploration); }
+  .event .body .cat.disaster { color: var(--disaster); }
+  .event .body .cat.royal { color: var(--royal); }
+  .event .body .cat.technological { color: var(--tech); }
+  .event .body .source {
+    display: inline-block; font-size: 11px; color: var(--news);
+    margin-top: 4px; font-style: italic;
+  }
+  .event .body a { color: var(--text-dim); font-size: 11px; }
+
+  .person { display: grid; grid-template-columns: 60px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .person:last-child { border-bottom: none; }
+  .person .year { color: var(--accent); font-family: ui-monospace, monospace; font-size: 16px; font-weight: 600; text-align: right; padding-top: 2px; }
+  .person .name { color: var(--text); font-size: 14px; font-weight: 500; }
+  .person .desc { color: var(--text-dim); font-size: 12px; margin-top: 2px; }
+
+  .holiday { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .holiday:last-child { border-bottom: none; }
+  .holiday .name { color: var(--text); }
+  .holiday .meta { color: var(--text-dim); font-size: 12px; margin-top: 2px; }
+
+  .empty { color: var(--text-faint); font-style: italic; padding: 8px 0; }
+  .loading { color: var(--text-dim); text-align: center; padding: 40px; }
+  .spinner {
+    display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border);
+    border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite;
+    margin-right: 8px; vertical-align: -2px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error { background: #2a1212; border: 1px solid #5a2424; color: #ff8a8a; padding: 12px; border-radius: 8px; }
+  .raw-link { font-size: 11px; color: var(--text-faint); margin-top: 8px; }
+  .raw-link code { background: var(--bg-3); padding: 1px 5px; border-radius: 3px; }
+
+  /* Telescope */
+  .telescope-period {
+    background: var(--bg-3); border-left: 3px solid var(--accent);
+    padding: 12px 16px; border-radius: 4px; margin-bottom: 12px;
+  }
+  .telescope-period.far { opacity: 0.7; }
+  .telescope-period .head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .telescope-period .label {
+    color: var(--accent); font-weight: 600; font-size: 14px;
+  }
+  .telescope-period .label .date { color: var(--text-dim); font-weight: 400; font-size: 12px; margin-left: 6px; }
+  .telescope-period .count { color: var(--text-faint); font-size: 12px; }
+  .telescope-period .event { border-bottom: 1px dashed var(--border); padding: 6px 0; }
+  .telescope-period .event:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="header-row">
+      <h1>On This Day + Time Telescope</h1>
+      <span class="tagline">Historical Knowledge API — live preview</span>
+      <span class="endpoint" id="endpoint-display"></span>
+    </div>
+    <div class="subhead">Two modes: <b>On This Day</b> (all events for a date) and <b>Time Telescope</b> (compare across years)</div>
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="onthisday">On This Day</button>
+      <button class="mode-tab" data-mode="telescope">Time Telescope</button>
+      <button class="mode-tab" data-mode="news">News Feed</button>
+    </div>
+    <div class="date-strip" id="date-strip"></div>
+  </header>
+
+  <!-- On This Day / News Filter Bar -->
+  <div id="filters-otd" class="filter-bar">
+    <div class="field">
+      <label>Date (MM-DD)</label>
+      <input id="mm-dd" type="text" placeholder="08-14" maxlength="5" pattern="(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])" />
+    </div>
+    <div class="field">
+      <label>Country (CCA2)</label>
+      <select id="country">
+        <option value="">— any —</option>
+        <option value="US">US — United States</option>
+        <option value="GB">GB — United Kingdom</option>
+        <option value="FR">FR — France</option>
+        <option value="DE">DE — Germany</option>
+        <option value="IN">IN — India</option>
+        <option value="JP">JP — Japan</option>
+        <option value="CN">CN — China</option>
+        <option value="RU">RU — Russia</option>
+        <option value="BR">BR — Brazil</option>
+        <option value="AU">AU — Australia</option>
+        <option value="MX">MX — Mexico</option>
+        <option value="IT">IT — Italy</option>
+        <option value="ES">ES — Spain</option>
+        <option value="CA">CA — Canada</option>
+        <option value="IL">IL — Israel</option>
+        <option value="TR">TR — Turkey</option>
+        <option value="EG">EG — Egypt</option>
+        <option value="SA">SA — Saudi Arabia</option>
+        <option value="ZA">ZA — South Africa</option>
+        <option value="KR">KR — South Korea</option>
+        <option value="SG">SG — Singapore</option>
+        <option value="AE">AE — UAE</option>
+        <option value="NG">NG — Nigeria</option>
+        <option value="AR">AR — Argentina</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Category</label>
+      <select id="category">
+        <option value="">— all —</option>
+        <option value="political">Political</option>
+        <option value="scientific">Scientific</option>
+        <option value="technological">Technological</option>
+        <option value="cultural">Cultural</option>
+        <option value="economic">Economic</option>
+        <option value="sports">Sports</option>
+        <option value="social">Social</option>
+        <option value="exploration">Exploration</option>
+        <option value="crime">Crime</option>
+        <option value="religion">Religion</option>
+        <option value="royal">Royal</option>
+        <option value="environmental">Environmental / Disasters</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Year from</label>
+      <input id="from" type="number" placeholder="1700" min="1700" max="2100" />
+    </div>
+    <div class="field">
+      <label>Year to</label>
+      <input id="to" type="number" placeholder="2025" min="1700" max="2100" />
+    </div>
+    <div class="field">
+      <label>Limit / section</label>
+      <select id="limit">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+    <div class="actions">
+      <span class="meta-line" id="meta-line"></span>
+      <div>
+        <button id="reset">Reset</button>
+        <button id="today" class="primary">Today</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Telescope Filter Bar -->
+  <div id="filters-telescope" class="filter-bar" style="display:none;">
+    <div class="field">
+      <label>Anchor Date</label>
+      <input id="tel-date" type="text" placeholder="2026-08-14" />
+    </div>
+    <div class="field">
+      <label>Years back (CSV)</label>
+      <input id="tel-years" type="text" value="0,1,5,10,25,50,100" />
+    </div>
+    <div class="field">
+      <label>Country</label>
+      <select id="tel-country">
+        <option value="">— any —</option>
+        <option value="US">US</option>
+        <option value="GB">GB</option>
+        <option value="FR">FR</option>
+        <option value="DE">DE</option>
+        <option value="IN">IN</option>
+        <option value="JP">JP</option>
+        <option value="CN">CN</option>
+        <option value="RU">RU</option>
+        <option value="BR">BR</option>
+        <option value="AU">AU</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Category</label>
+      <select id="tel-category">
+        <option value="">— all —</option>
+        <option value="political">Political</option>
+        <option value="scientific">Scientific</option>
+        <option value="technological">Technological</option>
+        <option value="cultural">Cultural</option>
+        <option value="economic">Economic</option>
+        <option value="sports">Sports</option>
+        <option value="social">Social</option>
+        <option value="exploration">Exploration</option>
+        <option value="crime">Crime</option>
+        <option value="religion">Religion</option>
+        <option value="royal">Royal</option>
+        <option value="disasters">Disasters</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Limit / period</label>
+      <select id="tel-limit">
+        <option value="3">3</option>
+        <option value="5" selected>5</option>
+        <option value="10">10</option>
+      </select>
+    </div>
+    <div class="actions">
+      <span class="meta-line" id="tel-meta"></span>
+      <div>
+        <button id="tel-reset">Reset</button>
+        <button id="tel-today" class="primary">Today</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- News Filter Bar -->
+  <div id="filters-news" class="filter-bar" style="display:none;">
+    <div class="field">
+      <label>Days back</label>
+      <input id="news-days" type="number" min="1" max="365" value="7" />
+    </div>
+    <div class="field">
+      <label>Country</label>
+      <select id="news-country">
+        <option value="">— any —</option>
+        <option value="US">US</option>
+        <option value="GB">GB</option>
+        <option value="FR">FR</option>
+        <option value="DE">DE</option>
+        <option value="JP">JP</option>
+        <option value="CN">CN</option>
+        <option value="RU">RU</option>
+        <option value="IN">IN</option>
+        <option value="BR">BR</option>
+        <option value="AU">AU</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Category</label>
+      <select id="news-category">
+        <option value="">— all —</option>
+        <option value="political">Political</option>
+        <option value="scientific">Scientific</option>
+        <option value="technological">Technological</option>
+        <option value="cultural">Cultural</option>
+        <option value="economic">Economic</option>
+        <option value="sports">Sports</option>
+        <option value="social">Social</option>
+        <option value="exploration">Exploration</option>
+        <option value="crime">Crime</option>
+        <option value="disasters">Disasters</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Source</label>
+      <select id="news-source">
+        <option value="">— all sources —</option>
+        <option value="src_bbc_world">BBC World</option>
+        <option value="src_bbc_top">BBC Top</option>
+        <option value="src_bbc_science">BBC Science</option>
+        <option value="src_bbc_sport">BBC Sport</option>
+        <option value="src_bbc_business">BBC Business</option>
+        <option value="src_aljazeera">Al Jazeera</option>
+        <option value="src_guardian_world">Guardian World</option>
+        <option value="src_guardian_science">Guardian Science</option>
+        <option value="src_npr_top">NPR Top</option>
+        <option value="src_npr_world">NPR World</option>
+        <option value="src_ars_technica">Ars Technica</option>
+        <option value="src_science_daily">Science Daily</option>
+        <option value="src_phys_org">Phys.org</option>
+        <option value="src_smithsonian">Smithsonian</option>
+        <option value="src_atlas_obscura">Atlas Obscura</option>
+        <option value="src_hacker_news">Hacker News</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Limit</label>
+      <select id="news-limit">
+        <option value="20">20</option>
+        <option value="50" selected>50</option>
+        <option value="100">100</option>
+        <option value="200">200</option>
+      </select>
+    </div>
+    <div class="actions">
+      <span class="meta-line" id="news-meta"></span>
+      <div>
+        <button id="news-reset">Reset</button>
+        <button id="news-refresh" class="primary">Refresh</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="stats" class="stats"></div>
+  <div id="results" class="sections"></div>
+</div>
+
+<script>
+  // ---------------------------------------------------------------------------
+  // State
+  // ---------------------------------------------------------------------------
+  const API = 'https://historical-knowledge-api-dev.nsura2029.workers.dev';
+  const state = {
+    mode: 'onthisday',  // 'onthisday' | 'telescope' | 'news'
+    mm_dd: todayMmDd(),
+    country: '',
+    category: '',
+    from: '',
+    to: '',
+    limit: 10,
+    // Telescope
+    tel_date: '',
+    tel_years: '0,1,5,10,25,50,100',
+    tel_country: '',
+    tel_category: '',
+    tel_limit: 5,
+    // News
+    news_days: 7,
+    news_country: '',
+    news_category: '',
+    news_source: '',
+    news_limit: 50,
+  };
+
+  function todayMmDd() {
+    const d = new Date();
+    return String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function todayYmd() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Date strip
+  // ---------------------------------------------------------------------------
+  function buildDateStrip() {
+    const strip = document.getElementById('date-strip');
+    strip.innerHTML = '';
+    const offsets = [-2, -1, 0, 1, 2, 3];
+    for (const off of offsets) {
+      const d = new Date();
+      d.setDate(d.getDate() + off);
+      const mmdd = String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      const label = off === 0 ? 'Today' : off === -1 ? 'Yesterday' : off === 1 ? 'Tomorrow' : d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+      const pill = document.createElement('button');
+      pill.className = 'date-pill' + (mmdd === state.mm_dd && state.mode === 'onthisday' ? ' active' : '');
+      pill.textContent = label;
+      pill.dataset.mmdd = mmdd;
+      pill.onclick = () => {
+        if (state.mode === 'telescope') {
+          state.tel_date = `${d.getFullYear()}-${mmdd}`;
+          document.getElementById('tel-date').value = state.tel_date;
+        } else {
+          setMmDd(mmdd);
+        }
+        document.querySelectorAll('.date-pill').forEach(p => {
+          p.classList.toggle('active', p.dataset.mmdd === mmdd && (state.mode === 'onthisday' || state.mode === 'telescope'));
+        });
+        fetchAndRender();
+      };
+      strip.appendChild(pill);
+    }
+    const sep = document.createElement('span');
+    sep.style.cssText = 'width:1px;height:24px;background:var(--border);margin:0 4px;';
+    strip.appendChild(sep);
+    const famous = [
+      { mmdd: '07-04', label: 'Jul 4' },
+      { mmdd: '11-22', label: 'Nov 22' },
+      { mmdd: '12-25', label: 'Dec 25' },
+      { mmdd: '09-11', label: 'Sep 11' },
+      { mmdd: '01-27', label: 'Jan 27' },
+      { mmdd: '06-06', label: 'Jun 6' },
+    ];
+    for (const f of famous) {
+      const pill = document.createElement('button');
+      pill.className = 'date-pill' + (f.mmdd === state.mm_dd ? ' active' : '');
+      pill.textContent = f.label;
+      pill.dataset.mmdd = f.mmdd;
+      pill.onclick = () => {
+        if (state.mode === 'telescope') {
+          state.tel_date = `2026-${f.mmdd}`;
+          document.getElementById('tel-date').value = state.tel_date;
+        } else {
+          setMmDd(f.mmdd);
+        }
+        document.querySelectorAll('.date-pill').forEach(p => {
+          p.classList.toggle('active', p.dataset.mmdd === f.mmdd);
+        });
+        fetchAndRender();
+      };
+      strip.appendChild(pill);
+    }
+  }
+
+  function setMmDd(mmdd) {
+    state.mm_dd = mmdd;
+    document.getElementById('mm-dd').value = mmdd;
+    document.querySelectorAll('.date-pill').forEach(p => {
+      p.classList.toggle('active', p.dataset.mmdd === mmdd);
+    });
+    fetchAndRender();
+  }
+
+  // ---------------------------------------------------------------------------
+  // Mode switching
+  // ---------------------------------------------------------------------------
+  function bindModeTabs() {
+    document.querySelectorAll('.mode-tab').forEach(tab => {
+      tab.onclick = () => {
+        state.mode = tab.dataset.mode;
+        document.querySelectorAll('.mode-tab').forEach(t => t.classList.toggle('active', t.dataset.mode === state.mode));
+        document.getElementById('filters-otd').style.display = state.mode === 'onthisday' ? 'grid' : 'none';
+        document.getElementById('filters-telescope').style.display = state.mode === 'telescope' ? 'grid' : 'none';
+        document.getElementById('filters-news').style.display = state.mode === 'news' ? 'grid' : 'none';
+        // Reset meta
+        document.getElementById('endpoint-display').textContent = '';
+        document.getElementById('meta-line').textContent = '';
+        document.getElementById('tel-meta').textContent = '';
+        document.getElementById('news-meta').textContent = '';
+        fetchAndRender();
+      };
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Form controls
+  // ---------------------------------------------------------------------------
+  function bindFilters() {
+    // OTD
+    document.getElementById('mm-dd').addEventListener('input', e => {
+      const v = e.target.value;
+      if (/^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(v)) setMmDd(v);
+    });
+    document.getElementById('country').addEventListener('change', e => { state.country = e.target.value; fetchAndRender(); });
+    document.getElementById('category').addEventListener('change', e => { state.category = e.target.value; fetchAndRender(); });
+    document.getElementById('from').addEventListener('input', e => { state.from = e.target.value; fetchAndRender(); });
+    document.getElementById('to').addEventListener('input', e => { state.to = e.target.value; fetchAndRender(); });
+    document.getElementById('limit').addEventListener('change', e => { state.limit = e.target.value; fetchAndRender(); });
+    document.getElementById('reset').onclick = () => {
+      state.country = ''; state.category = ''; state.from = ''; state.to = ''; state.limit = 10;
+      document.getElementById('country').value = '';
+      document.getElementById('category').value = '';
+      document.getElementById('from').value = '';
+      document.getElementById('to').value = '';
+      document.getElementById('limit').value = '10';
+      fetchAndRender();
+    };
+    document.getElementById('today').onclick = () => setMmDd(todayMmDd());
+
+    // Telescope
+    document.getElementById('tel-date').addEventListener('input', e => { state.tel_date = e.target.value; fetchAndRender(); });
+    document.getElementById('tel-years').addEventListener('input', e => { state.tel_years = e.target.value; fetchAndRender(); });
+    document.getElementById('tel-country').addEventListener('change', e => { state.tel_country = e.target.value; fetchAndRender(); });
+    document.getElementById('tel-category').addEventListener('change', e => { state.tel_category = e.target.value; fetchAndRender(); });
+    document.getElementById('tel-limit').addEventListener('change', e => { state.tel_limit = e.target.value; fetchAndRender(); });
+    document.getElementById('tel-today').onclick = () => { state.tel_date = todayYmd(); document.getElementById('tel-date').value = state.tel_date; fetchAndRender(); };
+    document.getElementById('tel-reset').onclick = () => {
+      state.tel_date = ''; state.tel_years = '0,1,5,10,25,50,100'; state.tel_country = ''; state.tel_category = ''; state.tel_limit = 5;
+      document.getElementById('tel-date').value = '';
+      document.getElementById('tel-years').value = '0,1,5,10,25,50,100';
+      document.getElementById('tel-country').value = '';
+      document.getElementById('tel-category').value = '';
+      document.getElementById('tel-limit').value = '5';
+      fetchAndRender();
+    };
+
+    // News
+    document.getElementById('news-days').addEventListener('input', e => { state.news_days = e.target.value || 7; fetchAndRender(); });
+    document.getElementById('news-country').addEventListener('change', e => { state.news_country = e.target.value; fetchAndRender(); });
+    document.getElementById('news-category').addEventListener('change', e => { state.news_category = e.target.value; fetchAndRender(); });
+    document.getElementById('news-source').addEventListener('change', e => { state.news_source = e.target.value; fetchAndRender(); });
+    document.getElementById('news-limit').addEventListener('change', e => { state.news_limit = e.target.value; fetchAndRender(); });
+    document.getElementById('news-refresh').onclick = fetchAndRender;
+    document.getElementById('news-reset').onclick = () => {
+      state.news_days = 7; state.news_country = ''; state.news_category = ''; state.news_source = ''; state.news_limit = 50;
+      document.getElementById('news-days').value = 7;
+      document.getElementById('news-country').value = '';
+      document.getElementById('news-category').value = '';
+      document.getElementById('news-source').value = '';
+      document.getElementById('news-limit').value = '50';
+      fetchAndRender();
+    };
+  }
+
+  function syncFromState() {
+    document.getElementById('mm-dd').value = state.mm_dd;
+    document.getElementById('country').value = state.country;
+    document.getElementById('category').value = state.category;
+    document.getElementById('from').value = state.from;
+    document.getElementById('to').value = state.to;
+    document.getElementById('limit').value = state.limit;
+    document.getElementById('tel-date').value = state.tel_date || todayYmd();
+    document.getElementById('tel-years').value = state.tel_years;
+    document.getElementById('tel-country').value = state.tel_country;
+    document.getElementById('tel-category').value = state.tel_category;
+    document.getElementById('tel-limit').value = state.tel_limit;
+  }
+
+  // ---------------------------------------------------------------------------
+  // API
+  // ---------------------------------------------------------------------------
+  function buildOtdUrl() {
+    const params = new URLSearchParams();
+    if (state.country) params.set('country', state.country);
+    if (state.category) params.set('category', state.category);
+    if (state.from) params.set('from', state.from);
+    if (state.to) params.set('to', state.to);
+    if (state.limit) params.set('limit', state.limit);
+    const qs = params.toString();
+    return `${API}/v1/on-this-day/${state.mm_dd}${qs ? '?' + qs : ''}`;
+  }
+  function buildTelUrl() {
+    const params = new URLSearchParams();
+    if (state.tel_date) params.set('date', state.tel_date);
+    if (state.tel_years) params.set('years', state.tel_years);
+    if (state.tel_country) params.set('country', state.tel_country);
+    if (state.tel_category) params.set('category', state.tel_category);
+    if (state.tel_limit) params.set('limit', state.tel_limit);
+    return `${API}/v1/this-day/telescope?${params.toString()}`;
+  }
+  function buildNewsUrl() {
+    const params = new URLSearchParams();
+    params.set('days', state.news_days || 7);
+    if (state.news_country) params.set('country', state.news_country);
+    if (state.news_category) params.set('category', state.news_category);
+    if (state.news_source) params.set('source', state.news_source);
+    params.set('limit', state.news_limit || 50);
+    return `${API}/v1/news/recent?${params.toString()}`;
+  }
+
+  async function fetchData() {
+    let url;
+    if (state.mode === 'telescope') url = buildTelUrl();
+    else if (state.mode === 'news') url = buildNewsUrl();
+    else url = buildOtdUrl();
+    document.getElementById('endpoint-display').textContent = url.replace(API, '');
+    const meta = state.mode === 'telescope' ? 'tel-meta' : state.mode === 'news' ? 'news-meta' : 'meta-line';
+    document.getElementById(meta).innerHTML = '<span class="spinner"></span>Loading…';
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return { data: await res.json(), url };
+  }
+
+  // ---------------------------------------------------------------------------
+  // Render
+  // ---------------------------------------------------------------------------
+  function stripHtml(s) {
+    if (!s) return '';
+    return s.replace(/<[^>]*>/g, '').replace(/&apos;/g, "'").replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim();
+  }
+  function truncate(s, n) {
+    if (!s) return '';
+    return s.length > n ? s.slice(0, n - 1) + '…' : s;
+  }
+
+  function renderOtd(data, url) {
+    document.getElementById('meta-line').textContent = '';
+    const secs = data.sections || {};
+    renderStatsOtd(secs);
+    const order = [
+      ['events', 'Events', 'event'],
+      ['news', 'News (last 7 days)', 'news'],
+      ['births', 'Births', 'person'],
+      ['deaths', 'Deaths', 'person'],
+      ['holidays', 'Holidays', 'holiday'],
+      ['weddings', 'Weddings', 'person'],
+      ['divorces', 'Divorces', 'person'],
+      ['politics', 'Politics', 'event'],
+      ['science', 'Science', 'event'],
+      ['technology', 'Technology', 'event'],
+      ['cultural', 'Cultural', 'event'],
+      ['economic', 'Economic', 'event'],
+      ['social', 'Social', 'event'],
+      ['crime', 'Crime', 'event'],
+      ['religion', 'Religion', 'event'],
+      ['sports', 'Sports', 'event'],
+      ['exploration', 'Exploration', 'event'],
+      ['disasters', 'Disasters', 'event'],
+      ['royal', 'Royal', 'event'],
+    ];
+    let html = '';
+    for (const [key, title, type] of order) {
+      const items = secs[key];
+      if (type === 'event') html += renderSection(key, title, items, renderEvent);
+      else if (type === 'person') html += renderSection(key, title, items, renderPerson);
+      else if (type === 'holiday') html += renderSection(key, title, items, renderHoliday);
+      else if (key === 'news') html += renderSection(key, title, items, renderNews);
+    }
+    if (!html) html = '<div class="section"><div class="empty">No items for these filters.</div></div>';
+    html += `<div class="raw-link">Raw JSON: <a href="${url}" target="_blank"><code>${url.replace(API, '')}</code></a></div>`;
+    document.getElementById('results').innerHTML = html;
+  }
+
+  function renderStatsOtd(secs) {
+    const counts = {};
+    let total = 0;
+    for (const [k, v] of Object.entries(secs)) {
+      if (Array.isArray(v)) { counts[k] = v.length; total += v.length; }
+    }
+    const stats = document.getElementById('stats');
+    stats.innerHTML = `
+      <div class="stat"><div class="v">${total}</div><div class="k">Total items</div></div>
+      <div class="stat"><div class="v">${counts.events || 0}</div><div class="k">Events</div></div>
+      <div class="stat"><div class="v">${counts.news || 0}</div><div class="k">News</div></div>
+      <div class="stat"><div class="v">${counts.births || 0}</div><div class="k">Births</div></div>
+      <div class="stat"><div class="v">${counts.deaths || 0}</div><div class="k">Deaths</div></div>
+      <div class="stat"><div class="v">${counts.holidays || 0}</div><div class="k">Holidays</div></div>
+    `;
+  }
+
+  function renderTelescope(data, url) {
+    document.getElementById('tel-meta').textContent = '';
+    const periods = data.periods || [];
+    const totalEvents = periods.reduce((s, p) => s + p.event_count, 0);
+    document.getElementById('stats').innerHTML = `
+      <div class="stat"><div class="v">${totalEvents}</div><div class="k">Total events</div></div>
+      <div class="stat"><div class="v">${periods.filter(p => p.event_count > 0).length}</div><div class="k">Active periods</div></div>
+      <div class="stat"><div class="v">${periods.length}</div><div class="k">Periods queried</div></div>
+    `;
+    let html = '';
+    for (const p of periods) {
+      const isFar = p.years_ago > 25;
+      const eventsHtml = (p.events || []).map(e => `
+        <div class="event">
+          <div class="year">${e.event_date ? e.event_date.slice(0, 4) : '?'}</div>
+          <div class="body">
+            <div class="title">${stripHtml(e.title || '')}</div>
+            ${e.description ? `<div class="desc">${truncate(stripHtml(e.description), 200)}</div>` : ''}
+            ${e.source_name ? `<div class="source">${e.source_name}</div>` : ''}
+          </div>
+        </div>
+      `).join('');
+      html += `
+        <div class="telescope-period ${isFar ? 'far' : ''}">
+          <div class="head">
+            <div class="label">${p.years_ago === 0 ? 'This year' : p.years_ago + ' years ago'}<span class="date">${p.date}</span></div>
+            <div class="count">${p.event_count} events</div>
+          </div>
+          ${p.event_count > 0 ? eventsHtml : '<div class="empty">No events found for this period</div>'}
+        </div>
+      `;
+    }
+    html += `<div class="raw-link">Raw JSON: <a href="${url}" target="_blank"><code>${url.replace(API, '')}</code></a></div>`;
+    document.getElementById('results').innerHTML = html;
+  }
+
+  function renderNews(data, url) {
+    document.getElementById('news-meta').textContent = '';
+    const events = data.events || [];
+    const sources = data.sources || [];
+    document.getElementById('stats').innerHTML = `
+      <div class="stat"><div class="v">${data.total || events.length}</div><div class="k">Total events</div></div>
+      <div class="stat"><div class="v">${Object.keys(data.by_date || {}).length}</div><div class="k">Days</div></div>
+      <div class="stat"><div class="v">${sources.length}</div><div class="k">Sources</div></div>
+    `;
+    let html = '';
+    // Group by date
+    const byDate = {};
+    for (const e of events) {
+      if (!byDate[e.event_date]) byDate[e.event_date] = [];
+      byDate[e.event_date].push(e);
+    }
+    for (const date of Object.keys(byDate).sort((a, b) => b.localeCompare(a))) {
+      const dayEvents = byDate[date];
+      html += `<div class="section events"><h2>${date} <span class="badge">${dayEvents.length} news items</span></h2>`;
+      for (const e of dayEvents) {
+        html += `
+          <div class="event">
+            <div class="year">${e.country_code || '🌍'}</div>
+            <div class="body">
+              <div class="title"><a href="${e.url}" target="_blank">${stripHtml(e.title || '')}</a></div>
+              ${e.description ? `<div class="desc">${truncate(stripHtml(e.description), 200)}</div>` : ''}
+              <div class="source">${e.source_name || e.source_id}${e.category ? ' • ' + e.category : ''}</div>
+            </div>
+          </div>
+        `;
+      }
+      html += `</div>`;
+    }
+    if (!html) html = '<div class="section"><div class="empty">No news events found for these filters.</div></div>';
+    html += `<div class="raw-link">Raw JSON: <a href="${url}" target="_blank"><code>${url.replace(API, '')}</code></a></div>`;
+    document.getElementById('results').innerHTML = html;
+  }
+
+  function renderSection(key, title, items, renderItem) {
+    if (!items || items.length === 0) return '';
+    return `
+      <div class="section ${key}">
+        <h2>${title} <span class="badge">${items.length}</span></h2>
+        ${items.map(renderItem).join('')}
+      </div>
+    `;
+  }
+
+  function renderEvent(e) {
+    const year = e.year || '?';
+    const title = stripHtml(e.title || '(untitled)');
+    const desc = e.description ? stripHtml(e.description) : '';
+    const cat = e.category || '';
+    return `
+      <div class="event">
+        <div class="year">${year}</div>
+        <div class="body">
+          <div class="title">${truncate(title, 200)}</div>
+          ${desc ? `<div class="desc">${truncate(desc, 180)}</div>` : ''}
+          ${cat ? `<span class="cat ${cat}">${cat}</span>` : ''}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderPerson(p) {
+    const year = p.year || '?';
+    const name = p.canonical_name || '(unnamed)';
+    const desc = p.description ? stripHtml(p.description) : '';
+    return `
+      <div class="person">
+        <div class="year">${year}</div>
+        <div class="body">
+          <div class="name">${name}</div>
+          ${desc ? `<div class="desc">${truncate(desc, 180)}</div>` : ''}
+        </div>
+      </div>
+    `;
+  }
+
+  function renderHoliday(h) {
+    const name = h.name || '(unnamed holiday)';
+    const meta = [h.country_name || h.country_code, h.legal_status, h.scope_level, h.category].filter(Boolean).join(' · ');
+    return `
+      <div class="holiday">
+        <div class="name">${name}</div>
+        ${meta ? `<div class="meta">${meta}</div>` : ''}
+      </div>
+    `;
+  }
+
+  function renderNews(n) {
+    const title = stripHtml(n.title || '(untitled)');
+    const desc = n.description ? stripHtml(n.description) : '';
+    return `
+      <div class="event">
+        <div class="year">${n.country_code || '🌍'}</div>
+        <div class="body">
+          <div class="title"><a href="${n.url}" target="_blank">${truncate(title, 200)}</a></div>
+          ${desc ? `<div class="desc">${truncate(desc, 180)}</div>` : ''}
+          <div class="source">${n.source_name || n.source_id}${n.category ? ' • ' + n.category : ''}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  async function fetchAndRender() {
+    try {
+      const { data, url } = await fetchData();
+      if (state.mode === 'telescope') renderTelescope(data, url);
+      else if (state.mode === 'news') renderNews(data, url);
+      else renderOtd(data, url);
+    } catch (e) {
+      document.getElementById('results').innerHTML = `<div class="error">Error: ${e.message}</div>`;
+      document.getElementById('stats').innerHTML = '';
+      const meta = state.mode === 'telescope' ? 'tel-meta' : state.mode === 'news' ? 'news-meta' : 'meta-line';
+      document.getElementById(meta).textContent = '';
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Boot
+  // ---------------------------------------------------------------------------
+  buildDateStrip();
+  bindModeTabs();
+  bindFilters();
+  syncFromState();
+  fetchAndRender();
+</script>
+</body>
+</html>

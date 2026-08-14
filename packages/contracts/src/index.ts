@@ -10,6 +10,8 @@ import { z } from 'zod';
 
 // Re-export people schemas (famous-people dimension)
 export * from './people.js';
+// Re-export news schemas (RSS news aggregation)
+export * from './news.js';
 
 // ---------------------------------------------------------------------------
 // Envelope

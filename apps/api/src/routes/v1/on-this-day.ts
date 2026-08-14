@@ -381,11 +381,37 @@ async function fillSections(opts: SectionFiller) {
   const weddings = (personEvents.results ?? []).filter((e: any) => e.event_type === 'public_appearance' && (e.description || '').toLowerCase().includes('marri')).slice(0, Math.min(3, limit));
   const divorces: any[] = [];  // No divorce event_type in entity_event
 
+  // News events from RSS feeds (for the current year only — historic years have no RSS)
+  const currentYear = new Date().getUTCFullYear();
+  const newsDate = `${currentYear}-${mm_dd}`;
+  const newsEvents = await env.DB.prepare(
+    `SELECT ne.id, ne.source_id, na.source_name, ne.event_date, ne.published_at, ne.title, ne.description, ne.url, ne.category, ne.country_code, ne.image_url, ne.confidence
+     FROM news_event ne
+     JOIN news_article na ON na.id = ne.article_id
+     WHERE ne.event_date = ?
+     ORDER BY ne.confidence DESC, ne.published_at DESC
+     LIMIT ?`
+  ).bind(newsDate, limit).all<any>();
+
   return {
     events: eventsByCategory,
     births, deaths, weddings, divorces,
     holidays: holidays.results ?? [],
     rawEvents: events.results ?? [],
+    news: (newsEvents.results ?? []).map((e: any) => ({
+      id: e.id,
+      source_id: e.source_id,
+      source_name: e.source_name,
+      event_date: e.event_date,
+      published_at: e.published_at,
+      title: e.title,
+      description: e.description,
+      url: e.url,
+      category: e.category,
+      country_code: e.country_code,
+      image_url: e.image_url,
+      confidence: e.confidence,
+    })),
   };
 }
 
@@ -421,6 +447,23 @@ function formatPerson(e: any) {
     year: parseInt(e.start_date?.slice(0, 4) || '0', 10),
     description: e.description,
     url: `/v1/people/${e.slug}`,
+  };
+}
+
+function formatNews(n: any) {
+  return {
+    id: n.id,
+    source_id: n.source_id,
+    source_name: n.source_name,
+    event_date: n.event_date,
+    published_at: n.published_at,
+    title: n.title,
+    description: n.description,
+    url: n.url,
+    category: n.category,
+    country_code: n.country_code,
+    image_url: n.image_url,
+    confidence: n.confidence,
   };
 }
 
@@ -495,6 +538,7 @@ onThisDayRouter.openapi(todayRoute, async (c) => {
       economic: filled.events.economic.map(formatEvent),
       royal: filled.events.royal.map(formatEvent),
       disasters: filled.events.environmental.map(formatEvent),
+      news: filled.news.map(formatNews),
       social: filled.events.social.map(formatEvent),
       exploration: filled.events.exploration.map(formatEvent),
       crime: filled.events.crime.map(formatEvent),
@@ -535,6 +579,7 @@ onThisDayRouter.openapi(mmddRoute, async (c) => {
       economic: filled.events.economic.map(formatEvent),
       royal: filled.events.royal.map(formatEvent),
       disasters: filled.events.environmental.map(formatEvent),
+      news: filled.news.map(formatNews),
       social: filled.events.social.map(formatEvent),
       exploration: filled.events.exploration.map(formatEvent),
       crime: filled.events.crime.map(formatEvent),
@@ -584,6 +629,7 @@ onThisDayRouter.openapi(yyyymmddRoute, async (c) => {
       economic: filled.events.economic.map(formatEvent),
       royal: filled.events.royal.map(formatEvent),
       disasters: filled.events.environmental.map(formatEvent),
+      news: filled.news.map(formatNews),
       social: filled.events.social.map(formatEvent),
       exploration: filled.events.exploration.map(formatEvent),
       crime: filled.events.crime.map(formatEvent),
