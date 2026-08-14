@@ -238,6 +238,23 @@ const EVENT_TYPE_TO_CATEGORY: Record<string, string> = {
   'personal_life': 'social',
 };
 
+// Reverse mapping: on-this-day category → list of entity_event.event_type values
+// Used for the ?category=X filter
+const CATEGORY_TO_EVENT_TYPES: Record<string, string[]> = {
+  'political': ['political'],
+  'scientific': ['scientific'],
+  'cultural': ['creative', 'career', 'publication', 'education', 'award'],
+  'economic': ['founding', 'legal'],
+  'sports': ['athletic'],
+  'social': ['public_appearance', 'personal_life'],
+  'exploration': ['travel'],
+  'crime': ['legal', 'controversy'],
+  'technological': [],  // no direct event_type; could be tagged as scientific
+  'environmental': [],  // no direct event_type
+  'religion': [],
+  'royal': [],
+};
+
 async function fillSections(opts: SectionFiller) {
   const { mm_dd, year_filter, country_filter, category_filter, limit, env } = opts;
 
@@ -258,15 +275,42 @@ async function fillSections(opts: SectionFiller) {
   const eventBindings: any[] = [mm_dd];
   if (year_filter?.from) { eventSql += ' AND ev.event_year >= ?'; eventBindings.push(year_filter.from); }
   if (year_filter?.to)   { eventSql += ' AND ev.event_year <= ?'; eventBindings.push(year_filter.to); }
-  if (category_filter)   { eventSql += ' AND ev.event_type = ?'; eventBindings.push(category_filter); }
+  if (category_filter) {
+    // Map on-this-day category to entity_event event_types (one category → multiple event_types)
+    const eventTypes = CATEGORY_TO_EVENT_TYPES[category_filter] || [category_filter];
+    if (eventTypes.length === 0) {
+      // No matching event types — set impossible condition and return early with empty results
+      // but still go through the full flow so all section keys are populated
+      eventSql += ` AND ev.event_type = '__no_match__'`;
+    } else {
+      const placeholders = eventTypes.map(() => '?').join(',');
+      eventSql += ` AND ev.event_type IN (${placeholders})`;
+      eventBindings.push(...eventTypes);
+    }
+  }
+  // Country filter: match place entities with this country_code, OR person entities with birthplace/death_place/residence in this country
+  // Note: orgs are excluded from country filter (no direct country link yet)
+  if (country_filter) {
+    eventSql += ` AND (
+      ev.entity_id IN (SELECT p.id FROM place p WHERE p.country_code = ?)
+      OR ev.entity_id IN (
+        SELECT ppr.person_id FROM person_place_relation ppr
+        JOIN place p ON p.id = ppr.place_id
+        WHERE p.country_code = ? AND ppr.relation_type IN ('birthplace', 'death_place', 'residence', 'work_location')
+      )
+    )`;
+    eventBindings.push(country_filter, country_filter);
+  }
+  // Use DISTINCT to avoid duplicates from the country JOIN (a person with multiple US relations would appear multiple times)
+  eventSql = eventSql.replace('SELECT ev.id, ev.entity_id', 'SELECT DISTINCT ev.id, ev.entity_id');
   eventSql += ' ORDER BY ev.event_year DESC LIMIT ?';
-  eventBindings.push(limit * 4);  // Get more to bucket across categories
+  eventBindings.push(limit);  // Cap the "events" section at limit; category sections will be re-bucketed in JS
 
   const events = await env.DB.prepare(eventSql).bind(...eventBindings).all<any>();
 
   // People: birth, death (from entity_event where entity_type='person')
-  const personSql = `
-    SELECT ev.id, ev.event_type, ev.event_date AS start_date, ev.body AS description,
+  let personSql = `
+    SELECT DISTINCT ev.id, ev.event_type, ev.event_date AS start_date, ev.body AS description,
            ev.event_year AS year,
            e.id AS person_id, e.slug, e.canonical_name
     FROM entity_event ev
@@ -276,10 +320,19 @@ async function fillSections(opts: SectionFiller) {
       AND ev.event_year >= 1700
       AND e.type = 'person'
       AND e.status = 'published'
-      AND ev.event_type IN ('birth', 'death', 'public_appearance')
-    ORDER BY ev.event_type, ev.event_year DESC
-    LIMIT ?`;
-  const personEvents = await env.DB.prepare(personSql).bind(mm_dd, limit * 4).all<any>();
+      AND ev.event_type IN ('birth', 'death', 'public_appearance')`;
+  const personBindings: any[] = [mm_dd];
+  if (country_filter) {
+    personSql += ` AND e.id IN (
+      SELECT ppr.person_id FROM person_place_relation ppr
+      JOIN place p ON p.id = ppr.place_id
+      WHERE p.country_code = ? AND ppr.relation_type IN ('birthplace', 'death_place', 'residence')
+    )`;
+    personBindings.push(country_filter);
+  }
+  personSql += ' ORDER BY ev.event_type, ev.event_year DESC LIMIT ?';
+  personBindings.push(limit * 4);
+  const personEvents = await env.DB.prepare(personSql).bind(...personBindings).all<any>();
 
   // Holidays (Calendrify data)
   let holidaySql = `
@@ -310,7 +363,7 @@ async function fillSections(opts: SectionFiller) {
     if (e.entity_type === 'person' && ['birth', 'death'].includes(e.event_type)) {
       continue;
     }
-    // Map event_type to on-this-day category
+    // Map event_type to on-this-day category (use event_type, not category field, since they differ)
     const category = EVENT_TYPE_TO_CATEGORY[e.event_type] || 'cultural';
     if (eventsByCategory[category]) {
       eventsByCategory[category].push(e);
