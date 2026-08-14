@@ -215,47 +215,74 @@ interface SectionFiller {
   env: AppEnv['Bindings'];
 }
 
+// Map entity_event.event_type → on-this-day section category
+// (entity_event stores: founding, political, scientific, personal_life, death, etc.)
+// on-this-day uses: political, scientific, technological, environmental, cultural,
+//                   religion, economic, sports, exploration, social, royal, crime
+const EVENT_TYPE_TO_CATEGORY: Record<string, string> = {
+  'political': 'political',
+  'scientific': 'scientific',
+  'travel': 'exploration',
+  'creative': 'cultural',
+  'career': 'cultural',  // generic career → cultural bucket
+  'legal': 'crime',
+  'controversy': 'crime',
+  'public_appearance': 'social',
+  'founding': 'economic',
+  'publication': 'cultural',
+  'education': 'cultural',
+  'award': 'cultural',
+  'athletic': 'sports',  // not in our event_type list, but mapped just in case
+  'death': 'social',    // person-level, will be routed via entity_type
+  'birth': 'social',    // person-level, will be routed via entity_type
+  'personal_life': 'social',
+};
+
 async function fillSections(opts: SectionFiller) {
   const { mm_dd, year_filter, country_filter, category_filter, limit, env } = opts;
 
-  // Build otd_event query
-  let eventSql = `SELECT e.id, e.year, e.start_date, e.title, e.description, e.category,
-                         e.place_name, e.country_code,
-                         e.hero_image_r2_key, e.hero_image_credit,
-                         e.source_id, e.source_url, e.source_locator,
-                         src.source_name, src.source_quality_tier AS tier
-                  FROM otd_event e
-                  LEFT JOIN source_registry src ON src.id = e.source_id
-                  WHERE e.mm_dd = ?
-                    AND e.year >= 1700
+  // Query entity_event for events on this mm-dd (with year >= 1700)
+  // mm-dd matching: event_date is "YYYY-MM-DD", substr(6,5) = "MM-DD"
+  // For YEAR-precision events (event_date is NULL), we use event_year's mm-dd from a different column
+  // but the year-only events don't have an event_date, so we can't include them in mm-dd queries
+  let eventSql = `SELECT ev.id, ev.entity_id, ev.event_year AS year, ev.event_date AS start_date,
+                         ev.event_type, ev.category, ev.title, ev.body AS description,
+                         ev.confidence, ev.source_id, ev.source_section AS source_url,
+                         e.type AS entity_type
+                  FROM entity_event ev
+                  JOIN entity e ON e.id = ev.entity_id
+                  WHERE ev.event_date IS NOT NULL
+                    AND substr(ev.event_date, 6, 5) = ?
+                    AND ev.event_year >= 1700
                     AND e.status = 'published'`;
   const eventBindings: any[] = [mm_dd];
-  if (year_filter?.from) { eventSql += ' AND e.year >= ?'; eventBindings.push(year_filter.from); }
-  if (year_filter?.to)   { eventSql += ' AND e.year <= ?'; eventBindings.push(year_filter.to); }
-  if (country_filter)    { eventSql += ' AND e.country_code = ?'; eventBindings.push(country_filter); }
-  if (category_filter)   { eventSql += ' AND e.category = ?'; eventBindings.push(category_filter); }
-  eventSql += ' ORDER BY e.featured DESC, e.year DESC LIMIT ?';
-  eventBindings.push(limit);
+  if (year_filter?.from) { eventSql += ' AND ev.event_year >= ?'; eventBindings.push(year_filter.from); }
+  if (year_filter?.to)   { eventSql += ' AND ev.event_year <= ?'; eventBindings.push(year_filter.to); }
+  if (category_filter)   { eventSql += ' AND ev.event_type = ?'; eventBindings.push(category_filter); }
+  eventSql += ' ORDER BY ev.event_year DESC LIMIT ?';
+  eventBindings.push(limit * 4);  // Get more to bucket across categories
 
   const events = await env.DB.prepare(eventSql).bind(...eventBindings).all<any>();
 
-  // People: birth, death, marriage, divorce
-  // (career_event.event_type with start_date matching mm-dd)
+  // People: birth, death (from entity_event where entity_type='person')
   const personSql = `
-    SELECT ce.id, ce.event_type, ce.start_date, ce.description,
+    SELECT ev.id, ev.event_type, ev.event_date AS start_date, ev.body AS description,
+           ev.event_year AS year,
            e.id AS person_id, e.slug, e.canonical_name
-    FROM career_event ce
-    JOIN entity e ON e.id = ce.person_id
-    WHERE substr(ce.start_date, 6, 5) = ?
+    FROM entity_event ev
+    JOIN entity e ON e.id = ev.entity_id
+    WHERE ev.event_date IS NOT NULL
+      AND substr(ev.event_date, 6, 5) = ?
+      AND ev.event_year >= 1700
       AND e.type = 'person'
       AND e.status = 'published'
-      AND ce.event_type IN ('birth', 'death', 'marriage', 'divorce')
-    ORDER BY ce.event_type, ce.start_date DESC
+      AND ev.event_type IN ('birth', 'death', 'public_appearance')
+    ORDER BY ev.event_type, ev.event_year DESC
     LIMIT ?`;
   const personEvents = await env.DB.prepare(personSql).bind(mm_dd, limit * 4).all<any>();
 
   // Holidays (Calendrify data)
-  const holidaySql = `
+  let holidaySql = `
     SELECT ho.id, ho.concept_id, ho.country_code, ho.subdivision_code,
            ho.legal_status, ho.scope_level, ho.category, ho.notes,
            hc.name_en AS name, hc.description,
@@ -263,29 +290,43 @@ async function fillSections(opts: SectionFiller) {
     FROM holiday_occurrence ho
     JOIN holiday_concept hc ON hc.id = ho.concept_id
     JOIN country_cca2_map ccm ON ccm.calendrify_country_id = ho.calendrify_country_id
-    WHERE substr(ho.start_date, 6, 5) = ?
-    ORDER BY ho.category, ho.country_code
-    LIMIT ?`;
-  const holidays = await env.DB.prepare(holidaySql).bind(mm_dd, limit * 2).all<any>();
+    WHERE substr(ho.start_date, 6, 5) = ?`;
+  const holidayBindings: any[] = [mm_dd];
+  if (country_filter) {
+    holidaySql += ' AND ho.country_code = ?';
+    holidayBindings.push(country_filter);
+  }
+  holidaySql += ' ORDER BY ho.category, ho.country_code LIMIT ?';
+  holidayBindings.push(limit * 2);
+  const holidays = await env.DB.prepare(holidaySql).bind(...holidayBindings).all<any>();
 
-  // Bucket by section
+  // Bucket events by category for the per-category sections
   const eventsByCategory: Record<string, any[]> = {};
   for (const cat of ['political', 'scientific', 'technological', 'environmental', 'cultural', 'religion', 'economic', 'sports', 'exploration', 'social', 'royal', 'crime']) {
     eventsByCategory[cat] = [];
   }
   for (const e of events.results ?? []) {
-    // 'environmental' = disasters in our taxonomy
-    if (e.category === 'environmental') {
-      eventsByCategory['environmental'].push(e);
-    } else {
-      eventsByCategory[e.category]?.push(e);
+    // Skip person-level events (births/deaths/appearances); those are routed to births/deaths sections
+    if (e.entity_type === 'person' && ['birth', 'death'].includes(e.event_type)) {
+      continue;
     }
+    // Map event_type to on-this-day category
+    const category = EVENT_TYPE_TO_CATEGORY[e.event_type] || 'cultural';
+    if (eventsByCategory[category]) {
+      eventsByCategory[category].push(e);
+    } else {
+      eventsByCategory['cultural'].push(e);
+    }
+  }
+  // Cap each category at the limit
+  for (const cat of Object.keys(eventsByCategory)) {
+    eventsByCategory[cat] = eventsByCategory[cat].slice(0, limit);
   }
 
   const births = (personEvents.results ?? []).filter((e: any) => e.event_type === 'birth').slice(0, limit);
   const deaths = (personEvents.results ?? []).filter((e: any) => e.event_type === 'death').slice(0, limit);
-  const weddings = (personEvents.results ?? []).filter((e: any) => e.event_type === 'marriage').slice(0, Math.min(3, limit));
-  const divorces = (personEvents.results ?? []).filter((e: any) => e.event_type === 'divorce').slice(0, Math.min(2, limit));
+  const weddings = (personEvents.results ?? []).filter((e: any) => e.event_type === 'public_appearance' && (e.description || '').toLowerCase().includes('marri')).slice(0, Math.min(3, limit));
+  const divorces: any[] = [];  // No divorce event_type in entity_event
 
   return {
     events: eventsByCategory,
@@ -296,6 +337,8 @@ async function fillSections(opts: SectionFiller) {
 }
 
 function formatEvent(e: any) {
+  // Map our category back to on-this-day's category enum for the response
+  const category = e.event_type ? (EVENT_TYPE_TO_CATEGORY[e.event_type] || 'cultural') : (e.category || 'cultural');
   return {
     id: e.id,
     year: e.year,
@@ -303,16 +346,13 @@ function formatEvent(e: any) {
     start_date: e.start_date,
     title: e.title,
     description: e.description,
-    category: e.category === 'environmental' ? 'environmental' : e.category,
-    place_name: e.place_name,
-    country_code: e.country_code,
-    hero_image: e.hero_image_r2_key ? {
-      r2_url: `/r2/${e.hero_image_r2_key}`,
-      credit: e.hero_image_credit,
-    } : null,
+    category: category,
+    place_name: null,
+    country_code: null,
+    hero_image: null,
     source: {
-      tier: e.tier,
-      source_name: e.source_name,
+      tier: e.confidence ? (e.confidence >= 0.8 ? 'A' : e.confidence >= 0.6 ? 'B' : 'C') : 'B',
+      source_name: e.source_id,
       url: e.source_url,
     },
     related_people: [],

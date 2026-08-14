@@ -138,7 +138,26 @@ placesRouter.openapi(getPlaceEventsRoute, async (c) => {
   const entityId = (place as any).id;
 
   // Build WHERE clause
-  const conditions = ['entity_id = ?'];
+  // from/to filters should match BOTH:
+  //   - DAY/MONTH precision events (event_date is set): event_date >= from AND <= to
+  //   - YEAR precision events (event_date is NULL): event_year >= year(from) AND <= year(to)
+  // Normalize from/to to ISO date format to avoid SQLite Julian-date interpretation:
+  //   "1800" → "1800-01-01" (start of year)
+  //   "1800-01-01" → "1800-01-01" (already ISO)
+  //   "1800-12-31" → "1800-12-31" (already ISO)
+  // For to, we want the END of the period: "1800" → "1800-12-31".
+  function normalizeFromDate(s: string): string {
+    if (/^\d{4}$/.test(s)) return `${s}-01-01`;
+    return s;
+  }
+  function normalizeToDate(s: string): string {
+    if (/^\d{4}$/.test(s)) return `${s}-12-31`;
+    return s;
+  }
+  const fromYear = query.from ? parseInt(normalizeFromDate(query.from).slice(0, 4), 10) : null;
+  const toYear = query.to ? parseInt(normalizeToDate(query.to).slice(0, 4), 10) : null;
+
+  const conditions: string[] = ['entity_id = ?'];
   const params: any[] = [entityId];
   if (query.type) {
     conditions.push('event_type = ?');
@@ -149,12 +168,14 @@ placesRouter.openapi(getPlaceEventsRoute, async (c) => {
     params.push(query.category);
   }
   if (query.from) {
-    conditions.push('event_date >= ?');
-    params.push(query.from);
+    const fromDate = normalizeFromDate(query.from);
+    conditions.push('(event_date >= ? OR (event_date IS NULL AND event_year >= ?))');
+    params.push(fromDate, fromYear);
   }
   if (query.to) {
-    conditions.push('event_date <= ?');
-    params.push(query.to);
+    const toDate = normalizeToDate(query.to);
+    conditions.push('(event_date <= ? OR (event_date IS NULL AND event_year <= ?))');
+    params.push(toDate, toYear);
   }
   const where = conditions.join(' AND ');
 

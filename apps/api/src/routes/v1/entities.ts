@@ -382,7 +382,16 @@ const organizationEventsRoute = createRoute({
   operationId: 'getOrganizationEvents',
   tags: ['entities', 'events'],
   summary: 'List narrative events for an organization',
-  request: { params: z.object({ slug: z.string() }) },
+  request: {
+    params: z.object({ slug: z.string() }),
+    query: z.object({
+      type: z.string().optional(),
+      category: z.string().optional(),
+      from: z.string().optional(),
+      to: z.string().optional(),
+      limit: z.coerce.number().int().min(1).max(500).default(50),
+    }),
+  },
   responses: {
     200: { description: 'Events list', content: { 'application/json': { schema: OrgEventsListResponse } } },
     404: { description: 'Organization not found', content: { 'application/json': { schema: RefDocError } } },
@@ -391,22 +400,52 @@ const organizationEventsRoute = createRoute({
 
 entitiesRouter.openapi(organizationEventsRoute, async (c) => {
   const { slug } = c.req.valid('param');
+  const { type, category, from, to, limit } = c.req.valid('query');
   const orgRow = await c.env.DB.prepare(
     'SELECT e.id, e.slug FROM entity e WHERE e.slug = ? AND e.type = ?'
   ).bind(slug, 'organization').first<{ id: string; slug: string }>();
   if (!orgRow) return notFound(c, 'organization', slug);
 
+  // Build WHERE clause with optional filters
+  const conditions: string[] = ['entity_id = ?'];
+  const bindings: any[] = [orgRow.id];
+  if (type) {
+    conditions.push('event_type = ?');
+    bindings.push(type);
+  }
+  if (category) {
+    conditions.push('category = ?');
+    bindings.push(category);
+  }
+  if (from) {
+    conditions.push('event_date >= ?');
+    bindings.push(from);
+  }
+  if (to) {
+    conditions.push('event_date <= ?');
+    bindings.push(to);
+  }
+  const where = conditions.join(' AND ');
+
+  // Get total count
+  const countRes = await c.env.DB.prepare(
+    `SELECT COUNT(*) AS n FROM entity_event WHERE ${where}`
+  ).bind(...bindings).first<{ n: number }>();
+  const total = (countRes as any)?.n || 0;
+
+  // Get events
   const eventsRes = await c.env.DB.prepare(`
     SELECT id, event_date, event_year, event_type, category, title, body,
            source_id, source_section, date_precision, display_order
     FROM entity_event
-    WHERE entity_id = ?
+    WHERE ${where}
     ORDER BY
       CASE WHEN event_date IS NULL THEN 1 ELSE 0 END ASC,
       event_date ASC,
       event_year ASC,
       display_order ASC
-  `).bind(orgRow.id).all<{
+    LIMIT ?
+  `).bind(...bindings, limit).all<{
     id: string; event_date: string | null; event_year: number;
     event_type: string; category: string; title: string | null;
     body: string | null; source_id: string | null; source_section: string | null;
@@ -416,7 +455,7 @@ entitiesRouter.openapi(organizationEventsRoute, async (c) => {
   return c.json({
     entity_id: orgRow.id,
     slug: orgRow.slug,
-    total: events.length,
+    total,
     events,
   }) as any;
 });
