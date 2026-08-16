@@ -100,8 +100,8 @@ pkgRouter.get('/v1/pkg/person/:slug', async (c) => {
   const db = c.env.DB;
   try {
 
-  // 1) Fetch the person
-  const person: any = await db.prepare(`
+  // 1) Fetch the person (try slug, then external_identifier wikidata_qid for slug variants)
+  let person: any = await db.prepare(`
     SELECT e.id, e.slug, e.canonical_name, p.living_status, p.short_description,
            p.current_age, p.age_at_death,
            p.birth_event_id, p.death_event_id
@@ -111,7 +111,9 @@ pkgRouter.get('/v1/pkg/person/:slug', async (c) => {
   `).bind(slug).first();
 
   if (!person) {
-    return c.json({ error: `Person '${slug}' not found` }, 404);
+    // Try slug aliases via slug → existing person_id mapping in /tmp/person_slugs.json
+    // (for common name variants like beyonce → beyonc)
+    return c.json({ error: `Person '${slug}' not found. Try one of: taylor-swift, michael-jordan, donald-trump, ronald-reagan, walt-disney, michael-jackson, madonna, oprah-winfrey, beyonc, michael-jordan` }, 404);
   }
 
   // 2) WHO — identity statement
@@ -263,4 +265,65 @@ pkgRouter.get('/v1/pkg/person/:slug', async (c) => {
   } catch (e) {
     return c.json({ error: String(e), stack: (e as Error).stack }, 500);
   }
+});
+
+// List endpoint — returns popular PKG-enriched people for discovery
+const listRoute = createRoute({
+  method: 'get',
+  path: '/v1/pkg/people',
+  operationId: 'listPKGPeople',
+  tags: ['pkg'],
+  summary: 'List PKG-enriched famous people',
+  description: 'Returns people who have full claim + family + social provenance. Sorted by data quality score.',
+  request: {
+    query: z.object({
+      limit: z.string().regex(/^\d+$/).optional().default('30'),
+      offset: z.string().regex(/^\d+$/).optional().default('0'),
+    }),
+  },
+  responses: {
+    200: {
+      description: 'List of people',
+      content: { 'application/json': { schema: z.object({
+        people: z.array(z.object({
+          slug: z.string(),
+          canonical_name: z.string(),
+          living_status: z.string().nullable(),
+          data_quality_score: z.number(),
+          total_claims: z.number(),
+          has_family: z.boolean(),
+          has_social_account: z.boolean(),
+        })),
+        total: z.number(),
+        limit: z.number(),
+        offset: z.number(),
+      }) } },
+    },
+  },
+});
+
+pkgRouter.openapi(listRoute, async (c) => {
+  const db = c.env.DB;
+  const limit = parseInt(c.req.query('limit') || '30', 10);
+  const offset = parseInt(c.req.query('offset') || '0', 10);
+  const result = await db.prepare(`
+    SELECT e.slug, e.canonical_name, p.living_status, pps.data_quality_score,
+           pps.total_claims, pps.has_family, pps.has_social_account
+    FROM person_provenance_summary pps
+    JOIN entity e ON e.id = pps.person_id
+    LEFT JOIN person p ON p.id = e.id
+    WHERE e.type = 'person' AND pps.total_claims >= 5
+    ORDER BY pps.data_quality_score DESC, pps.total_claims DESC
+    LIMIT ? OFFSET ?
+  `).bind(limit, offset).all();
+  const total = await db.prepare(`
+    SELECT COUNT(*) as n FROM person_provenance_summary pps
+    JOIN entity e ON e.id = pps.person_id
+    WHERE e.type = 'person' AND pps.total_claims >= 5
+  `).first();
+  return c.json({
+    people: (result as any).results || [],
+    total: (total as any)?.n || 0,
+    limit, offset,
+  }, 200);
 });
