@@ -28,6 +28,7 @@ import { tagsRouter } from './tags.js';
 import { eventsRouter } from './events.js';
 import { placesRouter } from './places.js';
 import { newsRouter } from './news.js';
+import { pkgRouter } from './pkg.js';
 
 export const v1Router = new OpenAPIHono<AppEnv>();
 
@@ -55,3 +56,4 @@ v1Router.route('/', tagsRouter);
 v1Router.route('/', eventsRouter);
 v1Router.route('/', placesRouter);
 v1Router.route('/', newsRouter);
+v1Router.route('/', pkgRouter);
