@@ -95,7 +95,7 @@ const route = createRoute({
 });
 
 export const pkgRouter = new OpenAPIHono<AppEnv>();
-pkgRouter.get('/v1/pkg/person/:slug', async (c) => {
+pkgRouter.openapi(route, async (c) => {
   const slug = c.req.param('slug');
   const db = c.env.DB;
   try {
