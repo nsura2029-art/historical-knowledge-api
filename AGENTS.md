@@ -4,7 +4,7 @@
 
 ## Roadmap alignment: 24-task KP sequence
 
-As of 2026-08-08, the platform aligns with the **Britannica-inspired PRD**:
+As of 2026-08-17, the platform aligns with the **Britannica-inspired PRD**:
 6 verticals, 24 sequential KP-### tasks. The 20-task sequence in
 `AGENT-INSTRUCTIONS.md` is a **subset** of this. Going forward, every new
 feature work references BOTH the relevant TASK-### (team context) and the
@@ -16,19 +16,23 @@ relevant KP-### (platform context).
 - **Year 1 target**: 10-min avg visit by end of Q4
 - **Editorial team**: comes end of Year 1; LLM-first until then
 
-**Current focus**: 2nd vertical (Places) to 1000 SHIPPED. Now extending enrichment
-(events, images, relations) to the 846 newly added cities. Next: KP-013 v2 enrichment
-(places events for 600+ more places), orgs vertical 481 → 1000 (need 519 more), and
-the deferred places work (images for 500+ more places, sections backfill for 177).
+**Current focus**: **People Knowledge Graph (PKG) Phase 1A+1B SHIPPED 2026-08-17.**
+440 USA famous people enriched with 3,753 claims, 774 family relations, 635 social profiles,
+and 351 images. WHO/WHAT/CONNECTED/NOW 4-question layout live at
+`/v1/pkg/person/{slug}` and `/v1/pkg/people`. Next: expand to UK/India/Japan/Germany/Brazil
+(+2,200 people), backfill `entity_event` for the 440, fix slug collisions, and continue
+Wikipedia news apply (4,735 events remaining of 19,654).
 
-**Key 2026-08-10 milestone**: 1023 places (5.8x) with 4 sections + 7950 events + 1072 person-place
-relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpedia, Wikidata).
+**Key 2026-08-17 milestone**: 440/440 USA famous Americans successfully applied to D1
+(0 failed) with 3,753 atomic claims (96.5% Wikidata), 774 family relations, 635 social
+accounts, and 351 images — all with full claim-source provenance. 345 people with 5+
+claims are listable via the new `/v1/pkg/people` discovery endpoint.
 
 ## What this project is
 
 **Historical Knowledge Platform** (`historical-knowledge-api`) — a public, free, source-backed "On This Day" + Famous People API on Cloudflare Workers. Every fact is a claim, every claim has provenance, every disputed date is preserved as a range, every generation step cites its inputs.
 
-## What's shipped (2026-08-08, dev D1)
+## What's shipped (2026-08-17, dev D1)
 
 | KP | Title | Status | Ship commit |
 |---|---|---|---|
@@ -49,36 +53,83 @@ relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpe
 | KP-026 | Backlinks (organizations + related_entities) | ✅ done | `29baf04` |
 | KP-029 | Multi-source events (Wikipedia + DBpedia + Wikidata + GDELT) | ✅ done | `608d1ea` + `4490c06` |
 | KP-029-full | Full Wikidata extraction (929 people, 13112 wd events) | ✅ done | migrations 0033 + 0050 |
+| KP-018-v2 | USA top-1000 + news + events from 5 sources (RSS x74 + wiki anniversaries) | ✅ done | migrations 0086 + 0087 |
+| KP-PKG-1A | People Knowledge Graph foundation schema + USA discovery (440 people) | ✅ done | `6dece60` + migration 0088b |
+| KP-PKG-1B | USA famous people enrichment applied to D1 (3,753 claims, 774 family, 635 social) | ✅ done | `71425c9` + `1895931` + `685a9c7` |
 
-### Numbers (dev D1, 2026-08-10)
+### Numbers (dev D1, 2026-08-17)
 
-- **1054 persons** (1026 US + 28 international) — top vertical (was 494 in KP-018 v1, 691 in v2)
-- **1023 places** (871 cities + 48 states + 41 landmarks + 51 universities + 12 countries) — 2nd vertical to hit 1000
-- **1075 organizations** (F500 + S&P500 + Banks + Wikidata public cos, was 481, KP-orgs-1000 2026-08-10) — 3rd vertical to hit 1000
-- **1001/1075 orgs with sections** (was 0, KP-orgs-sections 2026-08-10) — 760 with full 4-section set
-- **719/1075 orgs with primary image** (was 0, KP-orgs-images 2026-08-10)
-- **622/1075 orgs with 17,594 events** (was 0, KP-orgs-events 2026-08-11) — 3633 DAY, 4219 MONTH, 9742 YEAR precision
-- **549/1023 places with 8,201 events
-- **486/1022 places with founding_year** (was 0, KP-place-founding-year 2026-08-12)** (was 237, +2 in KP-place-events-r2 2026-08-11) — elizabethton 30, cartersville 16 + 310 more places with 317 Wikidata events (KP-place-events-wikidata 2026-08-12)
+**Entities (6,701 total, 64 tables):**
+- **2,070 persons** (was 1,054 in 2026-08-10, +1,016 from KP-PKG-1A/1B)
+- **1,076 organizations** (F500 + S&P500 + Banks + Wikidata public cos)
+- **1,025 places** (871 cities + 48 states + 41 landmarks + 51 universities + 12 countries)
+- **2,373 media** + **85 awards** + **72 works**
+
+**PKG provenance (NEW 2026-08-16/17, the new layer):**
+- **3,753 claims** (96.5% Wikidata, 3.5% BBC/NYT/Britannica/Reuters/CNN/etc.)
+- **3,749 claim_source** pairs (1:1 with claims, full provenance)
+- **774 person_family_relation** (parent, child, spouse, sibling, etc.)
+- **635 social_profile** (Twitter, Instagram, YouTube, TikTok, Facebook, official website)
+- **351 new entity_image** rows (PKG layer)
+- **440 source_record** rows (one per famous American, src_pkg_{qid})
+- **3,487/3,753 verified claims** (93% with `status='published'`)
+- **3,753/3,753 undisputed claims** (100% of PKG claims are `certainty='undisputed'`)
+- **1,335 persons with provenance_summary**; **345 with 5+ claims** (listable via /v1/pkg/people)
+
+**Other enrichment:**
 - **1018 media entities** + **1018 media_asset** + **1018 media_rights** (CC-BY-SA-4.0)
-- **75365 entity_event rows** across 4 sources (Wikipedia 41466 + Wikidata 31112 + GDELT 10679 + DBpedia 1887)
-- **929 people with 1+ Wikidata events** (was 1 person in KP-029 v1, 415 in KP-029-full)
-- **64% DAY precision** events (was 51% in KP-018 v1)
-- **109 source_registry** entries (Tier A-E)
-- **1051/1051 persons with US citizenship** (was 120)
-- **1015/1051 persons with primary image** (was 173)
-- **1021/1051 persons with all 4 sections** (intro + career + personal + legacy, was 173)
-- **1072 person_place_relations** (was 28)
-- **1000/1023 places with primary image** (was 507, KP-places-images-r2 2026-08-10)
-- **980/1023 places with 4 sections** (overview + history + geography + demographics, was 846, KP-place-sections-r2 2026-08-10)
-- **7950 entity_event rows for places** (was 4866)
-- **50+ API endpoints** (28+ baseline + 22 across KP-003/004/007/010/017/018/029)
-- **72 smoke + edge tests** passing (smoke 7 + v14 15 + kp005 13 + kp018v3 5 + kp-places-1000 8 + quality-gate 24)
-- **24/24 quality gate** passing
-- **Live worker**: https://historical-knowledge-api-dev.nsura2029.workers.dev
-- **Latest deploy version**: `080d9327-c014-422b-9e08-ca1822cbcd0d` (2026-08-10)
+- **97,975 entity_event rows** (was 75,365 in 2026-08-10)
+- **15,852 news_event rows** (14,920 wiki anniversaries + 932 RSS) — was 251 in 2026-08-10
+- **16,864 news_article** rows
+- **74 RSS news sources** active (was 19 in 2026-08-10)
+- **1,105 person_place_relation** (was 1,072)
+- **1,670 entity_relation** rows
+- **124 source_registry** entries (Tier A-E, was 109)
+- **87 entity_name** (aliases/redirects)
+- **521 external_identifier** (Wikidata QIDs linked)
+- **14 identifier_scheme** entries
+- **23 claim_predicate** entries
+- **6,701 entities total** across 64 tables
+- **0 slug_redirect** (need a phase for the beyonce/taylor/madonna collisions)
+- **6 curated otd_event** (hero events for the home page)
+- **11,694 content_section** rows
+- **8 quality_gate_result** rows from recent tests
 
-### Migrations applied (70 total)
+**API endpoints: 84 total** (was 50+ in 2026-08-10)
+- **PKG (NEW)**: 2 — `/v1/pkg/person/{slug}`, `/v1/pkg/people`
+- **People**: 20 (biography, events, news, quiz, related, sections, etc.)
+- **Places**: 3
+- **Events**: 5 (place + person + org)
+- **On-this-day**: 3
+- **+ 50 more** (admin, claims, search, tags, gallery, etc.)
+
+**Top 10 PKG-enriched USA Famous People (by data quality):**
+1. Donald Trump — DQ 4.56, 17 claims, 7 family, 9 social
+2. Ronald Reagan — DQ 4.44, 17 claims, 5 family
+3. Al Gore — DQ 4.33, 16 claims, 5 family, 1 social
+4. Ben Stiller — DQ 4.33, 16 claims, 5 family, 1 social
+5. Grace Kelly — DQ 4.22, 16 claims, 3 family
+6. Scarlett Johansson — DQ 4.22, 16 claims, 4 family
+7. Jeff Bezos — DQ 4.11, 15 claims, 3 family, 4 social
+8. Linus Torvalds — DQ 4.11, 15 claims, 2 family, 4 social
+9. Serena Williams — DQ 4.11, 15 claims, 2 family, 4 social
+10. Arnold Schwarzenegger — DQ 4.11, 15 claims, 3 family, 1 social
+
+**Data quality distribution (1,335 persons with provenance):**
+- DQ 4-5: 26 (1.9%) — PKG-enriched USA famous
+- DQ 3-4: 149 (11.2%)
+- DQ 2-3: 141 (10.6%)
+- DQ 1-2: 36 (2.7%)
+- DQ 0-1: 983 (73.6%) — long tail, needs enrichment
+
+**Operational:**
+- **Live worker**: https://historical-knowledge-api-dev.nsura2029.workers.dev
+- **Latest deploy version**: `8b573f0f-1360-4c71-8a73-c434b6bbf287` (2026-08-17)
+- **DB size**: ~114 MB
+- **OpenAPI**: 84 endpoints, 2 PKG endpoints both visible in /openapi.json
+- **Git**: develop @ `685a9c7`, 12 commits ahead of origin
+
+### Migrations applied (90 total as of 2026-08-17)
 
 0001-0009 (initial schema), 0010-0011 (on-this-day), 0012 (KP-003 claim model),
 0013 (KP-004 evidence), 0014 (KP-007 media rights), 0015-0017 (KP-010 biographies),
@@ -110,6 +161,10 @@ relations + 507 place images, all via 4 sources (Wikipedia rule, GDELT GKG, DBpe
 0085 (otd-fixes: 3 follow-up filter fixes to /v1/on-this-day/*. (1) limit was multiplied by 4 (limit=10→40 events), now respects user's limit. (2) country filter was applied to neither events nor person events — added JOINs to place.country_code for place events and person_place_relation for person events; use DISTINCT to dedup. (3) category filter was applied in SQL but bucketing ignored it — added CATEGORY_TO_EVENT_TYPES map (one category→multiple event_types, e.g. cultural→['creative','career','publication','education','award']); empty mappings (religion/royal/technological/environmental) return empty via event_type='__no_match__' guard. Test results: limit 1/5/10/20 → 1/5/10/20 events; country=US → 20 events 6 births 15 deaths (was 80/6/17 for all countries); category=political/cultural/social/economic → 5 events 5 section. Response keys are plural: politics/science/technology/cultural/religion/economic/royal/disasters/social/exploration/crime.)
 0086 (rss-news: RSS news ingest pipeline. 19 working feeds (BBC, Al Jazeera, Guardian, NPR, Ars Technica, Science Daily, Phys.org, Smithsonian, Atlas Obscura, etc.). 251 events in initial 72h backfill. New tables: news_source (config), news_event (date-keyed events). news_article.entity_id made nullable. New endpoints: /v1/news/recent, /v1/news/by-date, /v1/this-day/telescope. /v1/on-this-day now includes news section. Time telescope returns same MM-DD across multiple years (0,1,5,10,25,50,100 years ago).)
 0087 (news-sources-v2 + wiki-historical: expanded news_source to 74 feeds (was 19) — added CNN x6, Yahoo, Google News x3, NPR x7, BBC sports x5, TechCrunch/Wired/Verge/Engadget/Mashable/Ars Technica, Sky Sports, The Hill, Vox, Business Insider, Mental Floss/Slate/New Yorker/Salon, Live Science/Space.com/Science News/New Scientist/Quanta, Time/LA Times/Vice. New: src_wiki_anniversaries (special: 19,654 curated historical events from Wikipedia "Selected anniversaries today" for all 366 days, year range 74 BC to 2026). New script: wiki_anniversaries_fetch.py. Time telescope now returns events for 1, 5, 10, 25, 50, 100+ years ago for most dates.)
+0088 (PKG foundation — FAILED: 8 new tables tried to recreate `claim`, `claim_source`, `claim_conflict_group`, `social_profile`, `source_record`, `entity_relation`, `external_identifier` which all already existed. Replaced with 0088b below.)
+0088b (PKG Phase 1A foundation — ADDITIVE only: 8 NEW tables: person_family_relation, social_metric_observation, entity_merge_history, entity_review_queue, attention_event, identifier_scheme, claim_predicate, person_provenance_summary. Extended source_registry (7 policy fields), person (3 PKG fields). Seeded 17 sources, 14 identifier schemes, 23 canonical predicates. 1051 person_provenance_summary backfilled.)
+0089 (PKG Phase 1B — data layer for USA famous people: 440 unique Americans × full claim+source+family+social+image rows applied to D1. Generated 12,422 SQL statements in 440 per-QID files via `pkg_usa_apply.py`. 3 critical fixes during apply: (1) `person.living_status` CHECK is `IN ('living','deceased','undisclosed')` not 'unknown' — INSERT OR IGNORE silently swallows CHECK failures. (2) `entity_image` schema uses `url_original`, `wikimedia_file`, `attribution`, `license_code`, `is_primary`, `display_order` — NOT `external_url`/`license`/`status`/`retrieved_at`. (3) 94% of family member slugs collide with existing entities — load existing slugs from D1 (`/tmp/person_slugs.json`) and reuse the existing entity ID instead of creating a duplicate. 440/440 chunks succeeded (0 failed). Stats: 3,753 claims, 3,749 claim_source, 774 person_family_relation, 635 social_profile, 440 source_record, 351 new entity_image. Workers version `8b573f0f-1360-4c71-8a73-c434b6bbf287`.)
+0090 (PKG endpoints — `GET /v1/pkg/person/{slug}` (WHO/WHAT/CONNECTED/NOW 4-question layout with full claim provenance) and `GET /v1/pkg/people` (discovery list sorted by data quality score, 345 people with 5+ claims). Both registered via `pkgRouter.openapi()` so they appear in /openapi.json.)
 
 See `packages/db/migrations/AGENTS.md` for per-migration details.
 

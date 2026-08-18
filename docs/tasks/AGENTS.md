@@ -94,10 +94,13 @@ Arts & Culture, Games & Quizzes) using a strict 24-task dependency order
 | KP-024 | Pilot release + independent audit + rollback | ❌ not started | — | — |
 | **KP-029** | **Multi-source events (Wikipedia + DBpedia + Wikidata)** | **✅ done** | **`608d1ea`** | — |
 | **KP-029-full** | **Full Wikidata extraction (415 people, 6048 wd events)** | **✅ done** | **migration 0033** | — |
+| **KP-018-v2** | **USA top-1000 + RSS news (74 feeds) + wiki anniversaries (19,654 events)** | **✅ done** | **migrations 0086 + 0087** | — |
+| **KP-PKG-1A** | **People Knowledge Graph foundation schema + USA discovery (440 people)** | **✅ done** | **`6dece60` + migration 0088b** | — |
+| **KP-PKG-1B** | **USA famous people enrichment applied to D1 (3,753 claims, 774 family, 635 social)** | **✅ done** | **`71425c9` + `1895931` + `685a9c7`** | — |
 
 **Bold KP tasks** = critical path / has formal spec.
 
-### Shipped KPs summary (as of 2026-08-08)
+### Shipped KPs summary (as of 2026-08-17)
 
 | KP | What landed | D1 rows added | Endpoints added | Commits |
 |---|---|---|---|---|
@@ -110,16 +113,23 @@ Arts & Culture, Games & Quizzes) using a strict 24-task dependency order
 | KP-018 | 459 top-500 USA, 31 tags, 666 links, 6040 events | 494 + 6040 | 2 (`/v1/tags*`) | `9ce30cc` + `608d1ea` |
 | KP-029 | Multi-source events (Wikipedia/DBpedia/Wikidata) | 6040 events | 3 (`/v1/people/{slug}/events*`) | `608d1ea` |
 | KP-029-full | Full Wikidata extraction (415 people, 6048 wd events) | +6028 events | — (no API change) | migration 0033 |
+| KP-018-v2 | RSS news pipeline + wiki historical backfill | 14,920 wiki events + 932 RSS | 3 (`/v1/news/*`, `/v1/this-day/telescope`) | `1598309` + migrations 0086-0087 |
+| KP-PKG-1A | People Knowledge Graph foundation schema + USA discovery (440 people) | 8 new tables, 17 sources, 14 schemes, 23 predicates, 1051 provenance summaries | — (no API yet) | `6dece60` + migration 0088b |
+| KP-PKG-1B | USA famous people enrichment applied to D1 | 3,753 claims, 3,749 claim_source, 774 family, 635 social, 351 images, 440 source_record | 2 (`/v1/pkg/person/{slug}`, `/v1/pkg/people`) | `71425c9` + `1895931` + `685a9c7` |
 
 ### Next KP (the critical next task)
 
-Two candidates depending on user's call:
+After PKG Phase 1A+1B (440 USA famous people, 2026-08-17), candidates depending on user's call:
 
-1. **KP-005** Identity resolution — beyond slug_redirect. Aliases, name variants, person vs person merge/split. **Why**: enables international famous people beyond the US-centric top-500. **Effort**: 1-2 weeks.
+1. **KP-PKG-1C** — Expand to 5 more countries (UK + India + Japan + Germany + Brazil → ~2,200 more people). **Why**: extends the WHO/WHAT/CONNECTED/NOW coverage globally. **Effort**: 1 week.
 
-2. **KP-018 v2** — extend to top-1000 + non-American famous people. **Why**: directly increases data coverage without schema changes. **Effort**: 3-5 days.
+2. **KP-PKG-2A** — Backfill `entity_event` for the 440 USA people so the WHAT field shows their actual life events, not just the 1 short bio. **Why**: makes the WHO/WHAT/CONNECTED/NOW layout more rich. **Effort**: 3-5 days.
 
-3. **KP-019** Editorial console — actual review UI (no code yet). **Why**: unblocks the editor workflow before editor team arrives end of Year 1. **Effort**: 1-2 weeks.
+3. **KP-005** Identity resolution — beyond slug_redirect. Aliases, name variants, person vs person merge/split. **Why**: enables international famous people beyond the US-centric top-500 AND fixes slug collisions (beyonce→beyonc, taylor-swift historical, madonna historical). **Effort**: 1-2 weeks.
+
+4. **KP-029-continuation** — Continue Wikipedia news apply (4,735 events remaining of 19,654 — currently rate-limited by D1). **Why**: completes the historical encyclopedia layer. **Effort**: 2-3 days (just waiting on rate limit windows).
+
+5. **KP-PKG-1D** — Image R2 download pipeline for 351 new images. **Why**: makes the PKG layer visually rich. **Effort**: 1 week.
 
 The user picks. See each KP spec for the detailed approach.
 
