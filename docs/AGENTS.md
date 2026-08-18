@@ -25,14 +25,17 @@ docs/
 - **Task spec** (`docs/tasks/TASK-###-name.md` or `KP-###-name.md`) — REQUIRED before starting work on a new task.
 - **Quality report** (`docs/quality-reports/TASK-###.md`) — REQUIRED when a task is done (PASS or BLOCKED).
 
-## Active task specs (as of 2026-08-08)
+## Active task specs (as of 2026-08-17)
 
 - `KP-003-universal-ontology-claim-model.md` ✅ done
 - `KP-004-evidence-bibliography-citation.md` ✅ done
 - `KP-007-media-rights-pipeline.md` ✅ done
 - `KP-010-biographies-vertical.md` ✅ done
 - `TASK-001-platform-foundation.md` ✅ done
-- `TASK-013-on-this-day-api.md` 🟡 partial (3 endpoints, 6 seed events)
+- `TASK-013-on-this-day-api.md` 🟡 partial (3 endpoints, 6 seed events, expanded with news section)
+- `KP-PKG-1A-people-knowledge-graph-foundation.md` ✅ done (2026-08-16)
+- `KP-PKG-1B-usa-famous-people-enrichment.md` ✅ done (2026-08-17, 440/440 applied)
+- `KP-018-v2-rss-news-and-wiki-historical.md` ✅ done (2026-08-14, 74 RSS + 14,920 wiki events)
 
 ## Standing gotchas
 

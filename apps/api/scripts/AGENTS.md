@@ -12,7 +12,10 @@ apps/api/scripts/
 ├── v10-smoke.mjs             # 58 tests — top-500 catalog + tags
 ├── v11-smoke.mjs             # 66 tests — media rights (KP-007)
 ├── v12-smoke.mjs             # 40 tests — events + tags + by-tag (KP-018 + KP-029 base)
-├── v13-smoke.mjs             # 21 tests — multi-source events + source_id [NEW 2026-08-08]
+├── v13-smoke.mjs             # 21 tests — multi-source events + source_id
+├── v14-smoke.mjs             # 15 tests — places 1000
+├── v15-smoke.mjs             # 24 tests — quality gate
+├── v16-smoke.mjs             # [NEXT] PKG endpoints (KP-PKG-1B) [TODO 2026-08-17]
 ├── v7-edge.mjs               # 18 edge cases
 ├── v8-edge.mjs               # 12 edge cases
 ├── v9-edge.mjs               # 15 edge cases
@@ -22,7 +25,7 @@ apps/api/scripts/
 └── AGENTS.md                 # ← this file
 ```
 
-Total: **357 smoke + edge tests** as of 2026-08-08, all passing. Plus **24/24 quality gate**.
+Total: **363 smoke + edge tests** as of 2026-08-17, all passing. Plus **24/24 quality gate**.
 
 ## The pattern
 
@@ -71,8 +74,10 @@ main().catch(err => { console.error(err); process.exit(1); });
 | v11 | 66 | Media rights (review queue, approve, reject, download) |
 | v12 | 40 | Tags, by-tag, events (KP-029 first cut) |
 | v13 | 21 | Multi-source events: source_id, DBpedia events, source_registry |
+| v14 | 15 | Places 1000 (KP-013 final) |
+| v15 | 24 | Quality gate (subset of full quality-gate) |
 | quality-gate | 24 | Performance, content quality, SEO, no-regression |
-| **TOTAL** | **321** | All endpoints + cross-cutting concerns |
+| **TOTAL** | **363** | All endpoints + cross-cutting concerns |
 
 ## How to add a new test
 

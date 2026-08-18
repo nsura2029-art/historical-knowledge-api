@@ -74,6 +74,21 @@ import { personDetailRouter } from './person-detail.js';
 app.route('/v1/people', personDetailRouter);  // not /v1/people/ — the router defines /{slug}
 ```
 
+### Route registration — use `openapi()` not `get()`
+
+**Always use `pkgRouter.openapi(route, handler)` to register routes that have a `createRoute()` schema.** Using bare `pkgRouter.get(path, handler)` works but the endpoint is hidden from `/openapi.json` and `/v1/docs`.
+
+```ts
+// ✅ CORRECT — endpoint shows in OpenAPI
+const route = createRoute({ method: 'get', path: '/v1/pkg/person/{slug}', ... });
+pkgRouter.openapi(route, async (c) => {...});
+
+// ❌ WRONG — endpoint works but invisible to OpenAPI (gotcha 2026-08-17)
+pkgRouter.get('/v1/pkg/person/:slug', async (c) => {...});
+```
+
+**Discovery**: check `/v1/openapi.json` after deploy to confirm all new routes are visible.
+
 ## Standing gotchas (apply to any route)
 
 - **Never call hooks conditionally** — Rules of Hooks applies to React only, but the same pattern bites with route handlers: don't call `c.get('requestId')` inside a try/catch. Call it at the top, then handle errors below.
@@ -85,6 +100,8 @@ app.route('/v1/people', personDetailRouter);  // not /v1/people/ — the router 
 - **Event source attribution (NEW 2026-08-08)** — every `entity_event` row has a `source_id` FK. SELECT it in the response so the UI can show source provenance badges. See `events.ts` for the pattern.
 - **`source_id` response shape (NEW 2026-08-08)** — return it as `source_id: string | null` (NOT nested in a `source` object). The D1 FK is a string, and clients index it as a flat key.
 - **Don't name DB row `c`** — Hono context collision. Use `eventRow`, `entityRow`, etc.
+- **PKG family_relation names (NEW 2026-08-17)** — use the existing entity ID from `entity.slug` lookup, don't create new entities for family members. 94% of family member names collide with existing entities (e.g. `Mary Anne MacLeod Trump` already exists as `ent_mary-anne-macleod`).
+- **PKG living_status values (NEW 2026-08-17)** — `IN ('living', 'deceased', 'undisclosed')`, NEVER `'unknown'`. Use `undisclosed` for stub person rows.
 
 ## How to add a new route file
 

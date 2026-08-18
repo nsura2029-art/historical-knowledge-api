@@ -168,6 +168,33 @@ claims are listable via the new `/v1/pkg/people` discovery endpoint.
 
 See `packages/db/migrations/AGENTS.md` for per-migration details.
 
+## Next to-do list (prioritized, as of 2026-08-17)
+
+The platform has shipped PKG Phase 1A+1B (440 USA famous people). The next high-impact tasks:
+
+| Priority | Task | Description | Effort | Depends on |
+|---|---|---|---|---|
+| 🔴 P0 | **KP-PKG-1C** | Expand to 5 more countries (UK + India + Japan + Germany + Brazil → ~2,200 people) | 1 week | KP-PKG-1A/1B (DONE) |
+| 🔴 P0 | **PKG entity_event backfill** | Populate `entity_event` for the 440 USA people so the WHAT field shows actual life events (currently 1 event each) | 3-5 days | Wikidata SPARQL P-stop events |
+| 🟡 P1 | **Wikipedia news apply continuation** | 4,735 of 19,654 events remaining (D1 rate-limited). Run in slow serial mode with backoff | 2-3 days | D1 rate limit window |
+| 🟡 P1 | **Slug redirect fix (PKG UX)** | Fix `beyonce` → `beyonc`, `taylor-swift` historical collision, `madonna` historical collision via entity merge flow | 3 days | KP-005 (identity resolution) |
+| 🟡 P1 | **/v1/people/query** | Compound search endpoint `?profession=&country=&era=&min_claims=` to power the discovery UI | 2-3 days | KP-PKG-1A (DONE) |
+| 🟡 P1 | **Image R2 download** | Download the 351 PKG images to R2, populate `url_r2` and `url_thumb_r2` | 1 week | Wikipedia Commons API + R2 quota |
+| 🟢 P2 | **KP-019 Editorial console** | Review UI for editor workflow (no code yet) | 1-2 weeks | Frontend stack decision |
+| 🟢 P2 | **KP-005 Identity resolution** | Aliases, name variants, person vs person merge/split. Powers slug redirect and international expansion | 1-2 weeks | — |
+| 🟢 P2 | **KP-022 SEO** | Sitemap, RSS feeds, schema.org markup | 1 week | — |
+| 🟢 P2 | **KP-024 Pilot release** | Independent audit, rollback plan, public developer portal | 2 weeks | All P0+P1 done |
+| ⏸️ P3 | **KP-011-014, KP-016, KP-021, KP-023** | Science/Animals/Arts/Quizzes/AI/Security/Observability verticals | TBD | — |
+
+**Next session recommendation**: start with **KP-PKG-1C** (5 more countries) — it scales the PKG layer globally, the apply pipeline is now battle-tested, and the data is mostly in Wikidata already. OR if the user wants polish over breadth, do **PKG entity_event backfill** first (gives the WHAT field real content for the 440 existing people).
+
+**Recently completed (2026-08-17)**:
+- ✅ KP-PKG-1A (foundation schema + USA discovery)
+- ✅ KP-PKG-1B (440 USA famous people enrichment)
+- ✅ KP-018-v2 (RSS news + wiki historical)
+- ✅ All PKG endpoints registered in OpenAPI (gotcha fix commit `685a9c7`)
+- ✅ Updated all AGENTS.md files to reflect current state
+
 ## Read first (in order)
 
 1. `AGENT-INSTRUCTIONS.md` — the operating contract (45KB). Read the whole thing before doing anything non-trivial.

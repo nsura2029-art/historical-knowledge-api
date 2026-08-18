@@ -63,6 +63,9 @@ A PR with a BLOCKED quality report is **not mergeable**. The 11 questions are:
 |---|---|---|
 | 001 | ✅ PASS | `TASK-001.md` |
 | KP-029 | ✅ PASS | `KP-029.md` (multi-source events) |
+| KP-018-v2 | ✅ PASS | `KP-018-v2.md` (RSS news + wiki historical backfill) |
+| KP-PKG-1A | ✅ PASS | `KP-PKG-1A.md` (People Knowledge Graph foundation + USA discovery) |
+| KP-PKG-1B | ✅ PASS | `KP-PKG-1B.md` (440 USA famous people enrichment, 0/440 failed) |
 
 ## How to write a quality report
 

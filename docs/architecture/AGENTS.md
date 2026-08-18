@@ -1,12 +1,15 @@
 # docs/architecture/AGENTS.md — architecture docs
 
 > **Owner**: architecture documents. Read before adding or editing any architecture doc.
+>
+> **Status (2026-08-17)**: PKG Phase 1A+1B shipped, 64 tables / 90 migrations, 6,701 entities, 84 endpoints.
 
 ## What lives here
 
 - **ADRs** (Architecture Decision Records) — significant decisions, their context, and their consequences.
 - **Audits** — cross-cutting reviews (e.g. "DB edge case audit", "API surface audit").
 - **Diagrams** — system context, data flow, deployment topology.
+- **PKG architecture doc** (TODO 2026-08-17): the 4-question layout (WHO/WHAT/CONNECTED/NOW), claim provenance, family/social graph — write this when KP-PKG-1C ships.
 
 ## File naming
 

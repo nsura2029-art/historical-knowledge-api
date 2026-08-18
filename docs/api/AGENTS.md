@@ -1,16 +1,20 @@
 # docs/api/AGENTS.md — API documentation conventions
 
 > **Owner**: API reference docs. Read before writing any hand-written API doc.
+>
+> **Status (2026-08-17)**: 84 endpoints, OpenAPI 3.1 spec at `/v1/openapi.json`, Swagger UI at `/v1/docs`.
 
 ## The primary source is OpenAPI
 
 `@hono/zod-openapi` generates `/v1/openapi.json` automatically from the route definitions. Swagger UI is at `/v1/docs`. **Hand-written docs are supplements, not the source of truth.**
 
+**Gotcha (NEW 2026-08-17)**: Always use `pkgRouter.openapi(route, handler)` not `pkgRouter.get(path, handler)`. The bare `get()` works but the endpoint is hidden from `/openapi.json`. Verify with `curl /openapi.json | jq '.paths | keys'` after deploy.
+
 ## When to add a hand-written doc
 
-- **Long explanations** that don't fit in OpenAPI (e.g. multi-signal relevance scoring algorithm).
-- **Tutorials** (e.g. "how to paginate", "how to handle redirects").
-- **Diagrams** (request flow, data model).
+- **Long explanations** that don't fit in OpenAPI (e.g. multi-signal relevance scoring algorithm, PKG 4-question layout).
+- **Tutorials** (e.g. "how to paginate", "how to handle redirects", "how to use PKG for a person detail page").
+- **Diagrams** (request flow, data model, PKG claim-source provenance graph).
 - **Examples** beyond what OpenAPI examples provide.
 
 ## File naming

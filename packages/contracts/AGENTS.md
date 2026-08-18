@@ -1,6 +1,8 @@
 # packages/contracts/AGENTS.md — shared Zod schemas
 
 > **Owner**: this directory. Read before importing from `@hka/contracts`.
+>
+> **Status (2026-08-17)**: 84 endpoints, 124 sources, 64 D1 tables. PKG 4-question layout contracts needed for KP-PKG-1C.
 
 ## What lives here
 
@@ -40,16 +42,32 @@ Cursor-paginated response envelope. Not yet built. When added, every list endpoi
 
 Calendar-aware date type with proleptic Gregorian + `original` text. Not yet exported here — it's currently inline in `apps/api/src/routes/v1/years.ts`. Should be moved here when TASK-008 lands.
 
-### Source quality tier (NEW 2026-08-08)
+### Source quality tier (2026-08-08)
 
 `source_quality_tier` enum: `A | B | C | D | E`. Used across the source_registry, media, and event tables. Defined in `apps/api/src/routes/v1/sources.ts` but not yet exported here.
 
-### Event source categories (NEW 2026-08-08)
+### Event source categories (as of 2026-08-17)
 
-The `entity_event.source_id` FK references `source_registry.id`. The 3 currently-populated sources for events:
-- `src_en_wikipedia` (Tier E, body text extraction)
-- `src_dbpedia` (Tier B, SPARQL date properties)
-- `src_wikidata` (Tier A, structured claims, rate-limited)
+The `entity_event.source_id` FK references `source_registry.id`. The 5 currently-populated sources for events:
+- `src_en_wikipedia` (Tier E, body text extraction — 41,466 events)
+- `src_dbpedia` (Tier B, SPARQL date properties — 1,887 events)
+- `src_wikidata` (Tier A, structured claims — 31,112 events; +3,557 PKG claims)
+- `src_gdelt` (Tier C, GKG news events — 10,679 events)
+- `src_wiki_anniversaries` (Tier E, Wikipedia "Selected anniversaries today" — 14,920 events)
+
+### PKG 4-question layout (NEW 2026-08-17, TODO export here)
+
+The PKG endpoint response shape — currently inline in `apps/api/src/routes/v1/pkg.ts`. Should be extracted to a shared contract in KP-PKG-1C:
+- `WHO`: name + living_status + age
+- `WHAT`: array of claims (career events + entity events + claim predicates)
+- `CONNECTED`: family + social accounts
+- `NOW`: latest entity_event
+- `data_quality`: score + breakdown
+- `claims`: full claim list with predicate, value, certainty, source_id
+
+### Claim value types (NEW 2026-08-17)
+
+`value_type` enum: `entity_ref | date | string | number | boolean`. Used in `claim.literal_value` polymorphic column. Define here when PKG expand.
 
 ## How to add a new shared type
 

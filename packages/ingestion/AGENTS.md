@@ -2,11 +2,11 @@
 
 > **Owner**: this directory. Read before adding any connector or seed script.
 
-## Status (2026-08-08)
+## Status (2026-08-17)
 
-TASK-005 is partial. The framework is in place (`ingestion_run` table, the connector pattern in theory). The bulk of ingestion so far is via **seed scripts** in `packages/db/seed/` (12+ scripts) and inline migrations. These are the working patterns; the formal connector interface in `src/` is still aspirational.
+TASK-005 is partial. The framework is in place (`ingestion_run` table, the connector pattern in theory). The bulk of ingestion so far is via **seed scripts** in `packages/db/seed/` (20+ scripts) and inline migrations. These are the working patterns; the formal connector interface in `src/` is still aspirational.
 
-## What's in the seed directory (NEW 2026-08-08)
+## What's in the seed directory (as of 2026-08-17)
 
 ```
 packages/db/seed/
@@ -19,8 +19,17 @@ packages/db/seed/
 ├── people_section_image_repass.py   # Wikipedia REST + mobile-html re-pass
 ├── events_extract.py                # v1: extract date-anchored events from section text
 ├── events_extract_v2.py             # v2: clean wikitext, LLM-style event titles
-├── wikidata_events_extract.py       # **NEW 2026-08-08** (KP-029): Wikidata structured claims
-├── dbpedia_events_extract.py        # **NEW 2026-08-08** (KP-029): DBpedia SPARQL date properties
+├── wikidata_events_extract.py       # KP-029: Wikidata structured claims
+├── dbpedia_events_extract.py        # KP-029: DBpedia SPARQL date properties
+├── wiki_anniversaries_fetch.py      # **NEW 2026-08-14** (KP-018-v2): Wikipedia "Selected anniversaries today" (19,654 events)
+├── rss_news_fetch.py                # **NEW 2026-08-14** (KP-018-v2): 74 RSS feeds → news_event
+├── enrichment/                      # **NEW 2026-08-16/17** (KP-PKG-1A/1B): People Knowledge Graph
+│   ├── wikidata_famous_americans.py # SPARQL fetcher for 440 USA famous people
+│   ├── pkg_usa_phase1.py            # 5-category discovery + WHO/WHAT/CONNECTED/NOW renderer
+│   ├── pkg_usa_apply.py             # **NEW 2026-08-17**: per-QID SQL chunk generator (440 files, isolated failures)
+│   ├── resolve_qid_labels.py        # fallback for QIDs with blank en labels
+│   ├── reenrich_empty.py            # re-fetch empty entries
+│   └── refill_empty.py              # refill empty entries one at a time
 └── .gitignore                       # excludes __pycache__/
 ```
 
@@ -76,7 +85,7 @@ INSERT INTO ingestion_run (id, source_id, connector_version, started_at, complet
 VALUES (?, ?, ?, ?, ?, 'succeeded', ?, ?, ?, ?, ?, ?);
 ```
 
-## KP-029 seed scripts (NEW 2026-08-08)
+## KP-029 seed scripts (2026-08-08)
 
 ### `wikidata_events_extract.py` (447 lines, KP-029)
 
@@ -102,16 +111,76 @@ Extracts date-anchored events from DBpedia SPARQL endpoint.
 - **Output**: `packages/db/migrations/0031_dbpedia_events_extracted.sql`
 - **Status**: 1887 events for 397/494 people applied
 
+## KP-018-v2 seed scripts (2026-08-14)
+
+### `wiki_anniversaries_fetch.py`
+
+Scrapes Wikipedia's "Selected anniversaries today" for all 366 days (01-01 to 12-31, plus Feb 29).
+
+- **Output**: 19,654 curated historical events with year range 74 BC → 2026
+- **Applied**: 14,920 of 19,654 (76%) — remaining 4,735 blocked by D1 rate limit
+- **Source ID**: `src_wiki_anniversaries`
+- **Per-day files**: `wiki_anniversaries_2025-08-16.md` format, then inserted as `news_event` rows
+
+### `rss_news_fetch.py`
+
+74 RSS feeds across 8 categories (news, science, sports, culture, politics, business, tech, regional).
+
+- **Backfill window**: 72h rolling
+- **Output**: 932 news events initially; growing with each cron
+- **Source IDs**: per-feed in `news_source` table
+
+## KP-PKG-1A/1B seed scripts (NEW 2026-08-16/17, in `enrichment/`)
+
+### `enrichment/wikidata_famous_americans.py`
+
+SPARQL fetcher for the 440 USA famous people across 5 master categories.
+
+- **5 categories**: Entertainment (111), Music (115), Creators & Influencers (53), Sports (176), Business (89)
+- **Output**: `/tmp/pkg_usa/raw_data.json` (847 entries from raw → 440 unique after dedup)
+- **HTTP**: Wikidata SPARQL via curl
+- **Rate limit**: ~5 sec between requests
+
+### `enrichment/pkg_usa_phase1.py`
+
+Discovers people across 5 categories + renders the WHO/WHAT/CONNECTED/NOW layout.
+
+- **Sub-categories**: 16 (film_actors, tv_actors, voice_actors, stage_actors, comedians, directors, producers, screenwriters, tv_hosts, reality_tv, singers, rappers, songwriters, musicians, djs, composers, music_producers, country_artists, youtubers, podcasters, instagram_models, tiktokers, football, basketball, baseball, ice_hockey, soccer, tennis, golf, boxing, mma, olympics, auto_racing, swimming, track_field, tech_founders, ceos, investors, inventors, business_authors)
+- **Output**: `/tmp/pkg_usa/{5_X Category}/_index.md` and per-subcategory .md files
+- **Rendering**: WHO = name + slug, WHAT = claims list, CONNECTED = family + social, NOW = latest event
+
+### `enrichment/pkg_usa_apply.py` (NEW 2026-08-17, the workhorse)
+
+Generates per-QID SQL files to push enrichment to D1.
+
+- **Output**: 440 per-QID SQL files in `/tmp/pkg_usa_sql/person_{qid}.sql`
+- **Stats**: 12,422 SQL statements, 3,753 claims, 774 family, 635 social, 351 images
+- **Per-file size**: 2-58 statements (avg ~28)
+- **3 critical fixes baked in**:
+  1. `person.living_status` = 'undisclosed' (NOT 'unknown') for stub family members
+  2. `entity_image` schema uses `url_original`/`wikimedia_file`/`attribution`/`license_code`/`is_primary`/`display_order` (NOT `external_url`/`license`/`status`/`retrieved_at`)
+  3. Pre-loads `/tmp/person_slugs.json` to reuse existing entity IDs (94% of family slugs collide)
+- **Slug detection**: case-insensitive regex matches `sr_pkg_(q\d+)` and `entity (...) VALUES ('ent_SLUG')`
+- **Result**: 440/440 chunks succeed in ~12 minutes
+
+### Helper scripts
+
+- `enrichment/resolve_qid_labels.py` — fallback for QIDs with blank en labels (18+ famous people: Trump, Jobs, Streep, Swift, etc.)
+- `enrichment/reenrich_empty.py` — re-fetch empty enrichment entries
+- `enrichment/refill_empty.py` — refill empty entries one at a time
+
 ## Standing gotchas
 
 - **Don't write to existing D1s.** The only writable D1 is `historical-knowledge-api-d1`. Reading from `timeandtimepro-full-v2` is allowed; writing is not.
-- **Idempotency** — every run must be re-runnable without duplicating data. Use `INSERT OR REPLACE` or staging + merge.
+- **Idempotency** — every run must be re-runnable without duplicating data. Use `INSERT OR IGNORE` (NOT `INSERT OR REPLACE` — blocked by FK from `claim_source` RESTRICT for the `claim` table).
 - **BATCH_SIZE** — for bulk inserts, follow the table in `packages/db/AGENTS.md`.
 - **Background processes** — if the connector is long-running, use `setsid nohup ... </dev/null >/dev/null 2>&1 &; disown` (NOT plain `nohup &` — the shell task wrapper dies with the foreground tool call). Kill old PIDs with `kill -9` before re-running.
 - **No scraping of forbidden sites** — onthisday.com, timeanddate.com, history.com, britannica.com, social platforms. These are blocked by the user's standing rule.
 - **Licensing** — record the source license in `source_policy` BEFORE pulling. No data without a license.
-- **HTTP via curl, not urllib (NEW 2026-08-08)** — Python's `urllib.request` gets 403 Too Many Reqs from Wikipedia/Wikidata even with custom User-Agent. Use `subprocess.run(['curl', ...])` instead.
-- **SPARQL query gotchas (NEW 2026-08-08)** — DBpedia URIs require title-case (first letter capitalized). `^\\d{3,4}` regex in f-strings needs `{{N,M}}` (double braces) to avoid Python format-string interpretation.
+- **HTTP via curl, not urllib** — Python's `urllib.request` gets 403 Too Many Reqs from Wikipedia/Wikidata even with custom User-Agent. Use `subprocess.run(['curl', ...])` instead.
+- **SPARQL query gotchas** — DBpedia URIs require title-case (first letter capitalized). `^\\d{3,4}` regex in f-strings needs `{{N,M}}` (double braces) to avoid Python format-string interpretation.
+- **SPARQL response size (NEW 2026-08-17)** — Wikidata SPARQL returns 89MB+ if you have too many OPTIONAL joins. Use SAMPLE/GROUP BY to dedupe within the query. Batch 15-30 QIDs per query max.
+- **PKG slug collision (NEW 2026-08-17)** — 94% of family member slugs already exist as entity slugs. ALWAYS pre-load existing slugs from D1 (`/tmp/person_slugs.json`) and reuse the existing entity ID instead of creating a new one. INSERT OR IGNORE silently fails due to `entity.slug UNIQUE`.
 
 ## When stuck
 

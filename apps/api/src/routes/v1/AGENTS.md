@@ -2,7 +2,7 @@
 
 > **Source of truth for what's in the API.** Every endpoint we ship gets an entry here. New endpoint? Add to this file. Deprecated endpoint? Mark `**DEPRECATED**:` here and keep the entry until the route is removed.
 
-## Live endpoints (50+, as of 2026-08-08)
+## Live endpoints (84, as of 2026-08-17)
 
 ### Browse & detail
 
@@ -13,6 +13,8 @@
 | GET | `/v1/people/{slug}/timeline` | — | Chronological life events. Each event has `source` (tier + name + URL) |
 | GET | `/v1/people/{slug}/related` | — | Multi-signal relevance: same profession +0.40, country +0.20, generation +0.10, star_sign +0.05, chinese_zodiac +0.05, era overlap +0.15, shared relation +0.25, popularity +0.05. Max 0.95. |
 | GET | `/v1/people/{slug}/references` | — | Sources grouped by source_registry, sorted by tier A first. |
+| GET | `/v1/people/{slug}/news` | KP-018-v2 | Recent news events for a person |
+| GET | `/v1/people/{slug}/quizzes` | KP-017 | Quiz sessions for a person |
 
 ### Entity pages (9)
 
@@ -123,6 +125,40 @@
 | GET | `/v1/people/{slug}/events` | Date-anchored events. Query: `?type=&category=&from=&to=&limit=`. Each event has `source_id` (NEW). |
 | GET | `/v1/people/{slug}/events/by-category` | Events grouped by category (life, work, public). |
 | GET | `/v1/people/{slug}/events/timeline` | Events grouped by decade. |
+| GET | `/v1/places/{slug}/events` | Date-anchored events for a place. Query: `?type=&category=&from=&to=&limit=`. |
+| GET | `/v1/organizations/{slug}/events` | Date-anchored events for an org. Query: `?type=&category=&from=&to=&limit=`. |
+
+### On-this-day (KP-029 + KP-018-v2, NEW 2026-08-14)
+
+| Method | Path | Notes |
+|---|---|---|
+| GET | `/v1/on-this-day/today` | Today's events (year-agnostic, top 5 per section). Includes `news` section. |
+| GET | `/v1/on-this-day/{mm_dd}` | Same shape, for any mm-dd (e.g. `/v1/on-this-day/07-04`). |
+| GET | `/v1/on-this-day/date/{yyyy_mm_dd}` | Year-list view (e.g. `/v1/on-this-day/date/2025-07-04`). |
+
+### News (KP-018-v2, NEW 2026-08-14)
+
+| Method | Path | Notes |
+|---|---|---|
+| GET | `/v1/news/recent` | Recent news events. Query: `?limit=&source_id=` |
+| GET | `/v1/news/by-date/{yyyy_mm_dd}` | News for a specific date |
+| GET | `/v1/this-day/telescope` | Time telescope — same MM-DD across multiple years (1/5/10/25/50/100 years ago). |
+
+### Quiz (KP-017, NEW 2026-08-08)
+
+| Method | Path | Notes |
+|---|---|---|
+| GET | `/v1/people/{slug}/quizzes` | Quiz sessions for a person |
+| POST | `/v1/people/{slug}/quizzes/play` | Start a new quiz |
+| POST | `/v1/people/{slug}/quizzes/{quiz_id}/attempt` | Submit a quiz attempt |
+| GET | `/v1/quiz-attempts/{id}` | Quiz attempt result |
+
+### PKG (KP-PKG-1B, NEW 2026-08-17)
+
+| Method | Path | Notes |
+|---|---|---|
+| GET | `/v1/pkg/person/{slug}` | PKG 4-question layout (WHO/WHAT/CONNECTED/NOW) with full claim provenance. 345 people eligible. |
+| GET | `/v1/pkg/people?limit=30&offset=0` | Discovery list sorted by `data_quality_score`. Filter: `total_claims >= 5`. |
 
 ## Not yet built (MVP blockers)
 
@@ -130,6 +166,10 @@
 - **GET `/v1/feeds/on-this-day.rss`** — RSS feed. (Phase 5)
 - **GET `/sitemap.xml`** — segmented sitemap. (Phase 5)
 - **Rate limit middleware** — TASK-018.
+- **Slug redirect for PKG names** — `beyonce` → `beyonc`, fix historical `taylor-swift` / `madonna` slug collisions via entity merge flow (KP-005 phase 2)
+- **PKG entity_event backfill** — populate `entity_event` for the 440 USA famous people so WHAT field shows their actual life events
+- **PKG people query endpoint** — `/v1/people/query?profession=&country=&era=&min_claims=` for compound search
+- **Wikipedia news apply (continuation)** — 4,735 of 19,654 events remaining (D1 rate-limited)
 
 ## On This Day API gotchas (TASK-013)
 
@@ -142,17 +182,17 @@
 - **12 categories enforced via CHECK constraint** on `otd_event.category`. Adding a 13th category requires a migration.
 - **`popularity_rank` is NOT a column on otd_event** — that was a copy-paste error. Don't add ORDER BY e.popularity_rank without a real column.
 
-## Source IDs to remember (107 total)
+## Source IDs to remember (124 total)
 
 Tier A (primary/official): `src_wikidata`, `src_frida_kahlo_foundation`, `src_bbc-news`, `src_nyt`, `src_the_white_house`, `src_usps`, `src_science_media_center`, `src_whitehouse_gov`, ...
 
-Tier B (authority/open-knowledge): `src_viaf`, `src_library_of_congress`, `src_isni`, `src_orcid`, `src_geonames`, `src_mledoze`, `src_iana`, `src_un_m49`, ...
+Tier B (authority/open-knowledge): `src_viaf`, `src_library_of_congress`, `src_isni`, `src_orcid`, `src_geonames`, `src_mledoze`, `src_iana`, `src_un_m49`, `src_dbpedia`, ...
 
-Tier C (domain): `src_crossref`, `src_openalex`, `src_musicbrainz`, `src_nobel`, `src_tmdb`, `src_imdb`, ...
+Tier C (domain): `src_crossref`, `src_openalex`, `src_musicbrainz`, `src_nobel`, `src_tmdb`, `src_imdb`, `src_gdelt`, ...
 
-Tier D (edited secondary, 35+ news outlets): `src_fox_news`, `src_npr`, `src_nyt`, `src_ap`, `src_bbc-news`, `src_newsweek`, `src_nbc_news`, `src_cnn`, `src_the-guardian`, `src_the_times_uk`, `src_pbs`, `src_reuters`, `src_washington_post`, `src_al_jazeera_english`, `src_dw`, `src_france_24`, `src_kyodo_news`, `src_xinhua`, `src_india_today`, ... (35+ in total)
+Tier D (edited secondary, 35+ news outlets + 74 RSS feeds): `src_fox_news`, `src_npr`, `src_nyt`, `src_ap`, `src_bbc-news`, `src_newsweek`, `src_nbc_news`, `src_cnn`, `src_the-guardian`, `src_the_times_uk`, `src_pbs`, `src_reuters`, `src_washington_post`, `src_al_jazeera_english`, `src_dw`, `src_france_24`, `src_kyodo_news`, `src_xinhua`, `src_india_today`, `src_bbc_sport`, `src_sky_sports`, `src_espn`, `src_bleacher_report`, `src_rolling_stone`, `src_billboard`, ... (74 RSS feeds total — see `news_source` table)
 
-Tier E (discovery only): `src_wikipedia` (and a few fan sites).
+Tier E (discovery only): `src_wikipedia`, `src_wiki_anniversaries` (14,920 curated historical events)
 
 **Gotcha**: `src_bbc-news` (HYPHEN) not `src_bbc_news` (underscore). Same for `src_the-guardian` (HYPHEN).
 
